@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateNscNacionalidadsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('nsc_nacionalidad', function (Blueprint $table) {
+            $table->id();
+            $table->string('nacionalidad', 255)->nullable();
+            $table->string('pais', 255)->nullable();
+            $table->string('estado', 100)->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('nsc_nacionalidad');
+    }
+}
