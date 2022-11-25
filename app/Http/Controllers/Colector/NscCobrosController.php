@@ -38,7 +38,7 @@ class NscCobrosController extends Controller
     public function create(Request $request)
     {
         
-        // $cobro = 
+        return $request->all();
 
     }
 

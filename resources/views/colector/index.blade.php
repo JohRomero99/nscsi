@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="content p-3">
-    <form>
+
         <div class="card shadow">
             <div class="card-header">
                 <div class="p-2 text-center">
@@ -74,44 +74,6 @@
                     </div>
                 </div>
             </div>
-
-            
-            <div class="form-group row d-flex justify-content-center">
-                <!-- <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="form-group row d-flex justify-content-center">
-                                <label class="col-12 col-form-label">Valor:</label>
-                                <div class="col-12">
-                                    <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">$</span>
-                                </div>
-                                    <input type="text" class="form-control" placeholder="00,00">
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-success m-3 w-50">Generar Cobro <i class="fas fa-coins"></i></button>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="col-12 col-sm-12 col-lg-6">
-                    <label class="col-12 col-sm-4 col-lg-4 col-form-label">Tipo de descuento</label>
-                    <div class="col-12 col-sm-4 col-lg-5">
-                        <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option selected>Seleccione</option>
-                                <option value="1">10%</option>
-                                <option value="2">25%</option>
-                                <option value="2">30%</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-lg-6">
-                        <button type="button" class="btn btn-danger btn-block m-3">Cancelar Cobro</button>
-                    </div>
-                </div> -->
-            </div>
         </div>
 
         <div class="card mt-2 shadow">
@@ -120,7 +82,7 @@
                     <div class="d-flex justify-content-center">
                         <!-- <p class="p-1 h5"><i class="far fa-user"></i> Estudiante: John Romero</p> -->
                     </div>
-                    <table class="table table-striped" id="usuarios">
+                    <table class="table table-striped" id="usuario">
                         <thead class="thead">
                             <tr>
                                 <!-- <th scope="col">#</th> -->
@@ -135,6 +97,8 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- <form action="{{ route('colector.cobro') }}" method="POST"> -->
+                            <!-- @csrf -->
                             @foreach($estadoDeCuenta as $estadoDeCuenta)
                                 <tr class="">
                                     <!-- <td class="p-3">{{ $estadoDeCuenta->id }}</td> -->
@@ -144,9 +108,10 @@
                                     <td class="p-3">{{ $estadoDeCuenta->valor_a_tomar }}</td>
                                     <td class="p-3">{{ $estadoDeCuenta->valor_cobrado }}</td>
                                     <td class="p-3">{{ $estadoDeCuenta->saldo }}</td>
-                                    <td class="p-3 text-dark"><strong>{{ $estadoDeCuenta->estado }}</strong></td>
+                                    <td class="p-3 text-dark">{{ $estadoDeCuenta->estado }}</td>
                                     <th>
                                         <form action="{{ route('colector.cobro') }}" method="POST">
+                                            @csrf
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal{{ $estadoDeCuenta->id }}">
                                                 <i class="fas fa-pencil-alt"></i>
@@ -168,14 +133,14 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-12 col-sm-4 col-lg-4 col-form-label">N° Factura</label>
                                                                     <div class="col-12 col-sm-5 col-lg-5">
-                                                                        <input type="text" disabled value="{{ numero_factura() }}" value="n_factura" class="form-control">
+                                                                        <input type="text" readOnly value="{{ numero_factura() }}" name="n_factura" class="form-control">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label class="col-12 col-sm-5 col-lg-4 col-form-label">Tipo de pago</label>
                                                                     <div class="col-12 col-sm-5 col-lg-5">
                                                                         <div class="form-group">
-                                                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                                            <select class="form-control" name="tipoPago" id="exampleFormControlSelect1">
                                                                                 <option selected>Seleccione</option>
                                                                                 <option value="1">Efectivo</option>
                                                                                 <option value="2">Targeta de Credito</option>
@@ -185,18 +150,16 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-12">
                                                                 <div class="form-group row">
-                                                                    <label class="col-12 col-form-label">Fecha</label>
-                                                                    <div class="col-12">
+                                                                    <label class="col-12 col-sm-5 col-lg-4 col-form-label">Fecha</label>
+                                                                    <div class="col-12 col-sm-5 col-lg-5">
                                                                         <input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" name="fecha_cobro">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <div class="input-group">
-                                                                        <label class="col-12 col-form-label">Subir comprobante</label>
-                                                                        <div class="col-12">
+                                                                        <label class="col-12 col-sm-5 col-lg-4 col-form-label">Subir comprobante</label>
+                                                                        <div class="col-12 col-sm-5 col-lg-6">
                                                                             <div class="input-group mb-3 w-100">
                                                                                 <div class="input-group-prepend">
                                                                                     <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
@@ -209,46 +172,47 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="">
-                                                                <div class="col-12">
-                                                                    <div class="form-group row">
-                                                                        <label class="col-12 col-form-label">Valor</label>
-                                                                        <div class="col-12">
-                                                                            <div class="input-group">
-                                                                                <div class="input-group-prepend">
-                                                                                    <span class="input-group-text">$</span>
-                                                                                </div>
-                                                                                <input type="text" class="form-control text-center" name="saldo">
-                                                                                <div class="input-group-append">
-                                                                                    <span class="input-group-text">.00</span>
-                                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-12 col-sm-5 col-lg-4 col-form-label">Valor</label>
+                                                                    <div class="col-12 col-sm-5 col-lg-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text">$</span>
+                                                                            </div>
+                                                                            <input type="text" class="form-control text-center " name="saldo">
+                                                                            <div class="input-group-append">
+                                                                                <span class="input-group-text">.00</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    @error('saldo')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <input type="text" class="d-none" value="{{ $estadoDeCuenta->id }}" name="estadoCuentaId">
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-success">Generar Cobro <i class="fas fa-coins"></i></button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-success">Generar Cobro <i class="fas fa-coins"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
                                     </th>
                                 </tr>    
+                                <!-- </form> -->
                             @endforeach
+                     
                         </tbody>
                     </table>
                 </div>
             </div>
-            <!-- <div class="card-footer">
-                paginacion
-            </div> -->
         </div>  
-    </form>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
@@ -279,9 +243,29 @@
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js"></script>
     <script>
-        $('#usuarios').DataTable({
+        $('#usuario').DataTable({
             responsive: true,
-            autoWidth: false
+            autoWidth: false,
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Estudiante:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
         });
     </script>
 

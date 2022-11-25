@@ -510,11 +510,11 @@
 
                     <p class="mb-5"></p>
 
-                    <a href="{{ app('router')->has('home') ? route('representante.home') : url('/representante/home') }}">
+                    <!-- <a href="{{ app('router')->has('home') ? route('representante.home') : url('/representante/home') }}">
                         <button class="bg-transparent text-grey-darkest font-bold uppercase tracking-wide py-3 px-6 border-2 border-grey-light hover:border-grey rounded-lg">
                         <i class="fas fa-home"></i> {{ __('Regresar al inicio') }} 
                         </button>
-                    </a>
+                    </a> -->
                 </div>
             </div>
 
