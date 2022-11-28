@@ -17,13 +17,12 @@ class CreateCobEstadoCuentaTable extends Migration
             $table->id();
             $table->unsignedBigInteger('concepto_cobro_id')->nullable();
             $table->unsignedBigInteger('valor_actualizado')->nullable();
-            $table->string('estudiante_id')->nullable();
+            $table->unsignedBigInteger('estudiante_id')->nullable();
             $table->decimal('valor_normal', 8, 2)->nullable();
             $table->decimal('valor_descontado', 8, 2)->nullable();
             $table->decimal('valor_a_tomar', 8, 2)->nullable();
             $table->decimal('valor_cobrado', 8, 2)->nullable();
             $table->decimal('saldo', 8, 2)->nullable();
-            $table->string('mes_a_pagar')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();  
 
@@ -35,6 +34,11 @@ class CreateCobEstadoCuentaTable extends Migration
             $table->foreign('valor_actualizado')
                 ->references('id')
                 ->on('cob_valor_actualizado')
+                ->onDelete('set null');
+            
+            $table->foreign('estudiante_id')
+                ->references('id')
+                ->on('nsc_estudiante')
                 ->onDelete('set null');
         });
     }

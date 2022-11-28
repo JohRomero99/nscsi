@@ -24,6 +24,13 @@ class cob_estado_cuenta extends Model
 
     }
 
+    // Relacion de estado de cuenta a estudiante.
+    public function estudiante(){
+
+        return $this->belongsto(Estudiante::class,'estudiante_id');
+    
+    }
+
 
 }
 

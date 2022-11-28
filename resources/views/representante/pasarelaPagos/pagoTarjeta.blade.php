@@ -129,7 +129,7 @@
                                             <option value="Rotativo">Rotativo</option>
                                             <option value="Diferido">Diferido con intereses</option>
                                         </select>
-                                        <div class="masElementos"  style="display: none">
+                                        <div class="masElementos" style="display: none">
                                             <p class="m-auto text-left"><strong>Plazo (meses)</strong></p>
                                             <select name="numeroCuota" class="custom-select rounded-0 col-md-10 mt-1" id="cuota" disabled>
                                                 @if( $amount >= $num[0]->diferir_a_partir )
@@ -266,18 +266,18 @@ $("#form").submit(function (e) {
 
 <!-- Mostrar y ocultar cuota -->
 <script>
-function toggle(o){
-    var el = document.querySelector(".masElementos");
-    var cuota = document.getElementById("cuota");
-    if (o.value=="Diferido"){
-        el.style.display="block";
-        cuota.disabled = false;
-    } 
-    if (o.value=="Rotativo"){
-        el.style.display="none";
-        cuota.disabled = true;
+    function toggle(o){
+        var el = document.querySelector(".masElementos");
+        var cuota = document.getElementById("cuota");
+        if (o.value=="Diferido"){
+            el.style.display="block";
+            cuota.disabled = false;
+        } 
+        if (o.value=="Rotativo"){
+            el.style.display="none";
+            cuota.disabled = true;
+        }
     }
-}
 </script>
 
 <!-- Calcular Cuota -->

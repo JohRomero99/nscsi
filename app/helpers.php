@@ -109,31 +109,26 @@ function verificarSaldo(){
     $diferencia = [];
     
     $id = Auth::user()->representante->id;
-    $c = EstudianteRepresentante::select("estudiante_id")->where("representante_id","=",$id)->first();
-    $estudiante = Estudiante::find($c->estudiante_id);
-    $actualizar = cob_estado_cuenta::where("estudiante_id","=",$estudiante->persona->cedula)->get();
+    $estudianteRepresentante = EstudianteRepresentante::select("estudiante_id")->where("representante_id","=",$id)->get();
 
-    // return $actualizar[11]->cob_cobro->fecha_vencimiento;
-
-    $tamano = count($actualizar);
-
-    // return $actualizar;
-
-    for( $i = 0; $i < $tamano; $i++){
-        $fechaVigencia[$i] = Carbon::parse($actualizar[$i]->cob_cobro->fecha_vencimiento);
-        if($actualizar[$i]->estado == "pendiente"){
-            if($fecha_actual->gt($fechaVigencia[$i])){
-                if( $actualizar[$i]->valor_actualizado == 1 ){
-                    $diferencia[$i] = $actualizar[$i]->valor_descontado - $actualizar[$i]->valor_normal;
-                    $actualizar[$i]->valor_a_tomar = $actualizar[$i]->valor_descontado;
-                    $actualizar[$i]->saldo = $actualizar[$i]->saldo + $diferencia[$i];
-                    $actualizar[$i]->valor_actualizado = 2;
-                    $actualizar[$i]->save();
+    for($i = 0; $i < count($estudianteRepresentante); $i++){
+        $estudiante = Estudiante::find($estudianteRepresentante[$i]->estudiante_id);
+        $actualizar = cob_estado_cuenta::where("estudiante_id","=",$estudiante->persona->cedula)->get();
+        for( $i = 0; $i < count($actualizar); $i++){
+            $fechaVigencia[$i] = Carbon::parse($actualizar[$i]->cob_cobro->fecha_vencimiento);
+            if($actualizar[$i]->estado == "pendiente"){
+                if($fecha_actual->gt($fechaVigencia[$i])){
+                    if( $actualizar[$i]->valor_actualizado == 1 ){
+                        $diferencia[$i] = $actualizar[$i]->valor_descontado - $actualizar[$i]->valor_normal;
+                        $actualizar[$i]->valor_a_tomar = $actualizar[$i]->valor_descontado;
+                        $actualizar[$i]->saldo = $actualizar[$i]->saldo + $diferencia[$i];
+                        $actualizar[$i]->valor_actualizado = 2;
+                        $actualizar[$i]->save();
+                    }
                 }
             }
         }
     }
-
 }
 
 // Registrar Cobro

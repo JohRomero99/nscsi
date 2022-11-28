@@ -25,10 +25,6 @@ class Estudiante extends Model
         'updated_at'
     ];*/
 
-    // //Relación uno a uno
-    // public function codigo(){
-    //     return this->hasone('\App\Models\Codigo','estudiante');
-    // }
     public function persona(){
 
         return $this->belongsTo(Persona::class, 'persona_id');
@@ -45,7 +41,11 @@ class Estudiante extends Model
     
     }
 
+    // Relacion de estudiante a estado de cuenta
+    public function estado_cuenta(){
 
-   
+        return $this->hasMany(cob_estado_cuenta::class);
+    
+    }   
 }
 

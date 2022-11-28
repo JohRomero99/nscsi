@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use App\Http\Requests\registrarCobro;
 
 class NscCobrosController extends Controller
 {
@@ -23,11 +24,12 @@ class NscCobrosController extends Controller
         $this->middleware('can:colector.home')->only('index');
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $estadoDeCuenta = cob_estado_cuenta::all();
-        return view('colector.index', compact('estadoDeCuenta'));
 
+        $estadoDeCuenta = "null";
+        return view('colector.index',compact('estadoDeCuenta'));
+ 
     }
 
     /**
@@ -35,10 +37,23 @@ class NscCobrosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(registrarCobro $request)
     {
-        
-        return $request->all();
+
+        try {
+            $name = explode(' ' ,$request->nombres);
+            $ci = Persona::where('primer_nombre','=',$name[0])
+                ->where('segundo_nombre','=',$name[1])
+                ->where('apellido_paterno','=',$name[2])
+                ->where('apellido_materno','=',$name[3])
+                ->first();
+    
+            return redirect()->route('colector.editar',[
+                'ci' => $ci->estudiante->id
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with('error','Estudiante no encontrado');
+        }
 
     }
 
@@ -63,7 +78,6 @@ class NscCobrosController extends Controller
     {
         $data = [];
         $term = $request->get('term');
-        // $estudiantes = Persona::where('primer_nombre', 'LIKE', '%' .$term . '%')->get();
         $estudiantes = DB::select('call nombresCompletos(?)', [
             $term
         ]);
@@ -75,6 +89,7 @@ class NscCobrosController extends Controller
         }
 
         return $data;
+        // $estudiantes = Persona::where('primer_nombre', 'LIKE', '%' .$term . '%')->get();
     }
 
     /**
@@ -83,9 +98,10 @@ class NscCobrosController extends Controller
      * @param  \App\Models\nsc_cobros  $nsc_cobros
      * @return \Illuminate\Http\Response
      */
-    public function edit(nsc_cobros $nsc_cobros)
+    public function edit($ci)
     {
-        //
+        $estadoDeCuenta = cob_estado_cuenta::where('estudiante_id','=',$ci)->paginate(10);
+        return view('colector.index',compact('estadoDeCuenta'));
     }
 
     /**

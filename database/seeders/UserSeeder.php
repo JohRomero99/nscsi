@@ -289,97 +289,97 @@ class UserSeeder extends Seeder
             'password' => bcrypt('Nsc2023')
         ])->assignRole('representante_invitado');
 
-        $usuario = User::latest('id')->first();
+        // $usuario = User::latest('id')->first();
 
-        Persona::create([
-            'cedula' => '0000000000',
-            'apellido_paterno' => 'V',
-            'apellido_materno' => 'Anchundia',
-            'primer_nombre' => 'Antonio',
-            'sexo' => 'Masculino',
-            'fecha_nacimiento' => '1999-04-28',
-            'lugar_nacimiento_id' => 77,
-            'nacionalidad_id' => 11,
-            'telefono_celular' => '0999999999',
-            'correo' => 'antonioloor462@gmail.com' 
-        ]);
-        $persona = Persona::latest('id')->first();
+        // Persona::create([
+        //     'cedula' => '0000000000',
+        //     'apellido_paterno' => 'V',
+        //     'apellido_materno' => 'Anchundia',
+        //     'primer_nombre' => 'Antonio',
+        //     'sexo' => 'Masculino',
+        //     'fecha_nacimiento' => '1999-04-28',
+        //     'lugar_nacimiento_id' => 77,
+        //     'nacionalidad_id' => 11,
+        //     'telefono_celular' => '0999999999',
+        //     'correo' => 'antonioloor462@gmail.com' 
+        // ]);
+        // $persona = Persona::latest('id')->first();
 
-        Representante::create([
-            'persona_id' => $persona->id
-        ]);
+        // Representante::create([
+        //     'persona_id' => $persona->id
+        // ]);
         
-        Persona::create([
-            'cedula' => '1312049461',
-            'apellido_paterno' => 'Loor',
-            'apellido_materno' => 'Anchundia',
-            'primer_nombre' => 'Anthony',
-            'segundo_nombre' => 'Israel',
-            'sexo' => 'Masculino',
-            'fecha_nacimiento' => '1999-04-28',
-            'lugar_nacimiento_id' => 138,
-            'nacionalidad_id' => 11,
-            'telefono_celular' => '0996627480',
-            'correo' => 'anthonyloor462@gmail.com' 
-        ]);
-        $persona = Persona::latest('id')->first();
+        // Persona::create([
+        //     'cedula' => '1312049461',
+        //     'apellido_paterno' => 'Loor',
+        //     'apellido_materno' => 'Anchundia',
+        //     'primer_nombre' => 'Anthony',
+        //     'segundo_nombre' => 'Israel',
+        //     'sexo' => 'Masculino',
+        //     'fecha_nacimiento' => '1999-04-28',
+        //     'lugar_nacimiento_id' => 138,
+        //     'nacionalidad_id' => 11,
+        //     'telefono_celular' => '0996627480',
+        //     'correo' => 'anthonyloor462@gmail.com' 
+        // ]);
+        // $persona = Persona::latest('id')->first();
 
-        Representante::create([
-            'persona_id' => $persona->id,
-            'user_id' => $usuario->id
-        ]);
-
-
-        $representante = Representante::latest('id')->first();
-
-        Persona::create([
-            'cedula' => '09122425601',
-            'apellido_paterno' => 'Loor',
-            'apellido_materno' => 'M',
-            'primer_nombre' => 'Damian',
-            'segundo_nombre' => 'D',
-            'sexo' => 'Masculino',
-            'fecha_nacimiento' => '2023-2024',
-            'lugar_nacimiento_id' => 77,
-            'nacionalidad_id' => 11
-        ]);
-        $persona = Persona::latest('id')->first();
-
-        Estudiante::create([
-            'persona_id' => $persona->id
-        ]);
-
-        $estudiante = Estudiante::latest('id')->first();
-
-        EstudianteRepresentante::create([
-            'estudiante_id' => $estudiante->id,
-            'representante_id'=> $representante->id,
-            'parentesco_id' => 1
-        ]);
+        // Representante::create([
+        //     'persona_id' => $persona->id,
+        //     'user_id' => $usuario->id
+        // ]);
 
 
-        Persona::create([
-            'cedula' => '09336425690',
-            'apellido_paterno' => 'Loor',
-            'apellido_materno' => 'M',
-            'primer_nombre' => 'Antonio',
-            'segundo_nombre' => 'D',
-            'sexo' => 'Masculino',
-            'fecha_nacimiento' => '2023-2024',
-            'lugar_nacimiento_id' => 77,
-            'nacionalidad_id' => 11
-        ]);
-        $persona = Persona::latest('id')->first();
-        Estudiante::create([
-            'persona_id' => $persona->id,
-        ]);
+        // $representante = Representante::latest('id')->first();
 
-        $estudiante = Estudiante::latest('id')->first();
+        // Persona::create([
+        //     'cedula' => '09122425601',
+        //     'apellido_paterno' => 'Loor',
+        //     'apellido_materno' => 'M',
+        //     'primer_nombre' => 'Damian',
+        //     'segundo_nombre' => 'D',
+        //     'sexo' => 'Masculino',
+        //     'fecha_nacimiento' => '2023-2024',
+        //     'lugar_nacimiento_id' => 77,
+        //     'nacionalidad_id' => 11
+        // ]);
+        // $persona = Persona::latest('id')->first();
 
-        EstudianteRepresentante::create([
-            'estudiante_id' => $estudiante->id,
-            'representante_id'=> $representante->id,
-            'parentesco_id' => 1
-        ]);
+        // Estudiante::create([
+        //     'persona_id' => $persona->id
+        // ]);
+
+        // $estudiante = Estudiante::latest('id')->first();
+
+        // EstudianteRepresentante::create([
+        //     'estudiante_id' => $estudiante->id,
+        //     'representante_id'=> $representante->id,
+        //     'parentesco_id' => 1
+        // ]);
+
+
+        // Persona::create([
+        //     'cedula' => '09336425690',
+        //     'apellido_paterno' => 'Loor',
+        //     'apellido_materno' => 'M',
+        //     'primer_nombre' => 'Antonio',
+        //     'segundo_nombre' => 'D',
+        //     'sexo' => 'Masculino',
+        //     'fecha_nacimiento' => '2023-2024',
+        //     'lugar_nacimiento_id' => 77,
+        //     'nacionalidad_id' => 11
+        // ]);
+        // $persona = Persona::latest('id')->first();
+        // Estudiante::create([
+        //     'persona_id' => $persona->id,
+        // ]);
+
+        // $estudiante = Estudiante::latest('id')->first();
+
+        // EstudianteRepresentante::create([
+        //     'estudiante_id' => $estudiante->id,
+        //     'representante_id'=> $representante->id,
+        //     'parentesco_id' => 1
+        // ]);
     }
 }
