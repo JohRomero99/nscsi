@@ -291,18 +291,51 @@ class UserSeeder extends Seeder
 
         // $usuario = User::latest('id')->first();
 
-        // Persona::create([
-        //     'cedula' => '0000000000',
-        //     'apellido_paterno' => 'V',
-        //     'apellido_materno' => 'Anchundia',
-        //     'primer_nombre' => 'Antonio',
-        //     'sexo' => 'Masculino',
-        //     'fecha_nacimiento' => '1999-04-28',
-        //     'lugar_nacimiento_id' => 77,
-        //     'nacionalidad_id' => 11,
-        //     'telefono_celular' => '0999999999',
-        //     'correo' => 'antonioloor462@gmail.com' 
-        // ]);
+        Persona::create([
+            'cedula' => '0955546601',
+            'apellido_paterno' => 'Romero',
+            'apellido_materno' => 'Sanchez',
+            'primer_nombre' => 'John',
+            'segundo_nombre' => 'jairo',
+            'telefono_celular' => '0999999999',
+            'correo' => 'antonioloor462@gmail.com' 
+        ]);
+
+        Persona::create([
+            'cedula' => '0955546602',
+            'apellido_paterno' => 'Romero',
+            'apellido_materno' => 'Sanchez',
+            'primer_nombre' => 'Jose',
+            'segundo_nombre' => 'Carlos',
+            'sexo' => 'Masculino',
+            'fecha_nacimiento' => '1999-04-28',
+            'telefono_celular' => '0999999999',
+            'correo' => 'antonioloor462@gmail.com' 
+        ]);
+
+        Persona::create([
+            'cedula' => '0955546603',
+            'apellido_paterno' => 'Loor',
+            'apellido_materno' => 'Anchundia',
+            'primer_nombre' => 'Anthony',
+            'segundo_nombre' => 'insrael',
+            'sexo' => 'Masculino',
+            'fecha_nacimiento' => '1999-04-28',
+            'telefono_celular' => '0999999999',
+            'correo' => 'antonioloor462@gmail.com' 
+        ]);
+
+        Persona::create([
+            'cedula' => '0955546604',
+            'apellido_paterno' => 'Alberto',
+            'apellido_materno' => 'ramirez',
+            'primer_nombre' => 'Anthony',
+            'primer_nombre' => 'Daniel',
+            'sexo' => 'Masculino',
+            'fecha_nacimiento' => '1999-04-28',
+            'telefono_celular' => '0999999999',
+            'correo' => 'antonioloor462@gmail.com' 
+        ]);
         // $persona = Persona::latest('id')->first();
 
         // Representante::create([

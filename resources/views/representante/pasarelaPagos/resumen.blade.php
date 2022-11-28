@@ -255,10 +255,10 @@ actualizar.addEventListener('click', function(){
             resultado =  valorArreglo - resultado;
             console.log(resultado);
                 if(resultado <= 0){
-                saldos[i].value = toNumberString(0);
+                    saldos[i].value = toNumberString(0);
                 }else{
-                saldos[i].value = toNumberString(resultado);
-                break;
+                    saldos[i].value = toNumberString(resultado);
+                    break;
                 }
             valorDiferencia = (resultado) * -1;
             }

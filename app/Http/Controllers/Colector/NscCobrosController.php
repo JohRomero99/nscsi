@@ -111,9 +111,44 @@ class NscCobrosController extends Controller
      * @param  \App\Models\nsc_cobros  $nsc_cobros
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, nsc_cobros $nsc_cobros)
+    public function update(Request $request)
     {
-        //
+
+        $nuevoSaldo = $request->saldoCuenta[0] - $request->saldo;
+        if($nuevoSaldo < 0){
+            for ($i = 0; $i < count($request->id); $i++) { 
+                $nuevoSaldo = $request->saldoCuenta[$i] - $request->saldo;
+                if($nuevoSaldo <= 0){
+                    $estadoDeCuenta = cob_estado_cuenta::find($request->id[$i]);
+                    $estadoDeCuenta->saldo = 0;
+                    $estadoDeCuenta->save();
+                }else{
+                    $estadoDeCuenta = cob_estado_cuenta::find($request->id[$i]);
+                    $estadoDeCuenta->saldo = $nuevoSaldo;
+                    $estadoDeCuenta->save();
+                    break;
+                }
+                $nuevoSaldo = ($nuevoSaldo) * -1;
+            }
+        }else{
+            $estadoDeCuenta = cob_estado_cuenta::find($request->id[0]);
+            $estadoDeCuenta->saldo = $nuevoSaldo;
+            $estadoDeCuenta->save();
+        }
+
+        return redirect()->back()->with('exito','Cobro generado con exito');
+        return $request->all();
+        $cobro = nsc_cobro::create([
+            'concepto_cobro_id' => $request,
+            'estado_cuenta_id' => $request,
+            'representante_id' => $request,
+            'fecha_cobro' => $request->fecha,
+            'estudiante_id' => $request,
+            'valor' => $request->saldo, 
+            'n_factura' => $request->n_factura,
+            'concepto' => $request,
+        ]);
+
     }
 
     /**

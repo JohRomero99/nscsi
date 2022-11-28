@@ -29,83 +29,94 @@
                             </div>
                         </div>
                     </form>
-                    <div class="col-12 col-sm-6 col-lg-6">
-                        <div class="form-group row">
-                            <label class="col-12 col-sm-4 col-lg-4 col-form-label"><i class="fas fa-file-invoice text-success"></i> N° Factura</label>
-                            <div class="col-12 col-sm-5 col-lg-5">
-                                <input type="text" class="form-control" placeholder="001-001">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-12 col-sm-4 col-lg-4 col-form-label"><i class="far fa-calendar"></i> Fecha</label>
-                            <div class="col-12 col-sm-5 col-lg-5">
-                                <input type="date" class="form-control"  value="<?php echo $fcha = date("Y-m-d")?>" >
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-12 col-sm-5 col-lg-4 col-form-label"><i class="fas fa-dollar-sign text-success"></i> Tipo de pago</label>
-                            <div class="col-12 col-sm-5 col-lg-5">
-                                <div class="form-group">
-                                    <select class="form-control" id="exampleFormControlSelect1" onchange="">
-                                        <option selected>Seleccione</option>
-                                        <option value="1">Efectivo</option>
-                                        <option value="2">Tarjeta de Crédito</option>
-                                        <option value="3">Tranferencia</option>
-                                        <option value="4">DataLink</option>
-                                    </select>
+                    <form action="{{ route('colector.update') }}" method="GET" id="form" class="row pb-2">
+                        @csrf
+                        <div class="col-12 col-sm-6 col-lg-6">
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-4 col-lg-4 col-form-label"><i class="fas fa-file-invoice text-success"></i> N° Factura</label>
+                                <div class="col-12 col-sm-5 col-lg-5">
+                                    <input type="text" class="form-control" name="n_factura" placeholder="001-001">
                                 </div>
                             </div>
-                        </div>
-                        <div style="display: none" id="elementoUno">
                             <div class="form-group row">
-                                <label class="col-12 col-sm-4 col-lg-4 col-form-label"><i class="fas fa-calendar-minus text-success"></i> Comprobrande</label>
+                                <label class="col-12 col-sm-4 col-lg-4 col-form-label"><i class="far fa-calendar"></i> Fecha</label>
                                 <div class="col-12 col-sm-5 col-lg-5">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Subir</label>
+                                    <input type="date" class="form-control" name="fecha" value="<?php echo $fcha = date("Y-m-d")?>" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-5 col-lg-4 col-form-label"><i class="fas fa-dollar-sign text-success"></i> Tipo de pago</label>
+                                <div class="col-12 col-sm-5 col-lg-5">
+                                    <div class="form-group">
+                                        <select class="form-control" id="exampleFormControlSelect1" onchange="">
+                                            <option selected>Seleccione</option>
+                                            <option value="1">Efectivo</option>
+                                            <option value="2">Tarjeta de Crédito</option>
+                                            <option value="3">Tranferencia</option>
+                                            <option value="4">DataLink</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: none" id="elementoUno">
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-4 col-lg-4 col-form-label"><i class="fas fa-calendar-minus text-success"></i> Comprobrande</label>
+                                    <div class="col-12 col-sm-5 col-lg-5">
+                                        <div class="custom-file">
+                                            <input type="file" name="comprobante" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                            <label class="custom-file-label" for="inputGroupFile01">Subir</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: none" id="elementoDos">
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-4 col-lg-4 col-form-label"><i class="fas fa-file-invoice text-success"></i> Referencia</label>
+                                    <div class="col-12 col-sm-5 col-lg-5">
+                                        <input type="text" name="referencia" class="form-control" placeholder="###">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div style="display: none" id="elementoDos">
+                        <div class="col-12 col-lg-5 mt-2">
                             <div class="form-group row">
-                                <label class="col-12 col-sm-4 col-lg-4 col-form-label"><i class="fas fa-file-invoice text-success"></i> Referencia</label>
-                                <div class="col-12 col-sm-5 col-lg-5">
-                                    <input type="text" class="form-control" placeholder="###">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-5 mt-2">
-                        <div class="form-group row">
-                            <div class="d-flex justify-content-center mb-3">
-                                <div class="card-body shadow col-md-12 rounded">
-                                    <div class="p-3">
-                                        <div class="text-center mb-2">
-                                            <p class="h5"><i class="far fa-money-bill-alt"></i> Generar Cobro</p>
-                                        </div>
-                                        <div class="input-group mb-3 m-2 mt-2">
-                                            <input type="text" class="form-control text-center">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">.00</span>
+                                <div class="d-flex justify-content-center mb-3">
+                                    <div class="card-body shadow col-md-12 rounded">
+                                        <div class="p-3">
+                                            <div class="text-center mb-2">
+                                                <p class="h5"><i class="far fa-money-bill-alt"></i> Generar Cobro</p>
+                                            </div>
+                                            <div class="input-group mb-3 m-2 mt-2">
+                                                <input type="text" name="saldo" class="form-control text-center">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">.00</span>
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-success m-2" id="generar">Generar Cobro <i class="fas fa-coins"></i></button>
                                             </div>
                                         </div>
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-success m-2" id="generar">Generar Cobro <i class="fas fa-coins"></i></button>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="input-group">
+                            <div class="form-group row">
+                                <div class="input-group">
 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12">
+                        <div class="col-12">
 
-                    </div>
+                        </div>
+                        @if($estadoDeCuenta == "null")
+                            <p>No hay Datos.</p>
+                        @else
+                            @foreach($estadoDeCuenta as $i)
+                                <input type="text" name="id[]" class="d-none" value="{{ $i->id }}">
+                                <input type="text" name="saldoCuenta[]" class="d-none" value="{{ $i->saldo }}">
+                            @endforeach
+                        @endif
+                    </form>
                 </div>
             </div>
         </div>
@@ -114,20 +125,28 @@
             <div class="border rounded"> 
                 <div class="card-body">
                     @if($estadoDeCuenta == "null")
-                    <div class="d-flex justify-content-center">
-                        <h3 class="p-4">
-                            Estudiante
-                            <small class="text-muted">no encontrado <i class="fas fa-user-circle"></i></small>
-                        </h3>
-                    </div>
+                        <div class="d-flex justify-content-center">
+                            <h3 class="p-4">
+                                Estudiante
+                                <small class="text-muted">no encontrado <i class="fas fa-user-circle"></i></small>
+                            </h3>
+                        </div>
                     @else
+                    {{-- <div class="d-flex justify-content-center">
+                        <div>
+                            <p class="h5 text-center p-3"><i class="far fa-money-bill-alt text-success"></i><strong class="text-success"> Total:</strong> $1200</p>
+                        </div>
+                        <div>
+                            <p class="h5 text-center p-3"><i class="far fa-user"></i> <strong class="text-success">Estudiante:</strong> {{ $estadoDeCuenta[0]->estudiante->persona->primer_nombre }} {{ $estadoDeCuenta[0]->estudiante->persona->apellido_paterno }}</p>
+                        </div>
+                    </div> --}}
                     <table class="table table-striped" id="usuario">
                         <thead class="thead">
                             <tr>
                                 <th scope="col">Estudiante</th>
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Fecha de Vencimiento</th>
-                                <th scope="col">Saldo Inicial</th>
+                                <th scope="col">Valor a Tomar</th>
                                 <th scope="col">Abono</th>
                                 <th scope="col">Saldo Final</th>
                                 <th scope="col">Estado</th>
@@ -136,8 +155,9 @@
                         </thead>
                         <tbody>
                             @foreach($estadoDeCuenta as $i)
-                                <tr class="">
-                                    <td class="p-3">{{ $i->Estudiante->persona->primer_nombre }} {{ $i->Estudiante->persona->segundo_nombre }} {{ $i->Estudiante->persona->apellido_paterno }} {{ $i->Estudiante->persona->apellido_materno }}</td>
+                                <tr>
+                                    <td class="d-none">{{ $i->id }}</td>
+                                    <td class="p-3">{{ $i->estudiante->persona->primer_nombre }} {{ $i->Estudiante->persona->segundo_nombre }} {{ $i->Estudiante->persona->apellido_paterno }} {{ $i->Estudiante->persona->apellido_materno }}</td>
                                     <td class="p-3">{{ $i->cob_cobro->descripcion }}</td>
                                     <td class="p-3">{{ $i->cob_cobro->fecha_vencimiento }}</td>
                                     <td class="p-3">{{ $i->valor_a_tomar }}</td>
@@ -264,27 +284,13 @@
         </script>
     @endif
 
+    @if(session('exito') == 'Cobro generado con exito' )
     <script>
-        var generar = document.getElementById("generar");
-
-        generar.addEventListener("click", function(){
-            Swal.fire({
-                title: '¿Estas séguro?',
-                text: "No podrás revertir este proceso",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, Generar'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Exito!',
-                        'Cobro generado con éxito.',
-                        'success'
-                    )
-                }
-            });
-        });
+        Swal.fire(
+            'Exito',
+            'Cobro generado con exito',
+            'success'
+        )
     </script>
+@endif
 @stop
