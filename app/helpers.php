@@ -15,50 +15,6 @@ use Carbon\Carbon;
 use App\Models\pay_url_paymentez;
 // use DateTime;
 
-// Generar codigo unico para la contraseña.
-function generar_codigo($id, $ci){
-
-    try {
-
-        $verificar = UsrCodigoUsuario::where("representante_ci",'=',$ci)->first();
-        
-        if ($verificar == null){
-
-            $aym_contantos = AyMContacto::find($id);
-    
-            $usr = new UsrCodigoUsuario();
-            $usr->representante_ci = $aym_contantos->representante_ci;
-            $usr->rol = $rol;
-            $usr->codigo = Str::random(12);
-            $usr->email = $aym_contantos->representante_email;
-            $usr->nombres = $aym_contantos->representante_nombres;
-            $usr->apellidos = $aym_contantos->representante_apellidos;	
-            $usr->save();
-        
-            $user = new User();
-            $user->name = $aym_contantos->representante_ci;
-            $user->email = $usr->email;
-            $user->password =  Crypt::encrypt($usr->codigo);
-            // $user->assignRole('representante_invitado');
-            $user->save();
-            $contraseña = Crypt::decrypt($user->password);
-
-            return $contraseña;
-
-            
-        }else{
-
-            return "no se pudo realizar";
-        }
-
-    } catch (\Throwable $th) {
-
-        return "error";
-
-    }
-    
-}
-
 // Token para las API de paymentez.
 function auth_token(){
 
@@ -131,20 +87,9 @@ function verificarSaldo(){
     }
 }
 
-// Registrar Cobro
-function registra_cobro(){
-    $registro_cobro = DB::select('call registrar_cobro(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-        
-    ]);
-}
-
 // Nombres Completos
 function nombresCompletos($ci){
     $nombresCompletos = Persona::where('cedula','=',$ci)->first();
     return $nombresCompletos->primer_nombre ." " .$nombresCompletos->segundo_nombre ." " .$nombresCompletos->apellido_paterno ." " .$nombresCompletos->apellido_materno;
 }
 
-// Fecha actual
-function fechaAcual(){
-    return $date = Carbon::now();
-}

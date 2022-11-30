@@ -138,16 +138,16 @@ class NscCobrosController extends Controller
 
         return redirect()->back()->with('exito','Cobro generado con exito');
         return $request->all();
-        $cobro = nsc_cobro::create([
-            'concepto_cobro_id' => $request,
-            'estado_cuenta_id' => $request,
-            'representante_id' => $request,
-            'fecha_cobro' => $request->fecha,
-            'estudiante_id' => $request,
-            'valor' => $request->saldo, 
-            'n_factura' => $request->n_factura,
-            'concepto' => $request,
-        ]);
+        // $cobro = nsc_cobro::create([
+        //     'concepto_cobro_id' => $request,
+        //     'estado_cuenta_id' => $request,
+        //     'representante_id' => $request,
+        //     'fecha_cobro' => $request->fecha,
+        //     'estudiante_id' => $request,
+        //     'valor' => $request->saldo, 
+        //     'n_factura' => $request->n_factura,
+        //     'concepto' => $request,
+        // ]);
 
     }
 

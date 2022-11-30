@@ -46,7 +46,6 @@
     <div class="row d-flex justify-content-center mb-2 container_cuenta">
         <div class="col-9 p-2 mt-1 small-box bg-white shadow p-4">
             <h3 class="card-title">
-                <!-- <span class="text-muted">Estado de Cuenta</span> <br> -->
                 <span class="h5 text-muted text-center"><strong>SALDOS PENDIENTES</strong> <i class="fas fa-hand-holding-usd"></i></span>
             </h3>
             <table class="table table-borderless text-center">
@@ -82,12 +81,12 @@
                             </td>
                             @if( $progreso[$i] == 100 )
                                 <form action="{{ route('shopping.cart') }}" method="GET">
-                                    <input type="hidden" name="ci" value="{{ $datos[$i]->cedula }}">
+                                    <input type="hidden" name="id" value="{{ $datos[$i]->id }}">
                                     <td><button disabled class="btn btn-success p-2 col-md-4"><i class="fas fa-check-circle"></i></button></td>
                                 </form>
                             @elseif( $progreso[$i] < 100 )
                                 <form action="{{ route('shopping.cart') }}" method="GET">
-                                    <input type="hidden" name="ci" value="{{ $datos[$i]->cedula }}">
+                                    <input type="hidden" name="id" value="{{ $datos[$i]->id }}">
                                     <td><button class="btn btn-success p-2 col-md-4"><strong>Ver</strong></td>
                                 </form>
                             @endif

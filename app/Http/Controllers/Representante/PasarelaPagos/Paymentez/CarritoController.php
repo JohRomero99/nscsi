@@ -23,12 +23,12 @@ class CarritoController extends Controller
 {
     public function cart(Request $request){
 
-        verificarSaldo();
+        // verificarSaldo();
 
         try {
 
             $total = 0;
-            $resultado = cob_estado_cuenta::where('estudiante_id','=',$request->ci)->where('estado','=','Pendiente')->get();
+            $resultado = cob_estado_cuenta::where('estudiante_id','=',$request->id)->where('estado','=','Pendiente')->get();
             $ci = Persona::select('*')->where('cedula','=',$request->ci)->first();
             if(is_null($resultado)){
                 $resultado = cob_descuento_estudiante::where('estudiante_id','=','0955546602')->get();
@@ -61,6 +61,7 @@ class CarritoController extends Controller
                 ])->GET($paymentez.'/v2/card/list',[
                     'uid' => Auth::user()->code_paymentez
                 ]);
+
             }
 
             if( $cardsList['result_size'] == 0 ){
