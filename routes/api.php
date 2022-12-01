@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('consultar/registros/prueba', [PruebaController::class, 'index']);
+
+// Route::get('consultar/registros/prueba', [PruebaController::class, 'index']);
