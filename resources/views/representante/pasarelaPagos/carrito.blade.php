@@ -8,7 +8,6 @@
         <h3>
             <small class="text-muted h4"><strong>ESTADO DE CUENTA</strong></small>
         </h3>
-        <!-- <p class="m-auto"><i class="far fa-user-circle"></i> Estudiante: {{ $ci->primer_nombre }} {{ $ci->apellido_paterno }}</p> -->
         <p class="m-auto"><i class="far fa-user-circle"></i> Estudiante: {{ nombresCompletos($ci->cedula) }}</p>
     </div>
 </div>

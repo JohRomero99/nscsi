@@ -27,18 +27,19 @@ class CarritoController extends Controller
 
         try {
 
-            $total = 0;
-            $resultado = cob_estado_cuenta::where('estudiante_id','=',$request->id)->where('estado','=','Pendiente')->get();
-            $ci = Persona::select('*')->where('cedula','=',$request->ci)->first();
+            $resultado = cob_estado_cuenta::where('estudiante_id','=',$request->get('id'))->where('estado','=','Pendiente')->get();
+            $ci = Persona::select('*')->where('id','=',$request->get('id'))->first();
             if(is_null($resultado)){
-                $resultado = cob_descuento_estudiante::where('estudiante_id','=','0955546602')->get();
-            }
 
-            // return $ci;
+                $resultado = cob_descuento_estudiante::where('estudiante_id','=','0955546602')->get();
+
+            }
             return view('representante.pasarelaPagos.carrito', compact('resultado','ci'));
 
         } catch (\Throwable $th) {
+
             return back()->with('error','error inesperado');
+
         }
 
     }
