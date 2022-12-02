@@ -8,7 +8,7 @@
         <h3>
             <small class="text-muted h4"><strong>ESTADO DE CUENTA</strong></small>
         </h3>
-        <p class="m-auto"><i class="far fa-user-circle"></i> Estudiante: {{ $nombre }} {{ $apellido }}</p>
+        <!-- <p class="m-auto"><i class="far fa-user-circle"></i> Estudiante: {{ $nombre }} {{ $apellido }}</p> -->
     </div>
 </div>
 @stop
@@ -144,8 +144,8 @@
         <a href="{{ URL::previous() }}"class="btn btn-success m-2 mb-3 p-2 text-left" ><i class="fas fa-arrow-alt-circle-left"></i> Anterior</a>
         <button type="submit" class="btn btn-success m-2 mb-3 p-2">Siguiente <i class="fas fa-arrow-alt-circle-right"></i></button>
     </div>
-    <input type="hidden" name="nombre" value="{{ $nombre}}"> 
-    <input type="hidden" name="apellido" value="{{ $apellido }}">
+    <!-- <input type="hidden" name="nombre" value="{{ $nombre}}"> 
+    <input type="hidden" name="apellido" value="{{ $apellido }}"> -->
 </form>
 @stop
 
@@ -157,24 +157,24 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
-.bg-verde-claro{
-    background: #8AB473;
-}
-.circulo {
-    width: 45px;
-    height: 45px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-.input{
-    border:0;
-}
-.input:focus{
-    outline: none;
-    background-color: #fff;
-    border: 0;
-}
+    .bg-verde-claro{
+        background: #8AB473;
+    }
+    .circulo {
+        width: 45px;
+        height: 45px;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .input{
+        border:0;
+    }
+    .input:focus{
+        outline: none;
+        background-color: #fff;
+        border: 0;
+    }
 </style>
 @stop
 

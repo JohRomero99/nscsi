@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\cob_estado_cuenta;
+use App\Models\personalizarTotal;
 use App\Models\cob_valores_max_diferir;
 use App\Models\cob_concepto_cobro;
 use App\Models\cob_valores_estudiante;
@@ -21,40 +22,26 @@ use Illuminate\Http\Client\RequestException;
 
 class CarritoController extends Controller
 {
-    public function cart(Request $request){
+    public function estadoDeCuenta($id){
 
-        // verificarSaldo();
-
-        try {
-
-            $resultado = cob_estado_cuenta::where('estudiante_id','=',$request->get('id'))->where('estado','=','Pendiente')->get();
-            $ci = Persona::select('*')->where('id','=',$request->get('id'))->first();
-            if(is_null($resultado)){
-
-                $resultado = cob_descuento_estudiante::where('estudiante_id','=','0955546602')->get();
-
-            }
-            return view('representante.pasarelaPagos.carrito', compact('resultado','ci'));
-
-        } catch (\Throwable $th) {
-
-            return back()->with('error','error inesperado');
-
-        }
+        $userId = Auth::user()->id;
+        $resultado = cob_estado_cuenta::where('estudiante_id','=',$id)->where('estado','=','pendiente')->get();
+        $ci = Persona::find($id);
+        if(is_null($resultado))
+            $resultado = cob_descuento_estudiante::where('estudiante_id','=','0955546602')->where('estado','=','pendiente')->get();
+        return view('representante.pasarelaPagos.estadoDeCuenta', compact('resultado','ci','userId'));
 
     }
 
-    public function resume(Request $request){
+    public function personalizarTotal(Request $request){
 
-        $datos = []; $total = 0; $data_paymentez = [];
-        $nombre = $request->nombre;
-        $apellido = $request->apellido;
+        // return $request->all();
 
-        try {
+        // try {
 
-            if($request->id == null){
+            if($request->id == null)
                 return back()->with('error', 'Debe seleccionadar por lo menos un mes');
-            } else {
+            else
                 // Consultar si ya tiene tarjeta.
                 $paymentez = paymentez();
                 $cardsList = Http::withHeaders([
@@ -63,44 +50,94 @@ class CarritoController extends Controller
                     'uid' => Auth::user()->code_paymentez
                 ]);
 
-            }
 
-            if( $cardsList['result_size'] == 0 ){
+            if( $cardsList['result_size'] == 0 )
                 return back()->with('info', 'Primero tienes que agregar una tarjeta para continuar con el proceso de pago');
-            } else {
-                for( $i = 0; $i < count($request->id); $i++ ){
-                    $datos[$i] = cob_estado_cuenta::find($request->id[$i]);
-                    $total += $datos[$i]['saldo'];
-                }
-            }
-        
-            return view('representante.pasarelaPagos.resumen', compact('datos','total','nombre','apellido'));
+            else 
+                // for($i = 0; $i < count($request->id); $i++){
+                //     $personalizarTotal = new personalizarTotal();
+                //     $personalizarTotal->user_id = $request->user_id;
+                //     $personalizarTotal->descripcion = $request->descripcion[$i];
+                //     $personalizarTotal->fecha_vencimiento = $request->fecha_vencimiento[$i];
+                //     $personalizarTotal->valor_adeudado = $request->valor_adeudado[$i];
+                //     $personalizarTotal->saldo = $request->saldo[$i];
+                //     $personalizarTotal->save();
+                // }
 
-        } catch (\Exception $e) {
-            $cardsList->throwIf(
-                \Log::info('Fallo',['error' => $cardsList]),
-            );
-            \Log::debug('Fallo '. $e->getMessage());
-            abort(404);
-        }
+                // $array = json_decode($data]);
+                $personalizarTotal = personalizarTotal::create([
+                    'user_id' => $request->user_id,
+                    'descripcion' => $array,
+                ]);
+
+            return redirect()->route('personalizarTotalVista', $request->user_id);
+
+        // } catch (\Exception $e) {
+        //     $cardsList->throwIf(
+        //         \Log::info('Fallo',['error' => $cardsList]),
+        //     );
+        //     \Log::debug('Fallo '. $e->getMessage());
+        //     abort(404);
+        // }
+    }
+
+    public function personalizarTotalVista($id){
+
+        $personalizarTotal = personalizarTotal::where('user_id','=',$id)->get();
+        return $personalizarTotal;
+        return view('representante.pasarelaPagos.resumen', compact('datos','total','nombre','apellido'));
+
     }
 
     public function pay(Request $request, $total){
 
+        $saldos = $request->saldos; $nombre = $request->nombre; $apellido = $request->apellido; $id = $request->id;  
+        if($request->cardList == null)
+            return back()->with('error', 'Debe seleccionar una tarjeta para continuar');
+        else
+            $total = Crypt::decryptString($total);
+            $token = $request->cardList[0];
+            $vat = 0; $taxable_amount = 0.00; $tax_percentage = 0; $amount = $total; $subtotal = $total;
+            $num = cob_valores_max_diferir::all();
+            return view('representante.pasarelaPagos.pagoTarjeta', compact('saldos','nombre','apellido','amount', 'vat', 'taxable_amount','tax_percentage','token','id','subtotal','num'));
+        
+
+    }
+
+    public function metodoPago(Request $request){
+
+        $request->validate([
+            'total' => 'required',
+        ]);
+        
         try {
-            $saldos = $request->saldos; $nombre = $request->nombre; $apellido = $request->apellido; $id = $request->id;  
-            if($request->cardList == null){
-                return back()->with('error', 'Debe seleccionar una tarjeta para continuar');
-            } else {
-                $total = Crypt::decryptString($total);
-                $token = $request->cardList[0];
-                $vat = 0; $taxable_amount = 0.00; $tax_percentage = 0; $amount = $total; $subtotal = $total;
-                $num = cob_valores_max_diferir::all();
-                return view('representante.pasarelaPagos.pagoTarjeta', compact('saldos','nombre','apellido','amount', 'vat', 'taxable_amount','tax_percentage','token','id','subtotal','num'));
+
+            $saldos = $request->saldo; $nombre = $request->nombre; $apellido = $request->apellido; $id = $request->id;
+            $tarjetas = []; $contador = 0;
+
+            $cardsList = Http::withHeaders([
+                'Auth-Token' => auth_token()
+            ])->GET('https://ccapi-stg.paymentez.com/v2/card/list',[
+                'uid' => Auth::user()->code_paymentez
+            ]);
+
+            for( $i = 0; $i < $cardsList['result_size']; $i++){
+                if($cardsList['cards'][$i]['status'] == "valid"){
+                    $tarjetas[$i] = $cardsList['cards'][$i];
+                    $contador = $contador + 1;
+                }    
             }
 
+            $result_size = $cardsList['result_size'];
+            $total = $request->total;
+            $total = Crypt::encryptString($total);
+
+            return view('representante.pasarelaPagos.metodoPago', compact('saldos','tarjetas','contador','total','id','nombre','apellido'));
+
         } catch (\Throwable $th) {
+            
             return back()->with('error','error inesperado');
+
         }
 
     }

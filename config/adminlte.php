@@ -335,7 +335,7 @@ return [
             'icon'        => 'fas fa-chart-line',
             'label'       => false,
             'label_color' => 'success',
-            // 'can'         => 'colector.home'
+            'can'         => 'colector.home'
         ],
         [
             'text'        => 'Usuarios',

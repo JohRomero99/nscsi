@@ -79,17 +79,13 @@
                                     <div class="progress-bar bg-success" role="progressbar" style="width: {{ $progreso[$i] }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </td>
-                            @if( $progreso[$i] == 100 )
-                                <form action="{{ route('shopping.cart') }}" method="GET">
-                                    <input type="hidden" name="id" value="{{ $datos[$i]->id }}">
-                                    <td><button disabled class="btn btn-success p-2 col-md-4"><i class="fas fa-check-circle"></i></button></td>
-                                </form>
-                            @elseif( $progreso[$i] < 100 )
-                                <form action="{{ route('shopping.cart') }}" method="GET">
-                                    <input type="hidden" name="id" value="{{ $datos[$i]->id }}">
-                                    <td><button class="btn btn-success p-2 col-md-4"><strong>Ver</strong></td>
-                                </form>
-                            @endif
+                            <td>
+                                @if( $progreso[$i] == 100 )
+                                    <a class="btn btn-success p-2 col-md-4" href="{{ route('shopping.cart', $datos[$i]->id) }}"><i class="fas fa-check-circle"></i></a>
+                                @elseif( $progreso[$i] < 100 )
+                                    <a class="btn btn-success p-2 col-md-4" href="{{ route('shopping.cart', $datos[$i]->id) }}">Ver</a>
+                                @endif
+                            </td>
                         </tr>
                     @endfor
                 </tbody>

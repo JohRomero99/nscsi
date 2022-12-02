@@ -8,7 +8,7 @@
         <h3>
             <small class="text-muted h4"><strong>ESTADO DE CUENTA</strong></small>
         </h3>
-        <p class="m-auto"><i class="far fa-user-circle"></i> Estudiante: {{ nombresCompletos($ci->cedula) }}</p>
+        
     </div>
 </div>
 @stop
@@ -76,7 +76,8 @@
     </div>
 </div>
 
-<form action="{{ route('shopping.resume') }}" method="GET">
+<form action="{{ route('personalizarTotal') }}" method="POST">
+    @csrf
     <div class="container d-flex justify-content-center mt-3">
         @if($resultado->count())
             <div class="card">
@@ -84,7 +85,7 @@
                     <strong class="m-auto text-white">SELECCIONA LOS PENSIONES A CANCELAR</strong>
                 </div>
                 <div class="card-body text-center shadow">
-                    <table class="table table-striped">
+                    <table class="table">
                         <thead>
                             <tr class="">
                                 <th scope="col">DESCRIPCIÓN</th>
@@ -101,11 +102,12 @@
                         </thead>
                         <tbody>
                             @foreach($resultado as $r)
-                                <tr class="">
-                                    <td class="text-muted">{{ $r->cob_cobro->descripcion }}</td>
-                                    <td class="text-muted">{{ $r->cob_cobro->fecha_vencimiento }}</td>
-                                    <td class="text-muted">{{ $r->valor_a_tomar }}</td>
-                                    <td class="text-muted">{{ $r->saldo }}</td>
+                                <tr class="text-center">
+                                    <td class="text-muted"><input type="text" name="descripcion[]" class="input text-center" value="{{ $r->cob_cobro->descripcion }}"></td>
+                                    <td class="text-muted"><input type="text" name="fecha_vencimiento[]" class="input text-center" value="{{ $r->cob_cobro->fecha_vencimiento }}"></td>
+                                    <td class="text-muted"><input type="text" name="valor_adeudado[]" class="input text-center" value="{{ $r->valor_a_tomar }}"></td>
+                                    <td class="text-muted"><input type="text" name="saldo[]" class="input text-center" value="{{ $r->saldo }}"></td>
+                                    <td class="d-none"><input type="hidden" name="user_id" class="input text-center" value="{{ $userId }}"></td>
                                     <td scope="row" class="">
                                         <div class="form-check">
                                             <input class="form-check-inputt check_hijo" type="checkbox" name="id[]" value="{{ $r->id }}">
@@ -128,8 +130,6 @@
         <a class="btn btn-success mb-3 p-2 m-1" href="{{ route('representante.home') }}"><i class="fas fa-home"></i> Volver</a>
         <button type="submit" class="btn btn-success mb-3 p-2 m-1">Siguiente <i class="fas fa-arrow-alt-circle-right"></i></button>
     </div>
-    <input type="hidden" name="nombre" value="{{ $ci->primer_nombre }}"> 
-    <input type="hidden" name="apellido" value="{{ $ci->apellido_paterno }}">
 </form>
 @stop
 
@@ -141,24 +141,31 @@
 <link rel="shortcut icon" href="{{ asset('imagenes/VirgenNSC.png') }}" type="image/x-icon">
 
 <style>
-
-.id:focus{
-    border-bottom: 3px solid #8d4a26 !important;
-}
-.bg{
-    background: #E8F0FE !important;
-}
-.bg-verde{
-    background: #8AB473;
-}
-.circulo {
-    width: 45px;
-    height: 45px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-
+    .id:focus{
+        border-bottom: 3px solid #8d4a26 !important;
+    }
+    .bg{
+        background: #E8F0FE !important;
+    }
+    .bg-verde{
+        background: #8AB473;
+    }
+    .circulo {
+        width: 45px;
+        height: 45px;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .input{
+        border:0;
+        width: 125px;
+    }
+    .input:focus{
+        outline: none;
+        background-color: #fff;
+        border: 0;
+    }
 </style>
 @stop
 

@@ -39,17 +39,17 @@ Route::get('relacion-persona-user', [completarPerfilController::class,'relacionP
 Route::get('relacion-user-perfil', [completarPerfilController::class,'relacionUserPerfil'])->name('relacion-user-perfil');
 
 // Rutas para actualizar correo y contraseña en el módulo de Usuario.
-Route::post('/actualizar/correo/', [ActualizarCorreoController::class, 'correo'])->name('actualizar.correo');
+Route::post('/actualizar/correo', [ActualizarCorreoController::class, 'correo'])->name('actualizar.correo');
 Route::get('/actualizar/perfil/', [ActualizarCorreoController::class, 'vista'])->name('actualizar.vista');
 Route::post('/actualizar/perfil/{id}', [ActualizarCorreoController::class, 'datos'])->name('actualizar.datos');
 Route::get('/update/password/', [ActualizarCorreoController::class, 'updatePassword'])->name('update.password');
 
 // Rutas para mostrar los saldos.
-Route::get('/shopping/cart/', [carritoController::class, 'cart'])->name('shopping.cart');
-Route::get('/shopping/cart/resume/', [carritoController::class, 'resume'])->name('shopping.resume');
-Route::post('/shopping/cart/resume/update/', [carritoController::class, 'resumeUptade'])->name('shopping.resumeUptade');
+Route::get('/estado-de-cuenta/{id}', [carritoController::class, 'estadoDeCuenta'])->name('shopping.cart');
+Route::get('/estado-de-cuenta/personalizar/{id}', [carritoController::class, 'personalizarTotalVista'])->name('personalizarTotalVista');
+Route::post('/estado-de-cuenta/personalizar', [carritoController::class, 'personalizarTotal'])->name('personalizarTotal');
 Route::get('/shopping/cart/pay/{total}', [carritoController::class, 'pay'])->name('shopping.pay');
-Route::get('/metodo/pago', [PaymentezController::class, 'metodoPago'])->name('metodo.pago');
+Route::get('/metodo/pago', [carritoController::class, 'metodoPago'])->name('metodo.pago');
 
 // Rutas API Paymentez.
 Route::post('/paymentez/buy/{token}', [cobroTarjetaController::class, 'paymentezBuy'])->name('paymentez.buy');
