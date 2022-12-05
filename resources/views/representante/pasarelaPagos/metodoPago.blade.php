@@ -8,7 +8,6 @@
         <h3>
             <small class="text-muted h4"><strong>ESTADO DE CUENTA</strong></small>
         </h3>
-        <p class="m-auto"><i class="far fa-user-circle"></i> Estudiante: {{ $nombre }} {{ $apellido }}</p>
     </div>
 </div>
 @stop
@@ -90,43 +89,38 @@
             </div>
         </div>
         <div class="card-body text-center">
-            @if( $contador == 0 )
+            @if( count($tarjetas) == 0 )
                 <div class="container">
                     <p class="m-auto">Todavía no tienes una tarjeta agregada.  <i class="fas fa-frown-open text-success"></i></p>
                     <p>Debes agregar una para poder continuar.</p>
                     <a class="btn btn-success" href="{{ route('paymentez.agregarTarjeta') }}">Agregar Tarjeta</a>
                 </div>
-            @elseif( $contador > 0 )
+            @elseif( count($tarjetas) > 0 )
                 <div class="container d-flex justify-content-center">
                     <ul class="list-group list-group-flush col-md-12">
-                        <form action="{{ route('shopping.pay', $total) }}" class="border-0">
-                            @for( $i = 0; $i < $contador; $i++ ) 
+                        <form action="{{ route('shopping.pay') }}" method="POST" class="border-0">
+                            @csrf
+                            @for( $i = 0; $i < count($tarjetas); $i++ ) 
                                 <div class="conatiner">
                                     <diw class="row p-1">
                                         <div class="col-2 border-success border-left bg-white text-center shadow-sm">
                                             <p class="m-auto"><i class="mt-3 far fa-credit-card text-success"></i></p>
                                         </div>
                                         <div class="col-6 bg-white text-center shadow-sm">
-                                            <p class="m-auto">{{ $tarjetas[$i]['bin'] }}******{{ $tarjetas[$i]['number'] }}</p>
+                                            <p class="m-auto">***********{{ $tarjetas[$i]['number'] }}</p>
                                             <p class="m-auto text-muted">Tarjeta de crédito.</p>
                                         </div>
                                         <div class="col-3 d-flex justify-content-center bg-white shadow-sm">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="cardList[]" value="{{ $tarjetas[$i]['token'] }}" id="inlineRadio1" value="option1">
+                                                <input class="form-check-input" type="radio" name="cardList[]" value="{{ $tarjetas[$i]->id }}" id="inlineRadio1" value="option1">
                                                 <label class="form-check-label" for="inlineRadio1"></label>
                                             </div>
                                         </div>
                                     </diw>
                                 </div>
                             @endfor 
-                            @for($i = 0; $i < count($id); $i++) 
-                                <input type="text" class="d-none" name="id[]" value="{{ $id[$i] }}">
-                                <input type="text" class="d-none" name="saldos[]" value="{{ $saldos[$i] }}">
-                            @endfor
                             <a class="btn btn-success mt-2" href="{{ URL::previous() }}"><i class="fas fa-arrow-circle-left"></i> Anterior</a>
                             <button type="submit" class="btn btn-success mt-2">Siguiente <i class="fas fa-arrow-circle-right"></i></button>
-                            <input type="hidden" name="nombre" value="{{ $nombre }}"> 
-                            <input type="hidden" name="apellido" value="{{ $apellido }}">
                         </form>         
                     </ul>
                 </div>

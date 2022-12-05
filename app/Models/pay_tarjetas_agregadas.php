@@ -11,5 +11,16 @@ class pay_tarjetas_agregadas extends Model
 
     protected $table = "pay_tarjetas_agregadas";
     protected $guarded = [];
+    protected $hidden = [
+        'id',
+        'token',
+        'bin',
+        'status',
+        'holder_name',
+        'expiry_year',
+        'expiry_month',
+        'transaction_reference',
+        'type',
+    ];
 
 }

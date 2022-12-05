@@ -8,7 +8,6 @@
         <h3>
             <small class="text-muted h4"><strong>ESTADO DE CUENTA</strong></small>
         </h3>
-        <!-- <p class="m-auto"><i class="far fa-user-circle"></i> Estudiante: {{ $nombre }} {{ $apellido }}</p> -->
     </div>
 </div>
 @stop
@@ -76,7 +75,8 @@
     </div>
 </div>
 
-<form action="{{ route('metodo.pago') }}" method="GET">
+<form action="{{ route('metodo.pago') }}" method="POST">
+    @csrf
     <div class="container d-flex justify-content-center mt-3">
         <div class="card w-75 rounded-0">
             <div class="card-header text-center text-white bg-verde-claro rounded-0">
@@ -94,12 +94,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($datos as $d)
+                            @foreach($estadoDeCuenta as $i)
                                 <tr>
-                                    <td class="text-muted">{{ $d->cob_cobro->descripcion }}</td>
-                                    <td class="text-muted">{{ $d->cob_cobro->fecha_vencimiento }}</td>
-                                    <td class="text-muted valorAdeudado">{{ $d->valor_a_tomar }}</td>
-                                    <td style="width: 100px;"><input type="text" name="saldo[]" readOnly class="saldos input text-center" value="{{ $d->saldo }}"></td>
+                                    <td class="text-muted">{{ $i->cob_cobro->descripcion }}</td>
+                                    <td class="text-muted">{{ $i->cob_cobro->fecha_vencimiento }}</td>
+                                    <td class="text-muted valorAdeudado">{{ $i->valor_a_tomar }}</td>
+                                    <td style="width: 100px;"><input type="text" name="saldo[]" readOnly class="saldos input text-center" value="{{ $i->saldo }}"></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -131,7 +131,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                            @foreach($datos as $i)
+                            @foreach($estadoDeCuenta as $i)
                                 <input type="text" class="d-none" name="id[]" value="{{ $i->id }}">
                             @endforeach
                         </tfoot>
@@ -144,8 +144,6 @@
         <a href="{{ URL::previous() }}"class="btn btn-success m-2 mb-3 p-2 text-left" ><i class="fas fa-arrow-alt-circle-left"></i> Anterior</a>
         <button type="submit" class="btn btn-success m-2 mb-3 p-2">Siguiente <i class="fas fa-arrow-alt-circle-right"></i></button>
     </div>
-    <!-- <input type="hidden" name="nombre" value="{{ $nombre}}"> 
-    <input type="hidden" name="apellido" value="{{ $apellido }}"> -->
 </form>
 @stop
 

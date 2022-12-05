@@ -48,11 +48,13 @@ Route::get('/update/password/', [ActualizarCorreoController::class, 'updatePassw
 Route::get('/estado-de-cuenta/{id}', [carritoController::class, 'estadoDeCuenta'])->name('shopping.cart');
 Route::get('/estado-de-cuenta/personalizar/{id}', [carritoController::class, 'personalizarTotalVista'])->name('personalizarTotalVista');
 Route::post('/estado-de-cuenta/personalizar', [carritoController::class, 'personalizarTotal'])->name('personalizarTotal');
-Route::get('/shopping/cart/pay/{total}', [carritoController::class, 'pay'])->name('shopping.pay');
-Route::get('/metodo/pago', [carritoController::class, 'metodoPago'])->name('metodo.pago');
+Route::get('/shopping/cart/pay/', [carritoController::class, 'pay'])->name('shopping.pay');
+Route::post('/shopping/cart/pay/', [carritoController::class, 'pay'])->name('shopping.pay');
+Route::post('/metodo/pago', [carritoController::class, 'metodoPago'])->name('metodo.pago');
+Route::get('/metodo/pago/', [carritoController::class, 'metodoPagoVista'])->name('metodoPago.vista');
 
 // Rutas API Paymentez.
-Route::post('/paymentez/buy/{token}', [cobroTarjetaController::class, 'paymentezBuy'])->name('paymentez.buy');
+Route::post('/paymentez/buy/', [cobroTarjetaController::class, 'paymentezBuy'])->name('paymentez.buy');
 Route::get('/paymentez/add/card', [listadoTarjetaController::class, 'addcard'])->name('paymentez.agregarTarjeta');
 Route::get('/paymentez/list/cards', [listadoTarjetaController::class, 'listcards'])->name('paymentez.formaPago');
 Route::post('/paymentez/delete/card/{token}', [eliminarTarjetaController::class, 'deletecard'])->name('paymentez.delete');
