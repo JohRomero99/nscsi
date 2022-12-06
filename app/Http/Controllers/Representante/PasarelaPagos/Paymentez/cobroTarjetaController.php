@@ -24,6 +24,8 @@ class cobroTarjetaController extends Controller
 {
     public function paymentezBuy(TerminosCondiciones $request, $token){
 
+        return $request->all();
+
         try {
             
             $saldos = $request->saldos; 

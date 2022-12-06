@@ -88,7 +88,7 @@
                         <p class="mt-4 text-muted">Pago seguro con</p>
                         <img src="{{ asset('imagenes/paymentez.png') }}" width="200" height="70">
                     </div>
-                <form id="form" method="POST" action="{{ route('paymentez.buy',$token) }}">
+                <form id="form" method="POST" action="{{ route('paymentez.buy') }}">
                     @csrf
                     <table class="table text-center col-md-12">
                         <tbody>

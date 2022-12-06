@@ -88,8 +88,6 @@ class CarritoController extends Controller
 
     public function metodoPago(Request $request){
 
-        // return $request->all();
-
         $request->validate([
             'total' => 'required',
         ]);
@@ -134,25 +132,31 @@ class CarritoController extends Controller
     }
 
     
-    public function pay(Request $request){
+    public function pago(Request $request){
 
-        return $request->all();        
-
-        // $personalizarTotal = personalizarTotal::select('*')->where('user_id','=',$id)->first();
-        // $idPensiones = json_encode($personalizarTotal->descripcion);
-        // $saldos = json_encode($personalizarTotal->saldo);
-        // $total = json_encode($personalizarTotal->total);
-
-        $saldos = $request->saldos; $nombre = $request->nombre; $apellido = $request->apellido; $id = $request->id;  
         if($request->cardList == null)
             return back()->with('error', 'Debe seleccionar una tarjeta para continuar');
         else
-            $total = Crypt::decryptString($total);
-            $token = $request->cardList[0];
-            $vat = 0; $taxable_amount = 0.00; $tax_percentage = 0; $amount = $total; $subtotal = $total;
-            $num = cob_valores_max_diferir::all();
-            return view('representante.pasarelaPagos.pagoTarjeta', compact('saldos','nombre','apellido','amount', 'vat', 'taxable_amount','tax_percentage','token','id','subtotal','num'));
+            $id = $request->get('cardList')[0];
+            return redirect()->route('pago.vista',$id);
+            // $tarjetas = pay_tarjetas_agregadas::find($request->get('cardList'));
+            // $personalizarTotal = personalizarTotal::select('*')->where('user_id','=',Auth::user()->id)->first();
+            // $idPensiones = json_encode($personalizarTotal->descripcion);
+            // $saldos = json_encode($personalizarTotal->saldo);
+            // $total = json_encode($personalizarTotal->total);
+            // $total = Crypt::decryptString($total);
+            // $token = $request->cardList[0];
+            // $vat = 0; $taxable_amount = 0.00; $tax_percentage = 0; $amount = $total; $subtotal = $total;
+            // $num = cob_valores_max_diferir::all();
+            // return view('representante.pasarelaPagos.pagoTarjeta', compact('amount', 'vat', 'taxable_amount','tax_percentage','id','subtotal'));
         
+    }
+
+    public function pagoVista($id){
+
+        return $id;
+        // return view('representante.pasarelaPagos.pagoTarjeta', compact('amount', 'vat', 'taxable_amount','tax_percentage','id','subtotal'));
+
     }
 
 
