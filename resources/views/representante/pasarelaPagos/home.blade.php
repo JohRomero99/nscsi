@@ -22,7 +22,7 @@
                 <i class="fas fa-coins"></i>
             </div>
         </div>
-        <div class="col-3 ml-1 p-2  small-box bg-white shadow">
+        <div class="col-3 ml-1 p-2 small-box bg-white shadow">
             <div class="inner">
                 <h3 class="valor">${{ $total_deuda }}</h3>
                 <p>Total Valor Adeudado</p>
@@ -32,7 +32,7 @@
                 <i class="fas fa-user"></i>
             </div>
         </div>
-        <div class="col-3 ml-1 p-2  small-box bg-white shadow" data-aos="zoom-in">
+        <div class="col-3 ml-1 p-2 small-box bg-white shadow" data-aos="zoom-in">
             <div class="inner">
                 <h3 class="valor">{{ $total_pensiones }}</h3>
                 <p>Pensiones cancelas</p>
