@@ -15,7 +15,7 @@ class CreateNscPersonasTable extends Migration
     {
         Schema::create('nsc_persona', function (Blueprint $table) {
             $table->id();
-            $table->string('cedula')->unique()->nullable();
+            $table->string('identificacion')->unique()->nullable();
             $table->string('apellido_paterno')->nullable();
             $table->string('apellido_materno')->nullable();
             $table->string('primer_nombre')->nullable();

@@ -466,6 +466,7 @@
         })
       });
     </script>
+
     <script>
       function mostrarLoad() {
           document.getElementById('loadAwesome').style.display = 'flex';
