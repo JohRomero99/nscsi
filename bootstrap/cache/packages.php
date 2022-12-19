@@ -93,6 +93,17 @@
       'Livewire' => 'Livewire\\Livewire',
     ),
   ),
+  'luilliarcec/laravel-ecuador-identification' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Luilliarcec\\LaravelEcuadorIdentification\\EcuadorIdentificationServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'EcuadorIdentification' => 'Luilliarcec\\LaravelEcuadorIdentification\\Facades\\EcuadorIdentification',
+    ),
+  ),
   'maatwebsite/excel' => 
   array (
     'providers' => 

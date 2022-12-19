@@ -16,6 +16,7 @@
         "laravel/ui": "^3.4",
         "laravelcollective/html": "^6.3",
         "livewire/livewire": "^2.10",
+        "luilliarcec/laravel-ecuador-identification": "^2.0",
         "maatwebsite/excel": "^3.1",
         "mailerlite/mailerlite-api-v2-php-sdk": "^0.3.2",
         "mailersend/laravel-driver": "^1.1",

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\matriculacion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\matriculacion\registroEstudianteAdmitido;
 
 class estudianteAdmitidoController extends Controller
 {
@@ -22,9 +23,9 @@ class estudianteAdmitidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(registroEstudianteAdmitido $request)
     {
-        //
+        return "listo";
     }
 
     /**
