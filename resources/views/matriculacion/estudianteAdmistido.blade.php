@@ -167,31 +167,47 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input type="text" name="cedulaRepresentante" class="border-opacity-50 rounded-0 border-0 border-bottom border-success shadow-none form-control @error('cedulaRepresentante') is-invalid @enderror" id="cedulaRepresentante" placeholder="name@example.com" value="{{ old('cedulaRepresentante') }}">
-                            @error('cedulaRepresentante')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            <label class="text-muted" for="floatingInputGrid">CI <i class="fas fa-address-card"></i></label>
+                    {{-- <form action="{{ route('registro.show') }}" method="GET"> --}}
+                        <div class="row rounded-0 border-0 border-bottom">
+                            <div class="col-8">
+                                <div class="form-floating">
+                                    <input type="text" name="cedulaRepresentante" id="cedulaRepresentante" class="border-0 shadow-none form-control @error('cedulaRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('cedulaRepresentante') }}" onkeyup="GetDetail(this.value)">
+                                    {{-- @error('cedulaRepresentante')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror --}}
+                                    <label class="text-muted" for="floatingInputGrid">CI <i class="fas fa-address-card"></i></label>
+                                </div>
+                                <div class="form-floating" style="display:none" name="pasaporteRepresentante">
+                                    <input type="text" name="pasaporteRepresentante" class="rounded-0 form-control border-0 @error('pasaporteRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('pasaporteRepresentante') }}">
+                                    {{-- @error('pasaporteRepresentante')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror --}}
+                                    <label class="text-muted" for="floatingInputGrid">Pasaporte <i class="far fa-id-card"></i></label>
+                                </div>
+                                @error('cedulaRepresentante')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                @error('pasaporteRepresentante')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="text-center col-4 border-success">
+                                <button type="submit" class="btn btn-outline-success m-2">Buscar <i class="fas fa-search"></i></button>
+                            </div>
                         </div>
-                        <!-- <button class="btn btn-success">Buscar</button> -->
-                        <div class="form-floating" style="display:none" name="pasaporteRepresentante">
-                            <input type="text" name="pasaporteRepresentante" class="form-control border-opacity-50 rounded-0 border-0 border-bottom border-success @error('pasaporteRepresentante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('pasaporteRepresentante') }}">
-                            @error('pasaporteRepresentante')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            <label class="text-muted" for="floatingInputGrid">Pasaporte <i class="far fa-id-card"></i></label>
-                        </div>
-                    </div>
+                    {{-- </form> --}}
                     <div class="row g-2 mt-1">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" name="primerNombreRepresentante" class="form-control @error('primerNombreRepresentante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('primerNombreRepresentante') }}">
+                                <input type="text" name="primerNombreRepresentante" id="primerNombreRepresentante" class="form-control @error('primerNombreRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('primerNombreRepresentante') }}">
                                 @error('primerNombreRepresentante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -202,7 +218,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" name="segundoNombreRepresentante" class="form-control @error('segundoNombreRepresentante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('segundoNombreRepresentante') }}">
+                                <input type="text" name="segundoNombreRepresentante" id="segundoNombreRepresentante" class="form-control @error('segundoNombreRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('segundoNombreRepresentante') }}">
                                 @error('segundoNombreRepresentante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -213,7 +229,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" name="apellidoPaternoRepresentante" class="form-control @error('apellidoPaternoRepresentante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('apellidoPaternoRepresentante') }}">
+                                <input type="text" name="apellidoPaternoRepresentante" id="apellidoPaternoRepresentante" class="form-control @error('apellidoPaternoRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('apellidoPaternoRepresentante') }}">
                                 @error('apellidoPaternoRepresentante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -224,7 +240,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" name="apellidoMaternoRepresentante" class="form-control @error('apellidoMaternoRepresentante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('apellidoMaternoRepresentante') }}">
+                                <input type="text" name="apellidoMaternoRepresentante" id="apellidoMaternoRepresentante" class="form-control @error('apellidoMaternoRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('apellidoMaternoRepresentante') }}">
                                 @error('apellidoMaternoRepresentante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -236,7 +252,7 @@
                     </div>
                     <div class="col-md">
                         <div class="form-floating">
-                            <input type="email" name="correoRepresentante" class="form-control @error('correoRepresentante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('correoRepresentante') }}">
+                            <input type="email" name="correoRepresentante" id="correoRepresentante" class="form-control @error('correoRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('correoRepresentante') }}">
                             @error('correoRepresentante')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -289,6 +305,68 @@
             cedulaRepresentante.style.display = 'block';
         }
     });
+</script>
+
+<script>
+    // onkeyup event will occur when the user 
+    // release the key and calls the function
+    // assigned to this event
+    function GetDetail(str) {
+        if (str.length == 0) {
+            document.getElementById("primerNombreRepresentante").value = "";
+            document.getElementById("segundoNombreRepresentante").value = "";
+            document.getElementById("apellidoPaternoeRepresentante").value = "";
+            document.getElementById("apellidoMaternoRepresentante").value = "";
+            return;
+        }
+        else {
+
+            // Creates a new XMLHttpRequest object
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+
+                // Defines a function to be called when
+                // the readyState property changes
+                if (this.readyState == 4 && 
+                        this.status == 200) {
+                      
+                    // Typical action to be performed
+                    // when the document is ready
+                    var myObj = JSON.parse(this.responseText);
+
+                    // Returns the response data as a
+                    // string and store this array in
+                    // a variable assign the value 
+                    // received to first name input field
+                      
+                    document.getElementById
+                        ("primerNombreRepresentante").value = myObj[0];
+                      
+                    // Assign the value received to
+                    // last name input field
+                    document.getElementById(
+                        "segundoNombreRepresentante").value = myObj[1];
+
+                    
+                    document.getElementById(
+                        "apellidoPaternoeRepresentante").value = myObj[2];
+
+                    
+                    document.getElementById(
+                        "apellidoMaternoRepresentante").value = myObj[3];
+                }
+            };
+           
+            // xhttp.open("GET", "filename", true);
+            // xmlhttp.open("GET", "gfg.php?user_id=" + str, true);
+            // xmlhttp.open("GET", "http://localhost/nscsi/public/matriculacion/registro/estudiante?user_id=" + str, true);
+            xmlhttp.open("GET", "http://localhost/nscsi/public/matriculacion/registro/estudiante?cedulaRepresentante=" + str, true);
+        
+
+            // Sends the request to the server
+            xmlhttp.send();
+        }
+    }
 </script>
 
 <script>

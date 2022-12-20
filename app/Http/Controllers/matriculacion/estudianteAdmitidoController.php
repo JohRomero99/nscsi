@@ -61,7 +61,7 @@ class estudianteAdmitidoController extends Controller
                     'representante_id' => $personaRepresentante[0]->representante->id
                 ]);
     
-                return redirect()->back()->withInput();
+                return redirect()->back()->with('exito','Datos guardados correctamente');
             }else{
     
                 $nuevoPersonaRepresentante=Persona::create([
@@ -86,7 +86,7 @@ class estudianteAdmitidoController extends Controller
                     'representante_id' => $representante->id
                 ]);
     
-                return redirect()->back()->with("error","Ya se encuentra registrado")->withInput();
+                return redirect()->back()->with('exito','Datos guardados correctamente');
                 
             }    
         }
@@ -110,9 +110,9 @@ class estudianteAdmitidoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -135,7 +135,7 @@ class estudianteAdmitidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // 
     }
 
     /**
