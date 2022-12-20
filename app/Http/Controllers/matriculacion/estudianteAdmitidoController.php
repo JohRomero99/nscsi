@@ -36,7 +36,7 @@ class estudianteAdmitidoController extends Controller
 
         if(count($personaEstudiante) > 0){
 
-            return back()->with("error","Ya se encuentra registrado");
+            return redirect()->back()->with("error","Ya se encuentra registrado")->withInput();
 
         }else{
 
@@ -61,7 +61,7 @@ class estudianteAdmitidoController extends Controller
                     'representante_id' => $personaRepresentante[0]->representante->id
                 ]);
     
-                return back()->with("exito","Datos guardados correctamente");
+                return redirect()->back()->withInput();
             }else{
     
                 $nuevoPersonaRepresentante=Persona::create([
@@ -86,7 +86,8 @@ class estudianteAdmitidoController extends Controller
                     'representante_id' => $representante->id
                 ]);
     
-                return back()->with("exito","Datos guardados correctamente");
+                return redirect()->back()->with("error","Ya se encuentra registrado")->withInput();
+                
             }    
         }
     
