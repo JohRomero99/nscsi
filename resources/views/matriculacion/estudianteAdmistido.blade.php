@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,8 +17,14 @@
     <!-- fontawesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 
-    {{-- sweetalert2 --}}
+    <!-- sweetalert2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="conatiner">
@@ -167,43 +172,24 @@
                             </select>
                         </div>
                     </div>
-                    {{-- <form action="{{ route('registro.show') }}" method="GET"> --}}
-                        <div class="row rounded-0 border-0 border-bottom">
-                            <div class="col-8">
-                                <div class="form-floating">
-                                    <input type="text" name="cedulaRepresentante" id="cedulaRepresentante" class="border-0 shadow-none form-control @error('cedulaRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('cedulaRepresentante') }}" onkeyup="GetDetail(this.value)">
-                                    {{-- @error('cedulaRepresentante')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror --}}
-                                    <label class="text-muted" for="floatingInputGrid">CI <i class="fas fa-address-card"></i></label>
-                                </div>
-                                <div class="form-floating" style="display:none" name="pasaporteRepresentante">
-                                    <input type="text" name="pasaporteRepresentante" class="rounded-0 form-control border-0 @error('pasaporteRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('pasaporteRepresentante') }}">
-                                    {{-- @error('pasaporteRepresentante')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror --}}
-                                    <label class="text-muted" for="floatingInputGrid">Pasaporte <i class="far fa-id-card"></i></label>
-                                </div>
-                                @error('cedulaRepresentante')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                @error('pasaporteRepresentante')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="text-center col-4 border-success">
-                                <button type="submit" class="btn btn-outline-success m-2">Buscar <i class="fas fa-search"></i></button>
-                            </div>
-                        </div>
-                    {{-- </form> --}}
+                    <div class="form-floating">
+                        <input type="text" name="cedulaRepresentante" id="cedulaRepresentante" class="shadow-none rounded-0 border-0 border-bottom border-success form-control @error('cedulaRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('cedulaRepresentante') }}" onkeyup="GetDetail(this.value)">
+                        @error('cedulaRepresentante')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <label class="text-muted" for="floatingInputGrid">CI <i class="fas fa-address-card"></i></label>
+                    </div>
+                    <div class="form-floating" style="display:none" name="pasaporteRepresentante">
+                        <input type="text" name="pasaporteRepresentante" class="shadow-none rounded-0 border-0 border-bottom border-success form-control @error('pasaporteRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('pasaporteRepresentante') }}" onkeyup="GetDetail(this.value)">
+                        @error('pasaporteRepresentante')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <label class="text-muted" for="floatingInputGrid">Pasaporte <i class="far fa-id-card"></i></label>
+                    </div>
                     <div class="row g-2 mt-1">
                         <div class="col-md-6">
                             <div class="form-floating">
@@ -315,8 +301,9 @@
         if (str.length == 0) {
             document.getElementById("primerNombreRepresentante").value = "";
             document.getElementById("segundoNombreRepresentante").value = "";
-            document.getElementById("apellidoPaternoeRepresentante").value = "";
+            document.getElementById("apellidoPaternoRepresentante").value = "";
             document.getElementById("apellidoMaternoRepresentante").value = "";
+            document.getElementById("correoRepresentante").value = "";
             return;
         }
         else {
@@ -333,34 +320,29 @@
                     // Typical action to be performed
                     // when the document is ready
                     var myObj = JSON.parse(this.responseText);
+           
 
                     // Returns the response data as a
                     // string and store this array in
                     // a variable assign the value 
                     // received to first name input field
                       
-                    document.getElementById
-                        ("primerNombreRepresentante").value = myObj[0];
+                    document.getElementById("primerNombreRepresentante").value = myObj[0];
                       
-                    // Assign the value received to
-                    // last name input field
-                    document.getElementById(
-                        "segundoNombreRepresentante").value = myObj[1];
+                    document.getElementById("segundoNombreRepresentante").value = myObj[1];
 
-                    
-                    document.getElementById(
-                        "apellidoPaternoeRepresentante").value = myObj[2];
+                    document.getElementById("apellidoPaternoRepresentante").value = myObj[2];
 
-                    
-                    document.getElementById(
-                        "apellidoMaternoRepresentante").value = myObj[3];
+                    document.getElementById("apellidoMaternoRepresentante").value = myObj[3];
+
+                    document.getElementById("correoRepresentante").value = myObj[4];
                 }
             };
            
             // xhttp.open("GET", "filename", true);
             // xmlhttp.open("GET", "gfg.php?user_id=" + str, true);
             // xmlhttp.open("GET", "http://localhost/nscsi/public/matriculacion/registro/estudiante?user_id=" + str, true);
-            xmlhttp.open("GET", "http://localhost/nscsi/public/matriculacion/registro/estudiante?cedulaRepresentante=" + str, true);
+            xmlhttp.open("GET", "http://localhost/nscsi/public/matriculacion/registro/mostrar?cedulaRepresentante=" + str, true);
         
 
             // Sends the request to the server
@@ -378,5 +360,7 @@
         )
     @endif
 </script>
-
 </html>
+
+
+

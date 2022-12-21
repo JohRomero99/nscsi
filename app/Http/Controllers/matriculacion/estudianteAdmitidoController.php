@@ -32,7 +32,10 @@ class estudianteAdmitidoController extends Controller
     public function create(registroEstudianteAdmitido $request)
     {
 
-        $personaEstudiante = Persona::select('*')->where('identificacion','=',$request->cedulaEstudiante)->get();
+        if($request->cedulaEstudiante == "")
+            $personaEstudiante = Persona::select('*')->where('identificacion','=',$request->cedulaPasaporte)->get();
+        else
+            $personaEstudiante = Persona::select('*')->where('identificacion','=',$request->cedulaEstudiante)->get();
 
         if(count($personaEstudiante) > 0){
 
@@ -40,15 +43,21 @@ class estudianteAdmitidoController extends Controller
 
         }else{
 
-            $nuevoPersonaEstudiante=Persona::create([
-                'identificacion' => $request->cedulaEstudiante,
-                'primer_nombre' => $request->primerNombreEstudiante,
-                'segundo_nombre' => $request->segundoNombreEstudiante,
-                'apellido_paterno' => $request->apellidoPaternoEstudiante,
-                'apellido_materno' => $request->apellidoMaternoEstudiante,
-            ]);
+            $nuevoPersonaEstudiante = new Persona();
+            if($request->cedulaEstudiante == "")
+                $nuevoPersonaEstudiante->identificacion = $request->pasaporteEstudiante;
+            else
+                $nuevoPersonaEstudiante->identificacion = $request->cedulaEstudiante;
+            $nuevoPersonaEstudiante->primer_nombre = $request->primerNombreEstudiante;
+            $nuevoPersonaEstudiante->segundo_nombre = $request->segundoNombreEstudiante;
+            $nuevoPersonaEstudiante->apellido_paterno = $request->apellidoPaternoEstudiante;
+            $nuevoPersonaEstudiante->apellido_materno = $request->apellidoMaternoEstudiante;
+            $nuevoPersonaEstudiante->save();
     
-            $personaRepresentante = Persona::select('*')->where('identificacion','=', $request->cedulaRepresentante)->get();
+            if($request->cedulaRepresentante == "")
+                $personaRepresentante = Persona::select('*')->where('identificacion','=',$request->pasaporteRepresentante)->get();
+            else
+                $personaRepresentante = Persona::select('*')->where('identificacion','=',$request->cedulaRepresentante)->get();
     
             if(count($personaRepresentante) > 0){
     
@@ -64,14 +73,16 @@ class estudianteAdmitidoController extends Controller
                 return redirect()->back()->with('exito','Datos guardados correctamente');
             }else{
     
-                $nuevoPersonaRepresentante=Persona::create([
-                    'identificacion' => $request->cedulaRepresentante,
-                    'primer_nombre' => $request->primerNombreRepresentante,
-                    'segundo_nombre' => $request->segundoNombreRepresentante,
-                    'apellido_paterno' => $request->apellidoPaternoRepresentante,
-                    'apellido_materno' => $request->apellidoMaternoRepresentante,
-                    'correo' => $request->correoRepresentante,
-                ]);
+                $nuevoPersonaRepresentante = new Persona();
+                if($request->cedulaRepresentante == "")
+                    $nuevoPersonaRepresentante->identificacion = $request->pasaporteRepresentante;
+                else
+                    $nuevoPersonaRepresentante->identificacion = $request->cedulaRepresentante;
+                $nuevoPersonaRepresentante->primer_nombre = $request->primerRepresentante;
+                $nuevoPersonaRepresentante->segundo_nombre = $request->segundoNombreRepresentante;
+                $nuevoPersonaRepresentante->apellido_paterno = $request->apellidoPaternoRepresentante;
+                $nuevoPersonaRepresentante->apellido_materno = $request->apellidoMaternoRepresentante;
+                $nuevoPersonaRepresentante->save();
 
                 $estudiante=Estudiante::create([
                     'persona_id' => $nuevoPersonaEstudiante->id
@@ -110,9 +121,41 @@ class estudianteAdmitidoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show(Request $request)
     {
-        return $request->all();
+
+        // $datosRepresentante = Persona::select('*')->where('identificacion','=', $request->cedulaRepresentante)->get();
+        // $primerNombre = $datosRepresentante[0]->primer_nombre;
+        // $segundoNombre = $datosRepresentante[0]->segundo_nombre;
+        // $apellidoPaterno = $datosRepresentante[0]->apellido_paterno;
+        // $apellidoMaterno = $datosRepresentante[0]->apellido_materno;
+        
+        // $result = array("$primerNombre", "$segundoNombre", "$apellidoPaterno", "$apellidoMaterno");
+
+        // $myJSON = json_encode($result);
+        // echo $myJSON;
+
+        $user_id = $request->cedulaRepresentante;
+        $con = mysqli_connect("localhost", "root", "", "dbnscsi");
+        if ($user_id !== "") {
+            
+            $query = mysqli_query($con, "SELECT * FROM nsc_persona WHERE identificacion = '$user_id'");
+
+            $row = mysqli_fetch_array($query);
+            $primerNombre= $row["primer_nombre"];
+            $segundoNombre = $row["segundo_nombre"];
+            $apellidoMaterno = $row["apellido_paterno"];
+            $apellidoPaterno = $row["apellido_materno"];
+            $correo = $row["correo"];
+        }
+
+        // Store it in a array
+        $result = array("$primerNombre", "$segundoNombre", "$apellidoPaterno", "$apellidoMaterno", "$correo");
+
+        // Send in JSON encoded form
+        $myJSON = json_encode($result);
+        echo $myJSON;
+
     }
 
     /**
