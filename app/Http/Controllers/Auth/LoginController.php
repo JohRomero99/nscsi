@@ -55,13 +55,14 @@ class LoginController extends Controller
                 return redirect()->route('colector.home');
                 break;
             case 'representante':
-                return redirect()->route("representante.home");
+                return redirect()->route('representante.home');
                 break;
             case 'representante_invitado':
-                return redirect()->route('representanteInvitado.home');
+                return redirect()->route('representanteInvitado.paso-1');
                 break;
             default:
-                return redirect()->route('home');
+                return "hola";
+                //return redirect()->route('home');
                 break;
         }
     }

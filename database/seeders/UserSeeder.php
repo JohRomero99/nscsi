@@ -32,6 +32,12 @@ class UserSeeder extends Seeder
         ])->assignRole('admin');
 
         User::create([
+            'name' => 'representante.1',
+            'email' => 'representante_invitado@gmail.com',
+            'password' => bcrypt('Nsc2023')
+        ])->assignRole('representante_invitado');
+
+        User::create([
             'name' => '0955546601',
             'email' => 'paymentez@gmail.com',
             'password' => bcrypt('paymentez.2022')
@@ -282,12 +288,6 @@ class UserSeeder extends Seeder
             'email' => 'colecturia@nsc.edu.ec',
             'password' => bcrypt('Nsc0927340885')
         ])->assignRole('colector');
-
-        User::create([
-            'name' => 'representante.1',
-            'email' => 'anthonyloor462@gmail.com',
-            'password' => bcrypt('Nsc2023')
-        ])->assignRole('representante_invitado');
 
         // $usuario = User::latest('id')->first();
 

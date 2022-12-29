@@ -280,7 +280,7 @@ return [
             'url'         => 'representante/paymentez/add/card',
             'icon'        => 'far fa-credit-card',
             // 'label'       => false,
-            'label_color' => 'success',
+            //'label_color' => 'success',
             'can'         => 'paymentez.agregarTarjeta'
         ],
         [
@@ -305,7 +305,7 @@ return [
             'icon'        => 'fas fa-info-circle',
             // 'label'       => false,
             'label_color' => 'success',
-            // 'can'         => 'paymentez.informacion'
+            'can'         => 'paymentez.informacion'
         ],
         [
             'text'        => 'URL Pruebas',
@@ -313,7 +313,7 @@ return [
             'icon'        => 'fas fa-link',
             // 'label'       => false,
             'label_color' => 'success',
-            // 'can'         => 'paymentez.history'
+            'can'         => 'paymentez.history'
         ],
         ['header' => 'CONFIGURACION DE LA CUENTA', 'can' => 'representante.home'],
         [
@@ -321,12 +321,14 @@ return [
             'url'         => 'representante/actualizar-correo',
             'icon'        => 'fas fa-envelope',
             'label_color' => 'success',
+            'can'         => 'paymentez.history'
         ],
         [
             'text'        => 'Actualizar Contraseña',
             'url'         => 'representante/actualizar-contrasena',
             'icon'        => 'fas fa-lock',
             'label_color' => 'success',
+            'can'         => 'paymentez.history'
         ],
         //Colector Home
         [
@@ -375,6 +377,44 @@ return [
                     'can'  => 'colector.home'
                 ],
             ],
+        ],
+        //Representante Invitado
+        [
+            'text'        => '1.- Ficha de matriculación',
+            'url'         => '#',
+            'icon'        => '',
+            'submenu' => [
+                [
+                    'text' => 'Datos Estudiante',
+                    'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/1',
+                ],
+                [
+                    'text' => 'Datos Representante',
+                    'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/2',
+                ],
+                [
+                    'text' => 'Datos Facturación',
+                    'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/3',
+                ],
+                [
+                    'text' => 'Paso 4',
+                    'url'  => '',
+                ],
+            ],
+        ],
+        [
+            'text'        => '2.- Pago en línea',
+            'url'         => 'representante/paymentez/history',
+            'icon'        => '#',
+            // 'label'       => false,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => '3.- Firmar contrato',
+            'url'         => 'representante/paymentez/history',
+            'icon'        => '#',
+            // 'label'       => false,
+            'label_color' => 'success',
         ],
         ['header' => 'labels', 'can' => 'admin.home',],
         [

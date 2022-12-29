@@ -71,6 +71,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('matriculacion')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/matriculacion.php'));
+
+            Route::middleware('web')
+                ->prefix('representanteInvitado')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/representanteInvitado.php'));
         });
     }
 

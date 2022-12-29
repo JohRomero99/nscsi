@@ -42,7 +42,7 @@ class verificarRol
                 return redirect()->route("representante.home");
                 break;
             case 'representante_invitado':
-                return redirect()->route('representante.home');
+                return redirect()->route('representanteInvitado.paso-1');
                 break;
             default:
                 return $next($request);
