@@ -56,16 +56,15 @@
                     <div class="form-text mb-4">
                         Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
                     </div>
-                    <div class="text-center">
-                        <p class="m-3 h5">ESTUDIANTE</p>
-                    </div>
-                    @if(session('error') == 'Ya se encuentra registrado')
+                    @if(session('error') =='cédula registrada')
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <strong>Ya existe </strong>un estudiante con ese número de cédula o pasaporte.
+                            El número de cédula <strong>{{ Session::get('cedula'); }}</strong> ya se encuentra registrado como un representante.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-
+                    <div class="text-center">
+                        <p class="m-3 h5">ESTUDIANTE</p>
+                    </div>
                     <div class="mb-3 row">
                         <label for="inputPassword" class="col-sm-4 col-form-label text-center">Tipo de Identificación</label>
                         <div class="col-sm-8">
