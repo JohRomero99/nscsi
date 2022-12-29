@@ -173,7 +173,7 @@
                         </div>
                     </div>
                     <div class="form-floating">
-                        <input type="text" name="cedulaRepresentante" id="cedulaRepresentante" class="shadow-none rounded-0 border-0 border-bottom border-success form-control @error('cedulaRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('cedulaRepresentante') }}" onkeyup="GetDetail(this.value)">
+                        <input type="text" name="cedulaRepresentante" id="cedulaRepresentante" class="shadow-none rounded-0 border-0 border-bottom border-success border-opacity-50 form-control @error('cedulaRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('cedulaRepresentante') }}" onkeyup="GetDetail(this.value)">
                         @error('cedulaRepresentante')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -182,7 +182,7 @@
                         <label class="text-muted" for="floatingInputGrid">CI <i class="fas fa-address-card"></i></label>
                     </div>
                     <div class="form-floating" style="display:none" name="pasaporteRepresentante">
-                        <input type="text" name="pasaporteRepresentante" class="shadow-none rounded-0 border-0 border-bottom border-success form-control @error('pasaporteRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('pasaporteRepresentante') }}" onkeyup="GetDetail(this.value)">
+                        <input type="text" name="pasaporteRepresentante" class="shadow-none rounded-0 border-0 border-bottom border-success border-opacity-50 form-control @error('pasaporteRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('pasaporteRepresentante') }}" onkeyup="GetDetail(this.value)">
                         @error('pasaporteRepresentante')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
