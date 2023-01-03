@@ -58,7 +58,7 @@
                     </div>
                     @if(session('error') =='cédula registrada')
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            El número de cédula <strong>{{ Session::get('cedula'); }}</strong> ya se encuentra registrado como un representante.
+                            El número de cédula o pasaporte <strong>{{ Session::get('cedula'); }}</strong> ya se encuentra registrado.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
@@ -140,18 +140,51 @@
                             </div>
                         </div>
                         <div class="form-floating">
-                            <select class="form-select" id="floatingSelectGrid">
-                                <option value="1">INICIAL 1A</option>
-                                <option value="2">INICIAL 2A</option>
-                                <option value="3">INICIAL 2B</option>
-                                <option value="3">PREPARATORIA A</option>
-                                <option value="3">PREPARATORIA B</option>
-                                <option value="3">PREPARATORIA C</option>
-                                <option value="3">SEGUNDO A</option>
-                                <option value="3">SEGUNDO B</option>
-                                <option value="3">SEGUNDO C</option>
+                            <select class="form-select" name="anoLectivoEstudiante">
+                                <option value="INICIAL 1A">INICIAL 1A</option>
+                                <option value="INICIAL 2A">INICIAL 2A</option>
+                                <option value="INICIAL 2B">INICIAL 2B</option>
+                                <option value="PREPARATORIA A">PREPARATORIA A</option>
+                                <option value="PREPARATORIA B">PREPARATORIA B</option>
+                                <option value="PREPARATORIA C">PREPARATORIA C</option>
+                                <option value="SEGUNDO A">SEGUNDO A</option>
+                                <option value="SEGUNDO B">SEGUNDO B</option>
+                                <option value="SEGUNDO C">SEGUNDO C</option>
+                                <option value="TERCERO A">TERCERO A</option>
+                                <option value="TERCERO B">TERCERO B</option>
+                                <option value="TERCERO C">TERCERO C</option>
+                                <option value="CUARTO A">CUARTO A</option>
+                                <option value="CUARTO B">CUARTO B</option>
+                                <option value="CUARTO C">CUARTO C</option>
+                                <option value="QUINTO A">QUINTO A</option>
+                                <option value="QUINTO B">QUINTO B</option>
+                                <option value="QUINTO C">QUINTO C</option>
+                                <option value="SEXTO A">SEXTO A</option>
+                                <option value="SEXTO B">SEXTO B</option>
+                                <option value="SEPTIMO A">SEPTIMO A</option>
+                                <option value="SEPTIMO B">SEPTIMO B</option>
+                                <option value="OCTAVO A">OCTAVO A</option>
+                                <option value="OCTAVO B">OCTAVO B</option>
+                                <option value="NOVENO A">NOVENO A</option>
+                                <option value="NOVENO B">NOVENO B</option>
+                                <option value="DECIMO A">DECIMO A</option>
+                                <option value="DECIMO B">DECIMO B</option>
+                                <option value="1º BACHILLERATO A">1º BACHILLERATO A</option>
+                                <option value="1º BACHILLERATO B">1º BACHILLERATO B</option>
+                                <option value="2º BACHILLERATO A">2º BACHILLERATO A</option>
                             </select>
                             <label for="floatingSelectGrid">Año de Básica <i class="fas fa-school"></i></label>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="date" name="fechaNacimientoEstudiante" class="form-control @error('fechaNacimientoEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('fechaNacimientoEstudiante') }}">
+                                @error('fechaNacimientoEstudiante')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <label class="text-muted" for="floatingInputGrid">Fecha de Nacimiento</label>
+                            </div>
                         </div>
 
                     <hr class="border border-success border-1 opacity-50 mt-5">
@@ -247,7 +280,7 @@
                         </div>
                     </div>
                     <div class="mt-4 text-center">
-                        <button type="submit" class="btn btn-success"><strong>Registrar </strong> <i class="fas fa-share-square"></i></button>
+                        <button type="submit" class="btn btn-success"><strong>Registrar </strong></button>
                     </div>
                 </form>
             </div>
@@ -271,13 +304,24 @@
     const pasaporteRepresentante = document.querySelector("[name=pasaporteRepresentante]");
     const cedulaRepresentante = document.querySelector("#cedulaRepresentante");
 
+    var nullCedulaEstudiante = document.querySelector("#cedulaEstudiante");
+    var nullPasaporteEstudiante = document.querySelector("[name=pasaporteEstudiante]");
+    var nullCedulaRepresentante = document.querySelector("#cedulaRepresentante");
+    var nullPasaporteRepresentante = document.querySelector("[name=pasaporteRepresentante]");
+
     identificacionEstudiante.addEventListener("change", () => {
         if (identificacionEstudiante.value === "2") {
             pasaporteEstudiante.style.display = 'block';
             cedulaEstudiante.style.display = 'none';
+            // nullCedulaEstudiante.value = 'nullCedulaEstudiante';
+            document.querySelector("#cedulaEstudiante").value = 'nullCedulaEstudiante';
         } else {
-            pasaporteEstudiante.style.display = 'none';
             cedulaEstudiante.style.display = 'block';
+            pasaporteEstudiante.style.display = 'none';
+            document.querySelector("[name=pasaporteEstudiante]").value = 'nullPasaporteEstudiante';
+            document.querySelector("#cedulaEstudiante").value = '';
+            // nullPasaporteEstudiante.value = 'nullPasaporteEstudiante';
+            // nullCedulaEstudiante.value = '';
         }
     });
 
@@ -285,9 +329,15 @@
         if (identificacionRepresentante.value === "2") {
             pasaporteRepresentante.style.display = 'block';
             cedulaRepresentante.style.display = 'none';
+            document.querySelector("#cedulaRepresentante").value = 'nullCedulaRepresentante';
+            // nullCedulaRepresentante.value = 'nullCedulaRepresentante';
         } else {
-            pasaporteRepresentante.style.display = 'none';
             cedulaRepresentante.style.display = 'block';
+            pasaporteRepresentante.style.display = 'none';
+            document.querySelector("[name=pasaporteRepresentante]").value = 'nullPasaporteRepresentante';
+            document.querySelector("#cedulaRepresentante").value = '';
+            // nullPasaporteRepresentante.value = 'nullPasaporteRepresentante';
+            // nullCedulaRepresentante.value = '';
         }
     });
 </script>

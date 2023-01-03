@@ -32,8 +32,10 @@ class estudianteAdmitidoController extends Controller
     public function create(registroEstudianteAdmitido $request)
     {
 
+        return $request->all();
+
         // Verificar si el estudiante ya se encuentra registrado con cédula o pasaporte.
-        if($request->cedulaEstudiante == "")
+        if($request->cedulaEstudiante == "nullEstudianteCedula")
             $personaEstudiante = Persona::select('*')->where('identificacion','=',$request->pasaporteEstudiante)->get();
         else
             $personaEstudiante = Persona::select('*')->where('identificacion','=',$request->cedulaEstudiante)->get();
@@ -55,6 +57,8 @@ class estudianteAdmitidoController extends Controller
             $nuevoPersonaEstudiante->segundo_nombre = $request->segundoNombreEstudiante;
             $nuevoPersonaEstudiante->apellido_paterno = $request->apellidoPaternoEstudiante;
             $nuevoPersonaEstudiante->apellido_materno = $request->apellidoMaternoEstudiante;
+            $nuevoPersonaEstudiante->fecha_nacimiento = $request->fechaNacimientoEstudiante;
+            $nuevoPersonaEstudiante->estudiante()->create(['curso' => $request->anoLectivoEstudiante]);
             $nuevoPersonaEstudiante->save();
     
             // Verificar si existe el representante con cédula o pasaporte.
@@ -77,7 +81,7 @@ class estudianteAdmitidoController extends Controller
     
                 return redirect()->back()->with('exito','Datos guardados correctamente');
 
-                // Caso contrario se crea el nuevo representante y se hace l relación Estudiante - Representante.
+                // Caso contrario se crea el nuevo representante y se hace la relación Estudiante - Representante.
             }else{
     
                 $nuevoPersonaRepresentante = new Persona();
@@ -143,10 +147,10 @@ class estudianteAdmitidoController extends Controller
             $correo = $persona->correo;
          }
 
-        // Store it in a array
+        // Guardamos lo datos en un array.
         $result = array("$primerNombre", "$segundoNombre", "$apellidoPaterno", "$apellidoMaterno", "$correo");
 
-        // Send in JSON encoded form
+        // Enviar en forma codificada JSON.
         $myJSON = json_encode($result);
         echo $myJSON;
 
