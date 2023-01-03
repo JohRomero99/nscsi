@@ -3,7 +3,9 @@
 @section('title', 'NSC')
 
 @section('content_header')
+<div class="text-center">
     <h1>Ficha de Matriculación</h1>
+</div>
 @stop
 
 @section('content')
@@ -11,7 +13,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="text-center">
-                    <h5 class="m-auto"><strong>DATOS DEL REPRESENTANTE <i class="far fa-user"></i></strong></h5>
+                    <h5 class="m-auto text-muted">DATOS DEL REPRESENTANTE <i class="far fa-user"></i></strong></h5>
                 </div>
             </div>
             <p class="text-center mt-3 mb-0 text-muted">Complete la información del siguiente formulario.</p>
@@ -59,12 +61,12 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@gmail.com" aria-describedby="emailHelp">
                     <small id="emailHelp" class="form-text text-muted">Ingrese un correo válido.</small>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Número de teléfono</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="(000) 000 0000" aria-describedby="emailHelp">
                     <small id="emailHelp" class="form-text text-muted">Ingrese un número de teléfono válido.</small>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -151,8 +153,11 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    
+    <!-- Icono página -->
+    <link rel="shortcut icon" href="{{ asset('imagenes/VirgenNSC.png') }}" type="image/x-icon">
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+
 @stop
