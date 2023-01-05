@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    <div class="container col-md-7">
+    <div class="container col-md-9">
         <div class="card">
             <div class="card-header">
                 <div class="text-center">
