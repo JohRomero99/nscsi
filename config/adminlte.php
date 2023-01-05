@@ -397,8 +397,8 @@ return [
                     'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/3',
                 ],
                 [
-                    'text' => 'Paso 4',
-                    'url'  => '',
+                    'text' => 'Autorización de Representante Legal',
+                    'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/4',
                 ],
             ],
         ],
