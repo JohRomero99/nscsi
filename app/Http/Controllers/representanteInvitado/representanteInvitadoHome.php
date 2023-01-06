@@ -49,6 +49,17 @@ class representanteInvitadoHome extends Controller
         return view('representanteInvitado.representanteInvitado-paso-4');
     }
 
+            /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function pasoQuinto(Request $request)
+    {
+        return view('representanteInvitado.representanteInvitado-paso-5');
+    }
+
     /**
      * Display the specified resource.
      *
