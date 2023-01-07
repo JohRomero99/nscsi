@@ -12,14 +12,13 @@
     <div class="container col-md-7">
         <div class="card">
             <div class="card-header">
-            <div class="text-center">
+                <div class="text-center">
                     <h5 class="m-auto text-muted">AUTORIZACIÓN REPRESENTANTE LEGAL DE RETIRO DE ESTUDIANTES <i class="fas fa-clipboard-list"></i></h5>
                 </div>
             </div>
-            <div class="card p-3">
-                    Yo, 
-                    <input type="text" class="form-control text-center" text-center" value="john" name="" id=""> 
-                    <input type="text" class="form-control text-center" text-center" value="romero" name="" id="">  
+            <div class="card-body p-3">
+                    Yo, <input type="text" class="form-control text-center w-25" text-center" value="john" name="" id=""> 
+                    <input type="text" class="form-control text-center w-25" text-center" value="romero" name="" id="">  
                     con número de cédula 
                     <input type="text" class="form-control text-center" value="0955546601">.
                     Representante legal del Estudiante
@@ -68,11 +67,9 @@
                     Email 
                     <input type="text" class="form-control" name="" id="" value="jjairo5599@gmail.com">
                     Autorizo que mi representando regrese al domicilio mencionado, acompañado de un familiar o conocido de confianza, desvinculando a la Escuela Nuestra Señora del Carmen de la reponsabilidad de cualquier eventualidad que se produzca durante el trayecto al domicilia. 
-                
-
             </div>
             <div class="card-footer">
-
+                
             </div>
         </div>
     </div>
