@@ -4,16 +4,16 @@
 
 @section('content_header')
 <div class="text-center">
-    <h1>Ficha de Matriculación</h1>
+    <img src="{{ asset('imagenes/Logo-NSCFinal-Negro.png') }}" width="300" height="85" alt="">
 </div>
 @stop
 
 @section('content')
-    <div class="container col-md-9">
+    <div class="container col-md-8">
         <div class="card">
-            <div class="card-header">
-                <div class="text-center">
-                    <h5 class="m-auto text-muted">DATOS DEL REPRESENTANTE <i class="far fa-user"></i></strong></h5>
+            <div class="card-header bg-success">
+                <div class="text-center p-2">
+                    <h5 class="m-auto"><strong>DATOS DEL REPRESENTANTE</strong> <i class="far fa-user"></i></strong></h5>
                 </div>
             </div>
             <p class="text-center mt-3 mb-0 text-muted">Complete la información del siguiente formulario.</p>
@@ -31,7 +31,7 @@
                     </div>
                     <p class="text-center m-auto"><strong>Cédula</strong></p>
                     <div class="d-flex justify-content-center">
-                        <input type="text" class="form-control text-center mt-2 mb-2 col-md-5">
+                        <input type="text" class="form-control text-center mt-2 mb-2 col-md-5" disabled value="{{ $representante->identificacion }}">
                     </div>
                 </div>
                 <div class="card p-3">
@@ -39,16 +39,36 @@
                         <label for="exampleFormControlInput1" class="text-center">Nombres Completos</label>
                         <div class="row">
                             <div class="col-6 mt-1">
-                                <input type="select" class="form-control" id="exampleFormControlInput1" placeholder="Primer Nombre">
+                                <div class="col">
+                                    <label for="">Primer Nombre</label>
+                                </div>
+                                <div class="col">
+                                    <input type="select" disabled value="{{ $representante->primer_nombre }}" class="form-control" id="exampleFormControlInput1" placeholder="Primer Nombre">
+                                </div>
                             </div>
                             <div class="col-6 mt-1">
-                                <input type="select" class="form-control" id="exampleFormControlInput1" placeholder="Segundo Nombre">
+                                <div class="col">
+                                    <label for="">Segundo Nombre</label>
+                                </div>
+                                <div class="col">
+                                    <input type="select" disabled value="{{ $representante->segundo_nombre }}" class="form-control" id="exampleFormControlInput1" placeholder="Segundo Nombre">
+                                </div>
                             </div>
                             <div class="col-6 mt-1">
-                                <input type="select" class="form-control" id="exampleFormControlInput1" placeholder="Apellido Paterno">
+                                <div class="col">
+                                    <label for="">Apellido Paterno</label>
+                                </div>
+                                <div class="col">
+                                    <input type="select" disabled value="{{ $representante->apellido_paterno }}" class="form-control" id="exampleFormControlInput1" placeholder="Apellido Paterno">
+                                </div>
                             </div>
                             <div class="col-6 mt-1">
-                                <input type="select" class="form-control" id="exampleFormControlInput1" placeholder="Apellido Materno">
+                                <div class="col">
+                                    <label for="">Apellido Materno</label>
+                                </div>
+                                <div class="col">
+                                    <input type="select" disabled value="{{ $representante->apellido_materno }}" class="form-control" id="exampleFormControlInput1" placeholder="Apellido Materno">
+                                </div>
                             </div>
                         </div>
                         <small id="emailHelp" class="form-text text-muted mt-2">Estos campos son requeridos.</small>
@@ -151,9 +171,7 @@
     </div>
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-    
+@section('css')    
     <!-- Icono página -->
     <link rel="shortcut icon" href="{{ asset('imagenes/VirgenNSC.png') }}" type="image/x-icon">
 @stop

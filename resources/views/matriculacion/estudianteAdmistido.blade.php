@@ -296,9 +296,9 @@
 
 
 <script>
-    const identificacionEstudiante = document.querySelector("#identificacionEstudiante");
-    const pasaporteEstudiante = document.querySelector("[name=pasaporteEstudiante]");
-    const cedulaEstudiante = document.querySelector("#cedulaEstudiante");
+    const identificacionEstudiante = document.querySelector("#identificacionEstudiante"); 
+    const pasaporteEstudiante = document.querySelector("[name=pasaporteEstudiante]"); //input
+    const cedulaEstudiante = document.querySelector("#cedulaEstudiante"); // input
 
     const identificacionRepresentante = document.querySelector("#identificacionRepresentante");
     const pasaporteRepresentante = document.querySelector("[name=pasaporteRepresentante]");

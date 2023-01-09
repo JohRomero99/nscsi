@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\representanteInvitado;
 
 use App\Http\Controllers\Controller;
+use App\Models\EstudianteRepresentante;
+use App\Models\Representante;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class representanteInvitadoHome extends Controller
 {
@@ -12,9 +16,13 @@ class representanteInvitadoHome extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function pasoUno()
-    {
-        return view('representanteInvitado.representanteInvitado-paso-1');
+    public function pasoUno(){
+
+        $representanteId = Auth::user()->persona->representante->id;
+        $relacionEstudinateRepresentante = EstudianteRepresentante::select('*')->where('representante_id','=',$representanteId)->get();
+        $estudiante = $relacionEstudinateRepresentante[0]->estudiante;
+        return view('representanteInvitado.representanteInvitado-paso-1', compact('estudiante'));
+
     }
 
     /**
@@ -24,7 +32,8 @@ class representanteInvitadoHome extends Controller
      */
     public function pasoDos()
     {
-        return view('representanteInvitado.representanteInvitado-paso-2');
+        $representante = Auth::user()->persona;
+        return view('representanteInvitado.representanteInvitado-paso-2', compact('representante'));
     }
 
     /**
@@ -47,6 +56,17 @@ class representanteInvitadoHome extends Controller
     public function pasoCuatro(Request $request)
     {
         return view('representanteInvitado.representanteInvitado-paso-4');
+    }
+
+            /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function pasoQuinto(Request $request)
+    {
+        return view('representanteInvitado.representanteInvitado-paso-5');
     }
 
     /**

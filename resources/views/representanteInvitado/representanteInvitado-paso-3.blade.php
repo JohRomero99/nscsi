@@ -4,16 +4,16 @@
 
 @section('content_header')
 <div class="text-center">
-    <h1>Ficha de Matriculación</h1>
+    <img src="{{ asset('imagenes/Logo-NSCFinal-Negro.png') }}" width="300" height="85" alt="">
 </div>
 @stop
 
 @section('content')
-    <div class="container col-md-9">
+    <div class="container col-md-8">
         <div class="card">
-            <div class="card-header">
-                <div class="text-center">
-                    <h5 class="m-auto text-muted">DATOS DE FACTURACIÓN <i class="fas fa-coins"></i></h5>
+            <div class="card-header bg-success">
+                <div class="text-center p-2">
+                    <h5 class="m-auto"><strong>DATOS DE FACTURACIÓN</strong> <i class="fas fa-coins"></i></h5>
                 </div>
             </div>
             <p class="text-center mt-3 mb-0 text-muted">Complete la información del siguiente formulario.</p>
@@ -75,8 +75,6 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-
     <!-- Icono página -->
     <link rel="shortcut icon" href="{{ asset('imagenes/VirgenNSC.png') }}" type="image/x-icon">
 @stop

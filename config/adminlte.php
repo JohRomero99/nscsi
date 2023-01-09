@@ -404,7 +404,7 @@ return [
         ],
         [
             'text'        => '2.- Pago en línea',
-            'url'         => 'representante/paymentez/history',
+            'url'         => 'representanteInvitado/invitado/ficha-matriculacion/paso/5',
             'icon'        => '#',
             // 'label'       => false,
             'label_color' => 'success',

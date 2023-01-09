@@ -9,7 +9,9 @@ use App\Models\Estudiante;
 use App\Models\EstudianteRepresentante;
 use App\Models\Persona;
 use App\Models\Representante;
+use App\Models\User;
 use Faker\Provider\ar_EG\Person;
+use Illuminate\Support\Str;
 use League\CommonMark\Extension\CommonMark\Parser\Inline\EscapableParser;
 
 class estudianteAdmitidoController extends Controller
@@ -32,8 +34,6 @@ class estudianteAdmitidoController extends Controller
     public function create(registroEstudianteAdmitido $request)
     {
 
-        return $request->all();
-
         // Verificar si el estudiante ya se encuentra registrado con cédula o pasaporte.
         if($request->cedulaEstudiante == "nullEstudianteCedula")
             $personaEstudiante = Persona::select('*')->where('identificacion','=',$request->pasaporteEstudiante)->get();
@@ -42,8 +42,7 @@ class estudianteAdmitidoController extends Controller
 
         // Si ya existe el estudiante se regresa al la página nuevamente.
         if(count($personaEstudiante) > 0){
-            // if(empty($personaEstudiante[0]->estudiante->id))
-                return redirect()->back()->with("error","cédula registrada")->with("cedula",$personaEstudiante[0]->identificacion)->withInput();
+            return redirect()->back()->with("error","cédula registrada")->with("cedula",$personaEstudiante[0]->identificacion)->withInput();
 
         // caso contrario se crea el nuevo estudiante.
         }else{
@@ -53,65 +52,68 @@ class estudianteAdmitidoController extends Controller
                 $nuevoPersonaEstudiante->identificacion = $request->pasaporteEstudiante;
             else
                 $nuevoPersonaEstudiante->identificacion = $request->cedulaEstudiante;
-            $nuevoPersonaEstudiante->primer_nombre = $request->primerNombreEstudiante;
-            $nuevoPersonaEstudiante->segundo_nombre = $request->segundoNombreEstudiante;
-            $nuevoPersonaEstudiante->apellido_paterno = $request->apellidoPaternoEstudiante;
-            $nuevoPersonaEstudiante->apellido_materno = $request->apellidoMaternoEstudiante;
-            $nuevoPersonaEstudiante->fecha_nacimiento = $request->fechaNacimientoEstudiante;
-            $nuevoPersonaEstudiante->estudiante()->create(['curso' => $request->anoLectivoEstudiante]);
+            $nuevoPersonaEstudiante->primer_nombre = strtoupper($request->primerNombreEstudiante);
+            $nuevoPersonaEstudiante->segundo_nombre = strtoupper($request->segundoNombreEstudiante);
+            $nuevoPersonaEstudiante->apellido_paterno = strtoupper($request->apellidoPaternoEstudiante);
+            $nuevoPersonaEstudiante->apellido_materno = strtoupper($request->apellidoMaternoEstudiante);
+            $nuevoPersonaEstudiante->fecha_nacimiento = strtoupper($request->fechaNacimientoEstudiante);
             $nuevoPersonaEstudiante->save();
+          
+            // Estudiante::where('persona_id','=',$nuevoPersonaEstudiante->id)->update(['curso' => $request->get('anoLectivoEstudiante')]);
     
             // Verificar si existe el representante con cédula o pasaporte.
             if($request->cedulaRepresentante == "")
-                $personaRepresentante = Persona::select('*')->where('identificacion','=',$request->pasaporteRepresentante)->get();
+                $personaRepresentante = Persona::select('*')->where('identificacion','=',$request->pasaporteRepresentante)->first();
             else
-                $personaRepresentante = Persona::select('*')->where('identificacion','=',$request->cedulaRepresentante)->get();
+                $personaRepresentante = Persona::select('*')->where('identificacion','=',$request->cedulaRepresentante)->first();
     
-            // Si el representante existe se hace la relación Estudiante - Representante.
-            if(count($personaRepresentante) > 0){
-                
-                $estudiante = Estudiante::create([
-                    'persona_id' => $nuevoPersonaEstudiante->id
-                ]);
+            // Verificamos si el representante ya existe en caso de que no exista se lo crea.
+            if(is_null($personaRepresentante)){
 
-                $EstudianteRepresentante = EstudianteRepresentante::create([
-                    'estudiante_id' => $estudiante->id,
-                    'representante_id' => $personaRepresentante[0]->representante->id
-                ]);
-    
-                return redirect()->back()->with('exito','Datos guardados correctamente');
+                // Creación de nuevo Usuario (representante) con rol representando-invitado.
+                $nuevoUsuario = new User();
+                $nuevoUsuarioContrasena = Str::random(8);
+                if($request->cedulaRepresentante == "")
+                    $nuevoUsuario->name = $request->pasaporteRepresentante;
+                else
+                    $nuevoUsuario->name = $request->cedulaRepresentante;
+                $nuevoUsuario->email = $request->correoRepresentante;
+                $nuevoUsuario->password = bcrypt($nuevoUsuarioContrasena);
+                $nuevoUsuario->assignRole('representante_invitado');
+                $nuevoUsuario->save();
 
-                // Caso contrario se crea el nuevo representante y se hace la relación Estudiante - Representante.
-            }else{
-    
+                // Se crea a una nueva Persona (representante).
                 $nuevoPersonaRepresentante = new Persona();
+                $nuevoPersonaRepresentante->user_id = $nuevoUsuario->id;
                 if($request->cedulaRepresentante == "")
                     $nuevoPersonaRepresentante->identificacion = $request->pasaporteRepresentante;
                 else
                     $nuevoPersonaRepresentante->identificacion = $request->cedulaRepresentante;
-                $nuevoPersonaRepresentante->primer_nombre = $request->primerNombreRepresentante;
-                $nuevoPersonaRepresentante->segundo_nombre = $request->segundoNombreRepresentante;
-                $nuevoPersonaRepresentante->apellido_paterno = $request->apellidoPaternoRepresentante;
-                $nuevoPersonaRepresentante->apellido_materno = $request->apellidoMaternoRepresentante;
+                $nuevoPersonaRepresentante->primer_nombre = strtoupper($request->primerNombreRepresentante);
+                $nuevoPersonaRepresentante->segundo_nombre = strtoupper($request->segundoNombreRepresentante);
+                $nuevoPersonaRepresentante->apellido_paterno = strtoupper($request->apellidoPaternoRepresentante);
+                $nuevoPersonaRepresentante->apellido_materno = strtoupper($request->apellidoMaternoRepresentante);
                 $nuevoPersonaRepresentante->correo = $request->correoRepresentante;
                 $nuevoPersonaRepresentante->save();
 
-                $estudiante=Estudiante::create([
-                    'persona_id' => $nuevoPersonaEstudiante->id
-                ]);
-
-                $representante=Representante::create([
+                $representante = Representante::create([
                     'persona_id' => $nuevoPersonaRepresentante->id
                 ]);
     
-                $EstudianteRepresentante=EstudianteRepresentante::create([
-                    'estudiante_id' => $estudiante->id,
-                    'representante_id' => $representante->id
-                ]);
+            }
+
+            $estudiante = Estudiante::create([
+                'persona_id' => $nuevoPersonaEstudiante->id
+            ]);
     
-                return redirect()->back()->with('exito','Datos guardados correctamente');
-                
-            }    
+            $EstudianteRepresentante = EstudianteRepresentante::create([
+                'estudiante_id' => $estudiante->id,
+                'representante_id' => $representante->id
+            ]);
+
+            $nuevoPersonaEstudiante->estudiante()->update(['curso' => $request->get('anoLectivoEstudiante')]);
+            return $nuevoUsuarioContrasena;
+            return redirect()->back()->with('exito','Datos guardados correctamente');
         }
     
     }

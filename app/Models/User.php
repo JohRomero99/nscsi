@@ -10,7 +10,6 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Notifications\UserResetPassword;
 use App\Models\nsc_estado_pasos_perfil;
-use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -72,6 +71,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
+    // Relacion Uno a Uno con modelo Persona.
+    public function persona(){
 
+        return $this->hasOne(Persona::class);
+
+    }
 
 }

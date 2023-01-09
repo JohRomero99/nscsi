@@ -15,6 +15,7 @@ class CreateNscPersonasTable extends Migration
     {
         Schema::create('nsc_persona', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('identificacion')->unique()->nullable();
             $table->string('apellido_paterno')->nullable();
             $table->string('apellido_materno')->nullable();
@@ -33,15 +34,18 @@ class CreateNscPersonasTable extends Migration
             $table->string('estado')->nullable();
             $table->timestamps();
 
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null');
             $table->foreign('lugar_nacimiento_id')
-                    ->references('id')
-                    ->on('nsc_lugar_nacimiento')
-                    ->onDelete('set null');
+                ->references('id')
+                ->on('nsc_lugar_nacimiento')
+                ->onDelete('set null');
             $table->foreign('nacionalidad_id')
-                    ->references('id')
-                    ->on('nsc_nacionalidad')
-                    ->onDelete('set null');
-
+                ->references('id')
+                ->on('nsc_nacionalidad')
+                ->onDelete('set null');
         });
     }
 
