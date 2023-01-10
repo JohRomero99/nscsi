@@ -12,7 +12,7 @@
     <div class="container col-md-8">
         <form action="{{route('representanteInvitado.paso-datos-1')}}" method="POST">
             @csrf
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-header bg-success">
                     <div class="text-center p-2">
                         <h5 class="m-auto"><strong>DATOS DEL ESTUDIANTE</strong> <i class="far fa-user"></i></h5>
@@ -24,16 +24,49 @@
                         <div class="d-flex justify-content-center">
                             <div class="form-group row col-md-12">
                                 <label for="exampleFormControlSelect1" class="text-center mt-2" >Tipo de Identificación</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                <option>cédula</option>
-                                <option>pasaporte</option>
-                                </select>
+                                @if(is_null($estudiante->persona->identificacion))
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>cédula</option>
+                                        <option>pasaporte</option>
+                                    </select>
+                                @else
+                                    <select disabled class="form-control" id="exampleFormControlSelect1">
+                                        <option>cédula</option>
+                                        <option>pasaporte</option>
+                                    </select>
+                                @endif
                                 <small id="emailHelp" class="form-text text-muted">Este campo es requerido.</small>
                             </div>
                         </div>
-                        <p class="text-center m-auto"><strong>Cédula</strong></p>
-                        <div class="d-flex justify-content-center">
-                            <input type="text" readonly class="form-control text-center mt-2 mb-2 col-md-5" value="{{ $estudiante->persona->identificacion }}">
+                        <div class="cedula">
+                            <p class="text-center m-auto"><strong>Cédula</strong></p>
+                            <div class="d-flex justify-content-center">
+                                @if(is_null($estudiante->persona->identificacion))
+                                    <input type="text" name="identificacion" class="form-control text-center mt-2 mb-2 col-md-5 @error('identificacion') is-invalid @enderror" value="{{ old('identificacion') }}">
+                                @else
+                                    <input type="text" readonly class="form-control text-center mt-2 mb-2 col-md-5" value="{{ $estudiante->persona->identificacion }}">
+                                @endif
+                                @error('identificacion')
+                                    <span class="invalid-feedback m-0" role="alert">
+                                        <strong class="">{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="pasaporte">
+                            <p class="text-center m-auto"><strong>Pasaporte</strong></p>
+                            <div class="d-flex justify-content-center">
+                                @if(is_null($estudiante->persona->identificacion))
+                                    <input type="text" name="identificacion" class="form-control text-center mt-2 mb-2 col-md-5 @error('identificacion') is-invalid @enderror" value="{{ old('identificacion') }}">
+                                @else
+                                    <input type="text" readonly class="form-control text-center mt-2 mb-2 col-md-5" value="{{ $estudiante->persona->identificacion }}">
+                                @endif
+                                @error('identificacion')
+                                    <span class="invalid-feedback m-0" role="alert">
+                                        <strong class="">{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="card p-3">
@@ -45,7 +78,11 @@
                                         <label for="">Pimer Nombre</label>
                                     </div>
                                     <div class="col">
-                                        <input readonly type="select" name="primerNombre" value="{{ $estudiante->persona->primer_nombre }}" class="form-control @error('primerNombre') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Primer Nombre">
+                                        @if(is_null($estudiante->persona->primer_nombre))
+                                            <input type="select" name="primerNombre" value="{{ old('primerNombre') }}" class="form-control @error('primerNombre') is-invalid @enderror" id="primerNombre" placeholder="Primer Nombre">
+                                        @else
+                                            <input readonly type="select" name="primerNombre" value="{{ $estudiante->persona->primer_nombre }}" class="form-control @error('primerNombre') is-invalid @enderror" id="primerNombre" placeholder="Primer Nombre">
+                                        @endif
                                         @error('primerNombre')
                                             <span class="invalid-feedback m-0" role="alert">
                                                 <strong class="">{{ $message }}</strong>
@@ -58,7 +95,11 @@
                                         <label for="">Segundo Nombre</label>
                                     </div>
                                     <div class="col">
-                                        <input readonly type="select" name="segundoNombre" value="{{ $estudiante->persona->segundo_nombre }}" class="form-control @error('segundoNombre') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Segundo Nombre">
+                                        @if(is_null($estudiante->persona->segundo_nombre))
+                                            <input type="select" name="segundoNombre" value="{{ old('segundoNombre') }}" class="form-control @error('segundoNombre') is-invalid @enderror" id="segundoNombre" placeholder="Segundo Nombre">
+                                        @else
+                                            <input readonly type="select" name="segundoNombre" value="{{ $estudiante->persona->segundo_nombre }}" class="form-control @error('segundoNombre') is-invalid @enderror" id="segundoNombre" placeholder="Segundo Nombre">   
+                                        @endif
                                         @error('segundoNombre')
                                             <span class="invalid-feedback m-0" role="alert">
                                                 <strong class="">{{ $message }}</strong>
@@ -71,7 +112,11 @@
                                         <label for="">Apellido Paterno</label>
                                     </div>
                                     <div class="col">
-                                        <input readonly type="select" name="apellidoPaterno" value="{{ $estudiante->persona->apellido_paterno }}" class="form-control @error('apellidoPaterno') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Apellido Paterno">
+                                        @if(is_null($estudiante->persona->apellido_paterno))
+                                            <input type="select" name="apellidoPaterno" value="{{ old('apellidoPaterno') }}" class="form-control @error('apellidoPaterno') is-invalid @enderror" id="apellidoPaterno" placeholder="Apellido Paterno">
+                                        @else
+                                            <input readonly type="select" name="apellidoPaterno" value="{{ $estudiante->persona->apellido_paterno }}" class="form-control @error('apellidoPaterno') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Apellido Paterno">
+                                        @endif
                                         @error('apellidoPaterno')
                                             <span class="invalid-feedback m-0" role="alert">
                                                 <strong class="">{{ $message }}</strong>
@@ -84,7 +129,11 @@
                                         <label for="">Apellido Materno</label>
                                     </div>
                                     <div class="col">
-                                        <input readonly type="select" name="apellidoMaterno" value="{{ $estudiante->persona->apellido_materno }}" class="form-control @error('apellidoMaterno') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Apellido Materno">
+                                        @if(is_null($estudiante->persona->apellido_materno))
+                                            <input type="select" name="apellidoMaterno" value="{{ old('apellidoMaterno') }}" class="form-control @error('apellidoMaterno') is-invalid @enderror" id="apellidoMaterno" placeholder="Apellido Materno">
+                                        @else
+                                            <input readonly type="select" name="apellidoMaterno" value="{{ $estudiante->persona->apellido_materno }}" class="form-control @error('apellidoMaterno') is-invalid @enderror" id="apellidoMaterno" placeholder="Apellido Materno">
+                                        @endif
                                         @error('apellidoMaterno')
                                             <span class="invalid-feedback m-0" role="alert">
                                                 <strong class="">{{ $message }}</strong>

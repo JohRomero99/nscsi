@@ -25,7 +25,9 @@ class representantePaso1 extends FormRequest
     {
         return [
             'codigoNacional' => 'required|numeric|digits:10',
-            //'' => 'ecuador:personal_identification'
+            'primerNombre' => 'required|string',
+            'apellidoPaterno' => 'required|string',
+            'identificacion' => 'required|recuador:personal_identification'
         ];
     }
 }
