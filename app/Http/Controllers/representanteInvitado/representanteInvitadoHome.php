@@ -24,6 +24,7 @@ class representanteInvitadoHome extends Controller
     public function pasoUnoDatos(representantePaso1 $request){
 
         return $request->all();
+        
 
     }
 
