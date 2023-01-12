@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFichaMatriculacionTable extends Migration
+class CreateNscFichaMatriculacionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateFichaMatriculacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('ficha_matriculacion', function (Blueprint $table) {
+        Schema::create('nsc_ficha_matriculacion', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('representante_id');
-            $table->unsignedBigInteger('estudiante_id');
-            $table->string('codigo_domicilio_estudiante');
-            $table->string('transporte_escolar');
-            $table->string('forma_pago_pensiones');
-            $table->string('facturacion');
-            $table->string('persona_facturacion');
+            $table->unsignedBigInteger('representante_id')->nullable();
+            $table->unsignedBigInteger('estudiante_id')->nullable();
+            $table->string('codigo_domicilio_estudiante')->nullable();
+            $table->string('transporte_escolar')->nullable();
+            $table->string('forma_pago_pensiones')->nullable();
+            $table->string('facturacion')->nullable();
+            $table->string('persona_facturacion')->nullable();
             $table->timestamps();
 
             $table->foreign('representante_id')

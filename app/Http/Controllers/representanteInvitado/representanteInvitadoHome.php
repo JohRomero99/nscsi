@@ -5,6 +5,7 @@ namespace App\Http\Controllers\representanteInvitado;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\matriculacion\representantePaso1;
 use App\Models\EstudianteRepresentante;
+use App\Models\fichaMatriculacion;
 use App\Models\Representante;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -24,7 +25,9 @@ class representanteInvitadoHome extends Controller
     public function pasoUnoDatos(representantePaso1 $request){
 
         return $request->all();
-        
+        $pasoUno = fichaMatriculacion::create([
+            
+        ]);
 
     }
 
