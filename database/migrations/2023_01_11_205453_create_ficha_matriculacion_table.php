@@ -15,12 +15,12 @@ class CreateFichaMatriculacionTable extends Migration
     {
         Schema::create('ficha_matriculacion', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('representante_id');
-            $table->unsignedBigInteger('estudiante_id');
-            $table->string('codigo_domicilio_estudiante');
-            $table->string('transporte_escolar');
-            $table->string('forma_pago_pensiones');
-            $table->string('facturacion');
+            $table->unsignedBigInteger('representante_id')->nullable();
+            $table->unsignedBigInteger('estudiante_id')->nullable();
+            $table->string('codigo_domicilio_estudiante')->nullable();
+            $table->string('transporte_escolar')->nullable();
+            $table->string('forma_pago_pensiones')->nullable();
+            $table->string('facturacion')->nullable();
             $table->string('persona_facturacion');
             $table->timestamps();
 

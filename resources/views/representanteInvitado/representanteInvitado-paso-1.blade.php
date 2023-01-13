@@ -310,6 +310,10 @@
 
     <!-- Icono página -->
     <link rel="shortcut icon" href="{{ asset('imagenes/VirgenNSC.png') }}" type="image/x-icon">
+
+    <style>
+        
+    </style>
 @stop
 
 @section('js')
