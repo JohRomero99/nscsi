@@ -16,58 +16,61 @@
                     <h5 class="m-auto p-2"><strong>AUTORIZACIÓN REPRESENTANTE LEGAL DE RETIRO DE ESTUDIANTES</strong> <i class="far fa-user"></i></h5>
                 </div>
             </div>
+            <p class="text-center mt-3 mb-0 text-muted"><i class="fas fa-info-circle"></i> Lee detenidamente la siguiente información.</p>
             <div class="p-3">
-                <p class="d-inline m-auto">Yo, </p>
-                <input type="text" class="d-inline text-center border-0 w-25 border-bottom" value="john" name="" id=""> 
-                <input type="text" class="d-inline text-center border-0 w-25 border-bottom" value="romero" name="" id="">  
-                con número de cédula 
-                <input type="text" class="d-inline border-0 text-center w-25" value="0955546601">
-                Representante legal del Estudiante
-                <input type="text" name="" class="d-inline border-0 text-center w-25" value="John" id="">
-                <input type="text" name="" class="d-inline border-0 text-center w-25" value="Romero" id="">
-                con número de cédula 
-                <input type="text" class="d-inline border-0 text-center w-25" value="0955546601">
-                , perteneciente al curso
-                <select class="d-inline text-center border-0" id="exampleFormControlSelect1">
-                    <option value="INICIAL 1A">INICIAL 1A</option>
-                    <option value="INICIAL 2A">INICIAL 2A</option>
-                    <option value="INICIAL 2B">INICIAL 2B</option>
-                    <option value="PREPARATORIA A">PREPARATORIA A</option>
-                    <option value="PREPARATORIA B">PREPARATORIA B</option>
-                    <option value="PREPARATORIA C">PREPARATORIA C</option>
-                    <option value="SEGUNDO A">SEGUNDO A</option>
-                    <option value="SEGUNDO B">SEGUNDO B</option>
-                    <option value="SEGUNDO C">SEGUNDO C</option>
-                    <option value="TERCERO A">TERCERO A</option>
-                    <option value="TERCERO B">TERCERO B</option>
-                    <option value="TERCERO C">TERCERO C</option>
-                    <option value="CUARTO A">CUARTO A</option>
-                    <option value="CUARTO B">CUARTO B</option>
-                    <option value="CUARTO C">CUARTO C</option>
-                    <option value="QUINTO A">QUINTO A</option>
-                    <option value="QUINTO B">QUINTO B</option>
-                    <option value="QUINTO C">QUINTO C</option>
-                    <option value="SEXTO A">SEXTO A</option>
-                    <option value="SEXTO B">SEXTO B</option>
-                    <option value="SEPTIMO A">SEPTIMO A</option>
-                    <option value="SEPTIMO B">SEPTIMO B</option>
-                    <option value="OCTAVO A">OCTAVO A</option>
-                    <option value="OCTAVO B">OCTAVO B</option>
-                    <option value="NOVENO A">NOVENO A</option>
-                    <option value="NOVENO B">NOVENO B</option>
-                    <option value="DECIMO A">DECIMO A</option>
-                    <option value="DECIMO B">DECIMO B</option>
-                    <option value="1º BACHILLERATO A">1º BACHILLERATO A</option>
-                    <option value="1º BACHILLERATO B">1º BACHILLERATO B</option>
-                    <option value="2º BACHILLERATO A">2º BACHILLERATO A</option>
-                </select>
-                <p class="d-inline">con dirección domiciliaria </p>
-                <input type="text" name="" id="" class="d-inline text-center border-0 w-25" value="Pradera 2 Bloque 2 Departamento 6">
-                <p class="d-inline">con número de teléfono </p>
-                <input type="text" class="d-inline text-center border-0 w-25" name="" id="" value="0991035787">
-                <p class="d-inline">Email</p>
-                <input type="text" class="d-inline border-0 text-center" name="" id="" value="jjairo5599@gmail.com">
-                <p class="d-inline">Autorizo que mi representando regrese al domicilio mencionado, acompañado de un familiar o conocido de confianza, desvinculando a la Escuela Nuestra Señora del Carmen de la reponsabilidad de cualquier eventualidad que se produzca durante el trayecto al domicilia. </p>
+                <div class="card-body shadow-sm">
+                    <p class="d-inline m-auto">Yo, </p>
+                    <input type="text" class="d-inline text-center ancho_input border-0" value="john" name="" id=""> 
+                    <input type="text" class="d-inline text-center ancho_input border-0" value="romero" name="" id="">  
+                    <p class="d-inline">con número de cédula</p>
+                    <input type="text" class="d-inline text-center ancho_input border-0" value="0955546601">
+                    Representante legal del Estudiante
+                    <input type="text" name="" class="d-inline text-center ancho_input border-0" value="John" id="">
+                    <input type="text" name="" class="d-inline text-center ancho_input border-0" value="Romero" id="">
+                    con número de cédula 
+                    <input type="text" class="d-inline text-center ancho_input border-0" value="0955546601">
+                    , perteneciente al curso
+                    <select class="d-inline text-center border-0 ancho_input" id="exampleFormControlSelect1">
+                        <option value="INICIAL 1A">INICIAL 1A</option>
+                        <option value="INICIAL 2A">INICIAL 2A</option>
+                        <option value="INICIAL 2B">INICIAL 2B</option>
+                        <option value="PREPARATORIA A">PREPARATORIA A</option>
+                        <option value="PREPARATORIA B">PREPARATORIA B</option>
+                        <option value="PREPARATORIA C">PREPARATORIA C</option>
+                        <option value="SEGUNDO A">SEGUNDO A</option>
+                        <option value="SEGUNDO B">SEGUNDO B</option>
+                        <option value="SEGUNDO C">SEGUNDO C</option>
+                        <option value="TERCERO A">TERCERO A</option>
+                        <option value="TERCERO B">TERCERO B</option>
+                        <option value="TERCERO C">TERCERO C</option>
+                        <option value="CUARTO A">CUARTO A</option>
+                        <option value="CUARTO B">CUARTO B</option>
+                        <option value="CUARTO C">CUARTO C</option>
+                        <option value="QUINTO A">QUINTO A</option>
+                        <option value="QUINTO B">QUINTO B</option>
+                        <option value="QUINTO C">QUINTO C</option>
+                        <option value="SEXTO A">SEXTO A</option>
+                        <option value="SEXTO B">SEXTO B</option>
+                        <option value="SEPTIMO A">SEPTIMO A</option>
+                        <option value="SEPTIMO B">SEPTIMO B</option>
+                        <option value="OCTAVO A">OCTAVO A</option>
+                        <option value="OCTAVO B">OCTAVO B</option>
+                        <option value="NOVENO A">NOVENO A</option>
+                        <option value="NOVENO B">NOVENO B</option>
+                        <option value="DECIMO A">DECIMO A</option>
+                        <option value="DECIMO B">DECIMO B</option>
+                        <option value="1º BACHILLERATO A">1º BACHILLERATO A</option>
+                        <option value="1º BACHILLERATO B">1º BACHILLERATO B</option>
+                        <option value="2º BACHILLERATO A">2º BACHILLERATO A</option>
+                    </select>
+                    <p class="d-inline">con dirección domiciliaria </p>
+                    <input type="text" name="" id="" class="d-inline text-center border-0 ancho_input_direccion border-0" value="Pradera 2 Bloque 2 Departamento 6">
+                    <p class="d-inline">con número de teléfono </p>
+                    <input type="text" class="d-inline text-center border-0 ancho_input border-0" name="" id="" value="0991035787">
+                    <p class="d-inline">Email</p>
+                    <input type="text" class="d-inline border-0 text-center ancho_input_gmail border-0" name="" id="" value="jjairo5599@gmail.com">
+                    <p class="d-inline">Autorizo que mi representando regrese al domicilio mencionado, acompañado de un familiar o conocido de confianza, desvinculando a la Escuela Nuestra Señora del Carmen de la reponsabilidad de cualquier eventualidad que se produzca durante el trayecto al domicilia. </p>
+                </div>
                 <div class="container p-3 mt-3">
                     <table class="table table-striped">
                         <thead class="text-center">
@@ -127,6 +130,18 @@
     <style>
         input{
             outline:none;
+        }
+        .ancho_input{
+            width: 100px !important;
+            border-bottom: 1px solid #C1CFC9 !important;
+        }
+        .ancho_input_direccion {
+            width: 600px !important;
+            border-bottom: 1px solid #C1CFC9 !important;
+        }
+        .ancho_input_gmail {
+            width: 300px !important;
+            border-bottom: 1px solid #C1CFC9 !important;
         }
         select{
             outline:none;

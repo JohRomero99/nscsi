@@ -9,5 +9,6 @@ class fichaMatriculacion extends Model
 {
     use HasFactory;
 
-    protected $table = 'ficha_matriculacion';
+    protected $table = 'nsc_ficha_matriculacion';
+    protected $guarded = [];
 }

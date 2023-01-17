@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="container col-md-8">
-        <div class="card">
+        <div class="card shadow">
             <div class="card-header bg-success">
                 <div class="text-center p-2">
                     <h5 class="m-auto"><strong>DATOS DEL REPRESENTANTE</strong> <i class="far fa-user"></i></strong></h5>
