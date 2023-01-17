@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\matriculacion\representantePaso1;
 use App\Models\EstudianteRepresentante;
 use App\Models\fichaMatriculacion;
-use App\Models\Representante;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,18 +15,31 @@ class representanteInvitadoHome extends Controller
 
         $representanteId = Auth::user()->persona->representante->id;
         $relacionEstudinateRepresentante = EstudianteRepresentante::select('*')->where('representante_id','=',$representanteId)->get();
-        $estudiante = $relacionEstudinateRepresentante[0]->estudiante;
-        return view('representanteInvitado.representanteInvitado-paso-1', compact('estudiante'));
+        // return $relacionEstudinateRepresentante[0]->estudiante->persona;
+        // return $relacionEstudinateRepresentante;
+        // return $relacionEstudinateRepresentante[0]->estudiante;
+        $numeroDeEstudiante = count($relacionEstudinateRepresentante);
+        return view('representanteInvitado.representanteInvitadoPasoUno', compact('relacionEstudinateRepresentante','numeroDeEstudiante'));
 
     }
 
     public function pasoUnoDatos(representantePaso1 $request){
 
-        return $request->all();
-        $pasoUno = fichaMatriculacion::create([
-            
-        ]);
+        if(is_null($fichMtariculacion)){
 
+            $pasoUno = fichaMatriculacion::create([
+                'estudiante_id' => $id,
+                'codigo_domicilio_estudiante' => $request->get('codigoNacional'),
+                'transporte_escolar' => $request->get('exampleRadios')
+            ]);
+            
+        }else{
+
+            // 
+
+        }
+        
+        return back();
     }
 
     public function pasoDos(){

@@ -10,6 +10,7 @@ use App\Models\EstudianteRepresentante;
 use App\Models\Persona;
 use App\Models\Representante;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Faker\Provider\ar_EG\Person;
 use Illuminate\Support\Str;
 use League\CommonMark\Extension\CommonMark\Parser\Inline\EscapableParser;
@@ -69,7 +70,6 @@ class estudianteAdmitidoController extends Controller
     
             // Verificamos si el representante ya existe en caso de que no exista se lo crea.
             if(is_null($personaRepresentante)){
-
                 // Creación de nuevo Usuario (representante) con rol representando-invitado.
                 $nuevoUsuario = new User();
                 $nuevoUsuarioContrasena = Str::random(8);
@@ -99,13 +99,13 @@ class estudianteAdmitidoController extends Controller
                 $representante = Representante::create([
                     'persona_id' => $nuevoPersonaRepresentante->id
                 ]);
-    
             }
 
             $estudiante = Estudiante::create([
                 'persona_id' => $nuevoPersonaEstudiante->id
             ]);
     
+            $representante = Auth::user()->persona->representante;
             $EstudianteRepresentante = EstudianteRepresentante::create([
                 'estudiante_id' => $estudiante->id,
                 'representante_id' => $representante->id

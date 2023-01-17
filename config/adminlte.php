@@ -392,12 +392,12 @@ return [
                     'text' => 'Datos Representante',
                     'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/2',
                 ],
+                // [
+                //     'text' => 'Datos Facturación',
+                //     'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/3',
+                // ],
                 [
-                    'text' => 'Datos Facturación',
-                    'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/3',
-                ],
-                [
-                    'text' => 'Autorización de Representante Legal',
+                    'text' => 'Autorización',
                     'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/4',
                 ],
             ],
@@ -405,13 +405,6 @@ return [
         [
             'text'        => '2.- Pago en línea',
             'url'         => 'representanteInvitado/invitado/ficha-matriculacion/paso/5',
-            'icon'        => '#',
-            // 'label'       => false,
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => '3.- Firmar contrato',
-            'url'         => 'representante/paymentez/history',
             'icon'        => '#',
             // 'label'       => false,
             'label_color' => 'success',
