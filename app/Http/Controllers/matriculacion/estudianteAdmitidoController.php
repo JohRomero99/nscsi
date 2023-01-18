@@ -100,12 +100,13 @@ class estudianteAdmitidoController extends Controller
                     'persona_id' => $nuevoPersonaRepresentante->id
                 ]);
             }
-
+                
+            
             $estudiante = Estudiante::create([
                 'persona_id' => $nuevoPersonaEstudiante->id
             ]);
-    
-            $representante = Auth::user()->persona->representante;
+        
+            // $representante = Auth::user()->persona->representante;
             $EstudianteRepresentante = EstudianteRepresentante::create([
                 'estudiante_id' => $estudiante->id,
                 'representante_id' => $representante->id
@@ -114,6 +115,7 @@ class estudianteAdmitidoController extends Controller
             $nuevoPersonaEstudiante->estudiante()->update(['curso' => $request->get('anoLectivoEstudiante')]);
             return $nuevoUsuarioContrasena;
             return redirect()->back()->with('exito','Datos guardados correctamente');
+
         }
     
     }
