@@ -4,7 +4,7 @@ namespace App\Http\Requests\matriculacion;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class representantePaso1 extends FormRequest
+class representantePasoUno extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class representantePaso1 extends FormRequest
     public function rules()
     {
         return [
-            'codigoNacional' => 'required|numeric|digits:10',
-            'primerNombre' => 'required|string',
-            'apellidoPaterno' => 'required|string',
-            'identificacion' => 'required_if:identificacion,null|ecuador:personal_identification'
+            'codigoNacional.*' => 'required|numeric|digits:10',
+            'primerNombre.*' => 'required|string',
+            'apellidoPaterno.*' => 'required|string',
+            'identificacion.*' => 'required_if:identificacion,null|ecuador:personal_identification'
         ];
     }
 }

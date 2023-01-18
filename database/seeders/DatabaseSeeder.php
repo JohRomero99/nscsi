@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\nscRutaExpreso;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,9 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(RolSeeder::class);
-       
+        $this->call(nscRutaExpresoSeeder::class);
         $this->call(UserSeeder::class);
-        
         $this->call(SaldoActualizadoSeeder::class);
         $this->call(ConceptoCobroId::class);
         $this->call(NumeroCuotaSeeder::class);

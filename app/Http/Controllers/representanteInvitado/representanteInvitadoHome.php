@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\representanteInvitado;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\matriculacion\representantePaso1;
+use App\Http\Requests\matriculacion\representantePasoUno;
 use App\Models\EstudianteRepresentante;
 use App\Models\fichaMatriculacion;
+use App\Models\nscRutaExpreso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,29 +16,29 @@ class representanteInvitadoHome extends Controller
 
         $representanteId = Auth::user()->persona->representante->id;
         $relacionEstudinateRepresentante = EstudianteRepresentante::select('*')->where('representante_id','=',$representanteId)->get();
-        // return $relacionEstudinateRepresentante[0]->estudiante->persona;
-        // return $relacionEstudinateRepresentante;
-        // return $relacionEstudinateRepresentante[0]->estudiante;
         $numeroDeEstudiante = count($relacionEstudinateRepresentante);
-        return view('representanteInvitado.representanteInvitadoPasoUno', compact('relacionEstudinateRepresentante','numeroDeEstudiante'));
+        $rutas = nscRutaExpreso::all();
+        return view('representanteInvitado.representanteInvitadoPasoUno', compact('relacionEstudinateRepresentante','numeroDeEstudiante','rutas'));
 
     }
 
-    public function pasoUnoDatos(representantePaso1 $request){
+    public function pasoUnoDatos(representantePasoUno $request){
 
-        if(is_null($fichMtariculacion)){
+        return $request->all();
 
-            $pasoUno = fichaMatriculacion::create([
-                'estudiante_id' => $id,
-                'codigo_domicilio_estudiante' => $request->get('codigoNacional'),
-                'transporte_escolar' => $request->get('exampleRadios')
-            ]);
+        // if(is_null($fichMtariculacion)){
+
+        //     $pasoUno = fichaMatriculacion::create([
+        //         'estudiante_id' => $id,
+        //         'codigo_domicilio_estudiante' => $request->get('codigoNacional'),
+        //         'transporte_escolar' => $request->get('exampleRadios')
+        //     ]);
             
-        }else{
+        // }else{
 
-            // 
+        //     // 
 
-        }
+        // }
         
         return back();
     }
