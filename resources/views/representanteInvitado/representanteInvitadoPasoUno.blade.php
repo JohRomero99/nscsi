@@ -22,7 +22,6 @@
                         <h5 class="m-auto"><strong>DATOS DEL ESTUDIANTE</strong> <i class="far fa-user"></i></h5>
                     </div>
                 </div>
-
                 @for( $i = 0; $i < $numeroDeEstudiante; $i++)
                     @if(is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->identificacion))
                     <div class="conatiner p-3">
@@ -59,7 +58,7 @@
                                         @if(is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->identificacion))
                                             <p class="text-center m-auto"><strong>Cédula</strong></p>
                                             <div class="d-flex justify-content-center">
-                                                <input type="text" name="identificacion" class="form-control text-center mt-2 mb-2 col-md-5 @error('identificacion') is-invalid @enderror" value="{{ old('identificacion') }}">
+                                                <input type="text" name="identificacion[]" class="form-control text-center mt-2 mb-2 col-md-5 @error('identificacion') is-invalid @enderror" value="">
                                             </div>
                                             <div class="text-center">
                                                 <small>Este campo es requerido</small>
@@ -87,9 +86,9 @@
                                                 </div>
                                                 <div class="col">
                                                     @if(is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->primer_nombre))
-                                                        <input type="select" name="primerNombre[]" value="{{ old('primerNombre') }}" class="form-control @error('primerNombre') is-invalid @enderror" id="primerNombre" placeholder="Primer Nombre">
+                                                        <input type="select" name="primerNombre[]" value="" class="form-control @error('primerNombre') is-invalid @enderror" id="primerNombre" placeholder="Primer Nombre">
                                                     @else
-                                                        <input readonly type="select" name="primerNombre[]" value="{{ $relacionEstudinateRepresentante[$i]->estudiante->persona->primer_nombre }}" class="form-control @error('primerNombre') is-invalid @enderror" id="primerNombre" placeholder="Primer Nombre">
+                                                        <input disabled type="select" name="primerNombre[]" value="{{ $relacionEstudinateRepresentante[$i]->estudiante->persona->primer_nombre }}" class="form-control @error('primerNombre') is-invalid @enderror" id="primerNombre" placeholder="Primer Nombre">
                                                     @endif
                                                     @error('primerNombre')
                                                         <span class="invalid-feedback m-0" role="alert">
@@ -104,9 +103,9 @@
                                                 </div>
                                                 <div class="col">
                                                     @if(is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->segundo_nombre))
-                                                        <input type="select" name="segundoNombre[]" value="{{ old('segundoNombre') }}" class="form-control @error('segundoNombre') is-invalid @enderror" id="segundoNombre" placeholder="Segundo Nombre">
+                                                        <input type="select" name="segundoNombre" value="" class="form-control @error('segundoNombre') is-invalid @enderror" id="segundoNombre" placeholder="Segundo Nombre">
                                                     @else
-                                                        <input readonly type="select" name="segundoNombre[]" value="{{ $relacionEstudinateRepresentante[$i]->estudiante->persona->segundo_nombre }}" class="form-control @error('segundoNombre') is-invalid @enderror" id="segundoNombre" placeholder="Segundo Nombre">   
+                                                        <input disabled type="select" name="segundoNombre[]" value="{{ $relacionEstudinateRepresentante[$i]->estudiante->persona->segundo_nombre }}" class="form-control @error('segundoNombre') is-invalid @enderror" id="segundoNombre" placeholder="Segundo Nombre">   
                                                     @endif
                                                     @error('segundoNombre')
                                                         <span class="invalid-feedback m-0" role="alert">
@@ -121,9 +120,9 @@
                                                 </div>
                                                 <div class="col">
                                                     @if(is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->apellido_paterno))
-                                                        <input type="select" name="apellidoPaterno[]" value="{{ old('apellidoPaterno') }}" class="form-control @error('apellidoPaterno') is-invalid @enderror" id="apellidoPaterno" placeholder="Apellido Paterno">
+                                                        <input type="select" name="apellidoPaterno[]" value="" class="form-control @error('apellidoPaterno') is-invalid @enderror" id="apellidoPaterno" placeholder="Apellido Paterno">
                                                     @else
-                                                        <input readonly type="select" name="apellidoPaterno[]" value="{{ $relacionEstudinateRepresentante[$i]->estudiante->persona->apellido_paterno }}" class="form-control @error('apellidoPaterno') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Apellido Paterno">
+                                                        <input disabled type="select" name="apellidoPaterno[]" value="{{ $relacionEstudinateRepresentante[$i]->estudiante->persona->apellido_paterno }}" class="form-control @error('apellidoPaterno') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Apellido Paterno">
                                                     @endif
                                                     @error('apellidoPaterno')
                                                         <span class="invalid-feedback m-0" role="alert">
@@ -138,9 +137,9 @@
                                                 </div>
                                                 <div class="col">
                                                     @if(is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->apellido_materno))
-                                                        <input type="select" name="apellidoMaterno[]" value="{{ old('apellidoMaterno') }}" class="form-control @error('apellidoMaterno') is-invalid @enderror" id="apellidoMaterno" placeholder="Apellido Materno">
+                                                        <input type="select" name="apellidoMaterno" value="" class="form-control @error('apellidoMaterno') is-invalid @enderror" id="apellidoMaterno" placeholder="Apellido Materno">
                                                     @else
-                                                        <input readonly type="select" name="apellidoMaterno[]" value="{{ $relacionEstudinateRepresentante[$i]->estudiante->persona->apellido_materno }}" class="form-control @error('apellidoMaterno') is-invalid @enderror" id="apellidoMaterno" placeholder="Apellido Materno">
+                                                        <input disabled type="select" name="apellidoMaterno[]" value="{{ $relacionEstudinateRepresentante[$i]->estudiante->persona->apellido_materno }}" class="form-control @error('apellidoMaterno') is-invalid @enderror" id="apellidoMaterno" placeholder="Apellido Materno">
                                                     @endif
                                                     @error('apellidoMaterno')
                                                         <span class="invalid-feedback m-0" role="alert">
@@ -165,7 +164,7 @@
                                 <div class="card p-3">
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">Código Único Eléctrico Nacional del Domicilio del Estudiante</label>
-                                        <input type="text" class="form-control @error('codigoNacional') is-invalid @enderror" id="codigoNacional" value="{{old('codigoNacional')}}" name="codigoNacional[]">
+                                        <input type="text" class="form-control @error('codigoNacional') is-invalid @enderror" id="codigoNacional" name="codigoNacional[]" value="">
                                         @error('codigoNacional')
                                             <span class="invalid-feedback m-0" role="alert">
                                                 <strong class="">{{ $message }}</strong>
@@ -175,136 +174,43 @@
                                     <small id="emailHelp" class="form-text text-muted m-0">Este código lo encuentra en su planilla de servicios eléctricos CNEL.</small>
                                     <label for="" class="mt-3">Transporte Escolar</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios[]" value="retiroPersonal" onchange="mostrar(this.value);" id="retiroPersonal" checked>
+                                        <input class="form-check-input" type="radio" name="exampleRadios[]" value="retiroPersonal{{ $relacionEstudinateRepresentante[$i]->id }}" onchange="mostrar(this.value);" id="retiroPersonal" checked>
                                         <label class="form-check-label" for="retiroPersonal">
                                             Retiro personalmente (o persona autorizada)
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios[]" value="espresoPorMiCuenta" onchange="mostrar(this.value);" id="espresoPorMiCuenta">
+                                        <input class="form-check-input" type="radio" name="exampleRadios[]" value="espresoPorMiCuenta{{ $relacionEstudinateRepresentante[$i]->id }}" onchange="mostrar(this.value);" id="espresoPorMiCuenta">
                                         <label class="form-check-label" for="espresoPorMiCuenta">
                                             Expreso por mi cuenta
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios[]" value="requieroExpreso" onchange="mostrar(this.value);" id="requieroExpreso">
+                                        <input class="form-check-input" type="radio" name="exampleRadios[]" value="requieroExpreso{{ $relacionEstudinateRepresentante[$i]->id }}" onchange="mostrar(this.value);" id="requieroExpreso">
                                         <label class="form-check-label" for="requieroExpreso">
                                             Requiero expreso
                                         </label>
                                     </div>
+
                                     <div id="ruta" style="display: none;">
-                                    <label class="mt-3">Ruta</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="requieroExpreso1" value="requieroExpreso">
-                                        <label class="form-check-label" for="requieroExpreso">
-                                            Alborada
-                                        </label>
+                                        <label class="mt-3">Ruta</label>
+                                        @foreach ( $rutas as $r )
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios1[]" id="requieroExpreso1" value="{{ $r->rutas }}">
+                                                <label class="form-check-label" for="requieroExpreso">
+                                                    {{$r->rutas}}
+                                                </label>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios1" value="option1">
-                                        <label class="form-check-label" for="exampleRadios2">
-                                            Garzota
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios1" value="option1">
-                                        <label class="form-check-label" for="exampleRadios3">
-                                            Guayacanes
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios7" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Guayacanes-Samanes
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios8" value="option1">
-                                        <label class="form-check-label" for="">
-                                            La Joya
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios9" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Matices Villa club
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios10" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Matices Veranda
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios11" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Metrópolis 2
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios12" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Mucho lote 1 - Ciudad Domingo
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios13" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Mucho lote 2
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios14" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Orquideas Vergeles
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios15" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Rosales - Alamos - Condor
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios16" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Samanes 7 - J. Montalvo
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios17" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Sauces
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios18" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Sur Oeste - M de Roldos
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios19" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Vía Salitre
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios20" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Villa del Rey
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios1[]" id="exampleRadios21" value="option1">
-                                        <label class="form-check-label" for="">
-                                            Villa Italia - La Rioja
-                                        </label>
-                                    </div>
+
+                                    <div>
+                                        <input type="text" class="d-none" name="estudianteId[]" value="{{ $relacionEstudinateRepresentante[$i]->estudiante_id }}">
+                                        <input type="text" class="d-none" name="representanteId[]" value="{{ $relacionEstudinateRepresentante[$i]->representante_id }}">
                                     </div>
                                 </div>
                             </div>
+                    <!-- </form> -->
                 @endfor
                 <div class="card-footer">
                     <div class="text-center">
@@ -350,16 +256,20 @@
 
 <script>
     function mostrar(dato){
-        if (dato == "requieroExpreso") {
+        if (dato == "requieroExpreso"){
             ruta.style.display = "block";
         }
-        if (dato == "espresoPorMiCuenta") {
+        if (dato == "espresoPorMiCuenta"){
             ruta.style.display = "none";
         }
-        if (dato == "retiroPersonal") {
+        if (dato == "retiroPersonal"){
             ruta.style.display = "none";
         }
     }
+</script>
+
+<script>
+    $radio = document.getElementsByClassName('form-check-input');
 </script>
 
 @stop

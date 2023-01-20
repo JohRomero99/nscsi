@@ -105,7 +105,7 @@ class estudianteAdmitidoController extends Controller
             $estudiante = Estudiante::create([
                 'persona_id' => $nuevoPersonaEstudiante->id
             ]);
-        
+    
             // $representante = Auth::user()->persona->representante;
             $EstudianteRepresentante = EstudianteRepresentante::create([
                 'estudiante_id' => $estudiante->id,

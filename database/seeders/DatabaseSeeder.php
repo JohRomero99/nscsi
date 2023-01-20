@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(RolSeeder::class);
-       
+        $this->call(nscRutaExpresoSeeder::class);
+        $this->call(nscMetodoPagoPensionesSeeder::class);
         $this->call(UserSeeder::class);
-        
         $this->call(SaldoActualizadoSeeder::class);
         $this->call(ConceptoCobroId::class);
         $this->call(NumeroCuotaSeeder::class);
