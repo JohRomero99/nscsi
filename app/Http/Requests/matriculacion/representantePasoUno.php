@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\matriculacion;
 
+use App\Rules\matriculacionFormularioPasoUno;
 use Illuminate\Foundation\Http\FormRequest;
 
 class representantePasoUno extends FormRequest
@@ -24,10 +25,10 @@ class representantePasoUno extends FormRequest
     public function rules()
     {
         return [
-            'codigoNacional.*' => 'required|numeric|digits:10',
+            'codigoNacional.*' => 'required|numeric|digits:10|',
             'primerNombre.*' => 'required|string',
             'apellidoPaterno.*' => 'required|string',
-            'identificacion.*' => 'required_if:identificacion,null|ecuador:personal_identification'
+            'identificacion.*' => 'required_if:identificacion,null|ecuador:personal_identification',
         ];
     }
 }

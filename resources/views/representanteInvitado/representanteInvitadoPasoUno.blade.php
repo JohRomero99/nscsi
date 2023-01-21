@@ -22,6 +22,15 @@
                         <h5 class="m-auto"><strong>DATOS DEL ESTUDIANTE</strong> <i class="far fa-user"></i></h5>
                     </div>
                 </div>
+                <!-- @if ($errors->any())
+                    <div class="alert alert-light">
+                        <ul> -->
+                            <!-- @foreach ($errors->all() as $error)
+                                samll{{ $error }}</li>
+                            @endforeach -->
+                        <!-- </ul>
+                    </div>
+                @endif -->
                 @for( $i = 0; $i < $numeroDeEstudiante; $i++)
                     @if(is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->identificacion))
                     <div class="conatiner p-3">
@@ -165,8 +174,8 @@
                                 <div class="card p-3">
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">Código Único Eléctrico Nacional del Domicilio del Estudiante</label>
-                                        <input type="text" class="form-control @error('codigoNacional') is-invalid @enderror" id="codigoNacional" name="codigoNacional[]" value="">
-                                        @error('codigoNacional')
+                                        <input type="text" class="form-control @error('codigoNacional') is-invalid @enderror" id="codigoNacional" name="codigoNacional[]" value="{{ old('codigoNacional.*') }}">
+                                        @error('codigoNacional.*')
                                             <span class="invalid-feedback m-0" role="alert">
                                                 <strong class="">{{ $message }}</strong>
                                             </span>

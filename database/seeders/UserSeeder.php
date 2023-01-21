@@ -32,6 +32,12 @@ class UserSeeder extends Seeder
         ])->assignRole('admin');
 
         User::create([
+            'name' => 'admisiones.1',
+            'email' => 'admisiones@nsc.edu.ec',
+            'password' => bcrypt('Nsc2023')
+        ])->assignRole('admisiones');
+
+        User::create([
             'name' => 'representante.1',
             'email' => 'representante_invitado@gmail.com',
             'password' => bcrypt('Nsc2023')

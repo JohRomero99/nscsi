@@ -10,7 +10,6 @@ use App\Models\EstudianteRepresentante;
 use App\Models\Persona;
 use App\Models\Representante;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Faker\Provider\ar_EG\Person;
 use Illuminate\Support\Str;
 use League\CommonMark\Extension\CommonMark\Parser\Inline\EscapableParser;

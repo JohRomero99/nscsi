@@ -25,20 +25,6 @@ class representanteInvitadoHome extends Controller
     public function pasoUnoDatos(representantePasoUno $request){
 
         return $request->all();
-
-        // if(is_null($fichMtariculacion)){
-
-        //     $pasoUno = fichaMatriculacion::create([
-        //         'estudiante_id' => $id,
-        //         'codigo_domicilio_estudiante' => $request->get('codigoNacional'),
-        //         'transporte_escolar' => $request->get('exampleRadios')
-        //     ]);
-            
-        // }else{
-
-        //     // 
-
-        // }
         
         return back();
     }
