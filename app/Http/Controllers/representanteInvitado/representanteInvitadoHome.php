@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\matriculacion\representantePasoUno;
 use App\Models\EstudianteRepresentante;
 use App\Models\fichaMatriculacion;
+use App\Models\nscMetodoPagoPensiones;
 use App\Models\nscRutaExpreso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,14 +26,30 @@ class representanteInvitadoHome extends Controller
     public function pasoUnoDatos(representantePasoUno $request){
 
         return $request->all();
-        
-        return back();
+        $limite = count($request->get('transporteEscolar'));
+
+        for( $i = 0; $i < $limite; $i++ ){
+            $pasoUno = fichaMatriculacion::create([
+                'estudiante_id' => $request->estudianteId[$i],
+                'representante_id' => $request->representanteId[$i],
+                'codigo_domicilio_estudiante' => $request->codigoNacional[$i],
+            ]);
+        }
+
+        return redirect()->route('representanteInvitado.paso-2');
     }
 
     public function pasoDos(){
 
         $representante = Auth::user()->persona;
-        return view('representanteInvitado.representanteInvitado-paso-2', compact('representante'));
+        $metodoPagoPensiones  = nscMetodoPagoPensiones::all();
+        return view('representanteInvitado.representanteInvitado-paso-2', compact('representante','metodoPagoPensiones'));
+
+    }
+
+    public function pasoDosDatos(Request $request){
+
+        return $request->all();
 
     }
 

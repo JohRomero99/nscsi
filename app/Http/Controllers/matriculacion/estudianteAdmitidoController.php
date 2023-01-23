@@ -99,7 +99,8 @@ class estudianteAdmitidoController extends Controller
                     'persona_id' => $nuevoPersonaRepresentante->id
                 ]);
             }
-
+                
+            
             $estudiante = Estudiante::create([
                 'persona_id' => $nuevoPersonaEstudiante->id
             ]);
@@ -113,6 +114,7 @@ class estudianteAdmitidoController extends Controller
             $nuevoPersonaEstudiante->estudiante()->update(['curso' => $request->get('anoLectivoEstudiante')]);
             return $nuevoUsuarioContrasena;
             return redirect()->back()->with('exito','Datos guardados correctamente');
+
         }
     
     }
