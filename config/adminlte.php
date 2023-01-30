@@ -345,6 +345,21 @@ return [
             'icon'        => 'fas fa-users fa-fw',
             'can'         => 'admin.home',
         ],
+        // Matriculacion
+        [
+            'text'        => 'Registro',
+            'url'         => 'matriculacion/registro/estudiante',
+            'icon'        => 'far fa-user',
+            'label_color' => 'success',
+            'can'         => 'registro.index'
+        ],
+        [
+            'text'        => 'Estudiantes registrados',
+            'url'         => 'matriculacion/registro/estudiant',
+            'icon'        => 'far fa-copy',
+            'label_color' => 'success',
+            'can'         => 'registro.index'
+        ],
         /*[
             'header' => 'GESTIÓN DE COBROS',
             'can'    => 'colector.home'
@@ -382,6 +397,7 @@ return [
         [
             'text'        => '1.- Ficha de matriculación',
             'url'         => '#',
+            'can'         => 'admin',
             'icon'        => '',
             'submenu' => [
                 [
@@ -392,10 +408,6 @@ return [
                     'text' => 'Datos Representante',
                     'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/2',
                 ],
-                // [
-                //     'text' => 'Datos Facturación',
-                //     'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/3',
-                // ],
                 [
                     'text' => 'Autorización',
                     'url'  => 'representanteInvitado/invitado/ficha-matriculacion/paso/4',
@@ -405,8 +417,8 @@ return [
         [
             'text'        => '2.- Pago en línea',
             'url'         => 'representanteInvitado/invitado/ficha-matriculacion/paso/5',
+            'can'         => 'admin',
             'icon'        => '#',
-            // 'label'       => false,
             'label_color' => 'success',
         ],
         ['header' => 'labels', 'can' => 'admin.home',],

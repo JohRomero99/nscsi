@@ -3,9 +3,9 @@
 @section('title', 'NSC')
 
 @section('content_header')
-<div class="text-center">
-    <img src="{{ asset('imagenes/Logo-NSCFinal-Negro.png') }}" width="300" height="85" alt="">
-</div>
+    <div class="text-center">
+        <img src="{{ asset('imagenes/Logo-NSCFinal-Negro.png') }}" width="300" height="85" alt="">
+    </div>
 @stop
 
 @section('content')

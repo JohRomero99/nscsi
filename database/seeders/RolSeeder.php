@@ -22,7 +22,7 @@ class RolSeeder extends Seeder
         $role_5 = role::create(['name' => 'docente_revisor']);
         $role_6 = role::create(['name' => 'representante']);
         $role_7 = role::create(['name' => 'representante_invitado']);
-        $role_8 = role::create(['name' => 'admisiones']);
+        $role_8 = role::create(['name' => 'matriculacion']);
 
         Permission::create(['name' => 'admin.home'])->syncRoles([$role_1]);
 
@@ -57,6 +57,9 @@ class RolSeeder extends Seeder
         Permission::create(['name' => 'docente.aprobar-libreta'])->syncRoles([$role_1, $role_5]);
         Permission::create(['name' => 'docente.anular-libreta'])->syncRoles([$role_1, $role_4, $role_5]);
         Permission::create(['name' => 'docente.reportes'])->syncRoles([$role_1, $role_3, $role_4, $role_5]);
+
+        //Matriculacion
+        Permission::create(['name' => 'registro.index'])->syncRoles([$role_8]);
    
     }
 }

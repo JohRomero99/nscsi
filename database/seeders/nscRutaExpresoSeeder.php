@@ -14,6 +14,11 @@ class nscRutaExpresoSeeder extends Seeder
      */
     public function run()
     {
+
+        nscRutaExpreso::create([
+            'rutas' => '--selecciona',
+        ]);
+
         nscRutaExpreso::create([
             'rutas' => 'Alborada',
         ]);
