@@ -15,6 +15,10 @@ class nscMetodoPagoPensionesSeeder extends Seeder
     public function run()
     {
         nscMetodoPagoPensiones::create([
+            'metodo_pago_pensiones' => '--Selecciona',
+        ]);
+
+        nscMetodoPagoPensiones::create([
             'metodo_pago_pensiones' => 'Pago total anual TC a 6 meses sin intereses (matrícula gratis)',
         ]);
 
