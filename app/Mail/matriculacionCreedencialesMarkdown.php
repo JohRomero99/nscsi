@@ -11,14 +11,18 @@ class matriculacionCreedencialesMarkdown extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $usuario;
+    public $nuevoUsuarioContrasena;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($usuario, $nuevoUsuarioContrasena)
     {
-        //
+        $this->usuario = $usuario;
+        $this->nuevoUsuarioContrasena = $nuevoUsuarioContrasena;
     }
 
     /**

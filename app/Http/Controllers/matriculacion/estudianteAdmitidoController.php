@@ -117,7 +117,9 @@ class estudianteAdmitidoController extends Controller
 
             $nuevoPersonaEstudiante->estudiante()->update(['curso' => $request->get('anoLectivoEstudiante')]);
             // Notification::route('mail', "jjairo5599@gmail.com")->notify(new matriculacionCreedenciales("jjairo5599@gmail.com"));
-            Mail::to("jjairo5599@gmail.com")->send(new matriculacionCreedencialesMarkdown());
+            Mail::to("jjairo5599@gmail.com")->send(new matriculacionCreedencialesMarkdown(
+                $nuevoUsuario->name, $nuevoUsuarioContrasena
+            ));
             return redirect()->back()->with('exito','Datos guardados correctamente');
 
         }
