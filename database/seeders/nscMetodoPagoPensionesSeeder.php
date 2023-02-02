@@ -14,8 +14,9 @@ class nscMetodoPagoPensionesSeeder extends Seeder
      */
     public function run()
     {
+
         nscMetodoPagoPensiones::create([
-            'metodo_pago_pensiones' => '--Selecciona',
+            'metodo_pago_pensiones' => '--selecciona',
         ]);
 
         nscMetodoPagoPensiones::create([

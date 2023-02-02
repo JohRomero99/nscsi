@@ -60,6 +60,9 @@ class LoginController extends Controller
             case 'representante_invitado':
                 return redirect()->route('representanteInvitado.paso-1');
                 break;
+            case 'matriculacion':
+                return redirect()->route('registro.index');
+                break;
             default:
                 return "hola";
                 //return redirect()->route('home');

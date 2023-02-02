@@ -1,65 +1,31 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NSC</title>
+@extends('adminlte::page')
 
-    <!-- Icono página -->
-    <link rel="shortcut icon" href="{{ asset('imagenes/VirgenNSC.png') }}" type="image/x-icon">
+@section('title', 'NSC')
 
-    <!-- boostrap css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-
-    <!-- boostrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- fontawesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
-
-    <!-- sweetalert2 -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-    <!-- Ajax -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</head>
-<body>
-    <div class="conatiner">
-        <div class="d-flex justify-content-center mt-3">
-            <img src="{{ asset('imagenes/Logo-NSCFinal-Negro.png') }}" width="320" height="100" alt="NSC">
-        </div>
+@section('content_header')
+    <div class="text-center">
+        <img src="{{ asset('imagenes/Logo-NSCFinal-Negro.png') }}" width="300" height="85" alt="">
     </div>
-    <div class="container col-md-6">
-        <div class="card mt-5 mb-3 shadow border-0 p-2">
+@stop
 
-            <div class="conatiner">
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active text-success" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><strong>Regsitro</strong></button>
-                        <button class="nav-link text-success" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Estudiantes Registrados</strong></button>
-                    </div>
-                </nav>
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"></div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"></div>
-                </div>
-            </div>
-            <div class="header text-center">
-                <p class="m-3 h4">REGISTRO ESTUDIANTE ADMITIDO <i class="far fa-user"></i></p>
+@section('content')
+    <div class="container col-md-8">
+        <div class="card mt-1 mb-3 shadow border-0 p-2">
+            <div class="text-center mt-3">
+                <p class="h4 m-auto"><strong>REGISTRO ESTUDIANTE ADMITIDO</strong> <i class="far fa-user"></i></p>
             </div>
             <div class="card-body">
                 <form action="{{ route('registro.create') }}" method="POST">
                     @csrf
-                    <div class="form-text mb-4">
+                    <div class="text-muted mb-4">
                         Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
                     </div>
                     @if(session('error') =='cédula registrada')
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             El número de cédula o pasaporte <strong>{{ Session::get('cedula'); }}</strong> ya se encuentra registrado.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                     @endif
                     <div class="text-center">
@@ -68,79 +34,85 @@
                     <div class="mb-3 row">
                         <label for="inputPassword" class="col-sm-4 col-form-label text-center">Tipo de Identificación</label>
                         <div class="col-sm-8">
-                            <select class="form-select mb-2" aria-label="Default select example" id="identificacionEstudiante" name="identificacion" onchange="">
+                            <select class="form-control mb-2"id="identificacionEstudiante" name="identificacion" onchange="">
                                 <option value="1" selected>Cédula</option>
                                 <option value="2">Pasaporte</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input type="text" name="cedulaEstudiante" class="shadow-none border-opacity-50 form-control rounded-0 border-0 border-bottom border-success  @error('cedulaEstudiante') is-invalid @enderror" id="cedulaEstudiante" placeholder="cedula" value="{{ old('cedulaEstudiante') }}">
+                    <div class="col-md w-100">
+                        <!-- <div class="form-floating"> -->
+                            <label class="text-muted" for="floatingInputGrid">CI <i class="fas fa-address-card"></i></label>
+                            <input type="text" name="cedulaEstudiante" class="form-control @error('cedulaEstudiante') is-invalid @enderror" id="cedulaEstudiante" placeholder="000000000-0" value="{{ old('cedulaEstudiante') }}">
                             @error('cedulaEstudiante')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                            <label class="text-muted" for="floatingInputGrid">CI <i class="fas fa-address-card"></i></label>
-                        </div>
-                        <div class="form-floating mt-2" style="display:none" name="pasaporteEstudiante">
-                            <input type="text" name="pasaporteEstudiante" class="shadow-none border-opacity-50 form-control rounded-0 border-0 border-bottom border-success @error('pasaporteEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('pasaporteEstudiante') }}">
+                        <!-- </div> -->
+                        <div class="mt-2" style="display:none" name="pasaporteEstudiante">
+                            <label class="text-muted" for="floatingInputGrid">Pasaporte <i class="far fa-id-card"></i></label>
+                            <input type="text" name="pasaporteEstudiante" class="form-control @error('pasaporteEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('pasaporteEstudiante') }}">
                             @error('pasaporteEstudiante')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                            <label class="text-muted" for="floatingInputGrid">Pasaporte <i class="far fa-id-card"></i></label>
                         </div>
                     </div>
                     <div class="row g-2 mt-1">
                         <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" name="primerNombreEstudiante" class="form-control @error('primerNombreEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('primerNombreEstudiante') }}">
+                            <!-- <div class="form-floating"> -->
+                                <!-- <label class="text-muted" for="floatingInputGrid">Primer Nombre</label> -->
+                                <small>Primer Nombre</small>
+                                <input type="text" name="primerNombreEstudiante" class="form-control @error('primerNombreEstudiante') is-invalid @enderror" id="floatingInputGrid" value="{{ old('primerNombreEstudiante') }}" placeholder="Primer nombre...">
                                 @error('primerNombreEstudiante')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert"> 
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label class="text-muted" for="floatingInputGrid">Primer Nombre</label>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" name="segundoNombreEstudiante" class="form-control @error('segundoNombreEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('segundoNombreEstudiante') }}">
+                            <!-- <div class="form-floating"> -->
+                                <!-- <label class="text-muted" for="floatingInputGrid">Segundo Nombre</label> -->
+                                <small>Segundo Nombre</small>
+                                <input type="text" name="segundoNombreEstudiante" class="form-control @error('segundoNombreEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="Segundo nombre..." value="{{ old('segundoNombreEstudiante') }}">
                                 @error('segundoNombreEstudiante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label class="text-muted" for="floatingInputGrid">Segundo Nombre</label>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" name="apellidoPaternoEstudiante" class="form-control @error('apellidoPaternoEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('apellidoPaternoEstudiante') }}">
+                            <!-- <div class="form-floating"> -->
+                                <!-- <label class="text-muted" for="floatingInputGrid">Apellido Paterno</label> -->
+                                <small>Apellido Paterno</small>
+                                <input type="text" name="apellidoPaternoEstudiante" class="form-control @error('apellidoPaternoEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="Apellido paterno..." value="{{ old('apellidoPaternoEstudiante') }}">
                                 @error('apellidoPaternoEstudiante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label class="text-muted" for="floatingInputGrid">Apellido Paterno</label>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" name="apellidoMaternoEstudiante" class="form-control @error('apellidoMaternoEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('apellidoMaternoEstudiante') }}">
+                            <!-- <div class="form-floating"> -->
+                                <!-- <label class="text-muted" for="floatingInputGrid">Apellido Paterno</label> -->
+                                <small>Apellido Materno</small>
+                                <input type="text" name="apellidoMaternoEstudiante" class="form-control @error('apellidoMaternoEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="Apellido materno..." value="{{ old('apellidoMaternoEstudiante') }}">
                                 @error('apellidoMaternoEstudiante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label class="text-muted" for="floatingInputGrid">Apellido Paterno</label>
-                            </div>
+                            <!-- </div> -->
                         </div>
-                        <div class="form-floating">
-                            <select class="form-select" name="anoLectivoEstudiante">
+                        <div class="container mt-2 mb-2">
+                            <!-- <label for="floatingSelectGrid" class="text-muted">Año de Básica <i class="fas fa-school"></i></label> -->
+                            <small>Año de Básica</small>
+                            <select class="form-control mt-2" name="anoLectivoEstudiante">
                                 <option value="INICIAL 1A">INICIAL 1A</option>
                                 <option value="INICIAL 2A">INICIAL 2A</option>
                                 <option value="INICIAL 2B">INICIAL 2B</option>
@@ -173,128 +145,167 @@
                                 <option value="1º BACHILLERATO B">1º BACHILLERATO B</option>
                                 <option value="2º BACHILLERATO A">2º BACHILLERATO A</option>
                             </select>
-                            <label for="floatingSelectGrid">Año de Básica <i class="fas fa-school"></i></label>
                         </div>
+
                         <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="date" name="fechaNacimientoEstudiante" class="form-control @error('fechaNacimientoEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('fechaNacimientoEstudiante') }}">
+                            <!-- <div class="form-floating"> -->
+                                <!-- <label class="text-muted" for="floatingInputGrid">Fecha de Nacimiento</label> -->
+                                <small>Fecha de Nacimiento</small>
+                                <input type="date" name="fechaNacimientoEstudiante" class="form-control @error('fechaNacimientoEstudiante') is-invalid @enderror" id="floatingInputGrid" value="{{ old('fechaNacimientoEstudiante') }}">
                                 @error('fechaNacimientoEstudiante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label class="text-muted" for="floatingInputGrid">Fecha de Nacimiento</label>
-                            </div>
+                            <!-- </div> -->
                         </div>
 
-                    <hr class="border border-success border-1 opacity-50 mt-5">
+                    <div class="container bg-light p-3 mb-2">
+                        <div class="text-center">
+                            <p class="mt-3 h5">REPRESENTANTE</p>
+                        </div>
+                        <div class="text-muted mb-4">
+                            Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                        </div>
+                    </div>
 
-                    <div class="text-center">
-                        <p class="mt-3 h5">REPRESENTANTE</p>
-                    </div>
-                    <div class="form-text mb-4">
-                        Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-                    </div>
-                    <div class="row">
-                        <label for="inputPassword" class="col-sm-4 col-form-label text-center">Tipo de Identificación</label>
+                    <div class="row col-md-12">
+                        <label for="inputPassword" class="col-form-label col-sm-4 text-center">Tipo de Identificación</label>
                         <div class="col-sm-8">
-                            <select class=" form-select mb-2" aria-label="Default select example" id="identificacionRepresentante" name="identificacionRepresentante" onchange="">
+                            <select class="form-control mb-2" aria-label="Default select example" id="identificacionRepresentante" name="identificacionRepresentante" onchange="">
                                 <option value="1" selected>Cédula</option>
                                 <option value="2">Pasaporte</option>
                             </select>
                         </div>
                     </div>
-                    <div class="form-floating">
-                        <input type="text" name="cedulaRepresentante" id="cedulaRepresentante" class="shadow-none rounded-0 border-0 border-bottom border-success border-opacity-50 form-control @error('cedulaRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('cedulaRepresentante') }}" onkeyup="GetDetail(this.value)">
+
+                    <div class="w-100">
+                        <label class="text-muted" for="floatingInputGrid">CI <i class="fas fa-address-card"></i></label>
+                        <input type="text" name="cedulaRepresentante" id="cedulaRepresentante" class="form-control @error('cedulaRepresentante') is-invalid @enderror" value="{{ old('cedulaRepresentante') }}" placeholder="000000000-0" onkeyup="GetDetail(this.value)">
                         @error('cedulaRepresentante')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        <label class="text-muted" for="floatingInputGrid">CI <i class="fas fa-address-card"></i></label>
                     </div>
-                    <div class="form-floating" style="display:none" name="pasaporteRepresentante">
-                        <input type="text" name="pasaporteRepresentante" class="shadow-none rounded-0 border-0 border-bottom border-success border-opacity-50 form-control @error('pasaporteRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('pasaporteRepresentante') }}" onkeyup="GetDetail(this.value)">
+                    <div class="col-md-12" style="display:none" name="pasaporteRepresentante">
+                        <label class="text-muted" for="floatingInputGrid">Pasaporte <i class="far fa-id-card"></i></label>
+                        <input type="text" name="pasaporteRepresentante" class="form-control @error('pasaporteRepresentante') is-invalid @enderror" value="{{ old('pasaporteRepresentante') }}" onkeyup="GetDetail(this.value)">
                         @error('pasaporteRepresentante')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        <label class="text-muted" for="floatingInputGrid">Pasaporte <i class="far fa-id-card"></i></label>
                     </div>
-                    <div class="row g-2 mt-1">
+                    <div class="row mt-1">
                         <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" name="primerNombreRepresentante" id="primerNombreRepresentante" class="form-control @error('primerNombreRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('primerNombreRepresentante') }}">
+                            <!-- <div class="form-floating"> -->
+                                <!-- <label class="text-muted" for="floatingInputGrid">Primer Nombre</label> -->
+                                <small>Primer Nomber</small>
+                                <input type="text" name="primerNombreRepresentante" id="primerNombreRepresentante" class="form-control @error('primerNombreRepresentante') is-invalid @enderror" placeholder="Primer nombre..." value="{{ old('primerNombreRepresentante') }}">
                                 @error('primerNombreRepresentante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label class="text-muted" for="floatingInputGrid">Primer Nombre</label>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" name="segundoNombreRepresentante" id="segundoNombreRepresentante" class="form-control @error('segundoNombreRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('segundoNombreRepresentante') }}">
+                            <!-- <div class="form-floating"> -->
+                                <!-- <label class="text-muted" for="floatingInputGrid">Segundo Nombre</label> -->
+                                <small>Segundo Nombre</small>
+                                <input type="text" name="segundoNombreRepresentante" id="segundoNombreRepresentante" class="form-control @error('segundoNombreRepresentante') is-invalid @enderror" placeholder="Segundo nombre..." value="{{ old('segundoNombreRepresentante') }}">
                                 @error('segundoNombreRepresentante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label class="text-muted" for="floatingInputGrid">Segundo Nombre</label>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" name="apellidoPaternoRepresentante" id="apellidoPaternoRepresentante" class="form-control @error('apellidoPaternoRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('apellidoPaternoRepresentante') }}">
+                            <!-- <div class="form-floating"> -->
+                                <!-- <label class="text-muted" for="floatingInputGrid">Apellido Paterno</label> -->
+                                <small>Apellido Paterno</small>
+                                <input type="text" name="apellidoPaternoRepresentante" id="apellidoPaternoRepresentante" class="form-control @error('apellidoPaternoRepresentante') is-invalid @enderror" placeholder="Apellido paterno..." value="{{ old('apellidoPaternoRepresentante') }}">
                                 @error('apellidoPaternoRepresentante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label class="text-muted" for="floatingInputGrid">Apellido Paterno</label>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" name="apellidoMaternoRepresentante" id="apellidoMaternoRepresentante" class="form-control @error('apellidoMaternoRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('apellidoMaternoRepresentante') }}">
+                            <!-- <div class="form-floating"> -->
+                                <!-- <label class="text-muted" for="floatingInputGrid">Apellido Paterno</label> -->
+                                <small>Apellido Materno</small>
+                                <input type="text" name="apellidoMaternoRepresentante" id="apellidoMaternoRepresentante" class="form-control @error('apellidoMaternoRepresentante') is-invalid @enderror" placeholder="Apellido materno..." value="{{ old('apellidoMaternoRepresentante') }}">
                                 @error('apellidoMaternoRepresentante')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label class="text-muted" for="floatingInputGrid">Apellido Paterno</label>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input type="email" name="correoRepresentante" id="correoRepresentante" class="form-control @error('correoRepresentante') is-invalid @enderror" placeholder="name@example.com" value="{{ old('correoRepresentante') }}">
+                    <div class="w-100">
+                        <!-- <div class="form-floating"> -->
+                            <!-- <label class="text-muted" for="floatingInputGrid">Correo <i class="fas fa-envelope"></i></label> -->
+                            <small>Correo</small>
+                            <input type="email" name="correoRepresentante" id="correoRepresentante" class="form-control @error('correoRepresentante') is-invalid @enderror" placeholder="exmaple@gmail.com" value="{{ old('correoRepresentante') }}">
                             @error('correoRepresentante')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                            <label class="text-muted" for="floatingInputGrid">Correo <i class="fas fa-envelope"></i></label>
-                        </div>
+                        <!-- </div> -->
                     </div>
-                    <div class="mt-4 text-center">
-                        <button type="submit" class="btn btn-success"><strong>Registrar </strong></button>
+                    <div class="container mt-4 text-center">
+                        <button type="submit" class="btn btn-success">Registrar <i class="far fa-edit"></i></button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</body>
+@stop
 
-<style>
-    body{
-       background-color:lavenderblush;
-    }
-</style>
+@section('css')
+    <style>
+        body{
+            background-color:lavenderblush;
+        }
+        input{
+            padding: 20px 20px !important;
+            height: 47px !important;
+            margin: 8px 0;
+            display: inline-block !important;
+            border: none !important;
+            border-bottom: 1px solid #A29390 !important;
+            border-radius: 0px !important;
+            background-color: #fff !important;
+            background-color: #F2F8F8 !important;
+        }
+        .card{
+            border-radius: 15px !important;
+        }
+    </style>
 
+    <!-- Ajax -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
+    <!-- sweetalert2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Icono página -->
+    <link rel="shortcut icon" href="{{ asset('imagenes/VirgenNSC.png') }}" type="image/x-icon">
+@stop
+
+@section('js')
 <script>
     const identificacionEstudiante = document.querySelector("#identificacionEstudiante"); 
     const pasaporteEstudiante = document.querySelector("[name=pasaporteEstudiante]"); //input
@@ -403,13 +414,14 @@
 <script>
     @if(session('exito') == 'Datos guardados correctamente')
         Swal.fire(
-            'Exito',
-            'Datos guardados correctamente',
+            'Good job!',
+            'You clicked the button!',
             'success'
-        )
+            )
     @endif
 </script>
-</html>
+@stop
+
 
 
 

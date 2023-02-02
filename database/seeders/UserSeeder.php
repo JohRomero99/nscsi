@@ -32,10 +32,10 @@ class UserSeeder extends Seeder
         ])->assignRole('admin');
 
         User::create([
-            'name' => 'admisiones.1',
+            'name' => 'matriculacion.1',
             'email' => 'admisiones@nsc.edu.ec',
             'password' => bcrypt('Nsc2023')
-        ])->assignRole('admisiones');
+        ])->assignRole('matriculacion');
 
         User::create([
             'name' => 'representante.1',
@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
             'name' => 'nsc.inicial.2.b',
             'email' => 'inicial.2.b@nsc.edu.ec',
             'password' => bcrypt('Nsc-0926319039')
-        ])->assignRole('docente_tutor');//Castro	Berruz	Yessenia 
+        ])->assignRole('docente_tutor');//Castro Berruz	Yessenia 
 
         User::create([
             'name' => 'nsc.preparatorio.a',
