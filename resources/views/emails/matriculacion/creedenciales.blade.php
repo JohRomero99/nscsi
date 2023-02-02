@@ -1,19 +1,17 @@
 @component('mail::message')
-# Hola,
+# Hola, <br>
 
-<center>
-    John Jairo Romero Sanchez, <br>
-</center>
 Para continuar con el proceso de matriculacion te proporcionamos las siguientes creednciales. <br>
-<center>
-**Usuario:** 0955546601 <br>
-**Contraseña:** wofwoiefw <br>
-</center>
+
+**Usuario:** {{ $usuario }} <br>
+**Contraseña:** {{ $nuevoUsuarioContrasena }} <br>
 
 @component('mail::button', ['url' => 'http://localhost/nscsi/public/'])
 Ir a sitio web
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+Si tienes problemas al momento de ingresar comúnicate con soporte técnico. <br>
+Correo: **soporte.tecnico@nsc.edu.ec** <br>
+Teléfono: **09986986244** <br>
+<!-- {{ config('app.name') }} -->
 @endcomponent
