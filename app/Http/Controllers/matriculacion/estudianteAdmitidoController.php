@@ -10,6 +10,7 @@ use App\Models\EstudianteRepresentante;
 use App\Models\Persona;
 use App\Models\Representante;
 use App\Models\User;
+use App\Http\Controllers\Colector\NscCobrosController;
 use App\Mail\matriculacionCreedencialesMarkdown;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
@@ -67,7 +68,7 @@ class estudianteAdmitidoController extends Controller
                 $nuevoRepresentante = Persona::select('*')->where('identificacion','=',$request->pasaporteRepresentante)->first();
             else
                 $nuevoRepresentante = Persona::select('*')->where('identificacion','=',$request->cedulaRepresentante)->first();
-    
+
             // Verificamos si el representante ya existe en caso de que no exista se lo crea.
             if(is_null($nuevoRepresentante)){
                 // Creación de nuevo Usuario (representante) con rol representando-invitado.
@@ -99,6 +100,8 @@ class estudianteAdmitidoController extends Controller
                 $representante = Representante::create([
                     'persona_id' => $nuevoRepresentante->id
                 ]);
+
+                $creado = true;
             }
                 
             $estudiante = Estudiante::create([
@@ -114,13 +117,29 @@ class estudianteAdmitidoController extends Controller
                 $estudianteRepresentante->representante_id = $nuevoRepresentante->representante->id;
             }
             $estudianteRepresentante->save();
-
             $nuevoPersonaEstudiante->estudiante()->update(['curso' => $request->get('anoLectivoEstudiante')]);
-            // Notification::route('mail', "jjairo5599@gmail.com")->notify(new matriculacionCreedenciales("jjairo5599@gmail.com"));
-            Mail::to("jjairo5599@gmail.com")->send(new matriculacionCreedencialesMarkdown(
-                $nuevoUsuario->name, $nuevoUsuarioContrasena
-            ));
-            return redirect()->back()->with('exito','Datos guardados correctamente');
+
+            if(isset($creado)){
+
+                Mail::to($nuevoRepresentante->correo)->send(new matriculacionCreedencialesMarkdown(
+                    $nuevoUsuario->name, $nuevoUsuarioContrasena
+                ));
+                return redirect()->back()->with('exito','Datos guardados correctamente');
+
+            }else{
+
+                return redirect()->back()->with('exito','Datos guardados correctamente');
+            }
+
+            //$validacion = nscCorreoEnviadoAdmision::where('user_id','=',$nuevoUsuario->id)->first();
+
+
+
+            // Mail::to($nuevoRepresentante->correo)->send(new matriculacionCreedencialesMarkdown(
+            //     $nuevoUsuario->name, $nuevoUsuarioContrasena
+            // ));
+            // return redirect()->back()->with('exito','Datos guardados correctamente');
+            // $usuario = User::where('name','=',$nuevoUsuario->name)->first();
 
         }
     
@@ -132,9 +151,10 @@ class estudianteAdmitidoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function dashboard(){
+
+        $representante = Representante::all();
+        return view('matriculacion.dashboard', compact('representante'));
     }
 
     /**

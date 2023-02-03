@@ -21,7 +21,7 @@
             <th scope="col">Monto</th>
             <th scope="col">Referencia</th>
             <th scope="col">Código de autorización</th>
-            <th scope="col">Mas información</th>
+            <th scope="col">Mas detalle</th>
             <th scope="col">Imprimir</th>
           </tr>
         </thead>

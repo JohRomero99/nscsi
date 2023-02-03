@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div>
-                        <label class="text-muted" for="floatingInputGrid">CI <i class="fas fa-address-card"></i></label>
+                        <small>CI <i class="fas fa-address-card"></i></small>
                         <input type="text" name="cedulaEstudiante" class="form-control inputDiseño @error('cedulaEstudiante') is-invalid @enderror" id="cedulaEstudiante" placeholder="000000000-0" value="{{ old('cedulaEstudiante') }}">
                         @error('cedulaEstudiante')
                             <span class="invalid-feedback" role="alert">
@@ -179,7 +179,7 @@
                     </div>
 
                     <div class="w-100">
-                        <label class="text-muted" for="floatingInputGrid">CI <i class="fas fa-address-card"></i></label>
+                        <small>CI <i class="fas fa-address-card"></i></small>
                         <input type="text" name="cedulaRepresentante" id="cedulaRepresentante" class="form-control inputDiseño @error('cedulaRepresentante') is-invalid @enderror" value="{{ old('cedulaRepresentante') }}" placeholder="000000000-0" onkeyup="GetDetail(this.value)">
                         @error('cedulaRepresentante')
                             <span class="invalid-feedback" role="alert">
@@ -265,6 +265,15 @@
             </div>
         </div>
     </div>
+    @if ($errors->any())
+        <script>
+            Swal.fire(
+                'Error',
+                'Tienes algunos campos vacios por completar',
+                'error'
+            )
+        </script>
+    @endif
 @stop
 
 @section('css')

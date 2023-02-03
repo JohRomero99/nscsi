@@ -355,7 +355,7 @@ return [
         ],
         [
             'text'        => 'Estudiantes registrados',
-            'url'         => 'matriculacion/registro/estudiant',
+            'url'         => 'matriculacion/dashboard',
             'icon'        => 'far fa-copy',
             'label_color' => 'success',
             'can'         => 'registro.index'
