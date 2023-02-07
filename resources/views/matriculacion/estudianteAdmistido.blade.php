@@ -34,24 +34,24 @@
                     <div class="mb-3 row">
                         <label for="inputPassword" class="col-sm-4 col-form-label text-center">Tipo de Identificación</label>
                         <div class="col-sm-8">
-                            <select class="form-control mb-2"id="identificacionEstudiante" name="identificacion" onchange="">
+                            <select class="form-control mb-2" id="identificacionEstudiante" name="identificacion">
                                 <option value="1" selected>Cédula</option>
-                                <option value="2">Pasaporte</option>
+                                <option value="2" >Pasaporte</option>
                             </select>
                         </div>
                     </div>
-                    <div>
+                    <div id="cedulaEstudiante">
                         <small>CI <i class="fas fa-address-card"></i></small>
-                        <input type="text" name="cedulaEstudiante" class="form-control inputDiseño @error('cedulaEstudiante') is-invalid @enderror" id="cedulaEstudiante" placeholder="000000000-0" value="{{ old('cedulaEstudiante') }}">
+                        <input type="text" name="cedulaEstudiante" class="form-control inputDiseño @error('cedulaEstudiante') is-invalid @enderror" placeholder="000000000-0" value="{{ old('cedulaEstudiante') }}">
                         @error('cedulaEstudiante')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
-                    <div class="mt-2" style="display:none" name="pasaporteEstudiante">
-                        <label class="text-muted" for="floatingInputGrid">Pasaporte <i class="far fa-id-card"></i></label>
-                        <input type="text" name="pasaporteEstudiante" class="form-control inputDiseño @error('pasaporteEstudiante') is-invalid @enderror" id="floatingInputGrid" placeholder="name@example.com" value="{{ old('pasaporteEstudiante') }}">
+                    <div class="mt-2" style="display:none" id="pasaporteEstudiante">
+                        <small>Pasaporte <i class="far fa-id-card"></i></small>
+                        <input type="text" name="pasaporteEstudiante" class="form-control inputDiseño @error('pasaporteEstudiante') is-invalid @enderror" placeholder="JDHN45HGHF" value="{{ old('pasaporteEstudiante') }}">
                         @error('pasaporteEstudiante')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -171,25 +171,25 @@
                     <div class="row col-md-12">
                         <label for="inputPassword" class="col-form-label col-sm-4 text-center">Tipo de Identificación</label>
                         <div class="col-sm-8">
-                            <select class="form-control mb-2" aria-label="Default select example" id="identificacionRepresentante" name="identificacionRepresentante" onchange="">
+                            <select class="form-control mb-2" aria-label="Default select example" id="identificacionRepresentante" name="identificacionRepresentante">
                                 <option value="1" selected>Cédula</option>
                                 <option value="2">Pasaporte</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="w-100">
+                    <div class="w-100" id="cedulaRepresentante">
                         <small>CI <i class="fas fa-address-card"></i></small>
-                        <input type="text" name="cedulaRepresentante" id="cedulaRepresentante" class="form-control inputDiseño @error('cedulaRepresentante') is-invalid @enderror" value="{{ old('cedulaRepresentante') }}" placeholder="000000000-0" onkeyup="GetDetail(this.value)">
+                        <input type="text" name="cedulaRepresentante" class="form-control inputDiseño @error('cedulaRepresentante') is-invalid @enderror" value="{{ old('cedulaRepresentante') }}" placeholder="000000000-0" onkeyup="GetDetail(this.value)">
                         @error('cedulaRepresentante')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
-                    <div class="col-md-12" style="display:none" name="pasaporteRepresentante">
-                        <label class="text-muted" for="floatingInputGrid">Pasaporte <i class="far fa-id-card"></i></label>
-                        <input type="text" name="pasaporteRepresentante" class="form-control inputDiseño @error('pasaporteRepresentante') is-invalid @enderror" value="{{ old('pasaporteRepresentante') }}" onkeyup="GetDetail(this.value)">
+                    <div class="col-md-12" style="display:none" id="pasaporteRepresentante">
+                        <small>Pasaporte <i class="far fa-id-card"></i></small>
+                        <input type="text" name="pasaporteRepresentante" class="form-control inputDiseño @error('pasaporteRepresentante') is-invalid @enderror" placeholder="JDHN45HGHF" value="{{ old('pasaporteRepresentante') }}" onkeyup="GetDetail(this.value)">
                         @error('pasaporteRepresentante')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -250,8 +250,8 @@
                         <!-- <div class="form-floating"> -->
                             <!-- <label class="text-muted" for="floatingInputGrid">Correo <i class="fas fa-envelope"></i></label> -->
                             <small>Correo</small>
-                            <input type="email" name="correoRepresentante" id="correoRepresentante" class="form-control inputDiseño @error('correoRepresentante') is-invalid @enderror" placeholder="exmaple@gmail.com" value="{{ old('correoRepresentante') }}">
-                            @error('correoRepresentante')
+                            <input type="email" name="correo" id="correo" class="form-control inputDiseño @error('correo') is-invalid @enderror" placeholder="exmaple@gmail.com" value="{{ old('correo') }}">
+                            @error('correo')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -269,7 +269,7 @@
         <script>
             Swal.fire(
                 'Error',
-                'Tienes algunos campos vacios por completar',
+                'Tienes algunos campos vacios o errores en el formulario',
                 'error'
             )
         </script>
@@ -315,50 +315,36 @@
 
 @section('js')
 <script>
-    const identificacionEstudiante = document.querySelector("#identificacionEstudiante"); 
-    const pasaporteEstudiante = document.querySelector("[name=pasaporteEstudiante]"); //input
-    const cedulaEstudiante = document.querySelector("#cedulaEstudiante"); // input
+    var identificacionEstudiante = document.getElementById("identificacionEstudiante");
+    var pasaporteEstudiante = document.getElementById("pasaporteEstudiante");
+    var cedulaEstudiante = document.getElementById("cedulaEstudiante");
 
-    const identificacionRepresentante = document.querySelector("#identificacionRepresentante");
-    const pasaporteRepresentante = document.querySelector("[name=pasaporteRepresentante]");
-    const cedulaRepresentante = document.querySelector("#cedulaRepresentante");
+    var identificacionRepresentante = document.getElementById("identificacionRepresentante");
+    var pasaporteRepresentante = document.getElementById("pasaporteRepresentante");
+    var cedulaRepresentante = document.getElementById("cedulaRepresentante");
 
-    var nullCedulaEstudiante = document.querySelector("#cedulaEstudiante");
-    var nullPasaporteEstudiante = document.querySelector("[name=pasaporteEstudiante]");
-    var nullCedulaRepresentante = document.querySelector("#cedulaRepresentante");
-    var nullPasaporteRepresentante = document.querySelector("[name=pasaporteRepresentante]");
-
-    identificacionEstudiante.addEventListener("change", () => {
-        if (identificacionEstudiante.value === "2") {
-            pasaporteEstudiante.style.display = 'block';
+    identificacionEstudiante.addEventListener('click', function(){
+        if(identificacionEstudiante.value == 2){
             cedulaEstudiante.style.display = 'none';
-            // nullCedulaEstudiante.value = 'nullCedulaEstudiante';
-            document.querySelector("#cedulaEstudiante").value = 'nullCedulaEstudiante';
-        } else {
-            cedulaEstudiante.style.display = 'block';
+            pasaporteEstudiante.style.display = 'block';
+        }else if(identificacionEstudiante.value == 1){
             pasaporteEstudiante.style.display = 'none';
-            document.querySelector("[name=pasaporteEstudiante]").value = 'nullPasaporteEstudiante';
-            document.querySelector("#cedulaEstudiante").value = '';
-            // nullPasaporteEstudiante.value = 'nullPasaporteEstudiante';
-            // nullCedulaEstudiante.value = '';
+            cedulaEstudiante.style.display = 'block';
         }
     });
 
-    identificacionRepresentante.addEventListener("change", () => {
-        if (identificacionRepresentante.value === "2") {
-            pasaporteRepresentante.style.display = 'block';
+    identificacionRepresentante.addEventListener('click', function(){
+        if(identificacionRepresentante.value == 2){
             cedulaRepresentante.style.display = 'none';
-            document.querySelector("#cedulaRepresentante").value = 'nullCedulaRepresentante';
-            // nullCedulaRepresentante.value = 'nullCedulaRepresentante';
-        } else {
-            cedulaRepresentante.style.display = 'block';
+            pasaporteRepresentante.style.display = 'block';
+        }else if(identificacionRepresentante.value == 1){
             pasaporteRepresentante.style.display = 'none';
-            document.querySelector("[name=pasaporteRepresentante]").value = 'nullPasaporteRepresentante';
-            document.querySelector("#cedulaRepresentante").value = '';
-            // nullPasaporteRepresentante.value = 'nullPasaporteRepresentante';
-            // nullCedulaRepresentante.value = '';
+            cedulaRepresentante.style.display = 'block';
         }
     });
+
+
+
 </script>
 
 <script>
@@ -371,7 +357,7 @@
             document.getElementById("segundoNombreRepresentante").value = "";
             document.getElementById("apellidoPaternoRepresentante").value = "";
             document.getElementById("apellidoMaternoRepresentante").value = "";
-            document.getElementById("correoRepresentante").value = "";
+            document.getElementById("correo").value = "";
             return;
         }
         else {
@@ -403,7 +389,7 @@
 
                     document.getElementById("apellidoMaternoRepresentante").value = myObj[3];
 
-                    document.getElementById("correoRepresentante").value = myObj[4];
+                    document.getElementById("correo").value = myObj[4];
                 }
             };
            

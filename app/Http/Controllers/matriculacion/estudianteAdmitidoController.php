@@ -35,6 +35,7 @@ class estudianteAdmitidoController extends Controller
     public function create(registroEstudianteAdmitido $request)
     {
 
+        // return $request->all();
         // Verificar si el estudiante ya se encuentra registrado con cédula o pasaporte.
         if($request->cedulaEstudiante == "nullEstudianteCedula")
             $personaEstudiante = Persona::select('*')->where('identificacion','=',$request->pasaporteEstudiante)->get();
@@ -78,7 +79,7 @@ class estudianteAdmitidoController extends Controller
                     $nuevoUsuario->name = $request->pasaporteRepresentante;
                 else
                     $nuevoUsuario->name = $request->cedulaRepresentante;
-                $nuevoUsuario->email = $request->correoRepresentante;
+                $nuevoUsuario->email = $request->correo;
                 $nuevoUsuario->password = bcrypt($nuevoUsuarioContrasena);
                 $nuevoUsuario->assignRole('representante_invitado');
                 $nuevoUsuario->save();
@@ -94,7 +95,7 @@ class estudianteAdmitidoController extends Controller
                 $nuevoRepresentante->segundo_nombre = strtoupper($request->segundoNombreRepresentante);
                 $nuevoRepresentante->apellido_paterno = strtoupper($request->apellidoPaternoRepresentante);
                 $nuevoRepresentante->apellido_materno = strtoupper($request->apellidoMaternoRepresentante);
-                $nuevoRepresentante->correo = $request->correoRepresentante;
+                $nuevoRepresentante->correo = $request->correo;
                 $nuevoRepresentante->save();
 
                 $representante = Representante::create([
@@ -131,16 +132,6 @@ class estudianteAdmitidoController extends Controller
                 return redirect()->back()->with('exito','Datos guardados correctamente');
             }
 
-            //$validacion = nscCorreoEnviadoAdmision::where('user_id','=',$nuevoUsuario->id)->first();
-
-
-
-            // Mail::to($nuevoRepresentante->correo)->send(new matriculacionCreedencialesMarkdown(
-            //     $nuevoUsuario->name, $nuevoUsuarioContrasena
-            // ));
-            // return redirect()->back()->with('exito','Datos guardados correctamente');
-            // $usuario = User::where('name','=',$nuevoUsuario->name)->first();
-
         }
     
     }
@@ -154,7 +145,23 @@ class estudianteAdmitidoController extends Controller
     public function dashboard(){
 
         $representante = Representante::all();
-        return view('matriculacion.dashboard', compact('representante'));
+        for($i = 0; $i < count($representante); $i++){
+            $data = EstudianteRepresentante::where('representante_id','=',$representante[$i]->id)->get();
+            $info[] = [
+                'identificacion' => $representante[$i]->persona->identificacion,
+                'primer_nombre' => $representante[$i]->persona->primer_nombre,
+                'segundo_nombre' => $representante[$i]->persona->segundo_nombre,
+                'apellido_paterno' => $representante[$i]->persona->apellido_paterno,
+                'apellido_materno' =>  $representante[$i]->persona->apellido_materno,
+                'correo' => $representante[$i]->persona->correo,
+                'id' => $representante[$i]->persona->user->id,
+                'usuario' => $representante[$i]->persona->user,
+                'contrasena' =>  $representante[$i]->persona->user->password,
+                'estudiante' => $data
+            ];
+        }
+        return view('matriculacion.dashboard', compact('info'));
+
     }
 
     /**
@@ -192,9 +199,15 @@ class estudianteAdmitidoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function reenviarCorreo($id){
+
+        $user = User::find($id);
+        Mail::to($user->email)->send(new matriculacionCreedencialesMarkdown(
+            $user->name, $user->password
+        ));
+
+        return redirect()->route("dashboard")->with('correo','Correo reenviado correctamente');
+
     }
 
     /**

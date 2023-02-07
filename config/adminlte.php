@@ -397,7 +397,7 @@ return [
         [
             'text'        => '1.- Ficha de matriculación',
             'url'         => '#',
-            'can'         => 'admin',
+            // 'can'         => 'admin',
             'icon'        => '',
             'submenu' => [
                 [

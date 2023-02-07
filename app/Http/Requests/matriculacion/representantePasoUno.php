@@ -26,8 +26,10 @@ class representantePasoUno extends FormRequest
     {
         return [
             'codigoNacional.*' => 'required|numeric|digits:10|',
-            'primerNombre.*' => 'required|string',
-            'apellidoPaterno.*' => 'required|string',
+            'primerNombre.*' => 'required|regex:/^[\pL\s\-]+$/u',
+            'segundoNombre.*' => 'required|regex:/^[\pL\s\-]+$/u',
+            'apellidoPaterno.*' => 'required|regex:/^[\pL\s\-]+$/u',
+            'apellidoMaterno.*' => 'required|regex:/^[\pL\s\-]+$/u',
             'identificacion.*' => 'required_if:identificacion,null|ecuador:personal_identification',
         ];
     }

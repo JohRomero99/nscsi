@@ -24,8 +24,8 @@ class registroEstudianteAdmitido extends FormRequest
     public function rules()
     {
         return [
-            'cedulaEstudiante' => 'ecuador:personal_identification|required_if:pasaporteEstudiante,null|different:cedulaRepresentante',
-            'cedulaRepresentante' => 'ecuador:personal_identification|required_if:pasaporteRepresentante,null|different:cedulaEstudiante',
+            'cedulaEstudiante' => 'ecuador:personal_identification|required_if:pasaporteEstudiante,null',
+            'cedulaRepresentante' => 'ecuador:personal_identification|required_if:pasaporteRepresentante,null',
             'pasaporteEstudiante' => 'required_if:cedulaEstudiante,null',
             'pasaporteRepresentante' => 'required_if:cedulaRepresentante,null',
             'primerNombreEstudiante' => 'required|string|regex:/^[\pL\s\-]+$/u',
@@ -36,7 +36,8 @@ class registroEstudianteAdmitido extends FormRequest
             'segundoNombreRepresentante' => 'required|string|regex:/^[\pL\s\-]+$/u',
             'apellidoPaternoRepresentante' => 'required|string|regex:/^[\pL\s\-]+$/u',
             'apellidoMaternoRepresentante' => 'required|string|regex:/^[\pL\s\-]+$/u',
-            'correoRepresentante' => 'email|string',
+            // 'correo' => 'unique:nsc_persona|email|string',
+            'correo' => 'email|string',
             'fechaNacimientoEstudiante' => 'required|date',
         ];
 

@@ -143,12 +143,22 @@
             </div>
         </form>
     </div>
+    @if(session('exito') == 'Datos de estudiante guardados correctamente')
+        <script>
+            Swal.fire(
+                'Exito',
+                'Formulario estudiantes guardados correctamente',
+                'success'
+            )
+        </script>
+    @endif
 @stop
 
 @section('css')    
     <!-- Icono página -->
     <link rel="shortcut icon" href="{{ asset('imagenes/VirgenNSC.png') }}" type="image/x-icon">
 
+    <!-- Sweetalert2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @stop
 

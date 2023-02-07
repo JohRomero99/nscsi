@@ -15,8 +15,9 @@ class CreateNscFichaMatriculacionTable extends Migration
     {
         Schema::create('nsc_ficha_matriculacion', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('representante_id')->nullable();
-            $table->unsignedBigInteger('estudiante_id')->nullable();
+            // $table->unsignedBigInteger('representante_id')->nullable();
+            // $table->unsignedBigInteger('estudiante_id')->nullable();
+            $table->unsignedBigInteger('estudiante_representante')->nullable();
             $table->string('codigo_domicilio_estudiante')->nullable();
             $table->string('transporte_escolar')->nullable();
             $table->string('forma_pago_pensiones')->nullable();
@@ -24,15 +25,15 @@ class CreateNscFichaMatriculacionTable extends Migration
             $table->string('persona_facturacion')->nullable();
             $table->timestamps();
 
-            $table->foreign('representante_id')
+            $table->foreign('estudiante_representante')
                 ->references('id')
-                ->on('nsc_representante')
+                ->on('nsc_estudiante_representante')
                 ->onDelete('set null');
 
-            $table->foreign('estudiante_id')
-                ->references('id')
-                ->on('nsc_estudiante')
-                ->onDelete('set null');
+            // $table->foreign('estudiante_id')
+            //     ->references('id')
+            //     ->on('nsc_estudiante')
+            //     ->onDelete('set null');
         });
     }
 

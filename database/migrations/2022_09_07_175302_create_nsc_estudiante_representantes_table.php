@@ -26,7 +26,6 @@ class CreateNscEstudianteRepresentantesTable extends Migration
                     ->references('id')
                     ->on('nsc_estudiante')
                     ->onDelete('set null');
-
             $table->foreign('representante_id')
                     ->references('id')
                     ->on('nsc_representante')
