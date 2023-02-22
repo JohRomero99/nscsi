@@ -25,12 +25,11 @@ class representanteInvitadoHome extends Controller
     }
 
     public function pasoUnoDatos(representantePasoUno $request){
-
-        return $request->all();
+        
         $x = 0; $a = 0; $k = 0; $l = 0;
-
         for( $i = 0; $i < count($request->identificacion); $i++ ){
-            // if( is_null( $request->primerNombre[$i]) ||  is_null($request->segundoNombre[$i]) ||  is_null($request->apellidoPaterno[$i]) ||  is_null($request->apellidoMaterno[$i])){
+            $fichaMatriculacion = fichaMatriculacion::find($request->estudinateRepresentante[$i]);
+            if(is_null($fichaMatriculacion)){
                 $x = $x; $a = $a; $k = $k; $l = $l;
                 $persona = Persona::where('identificacion','=',$request->identificacion[$i])->first();
                 if(is_null($persona->primer_nombre)){
@@ -65,14 +64,16 @@ class representanteInvitadoHome extends Controller
                         break;
                     }
                 }
-            // }
-
-            $pasoUno = fichaMatriculacion::create([
-                // 'estudiante_id' => $request->estudianteId[$i],
-                // 'representante_id' => $request->representanteId[$i],
-                
-                'codigo_domicilio_estudiante' => $request->codigoNacional[$i],
-            ]);
+    
+                $pasoUno = fichaMatriculacion::create([
+                    'estudiante_representante' => $request->estudinateRepresentante[$i],
+                    'codigo_domicilio_estudiante' => $request->codigoNacional[$i],
+                ]);
+            }else{
+                $fichaMatriculacion->codigo_domicilio_estudiante = $request->codigoNacional[$i];
+                $fichaMatriculacion->save();
+                return redirect()->back()->with('exito','Informacion actualizada correctamente');
+            }
         }
 
         return redirect()->route('representanteInvitado.paso-2')->with('exito','Datos de estudiante guardados correctamente');

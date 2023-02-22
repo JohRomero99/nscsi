@@ -19,28 +19,38 @@
                     </div>
                 </div>
                 @for( $i = 0; $i < $numeroDeEstudiante; $i++)
-                    @if(is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->identificacion))
-                        <div class="conatiner p-3">
-                            <div class="alert alert-danger text-center mb-0" role="alert">
-                                <i class="fas fa-exclamation-triangle"></i> Completa los siguientes campos 
+                    @if(is_null($relacionEstudinateRepresentante[$i]->fichaMatriculacion->codigo_domicilio_estudiante))
+                        <div class="conatiner">
+                            <div class="bs-callout bs-callout-success bs-callout-xl">
+                                <div class="text-center">
+                                    <p class="m-auto"><i class="fas fa-info-circle text-danger"></i> <strong>¡Completa todos los campos para continuar!</strong></p>
+                                </div>
                             </div>
                         </div>
+                        <script>
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: false,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                })
+                                Toast.fire({
+                                    icon: 'info',
+                                    title: 'Completa todos los campos con la información correspondiente'
+                                })
+                        </script>
                     @else
-                    <!-- Wizard -->
-                    <div class="d-flex justify-content-center">
-                        <div class="container col d-flex justify-content-end altura_wizard">
-                            <div class="card-body d-flex justify-content-center mt-2 text-center rounded">
-                                <div class="circulo_span bg-success p-2 rounded"><i class="far fa-user"></i></div>
-                                @if(is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->primer_nombre) || is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->segundo_nombre) || is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->apellido_paterno) || is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->apellido_materno))
-                                    <div class="p-2"> {{$relacionEstudinateRepresentante[$i]->estudiante->persona->identificacion}} </div>
-                                @else
-                                    <div class="p-2"> {{$relacionEstudinateRepresentante[$i]->estudiante->persona->primer_nombre}} {{$relacionEstudinateRepresentante[$i]->estudiante->persona->apellido_paterno}} </div>
-                                @endif
-                             </div>
-                        </div>
-                    </div>
                     @endif
                         <div class="card-body">
+                            <div class="text-center">
+                                <small>CI: {{$relacionEstudinateRepresentante[$i]->estudiante->persona->identificacion}}</small> <br>
+                                <i class="far fa-user"></i> {{$relacionEstudinateRepresentante[$i]->estudiante->persona->primer_nombre}} {{$relacionEstudinateRepresentante[$i]->estudiante->persona->segundo_nombre}} {{$relacionEstudinateRepresentante[$i]->estudiante->persona->apellido_paterno}} {{$relacionEstudinateRepresentante[$i]->estudiante->persona->apellido_materno}}
+                            </div>
                             <div class="card p-3 d-none">
                                 <div class="d-flex justify-content-center">
                                     @if(is_null($relacionEstudinateRepresentante[$i]->estudiante->persona->identificacion))
@@ -174,8 +184,20 @@
                             <!-- </div> -->
                             <div class="card p-3">
                                 <div class="form-group">
-                                    <label for="exampleFormControlInput1">Código Único Eléctrico Nacional del Domicilio del Estudiante</label>
-                                    <input type="text" class="form-control inputDiseño @error('codigoNacional.*') is-invalid @enderror" name="codigoNacional[]" value="{{ old('codigoNacional.*') }}">
+                                    <label for="exampleFormControlInput1">
+                                        Código Único Eléctrico Nacional del Domicilio del Estudiante
+                                        <div class="tooltip-container">
+                                            <i class="fas fa-question-circle tooltip-trigger text-info"></i>
+                                            <div class="tooltip-one">
+                                                Debes revisar la parte superior o encabezado de tu planilla de luz, suele estar dentro de un casillero, justo debajo del nombre del usuario del servicio
+                                            </div>
+                                        </div>
+                                    </label>
+                                    @if(is_null($relacionEstudinateRepresentante[$i]->fichaMatriculacion))
+                                        <input type="text" class="form-control inputDiseño @error('codigoNacional.*') is-invalid @enderror" name="codigoNacional[]" value="{{ old('codigoNacional.*') }}">
+                                    @else
+                                        <input type="text" class="form-control inputDiseño is-valid" name="codigoNacional[]" value="{{ $relacionEstudinateRepresentante[$i]->fichaMatriculacion->codigo_domicilio_estudiante }}">
+                                    @endif
                                     @error('codigoNacional.*')
                                         <span class="invalid-feedback m-0" role="alert">
                                             <strong class="">Este campo es obligatorio y solo debe contener 10 números</strong>
@@ -220,7 +242,7 @@
                 @endfor
                 <div class="card-footer">
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success">Guardar <i class="fas fa-save"></i></button>
+                        <button type="submit" class="btn btn-success"> Guardar </button>
                     </div>
                 </div>
                 <!-- </div> -->
@@ -236,16 +258,10 @@
     <!-- Icono página -->
     <link rel="shortcut icon" href="{{ asset('imagenes/VirgenNSC.png') }}" type="image/x-icon">
 
+    {{-- font-awesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
-        .circulo_span{
-            border-radius: 50% !important;
-            width: 40px !important;
-            height: 40px !important;
-        }
-        .altura_wizard{
-            height: 80px !important;
-            
-        }
         .inputDiseño{
             padding: 20px 20px !important;
             height: 47px !important;
@@ -257,6 +273,149 @@
             background-color: #fff !important;
             background-color: #F2F8F8 !important;
         }
+        /* my own interpretation of Bootstrap callout */ 
+        .bs-callout {
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #eee;
+            border-left-width: 5px;
+            border-radius: 4px;
+            margin-left: 50px;
+        }
+        .bs-callout-xl {
+            margin-left: 0px;
+        }
+        .bs-callout-lg {
+            margin-left: 50px;
+        }
+        .bs-callout-md {
+            margin-left: 100px;
+        }
+        .bs-callout-sm {
+            margin-left: 150px;
+        }
+        .bs-callout-xs {
+            margin-left: 200px;
+        }
+        .bs-callout h4 {
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        .bs-callout p:last-child {
+            margin-bottom: 0;
+        }
+        .bs-callout code {
+            border-radius: 4px;
+        }
+        .bs-callout+.bs-callout {
+            margin-top: -5px;
+        }
+        .bs-callout-default {
+            border-left-color: #777;
+            background-color: #f7f7f9;
+        }
+        .bs-callout-default h4 {
+            color: #777;
+        }
+        .bs-callout-primary {
+            border-left-color: #428bca;
+        }
+        .bs-callout-primary h4 {
+            color: #428bca;
+        }
+        .bs-callout-success {
+            border-left-color: #5cb85c;
+            background-color: #efffe8;
+        }
+        .bs-callout-success h4 {
+            color: #5cb85c;
+        }
+        .bs-callout-danger {
+            border-left-color: #d9534f;
+            background-color: #fcf2f2;
+        }
+        .bs-callout-danger h4 {
+            color: #d9534f;
+        }
+        .bs-callout-warning {
+            border-left-color: #f0ad4e;
+            background-color: #fefbed;
+        }
+        .bs-callout-warning h4 {
+            color: #f0ad4e;
+        }
+        .bs-callout-info {
+            border-left-color: #5bc0de;
+            background-color: #f0f7fd;
+        }
+        .bs-callout-info h4 {
+            color: #5bc0de;
+        }
+        /* bg transparency and disabled effects for Bootstrap callout */ 
+        .bs-callout-default.transparent {
+            background-color: rgb(247, 247, 249, 0.7); /*#f7f7f9*/
+        }
+        .bs-callout-success.transparent {
+            background-color: rgb(239, 255, 232, 0.7); /*#efffe8*/
+        }
+        .bs-callout-warning.transparent {
+            background-color: rgb(254, 251, 237, 0.7); /*#fefbed*/
+        }
+        .bs-callout-danger.transparent {
+            background-color: rgb(252, 242, 242, 0.7); /*#fcf2f2*/
+        }
+        .bs-callout-info.transparent {
+            background-color: rgb(240, 247, 253, 0.7); /*#f0f7fd*/
+        }
+        .bs-callout.disabled {
+            opacity: 0.4;
+        }
+
+        .tooltip-container {
+            margin: 0 auto;
+            display: inline-block;
+        }
+        /* EMPIEZA AQUÍ */
+        .tooltip-container {
+            position: relative;
+            cursor: pointer;
+        }
+        .tooltip-one {
+            padding: 18px 32px;
+            background: #fff;
+            position: absolute;
+            width: 220px;
+            border-radius: 5px;
+            text-align: center;
+            filter: drop-shadow(0 3px 5px #ccc);
+            line-height: 1.5;
+            display: none;
+            bottom: 40px;
+            right: 50%;
+            margin-right: -110px;
+        }
+        .tooltip-one:after {
+            content: "";
+            position: absolute;
+            bottom: -9px;
+            left: 50%;
+            margin-left: -9px;
+            width: 18px;
+            height: 18px;
+            background: white;
+            transform: rotate(45deg);
+        }
+        .tooltip-trigger:hover + .tooltip-one {
+            display: block;
+        }
+
+
+        /* Cambiar Incono de is_valid predetermido en boostrap */
+        /* .form-control.is-valid,
+        .was-validated .form-control:valid {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17l-5-5.299 1.399-1.43 3.574 3.736 6.572-7.007 1.455 1.403-8 8.597z'/%3E%3C/svg%3E");
+        } */
+
     </style>
 @stop
 
@@ -276,7 +435,6 @@
             });
         }
     </script>
-
     <script>
         @if($errors->any())
             Swal.fire(
@@ -286,4 +444,22 @@
             )
         @endif
     </script>
+    @if(session('exito') == 'Datos de estudiante guardados correctamente')
+        <script>
+            Swal.fire(
+                'Exito',
+                'Formulario estudiantes guardados correctamente',
+                'success'
+            )
+        </script>
+    @endif
+    @if(session('exito') == 'Informacion actualizada correctamente')
+        <script>
+            Swal.fire(
+                'Información actualizada correctamente',
+                'Datos Actualizados',
+                'success'
+            )
+        </script>
+    @endif
 @stop

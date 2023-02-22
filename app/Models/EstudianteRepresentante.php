@@ -27,4 +27,10 @@ class EstudianteRepresentante extends Model
         
     }
 
+    // Relación ficha de matriculación hacia Estudiante Representante.
+    public function fichaMatriculacion(){
+
+        return $this->hasOne(fichaMatriculacion::class, 'estudiante_representante');
+        
+    }
 }
