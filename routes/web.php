@@ -46,6 +46,4 @@ Route::get('/dashboard/ficha-aspirantes/{id}', [admisionController::class, 'crea
 Route::get('/ficha/aspirante/create', [fichasController::class, 'createAspirante'])->name('ficha.aspirante.create');
 Route::post('/ficha/aspirante/store', [fichasController::class, 'storeAspirante'])->name('ficha.aspirante.store');
 
-
-
 require __DIR__.'/auth.php';
