@@ -29,6 +29,9 @@ class aspiranteRequest extends FormRequest
             'apellido_materno_estudiante' => ['required', 'regex:/^[a-zA-Z\s]*$/'],
             'fecha_nacimiento_estudiante' => ['required', 'date'],
             'codigo_unico_electrico' => ['required','digits:10','numeric'],
+            'transporte_escolar' => ['required','not_in:--seleccionar--'],
+            'ruta_escolar' => ['required','not_in:--seleccionar--'],
+
             // 
             // Datos de la Madre
             'cedula_madre' => ['required','numeric','document_ec:ci'],
@@ -36,7 +39,7 @@ class aspiranteRequest extends FormRequest
             'segundo_nombre_madre' => ['required', 'regex:/^[a-zA-Z\s]*$/'],
             'apellido_paterno_madre' => ['required', 'regex:/^[a-zA-Z\s]*$/'],
             'apellido_materno_madre' => ['required', 'regex:/^[a-zA-Z\s]*$/'],
-            'direccion_madre' => ['required', 'string','min:5', 'msx:255'],
+            'direccion_madre' => ['required'],
             'correo_madre' => ['required', 'email:rfc,dns'],
             'telefono_madre' => ['required', 'regex:/^09\d{8}$/'],
             
@@ -46,7 +49,7 @@ class aspiranteRequest extends FormRequest
             'segundo_nombre_padre' => ['required', 'regex:/^[a-zA-Z\s]*$/'],
             'apellido_paterno_padre' => ['required', 'regex:/^[a-zA-Z\s]*$/'],
             'apellido_materno_padre' => ['required', 'regex:/^[a-zA-Z\s]*$/'],
-            'direccion_padre' => ['required', 'string','min:5', 'msx:255'],
+            'direccion_padre' => ['required'],
             'correo_padre' => ['required', 'email:rfc,dns'],
             'telefono_padre' => ['required', 'regex:/^09\d{8}$/'],
 
@@ -55,7 +58,21 @@ class aspiranteRequest extends FormRequest
             'cedula_ruc' => ['required','numeric','document_ec:ci'],
             'razon_social' => ['required','string','min:5', 'msx:255'],
             'direccion_facturacion' => ['required','string','min:5', 'msx:255'],
-            'teléfono_facturacion' => ['required', 'regex:/^09\d{8}$/'],
+            'teléfono_facturacion' => ['required'],
+            'referencia_familiar.0' => ['required'],
+            'referencia_familiar.1' => ['required'],
+            'referencia_familiar.2' => ['required'],
+            'referencia_familiar.3' => ['required'],
+            'referencia_familiar.4' => ['required'],
+            'referencia_familiar.5' => ['required'],
+            'referencia_familiar.6' => ['required'],
+            'referencia_familiar.7' => ['required'],
+            'referencia_familiar.8' => ['required'],
+            'referencia_familiar.9' => ['required'],
+            'referencia_familiar.10' => ['required'],
+            'referencia_familiar.11' => ['required'],
+            'referencia_familiar.12' => ['required'],
+
         ];
     }
 }

@@ -1,20 +1,36 @@
 <x-fichas>
     <div class="container mx-auto">
-        <div class="px-20 py-10">
+        <div class="px-10 py-10">
             <form action="{{ route('ficha.aspirante.store') }}" method="POST">
                 @csrf
                 <div class="grid grid-cols-4 gap-4">
-                    
                     <div class="col-span-4 md:col-span-4 lg:col-span-4">
-                        <div class="text-center py-6">
-                            <h1 class="text-4xl font-bold text-gray-900 flex items-center justify-center gap-2">
-                                <span class="text-blue-600">📄</span> 
-                                <span>Ficha de Matriculación</span>
+                        <div class="text-center py-10">
+                            <div class="flex justify-center items-center gap-2">
+                                <div class="w-16 border-t-2 border-gray-200"></div>
+                                <span class="bg-blue-200 text-blue-700 rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-md">
+                                    🎓
+                                </span>
+                                <div class="w-16 border-t-2 border-gray-200"></div>
+                            </div>
+
+                            <h1 class="text-4xl font-bold text-gray-800 mt-4">
+                                Ficha de Matriculación
                             </h1>
-                            <p class="text-lg text-gray-700 mt-2 max-w-4xl mx-auto">
-                                Por favor, complete el formulario con información precisa. 
-                                <span class="font-semibold text-red-600">Los campos marcados con * son obligatorios.</span>
+
+                            <p></p>
+                            <p class="text-lg text-gray-600 mt-4 max-w-6xl mx-auto leading-relaxed">
+                                Bienvenido(a) al proceso de matriculación de la 
+                                <span class="font-semibold text-green-500">Unidad Educativa Nuestra Señora del Carmen</span>. Agradecemos su confianza para la formación académica de su representado(a). Le pedimos que complete cuidadosamente la información solicitada,
+                                asegurándose de que los datos ingresados sean correctos y estén actualizados. 
                             </p>
+
+                            <p class="text-sm text-gray-500 mt-4 italic">
+                                "Comprometidos con la excelencia educativa"
+                            </p>
+                            <!-- <span class="font-semibold text-red-500">Los campos marcados con * son obligatorios.</span> -->
+
+                            <div class="w-20 h-1 bg-blue-300 rounded-full mx-auto mt-6"></div>
                         </div>
                     </div>
 
@@ -31,8 +47,11 @@
                             value = "{{ old('cedula_estudiante') }}"
                         >
                         @error('cedula_estudiante')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
+
                     </div>
 
                     <!-- Primer Nombre Estudiante -->
@@ -47,7 +66,9 @@
                             value = "{{ old('primer_nombre_estudiante') }}"
                         >
                         @error('primer_nombre_estudiante')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
 
                     </div>
@@ -64,7 +85,9 @@
                             value = "{{ old('segundo_nombre_estudiante') }}"
                         >
                         @error('segundo_nombre_estudiante')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -80,7 +103,9 @@
                             value = "{{ old('apellido_paterno_estudiante') }}"
                         >
                         @error('apellido_paterno_estudiante')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -96,7 +121,9 @@
                             value = "{{ old('apellido_materno_estudiante') }}"
                         >
                         @error('apellido_materno_estudiante')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -111,7 +138,9 @@
                             value = "{{ old('fecha_nacimiento_estudiante') }}"
                         >
                         @error('fecha_nacimiento_estudiante')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -127,7 +156,9 @@
                             value = "{{ old('codigo_unico_electrico') }}"
                         >
                         @error('codigo_unico_electrico')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -142,13 +173,15 @@
                             name="transporte_escolar" 
                             class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         >
-                            <option value="-seleccionar--">-seleccionar--</option>
-                            <option value="Retiro personalmente (o persona autorizada)">Retiro personalmente (o persona autorizada)</option>
-                            <option value="Expreso por mi cuenta">Expreso por mi cuenta</option>
-                            <option value="Requiero expreso">Requiero expreso</option>
+                            <option value="--seleccionar--" {{ old('transporte_escolar') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
+                            <option value="Retiro personalmente (o persona autorizada)" {{ old('transporte_escolar') == 'Retiro personalmente (o persona autorizada)' ? 'selected' : '' }}>Retiro personalmente (o persona autorizada)</option>
+                            <option value="Expreso por mi cuenta" {{ old('transporte_escolar') == 'Expreso por mi cuenta' ? 'selected' : '' }}>Expreso por mi cuenta</option>
+                            <option value="Requiero expreso" {{ old('transporte_escolar') == 'Requiero expreso' ? 'selected' : '' }}>Requiero expreso</option>
                         </select>
                         @error('transporte_escolar')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -164,39 +197,45 @@
                             name="ruta_escolar" 
                             class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         >
-                            <option value="-seleccionar--">-seleccionar--</option>
-                            <option value="Alborada">Alborada</option>
-                            <option value="Garzota">Garzota</option>
-                            <option value="Guayacanes">Guayacanes</option>
-                            <option value="Guayacanes-Samanes">Guayacanes-Samanes</option>
-                            <option value="La Joya">La Joya</option>
-                            <option value="Matices Villa Club">Matices Villa Club</option>
-                            <option value="Matices-Veranda">Matices-Veranda</option>
-                            <option value="Metropolis 2">Metropolis 2</option>
-                            <option value="Mucho Lote 1 - Ciudad Santiago">Mucho Lote 1 - Ciudad Santiago</option>
-                            <option value="Mucho Lote 2">Mucho Lote 2</option>
-                            <option value="Orquideas Vergeles">Orquideas Vergeles</option>
-                            <option value="Rosales - ALlamos - Condor">Rosales - ALlamos - Condor</option>
-                            <option value="Samanes 7- J. Montalvo">Samanes 7- J. Montalvo</option>
-                            <option value="Sauces">Sauces</option>
-                            <option value="Sur Oeste - Martha de Roldos">Sur Oeste - Martha de Roldos</option>
-                            <option value="Sur - Atarazana">Sur - Atarazana</option>
-                            <option value="Vía Salitre">Vía Salitre</option>
-                            <option value="Villa del Rey">Villa del Rey</option>
-                            <option value="Villa Italia - La Rioja">Villa Italia - La Rioja</option>
+                        <option value="--seleccionar--" {{ old('ruta_escolar') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
+                        <option value="Alborada" {{ old('ruta_escolar') == 'Alborada' ? 'selected' : '' }}>Alborada</option>
+                        <option value="Garzota" {{ old('ruta_escolar') == 'Garzota' ? 'selected' : '' }}>Garzota</option>
+                        <option value="Guayacanes" {{ old('ruta_escolar') == 'Guayacanes' ? 'selected' : '' }}>Guayacanes</option>
+                        <option value="Guayacanes-Samanes" {{ old('sector') == 'Guayacanes-Samanes' ? 'selected' : '' }}>Guayacanes-Samanes</option>
+                        <option value="La Joya" {{ old('ruta_escolar') == 'La Joya' ? 'selected' : '' }}>La Joya</option>
+                        <option value="Matices Villa Club" {{ old('ruta_escolar') == 'Matices Villa Club' ? 'selected' : '' }}>Matices Villa Club</option>
+                        <option value="Matices-Veranda" {{ old('ruta_escolar') == 'Matices-Veranda' ? 'selected' : '' }}>Matices-Veranda</option>
+                        <option value="Metropolis 2" {{ old('ruta_escolar') == 'Metropolis 2' ? 'selected' : '' }}>Metropolis 2</option>
+                        <option value="Mucho Lote 1 - Ciudad Santiago" {{ old('ruta_escolar') == 'Mucho Lote 1 - Ciudad Santiago' ? 'selected' : '' }}>Mucho Lote 1 - Ciudad Santiago</option>
+                        <option value="Mucho Lote 2" {{ old('ruta_escolar') == 'Mucho Lote 2' ? 'selected' : '' }}>Mucho Lote 2</option>
+                        <option value="Orquideas Vergeles" {{ old('ruta_escolar') == 'Orquideas Vergeles' ? 'selected' : '' }}>Orquideas Vergeles</option>
+                        <option value="Rosales - ALlamos - Condor" {{ old('ruta_escolar') == 'Rosales - ALlamos - Condor' ? 'selected' : '' }}>Rosales - ALlamos - Condor</option>
+                        <option value="Samanes 7- J. Montalvo" {{ old('ruta_escolar') == 'Samanes 7- J. Montalvo' ? 'selected' : '' }}>Samanes 7- J. Montalvo</option>
+                        <option value="Sauces" {{ old('ruta_escolar') == 'Sauces' ? 'selected' : '' }}>Sauces</option>
+                        <option value="Sur Oeste - Martha de Roldos" {{ old('ruta_escolar') == 'Sur Oeste - Martha de Roldos' ? 'selected' : '' }}>Sur Oeste - Martha de Roldos</option>
+                        <option value="Sur - Atarazana" {{ old('ruta_escolar') == 'Sur - Atarazana' ? 'selected' : '' }}>Sur - Atarazana</option>
+                        <option value="Vía Salitre" {{ old('ruta_escolar') == 'Vía Salitre' ? 'selected' : '' }}>Vía Salitre</option>
+                        <option value="Villa del Rey" {{ old('ruta_escolar') == 'Villa del Rey' ? 'selected' : '' }}>Villa del Rey</option>
+                        <option value="Villa Italia - La Rioja" {{ old('ruta_escolar') == 'Villa Italia - La Rioja' ? 'selected' : '' }}>Villa Italia - La Rioja</option>
                         </select>
                         @error('ruta_escolar')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
-                    <div class="col-span-4 rounded-lg p-4 shadow-sm text-center bg-gray-100">
-                        <h2 class="text-2xl font-semibold text-gray-700 leading-tight">
-                            Datos de la Madre
-                        </h2>
-                        <p class="text-sm text-gray-500 mt-0.5">
-                            Complete los campos con información verídica.
-                        </p>
+                    <div class="col-span-4 rounded-lg p-4 shadow-sm bg-gray-100">
+                        <div class="relative w-full mb-1">
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h2 class="text-xl font-semibold text-gray-700">
+                                    Datos del Padre
+                                </h2>
+                                <p class="text-sm text-gray-500 italic">
+                                    Complete los campos con información verídica.
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Cédula Madre -->
@@ -211,7 +250,9 @@
                             value = "{{ old('cedula_madre') }}"
                         >
                         @error('cedula_madre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -227,7 +268,9 @@
                             value = "{{ old('primer_nombre_madre') }}"
                         >
                         @error('primer_nombre_madre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -243,7 +286,9 @@
                             value = "{{ old('segundo_nombre_madre') }}"
                         >
                         @error('segundo_nombre_madre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -259,7 +304,9 @@
                             value = "{{ old('apellido_paterno_madre') }}"
                         >
                         @error('apellido_paterno_madre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -275,7 +322,9 @@
                             value = "{{ old('apellido_materno_madre') }}"
                         >
                         @error('apellido_materno_madre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -291,7 +340,9 @@
                             value = "{{ old('direccion_madre') }}"
                         >
                         @error('direccion_madre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -307,7 +358,9 @@
                             value = "{{ old('correo_madre') }}"
                         >
                         @error('correo_madre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -324,19 +377,25 @@
                             value = "{{ old('telefono_madre') }}"
                         >
                         @error('telefono_madre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
 
                     <!-- Datos del Padre -->
-                    <div class="col-span-4 rounded-lg p-4 shadow-sm text-center bg-gray-100">
-                        <h2 class="text-2xl font-semibold text-gray-700 leading-tight">
-                            Datos del Padre
-                        </h2>
-                        <p class="text-sm text-gray-500 mt-0.5">
-                            Complete los campos con información verídica.
-                        </p>
+                    <div class="col-span-4 rounded-lg p-4 shadow-sm bg-gray-100">
+                        <div class="relative w-full mb-1">
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h2 class="text-xl font-semibold text-gray-700">
+                                    Datos del Padre
+                                </h2>
+                                <p class="text-sm text-gray-500 italic">
+                                    Complete los campos con información verídica.
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Cédula Padre -->
@@ -344,14 +403,16 @@
                         <label class="block font-medium text-gray-700">Cédula</label>
                         <input 
                             type="text" 
-                            id="cedula_padre" 
+                            id="cedula_padre"                   
                             name="cedula_padre" 
                             placeholder="Ingrese su cédula"
                             class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                             value = "{{ old('cedula_padre') }}"
                         >
                         @error('cedula_padre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -367,7 +428,9 @@
                             value = "{{ old('primer_nombre_padre') }}"
                         >
                         @error('primer_nombre_padre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -383,7 +446,9 @@
                             value = "{{ old('segundo_nombre_padre') }}"
                         >
                         @error('segundo_nombre_padre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -399,7 +464,9 @@
                             value = "{{ old('apellido_paterno_padre') }}"
                         >
                         @error('apellido_paterno_padre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -415,7 +482,9 @@
                             value = "{{ old('apellido_materno_Padre') }}"
                         >
                         @error('apellido_materno_Padre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -431,7 +500,9 @@
                             value = "{{ old('direccion_padre') }}"
                         >
                         @error('direccion_padre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -447,7 +518,9 @@
                             value = "{{ old('correo_padre') }}"
                         >
                         @error('correo_padre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -464,17 +537,23 @@
                             value = "{{ old('telefono_padre') }}"
                         >
                         @error('telefono_padre')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
-                    <div class="col-span-4 rounded-lg p-4 shadow-sm text-center bg-gray-100">
-                        <h2 class="text-2xl font-semibold text-gray-700 leading-tight">
-                            Formas de Pago
-                        </h2>
-                        <p class="text-sm text-gray-500 mt-0.5">
-                            Complete los campos con información verídica.
-                        </p>
+                    <div class="col-span-4 rounded-lg p-4 shadow-sm bg-gray-100">
+                        <div class="relative w-full mb-1">
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h2 class="text-xl font-semibold text-gray-700">
+                                    Formas de Pago
+                                </h2>
+                                <p class="text-sm text-gray-500 italic">
+                                    Complete los campos con información verídica.
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- ¿Cómo se va a realizar el pago de la pensiones? -->
@@ -497,7 +576,9 @@
                             <option value="Pago mensual tarjeta de crédito">Pago mensual tarjeta de crédito</option>
                         </select>
                         @error('forma_pago_pensiones')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -527,7 +608,9 @@
                             value = "{{ old('cedula_ruc') }}"
                         >
                         @error('cedula_ruc')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -544,7 +627,9 @@
                             value = "{{ old('razon_social') }}"
                         >
                         @error('razon_social')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -560,7 +645,9 @@
                             value = "{{ old('direccion_facturacion') }}"
                         >
                         @error('direccion_facturacion')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -576,7 +663,9 @@
                             value = "{{ old('teléfono_facturacion') }}"
                         >
                         @error('teléfono_facturacion')
-                            <small class="text-danger d-block mt-1">{{ $message }}</small>
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
                         @enderror
                     </div>
 
@@ -596,47 +685,59 @@
                                                 <input 
                                                     type="text" 
                                                     placeholder="Cédula..."
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[0]"
+                                                    value="{{ old('referencia_familiar.0') }}"
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                 >
-                                                @error('refrencia_familiar.0')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
                                             </p>
+                                            @error('referencia_familiar.0')
+                                                <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                    ⚠️ <span>{{ $message }}</span>
+                                                </div>
+                                            @enderror
                                             <p>
                                                 <label class="block font-medium text-gray-700 mt-1">Nombres</label> 
                                                 <input 
                                                     type="text" 
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[1]"
+                                                    value="{{ old('referencia_familiar.1') }}"
                                                     placeholder="Nombres..."
                                                 >
-                                                @error('refrencia_familiar.1')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
                                             </p>
+                                            @error('referencia_familiar.1')
+                                                <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                    ⚠️ <span>{{ $message }}</span>
+                                                </div>
+                                            @enderror
                                             <p>
                                                 <label class="block font-medium text-gray-700 mt-1">Teléfono</label> 
                                                 <input 
                                                     type="text" 
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[2]"
+                                                    value="{{ old('referencia_familiar.2') }}"
                                                     placeholder="Teléfono..."
                                                 >
-                                                @error('refrencia_familiar.2')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
                                             </p>
+                                            @error('referencia_familiar.2')
+                                                <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                    ⚠️ <span>{{ $message }}</span>
+                                                </div>
+                                            @enderror
                                             <p>
                                                 <label class="block font-medium text-gray-700 mt-1">Modalidad de traslado</label> 
                                                 <input 
                                                     type="text" 
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[3]"
+                                                    value="{{ old('referencia_familiar.3') }}"
                                                     placeholder="Modalidad..."
                                                 >
-                                                @error('refrencia_familiar.3')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @error('referencia_familiar.3')
+                                                    <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                        ⚠️ <span>{{ $message }}</span>
+                                                    </div>
                                                 @enderror
                                             </p>
                                         </div>
@@ -656,11 +757,14 @@
                                                 <input 
                                                     type="text" 
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[4]"
+                                                    value="{{ old('referencia_familiar.4') }}"
                                                     placeholder="Cédula..."
                                                 >
-                                                @error('refrencia_familiar.4')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @error('referencia_familiar.4')
+                                                    <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                        ⚠️ <span>{{ $message }}</span>
+                                                    </div>
                                                 @enderror
                                             </p>
                                             <p>
@@ -668,23 +772,29 @@
                                                 <input 
                                                     type="text" 
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[5]"
+                                                    value="{{ old('referencia_familiar.5') }}"
                                                     placeholder="Nombres..."
                                                 >
-                                                @error('refrencia_familiar.5')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
                                             </p>
+                                            @error('referencia_familiar.5')
+                                                <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                    ⚠️ <span>{{ $message }}</span>
+                                                </div>
+                                            @enderror
                                             <p>
                                                 <label class="block font-medium text-gray-700 mt-1">Teléfono</label> 
                                                 <input 
                                                     type="text" 
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[6]"
+                                                    value="{{ old('referencia_familiar.6') }}"
                                                     placeholder="Teléfono..."
                                                 >
-                                                @error('refrencia_familiar.6')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @error('referencia_familiar.6')
+                                                    <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                        ⚠️ <span>{{ $message }}</span>
+                                                    </div>
                                                 @enderror
                                             </p>
                                             <p>
@@ -692,11 +802,14 @@
                                                 <input 
                                                     type="text" 
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[7]"
+                                                    value="{{ old('referencia_familiar.7') }}"
                                                     placeholder="Modalidad..."
                                                 >
-                                                @error('refrencia_familiar.7')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @error('referencia_familiar.7')
+                                                    <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                        ⚠️ <span>{{ $message }}</span>
+                                                    </div>
                                                 @enderror
                                             </p>
                                         </div>
@@ -716,11 +829,14 @@
                                                 <input 
                                                     type="text" 
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[8]"
+                                                    value="{{ old('referencia_familiar.8') }}"
                                                     placeholder="Cédula..."
                                                 >
-                                                @error('refrencia_familiar.8')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @error('referencia_familiar.8')
+                                                    <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                        ⚠️ <span>{{ $message }}</span>
+                                                    </div>
                                                 @enderror
                                             </p>
                                             <p>
@@ -728,11 +844,14 @@
                                                 <input 
                                                     type="text" 
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[9]"
+                                                    value="{{ old('referencia_familiar.9') }}"
                                                     placeholder="Nombres..."
                                                 >
-                                                @error('refrencia_familiar.9')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @error('referencia_familiar.9')
+                                                    <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                        ⚠️ <span>{{ $message }}</span>
+                                                    </div>
                                                 @enderror
                                             </p>
                                             <p>
@@ -740,11 +859,14 @@
                                                 <input 
                                                     type="text" 
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[10]"
+                                                    value="{{ old('referencia_familiar.10') }}"
                                                     placeholder="Teléfono..."
                                                 >
-                                                @error('refrencia_familiar.10')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @error('referencia_familiar.10')
+                                                    <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                        ⚠️ <span>{{ $message }}</span>
+                                                    </div>
                                                 @enderror
                                             </p>
                                             <p>
@@ -752,11 +874,14 @@
                                                 <input 
                                                     type="text" 
                                                     class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="refrencia_familiar[]"
+                                                    name="referencia_familiar[11]"
+                                                    value="{{ old('referencia_familiar.11') }}"
                                                     placeholder="Modalidad..."
                                                 >
-                                                @error('refrencia_familiar.11')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @error('referencia_familiar.11')
+                                                    <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                        ⚠️ <span>{{ $message }}</span>
+                                                    </div>
                                                 @enderror
                                             </p>
                                         </div>
