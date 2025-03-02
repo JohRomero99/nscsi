@@ -45,5 +45,7 @@ Route::get('/dashboard/ficha-aspirantes/{id}', [admisionController::class, 'crea
 //Link de matriculacion, admision y aspirantes.
 Route::get('/ficha/aspirante/create', [fichasController::class, 'createAspirante'])->name('ficha.aspirante.create');
 Route::post('/ficha/aspirante/store', [fichasController::class, 'storeAspirante'])->name('ficha.aspirante.store');
+Route::get('/ficha/aspirante/registro/final/create/{cedula}', [fichasController::class, 'createFinalAspirante'])->name('ficha.aspirante.registro.final.create');
+Route::get('/ficha/aspirante/registro/final/store', [fichasController::class, 'createStoreAspirante'])->name('ficha.aspirante.registro.final.store');
 
 require __DIR__.'/auth.php';

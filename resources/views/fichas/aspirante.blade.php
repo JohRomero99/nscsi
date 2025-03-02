@@ -34,6 +34,23 @@
                         </div>
                     </div>
 
+                    <div class="col-span-4">
+                        <div class="w-full max-w-4xl mx-auto py-10">
+                            <div class="flex items-center justify-between">
+                                <div class="text-left">
+                                    <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">1</div>
+                                    <p class="mt-2 text-sm font-medium">Registro Datos</p>
+                                </div>
+
+                                <div class="w-full border-t border-gray-300 mx-4"></div>
+
+                                <div class="text-left">
+                                    <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold">2</div>
+                                    <p class="mt-2 text-sm font-medium">Registro Final</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Cédula Estudiante -->
                     <div class="col-span-4 md:col-span-4 lg:col-span-4">
@@ -156,6 +173,51 @@
                             value = "{{ old('codigo_unico_electrico') }}"
                         >
                         @error('codigo_unico_electrico')
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
+
+                    <!-- Genero Estudiante -->
+                    <div class="col-span-4">
+                        <label for="opcion" class="block text-gray-700 font-medium mb-2">
+                        Genero
+                        </label>
+
+                        <select 
+                            id="genero_estudiante" 
+                            name="genero_estudiante" 
+                            class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        >
+                            <option value="--seleccionar--" {{ old('genero_estudiante') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
+                            <option value="Hombre" {{ old('genero_estudiante') == 'Hombre' ? 'selected' : '' }}>Hombre</option>
+                            <option value="Mujer" {{ old('genero_estudiante') == 'Mujer' ? 'selected' : '' }}>Mujer</option>
+                        </select>
+                        @error('genero_estudiante')
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
+
+                    <!-- Estudiante Nuevo o NSC -->
+                    <div class="col-span-4">
+                        <label for="opcion" class="block text-gray-700 font-medium mb-2">
+                            Estudiante Nuevo o Nsc
+                        </label>
+
+                        <select 
+                            id="nuevo_nsc" 
+                            name="nuevo_nsc" 
+                            class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        >
+                            <option value="--seleccionar--" {{ old('nuevo_nsc') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
+                            <option value="" {{ old('nuevo_nsc') == 'Hombre' ? 'selected' : '' }}></option>
+                            <option value="" {{ old('nuevo_nsc') == 'Mujer' ? 'selected' : '' }}></option>
+                            <option value="" {{ old('nuevo_nsc') == 'Mujer' ? 'selected' : '' }}></option>
+                        </select>
+                        @error('nuevo_nsc')
                             <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                 ⚠️ <span>{{ $message }}</span>
                             </div>
@@ -347,7 +409,7 @@
                     </div>
 
                     <!-- Correo Electrónico Madre -->
-                    <div class="col-span-4 md:col-span-4 lg:col-span-1">
+                    <div class="col-span-4 md:col-span-4 lg:col-span-2">
                         <label class="block  font-medium text-gray-700">Correo</label>
                         <input 
                             type="text" 
@@ -366,7 +428,7 @@
 
 
                     <!-- Teléfono Madre -->
-                    <div class="col-span-4 md:col-span-4 lg:col-span-1">
+                    <div class="col-span-4 md:col-span-4 lg:col-span-2">
                         <label class="block font-medium text-gray-700">Teléfono</label>
                         <input 
                             type="text" 
@@ -475,13 +537,13 @@
                         <label class="block  font-medium text-gray-700">Apellido Materno</label>
                         <input 
                             type="text" 
-                            id="apellido_materno_Padre" 
-                            name="apellido_materno_Padre"  
+                            id="apellido_materno_padre" 
+                            name="apellido_materno_padre"  
                             placeholder="Apellido Materno"
                             class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                            value = "{{ old('apellido_materno_Padre') }}"
+                            value = "{{ old('apellido_materno_padre') }}"
                         >
-                        @error('apellido_materno_Padre')
+                        @error('apellido_materno_padre')
                             <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                 ⚠️ <span>{{ $message }}</span>
                             </div>
@@ -567,13 +629,13 @@
                             name="forma_pago_pensiones" 
                             class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         >
-                            <option value="--seleccionar--">-seleccionar--</option>
-                            <option value="Pago total anual TC a 6 meses sin intereses (matrícula gratis)">Pago total anual TC a 6 meses sin intereses (matrícula gratis)</option>
-                            <option value="Pago total anual TC a 10 meses sin intereses (plataforma gratis)">Pago total anual TC a 10 meses sin intereses (plataforma gratis)</option>
-                            <option value="Pago total anual con transferencia bancaria (matrícula gratis)">Pago total anual con transferencia bancaria (matrícula gratis)</option>
-                            <option value="Pago total anual efectivo en Colecturía (matrícula gratis)">Pago total anual efectivo en Colecturía (matrícula gratis)</option>
-                            <option value="Pago mensual transferencia bancaria">Pago mensual transferencia bancaria</option>
-                            <option value="Pago mensual tarjeta de crédito">Pago mensual tarjeta de crédito</option>
+                            <option value="--seleccionar--" {{ old('forma_pago_pensiones') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
+                            <option value="Pago total anual TC a 6 meses sin intereses (matrícula gratis)" {{ old('forma_pago_pensiones') == 'Pago total anual TC a 6 meses sin intereses (matrícula gratis)' ? 'selected' : '' }}>Pago total anual TC a 6 meses sin intereses (matrícula gratis)</option>
+                            <option value="Pago total anual TC a 10 meses sin intereses (plataforma gratis)" {{ old('forma_pago_pensiones') == 'Pago total anual TC a 10 meses sin intereses (plataforma gratis)' ? 'selected' : '' }}>Pago total anual TC a 10 meses sin intereses (plataforma gratis)</option>
+                            <option value="Pago total anual con transferencia bancaria (matrícula gratis)" {{ old('forma_pago_pensiones') == 'Pago total anual con transferencia bancaria (matrícula gratis)' ? 'selected' : '' }}>Pago total anual con transferencia bancaria (matrícula gratis)</option>
+                            <option value="Pago total anual efectivo en Colecturía (matrícula gratis)" {{ old('forma_pago_pensiones') == 'Pago total anual efectivo en Colecturía (matrícula gratis)' ? 'selected' : '' }}>Pago total anual efectivo en Colecturía (matrícula gratis)</option>
+                            <option value="Pago mensual transferencia bancaria" {{ old('forma_pago_pensiones') == 'Pago mensual transferencia bancaria' ? 'selected' : '' }}>Pago mensual transferencia bancaria</option>
+                            <option value="Pago mensual tarjeta de crédito" {{ old('forma_pago_pensiones') == 'Pago mensual tarjeta de crédito' ? 'selected' : '' }}>Pago mensual tarjeta de crédito</option>
                         </select>
                         @error('forma_pago_pensiones')
                             <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
@@ -656,13 +718,13 @@
                         <label class="block font-medium text-gray-700">Teléfono</label>
                         <input 
                             type="text" 
-                            id="teléfono_facturacion" 
-                            name="teléfono_facturacion" 
+                            id="telefono_facturacion" 
+                            name="telefono_facturacion" 
                             placeholder="Teléfono..."
                             class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                            value = "{{ old('teléfono_facturacion') }}"
+                            value = "{{ old('telefono_facturacion') }}"
                         >
-                        @error('teléfono_facturacion')
+                        @error('telefono_facturacion')
                             <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                 ⚠️ <span>{{ $message }}</span>
                             </div>
@@ -893,7 +955,7 @@
                     <div class="col-span-4">
                         <div class="text-center">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                                <i class="fa-solid fa-circle-check"></i> Finalizar registro
+                                Continuar
                             </button>
                         </div>
                     </div>
@@ -903,9 +965,35 @@
     </div>
     <script>
         Swal.fire({
-            title: "Registro final",
-            text: "You clicked the button!",
-            icon: "success"
+            title: "Certificación de Información",
+            html: `
+            <div style="max-height: 300px; overflow-y: auto; padding-right: 10px; text-align: justify;">
+                <p style="font-size: 16px;">
+                Declaro que toda la información proporcionada en este formulario es verídica y correcta, 
+                y certifico que los datos ingresados corresponden a mi representado y a mí como representante legal.
+                </p>
+                <p style="margin-top: 10px; font-size: 16px;">
+                Acepto que cualquier inconsistencia o falsedad en la información suministrada será mi responsabilidad, 
+                eximiendo a la <strong>Unidad Educativa Nuestra Señora del Carmen</strong> de cualquier perjuicio derivado de ello.
+                </p>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <input type="checkbox" id="confirmCheck" style="transform: scale(1.2); margin-right: 10px;">
+                <label for="confirmCheck" style="font-size: 16px;">Sí, certifico que toda la información ingresada es correcta</label>
+            </div>
+            `,
+            icon: "info",
+            confirmButtonText: "Continuar",
+            showCancelButton: false,
+            width: '600px',
+            didOpen: () => {
+                const confirmButton = Swal.getConfirmButton();
+                confirmButton.disabled = true;
+
+                document.getElementById('confirmCheck').addEventListener('change', function() {
+                    confirmButton.disabled = !this.checked;
+                });
+            }
         });
     </script>
 </x-fichas>

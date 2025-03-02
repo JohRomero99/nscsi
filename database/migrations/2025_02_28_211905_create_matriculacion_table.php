@@ -46,6 +46,7 @@ return new class extends Migration
             $table->string('razon_social')->nullable();
             $table->string('direccion_facturacion')->nullable();
             $table->json('referencia_familiar')->nullable();
+            $table->string('estado')->nullable();
             $table->timestamps();
         });
     }
