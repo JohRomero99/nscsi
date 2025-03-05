@@ -57,45 +57,70 @@
                             <h2 class="text-xl font-bold text-center mb-4">Autorización "Representante Legal Retiro de Estudiantes"</h2>
                             <p class="text-justify leading-relaxed text-md">
                                 Yo,
-                                <select class="border border-gray-300 rounded-lg p-2 w-40">
-                                    <option>--selecione--</option>
-                                    <option>{{ $consulta->primer_nombre_padre }} {{ $consulta->apellido_paterno_padre }}</option>
-                                    <option>{{ $consulta->primer_nombre_madre }} {{ $consulta->apellido_paterno_madre }}</option>
+                                <select 
+                                    class="border border-gray-300 rounded-lg p-2 w-40"
+                                    name="autorizacion_estudiante[]" 
+                                >
+                                    <option value="--seleccionar--" {{ old('nombres_apellidos_padres') == '--seleccionar--' ? 'selected' : '' }}>--selecionar--</option>
+                                    <option value="{{ $consulta->primer_nombre_padre }} {{ $consulta->apellido_paterno_padre }}">{{ $consulta->primer_nombre_padre }} {{ $consulta->apellido_paterno_padre }}</option>
+                                    <option value="{{ $consulta->primer_nombre_madre }} {{ $consulta->apellido_paterno_madre }}">{{ $consulta->primer_nombre_madre }} {{ $consulta->apellido_paterno_madre }}</option>
                                 </select>
                                 con número de cédula
-                                <select class="border border-gray-300 rounded-lg p-2 w-40">
-                                    <option>--selecione--</option>
-                                    <option>{{ $consulta->cedula_padre }}</option>
-                                    <option>{{ $consulta->cedula_madre }}</option>
+                                <select 
+                                    class="border border-gray-300 rounded-lg p-2 w-40"
+                                    name="autorizacion_estudiante[]"
+                                >
+                                    <option value="--selecionar--" >--selecionar--</option>
+                                    <option value="{{ $consulta->cedula_padre }}" >{{ $consulta->cedula_padre }}</option>
+                                    <option value="{{ $consulta->cedula_madre }}">{{ $consulta->cedula_madre }}</option>
                                 </select>,
                                 Representante Legal del estudiante
-                                <select class="border border-gray-300 rounded-lg p-2 w-40">
-                                    <option>--selecione--</option>
-                                    <option>{{ $consulta->primer_nombre_estudiante }} {{ $consulta->apellido_paterno_estudiante }}</option>
+                                <select 
+                                    class="border border-gray-300 rounded-lg p-2 w-40"
+                                    name="autorizacion_estudiante[]"
+                                >
+                                    <option value="--selecionar--" >--selecionar--</option>
+                                    <option value="{{ $consulta->primer_nombre_estudiante }} {{ $consulta->apellido_paterno_estudiante }}" >{{ $consulta->primer_nombre_estudiante }} {{ $consulta->apellido_paterno_estudiante }}</option>
                                 </select>
                                 con número de cédula
-                                <select class="border border-gray-300 rounded-lg p-2 w-40">
-                                    <option>--selecione--</option>
-                                    <option>{{ $consulta->cedula_estudiante }}</option>
+                                <select 
+                                    class="border border-gray-300 rounded-lg p-2 w-40"
+                                    name="autorizacion_estudiante[]"
+                                >
+                                    <option value="--selecionar--" >--selecionar--</option>
+                                    <option value="{{ $consulta->cedula_estudiante }}" >{{ $consulta->cedula_estudiante }}</option>
                                 </select>, perteneciente al curso
-                                <select class="border border-gray-300 rounded-lg p-2 w-40">
-                                    <option>--seleccionar--</option>
+                                <select 
+                                    class="border border-gray-300 rounded-lg p-2 w-40"
+                                    name="autorizacion_estudiante[]"
+                                >
+                                    <option value="--selecionar--">--selecionar--</option>
+                                    <option value="{{ $consulta->ano_basica }}">{{ $consulta->ano_basica }}</option>
                                 </select>, con dirección domiciliaria
-                                <select class="border border-gray-300 rounded-lg p-2 w-40">
-                                    <option>--selecionar--</option>
-                                    <option>{{ $consulta->direccion_padre }}</option>
-                                    <option>{{ $consulta->direccion_madre }}</option>
+                                <select 
+                                    class="border border-gray-300 rounded-lg p-2 w-40"
+                                    name="autorizacion_estudiante[]"
+                                >
+                                    <option value="--selecionar--">--selecionar--</option>
+                                    <option value="{{ $consulta->direccion_padre }}">{{ $consulta->direccion_padre }}</option>
+                                    <option value="{{ $consulta->direccion_madre }}">{{ $consulta->direccion_madre }}</option>
                                 </select>
                                 número de teléfono
-                                <select class="border border-gray-300 rounded-lg p-2 w-40">
-                                    <option>--seleccionar--</option>
-                                    <option>{{ $consulta->telefono_padre }}</option>
-                                    <option>{{ $consulta->telefono_madre }}</option>
+                                <select 
+                                    class="border border-gray-300 rounded-lg p-2 w-40"
+                                    name="autorizacion_estudiante[]"
+                                >
+                                    <option value="--selecionar--">--selecionar--</option>
+                                    <option value="{{ $consulta->telefono_padre }}">{{ $consulta->telefono_padre }}</option>
+                                    <option value="{{ $consulta->telefono_madre }}">{{ $consulta->telefono_madre }}</option>
                                 </select>, Email
-                                <select class="border border-gray-300 rounded-lg p-2 w-40">
-                                    <option>--selecionar--</option>
-                                    <option>{{ $consulta->correo_padre }}</option>
-                                    <option>{{ $consulta->correo_madre }}</option>
+                                <select 
+                                    class="border border-gray-300 rounded-lg p-2 w-50"
+                                    name="autorizacion_estudiante[]"
+                                >
+                                    <option value="--selecionar--">--selecionar--</option>
+                                    <option value="{{ $consulta->correo_padre }}">{{ $consulta->correo_padre }}</option>
+                                    <option value="{{ $consulta->correo_madre }}">{{ $consulta->correo_madre }}</option>
                                 </select>.
                             </p>
                             <p class="mt-4 text-justify leading-relaxed text-md">
@@ -107,7 +132,7 @@
                     <div class="col-span-4">
                         <div class="text-center">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                                <i class="fa-solid fa-circle-check"></i> Finalizar
+                                <i class="fa-solid fa-circle-check"></i> Finalizar Matriculación
                             </button>
                         </div>
                     </div>

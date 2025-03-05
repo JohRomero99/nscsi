@@ -29,7 +29,10 @@ class fichasController extends Controller
                 'apellido_paterno_estudiante' => $request->apellido_paterno_estudiante,
                 'apellido_materno_estudiante' => $request->apellido_materno_estudiante,
                 'fecha_nacimiento_estudiante' => $request->fecha_nacimiento_estudiante,
+                'ano_basica' => $request->ano_basica,
                 'codigo_unico_electrico' => $request->codigo_unico_electrico,
+                'genero_estudiante' => $request->genero_estudiante,
+                'nuevo_nsc' => $request->nuevo_nsc,
                 'transporte_escolar' => $request->transporte_escolar,
                 'ruta_escolar' => $request->ruta_escolar,
                 // 
@@ -52,10 +55,12 @@ class fichasController extends Controller
                 'telefono_padre' => $request->telefono_padre,
                 // 
                 'forma_pago_pensiones' => $request->forma_pago_pensiones,
+                'facturacion' => $request->facturacion,
                 'cedula_ruc' => $request->cedula_ruc,
                 'razon_social' => $request->razon_social,
                 'direccion_facturacion' => $request->direccion_facturacion,
                 'referencia_familiar' => json_encode($request->referencia_familiar),
+                'informacion_verdadera' => $request->informacion_verdadera,
             ]);
             return redirect()->route('ficha.aspirante.registro.final.create',[
                 'cedula' => $request->cedula_estudiante,
@@ -69,6 +74,30 @@ class fichasController extends Controller
         $consulta  = matriculacion::where('cedula_estudiante', $cedula)->first();
         return view('fichas.finalAspirante', compact('consulta'));
 
+    }
+
+    public function createStoreAspirante(Request $request){
+
+        $consulta  = matriculacion::where('cedula_estudiante',$request->autorizacion_estudiante[3])->first();
+        $consulta->update([
+            'autorizacion_legal_estudiante' => json_encode($request->autorizacion_estudiante),
+        ]);
+
+        return redirect()->route('ficha.aspirante.create')->with('success', 'Fciha completada con éxito.');
+
+    }
+
+    public function buscarCedulaFichaMatricula(Request $request)
+    {
+        $cedula = matriculacion::where('cedula_estudiante', '0955546601')->first(); // Buscar en la base de 
+        return response()->json($cedula);
+        // if ($persona) {
+        //     // Retornar los datos de la persona como JSON si existe
+        //     return response()->json($persona);
+        // } else {
+        //     // Retornar un mensaje de error si no existe
+        //     return response()->json(['error' => 'Cédula no encontrada'], 404);
+        // }
     }
 
 }

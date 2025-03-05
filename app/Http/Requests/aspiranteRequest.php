@@ -28,10 +28,12 @@ class aspiranteRequest extends FormRequest
             'apellido_paterno_estudiante' => ['required', 'regex:/^[a-zA-Z\s]*$/'],
             'apellido_materno_estudiante' => ['required', 'regex:/^[a-zA-Z\s]*$/'],
             'fecha_nacimiento_estudiante' => ['required', 'date'],
+            'ano_basica' => ['required','not_in:--seleccionar--'],
             'codigo_unico_electrico' => ['required','digits:10','numeric'],
             'genero_estudiante' => ['required','not_in:--seleccionar--'],
+            'nuevo_nsc' => ['required','not_in:--seleccionar--'],
             'transporte_escolar' => ['required','not_in:--seleccionar--'],
-            'ruta_escolar' => ['required','not_in:--seleccionar--'],
+            'ruta_escolar' => ['required_if:transporte_escolar,Requiero expreso'],
 
             // 
             // Datos de la Madre
@@ -56,10 +58,11 @@ class aspiranteRequest extends FormRequest
 
             // Forma de Pago
             'forma_pago_pensiones' => ['required','not_in:--seleccionar--'],
-            'cedula_ruc' => ['required','numeric','document_ec:ci'],
-            'razon_social' => ['required'],
-            'direccion_facturacion' => ['required'],
-            'telefono_facturacion' => ['required'],
+            'facturacion' => ['required', 'in:Si,No,--seleccionar--','not_in:--seleccionar--'],
+            'cedula_ruc' => ['required_if:facturacion,Si'],
+            'razon_social' => ['required_if:facturacion,Si'],
+            'direccion_facturacion' => ['required_if:facturacion,Si'],
+            'telefono_facturacion' => ['required_if:facturacion,Si'],
             'referencia_familiar.0' => ['required','document_ec:ci'],
             'referencia_familiar.1' => ['required','regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ]+(?:\s[A-Za-záéíóúÁÉÍÓÚñÑ]+)*$/u'],
             'referencia_familiar.2' => ['required','regex:/^09\d{8}$/'],
@@ -72,6 +75,7 @@ class aspiranteRequest extends FormRequest
             'referencia_familiar.9' => ['required','regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ]+(?:\s[A-Za-záéíóúÁÉÍÓÚñÑ]+)*$/u'],
             'referencia_familiar.10' => ['required','regex:/^09\d{8}$/'],
             'referencia_familiar.11' => ['required','regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ]+(?:\s[A-Za-záéíóúÁÉÍÓÚñÑ]+)*$/u'],
+            'informacion_verdadera' => ['required','accepted'],
         ];
     }
 
@@ -99,6 +103,7 @@ class aspiranteRequest extends FormRequest
         'telefono_padre' => 'teléfono',
         // 
         'forma_pago_pensiones' => '--seleccionar--',
+        'facturacion' => '--selecionar--',
         'cedula_ruc' => 'cédula',
         'razon_social' => 'razon social',
         'telefono_facturacion' => 'teléfono',
@@ -115,6 +120,7 @@ class aspiranteRequest extends FormRequest
         'referencia_familiar.9' => 'nombre',
         'referencia_familiar.10' => 'teléfono',
         'referencia_familiar.11' => 'modalidad de traslado',
+        'informacion_verdadera' => 'checkbox',
     ];
 }
 }

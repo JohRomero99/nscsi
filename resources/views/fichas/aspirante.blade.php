@@ -1,7 +1,7 @@
 <x-fichas>
     <div class="container mx-auto">
-        <div class="px-10 py-10">
-            <form action="{{ route('ficha.aspirante.store') }}" method="POST">
+        <div class="px-10 pb-10 pt-1">
+            <form action="{{ route('ficha.aspirante.store') }}" class="formulario-validacion" method="POST">
                 @csrf
                 <div class="grid grid-cols-4 gap-4">
                     <div class="col-span-4 md:col-span-4 lg:col-span-4">
@@ -161,8 +161,44 @@
                         @enderror
                     </div>
 
+                    <!-- Año Basica --> 
+                    <div class="col-span-2">
+                        <label for="opcion" class="block text-gray-700 font-medium mb-2">
+                        Año de Básica
+                        </label>
+
+                        <select 
+                            id="ano_basica" 
+                            name="ano_basica" 
+                            class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        >
+                            <option value="--seleccionar--" {{ old('ano_basica') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
+                            <option value="Inicial 1" {{ old('ano_basica') == 'Inicial 1' ? 'selected' : '' }}>Inicial 1</option>
+                            <option value="Inicial 2" {{ old('ano_basica') == 'Inicial 2' ? 'selected' : '' }}>Inicial 2</option>
+                            <option value="Primero" {{ old('ano_basica') == 'Primero' ? 'selected' : '' }}>Primero</option>
+                            <option value="Segundo" {{ old('ano_basica') == 'Segundo' ? 'selected' : '' }}>Segundo</option>
+                            <option value="Tercero" {{ old('ano_basica') == 'Tercero' ? 'selected' : '' }}>Tercero</option>
+                            <option value="Cuarto" {{ old('ano_basica') == 'Cuarto' ? 'selected' : '' }}>Cuarto</option>
+                            <option value="Quinto" {{ old('ano_basica') == 'Quinto' ? 'selected' : '' }}>Quinto</option>
+                            <option value="Sexto" {{ old('ano_basica') == 'Sexto' ? 'selected' : '' }}>Sexto</option>
+                            <option value="Septimo" {{ old('ano_basica') == 'Septimo' ? 'selected' : '' }}>Séptimo</option>
+                            <option value="Octavo" {{ old('ano_basica') == 'Octavo' ? 'selected' : '' }}>Octavo</option>
+                            <option value="Noveno" {{ old('ano_basica') == 'Noveno' ? 'selected' : '' }}>Noveno</option>
+                            <option value="Décimo" {{ old('ano_basica') == 'Décimo' ? 'selected' : '' }}>Décimo</option>
+                            <option value="Primero de Bachillerato" {{ old('ano_basica') == 'Primero de Bachillerato' ? 'selected' : '' }}>Primero de Bachillerato</option>
+                            <option value="Segundo de Bachillerato" {{ old('ano_basica') == 'Segundo de Bachillerato' ? 'selected' : '' }}>Segundo de Bachillerato</option>
+                            <option value="Tercero de Bachillerato" {{ old('ano_basica') == 'Tercero de Bachillerato' ? 'selected' : '' }}>Tercero de Bachillerato</option>
+                        </select>
+                        @error('ano_basica')
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
+
+
                     <!-- Codigo Unico Eléctrico -->
-                    <div class="col-span-4 md:col-span-4 lg:col-span-2">
+                    <div class="col-span-4 md:col-span-4 lg:col-span-4">
                         <label class="block  font-medium text-gray-700">Código Único Eléctrico Nacional del Domicilio del Estudiante</label>
                         <input 
                             type="text" 
@@ -213,9 +249,9 @@
                             class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         >
                             <option value="--seleccionar--" {{ old('nuevo_nsc') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
-                            <option value="" {{ old('nuevo_nsc') == 'Hombre' ? 'selected' : '' }}></option>
-                            <option value="" {{ old('nuevo_nsc') == 'Mujer' ? 'selected' : '' }}></option>
-                            <option value="" {{ old('nuevo_nsc') == 'Mujer' ? 'selected' : '' }}></option>
+                            <option value="Nuevo Ingreso" {{ old('nuevo_nsc') == 'Nuevo Ingreso' ? 'selected' : '' }}>Nuevo Ingreso</option>
+                            <option value="Continuidad del Periodo Anterior" {{ old('nuevo_nsc') == 'Continuidad del Periodo Anterior' ? 'selected' : '' }}>Continuidad del Periodo Anterior</option>
+                            <option value="Reingreso a la Institución" {{ old('nuevo_nsc') == 'Reingreso a la Institución' ? 'selected' : '' }}>Reingreso a la Institución</option>
                         </select>
                         @error('nuevo_nsc')
                             <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
@@ -234,6 +270,7 @@
                             id="transporte_escolar" 
                             name="transporte_escolar" 
                             class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            onchange="mostrarRutaEscolar()"
                         >
                             <option value="--seleccionar--" {{ old('transporte_escolar') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
                             <option value="Retiro personalmente (o persona autorizada)" {{ old('transporte_escolar') == 'Retiro personalmente (o persona autorizada)' ? 'selected' : '' }}>Retiro personalmente (o persona autorizada)</option>
@@ -247,9 +284,8 @@
                         @enderror
                     </div>
 
-
                     <!-- Ruta Escolar -->
-                    <div class="col-span-4">
+                    <div class="col-span-4" id="ruta_escolar_div" style="display: none;">
                         <label for="opcion" class="block text-gray-700 font-medium mb-2">
                         Ruta Escolar
                         </label>
@@ -644,22 +680,30 @@
                         @enderror
                     </div>
 
-
-                    <!-- Terminos y Cóndiciones -->
+                    <!-- Facturación -->
                     <div class="col-span-4">
-                        <div class="flex items-center space-x-3">
-                            <input type="checkbox" id="terminos" name="terminos" class="hidden peer">
-                            <label for="terminos" class="flex items-center cursor-pointer">
-                                <div class="w-6 h-6 border-2 border-gray-400 rounded-md flex items-center justify-center peer-checked:bg-blue-600 peer-checked:border-blue-600 transition">
-                                    <i class="fa-solid fa-check text-white hidden peer-checked:block"></i>
-                                </div>
-                            </label>
-                            <span class="text-gray-700">Marque aquí si desea que la factura sea emitida con otros datos diferentes a los del Representante.</span>
-                        </div>
+                        <label for="opcion" class="block text-gray-700 font-medium mb-2">
+                        ¿Desea que la factura sea emitida con otros datos diferentes a los del Representante?
+                        </label>
+
+                        <select 
+                            id="facturacion" 
+                            name="facturacion" 
+                            class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        >
+                            <option value="--seleccionar--" {{ old('facturacion') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
+                            <option value="Si" {{ old('facturacion') == 'Si' ? 'selected' : '' }}>Si</option>
+                            <option value="No" {{ old('facturacion') == 'No' ? 'selected' : '' }}>No</option>
+                        </select>
+                        @error('facturacion')
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
+                        @enderror
                     </div>
 
                     <!-- Cédula o Ruc -->
-                    <div class="col-span-4">
+                    <div class="col-span-4 hidden">
                         <label class="block font-medium text-gray-700">Cédula o RUC</label>
                         <input 
                             type="text" 
@@ -678,7 +722,7 @@
 
 
                     <!-- Razón Social -->
-                    <div class="col-span-4">
+                    <div class="col-span-4 hidden">
                         <label class="block font-medium text-gray-700">Razón Social</label>
                         <input 
                             type="text" 
@@ -696,7 +740,7 @@
                     </div>
 
                     <!-- Dirección -->
-                    <div class="col-span-4">
+                    <div class="col-span-4 hidden">
                         <label class="block font-medium text-gray-700">Dirección</label>
                         <input 
                             type="text" 
@@ -714,7 +758,7 @@
                     </div>
 
                     <!-- Dirección -->
-                    <div class="col-span-4">
+                    <div class="col-span-4 hidden">
                         <label class="block font-medium text-gray-700">Teléfono</label>
                         <input 
                             type="text" 
@@ -733,7 +777,7 @@
 
                     <div class="col-span-4">
                         <div class="space-y-4">
-                            <p class="text-center">Autorización Representante Legal Retiro de Estudiantes</p>
+                            <p class="text-center h2">Autorización Representante Legal Retiro de Estudiantes</p>
                             <div class="grid grid-cols-3 gap-4">
                                 <div class="col-span-3 md:col-span-3 lg:col-span-1">
                                     <!-- Tarjeta 1 -->
@@ -749,7 +793,7 @@
                                                     placeholder="Cédula..."
                                                     name="referencia_familiar[0]"
                                                     value="{{ old('referencia_familiar.0') }}"
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                 >
                                             </p>
                                             @error('referencia_familiar.0')
@@ -761,7 +805,7 @@
                                                 <label class="block font-medium text-gray-700 mt-1">Nombres</label> 
                                                 <input 
                                                     type="text" 
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[1]"
                                                     value="{{ old('referencia_familiar.1') }}"
                                                     placeholder="Nombres..."
@@ -776,7 +820,7 @@
                                                 <label class="block font-medium text-gray-700 mt-1">Teléfono</label> 
                                                 <input 
                                                     type="text" 
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[2]"
                                                     value="{{ old('referencia_familiar.2') }}"
                                                     placeholder="Teléfono..."
@@ -791,7 +835,7 @@
                                                 <label class="block font-medium text-gray-700 mt-1">Modalidad de traslado</label> 
                                                 <input 
                                                     type="text" 
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[3]"
                                                     value="{{ old('referencia_familiar.3') }}"
                                                     placeholder="Modalidad..."
@@ -818,7 +862,7 @@
                                                 <label class="block font-medium text-gray-700 mt-1">Cédula</label> 
                                                 <input 
                                                     type="text" 
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[4]"
                                                     value="{{ old('referencia_familiar.4') }}"
                                                     placeholder="Cédula..."
@@ -833,7 +877,7 @@
                                                 <label class="block font-medium text-gray-700 mt-1">Nombres</label> 
                                                 <input 
                                                     type="text" 
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[5]"
                                                     value="{{ old('referencia_familiar.5') }}"
                                                     placeholder="Nombres..."
@@ -848,7 +892,7 @@
                                                 <label class="block font-medium text-gray-700 mt-1">Teléfono</label> 
                                                 <input 
                                                     type="text" 
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[6]"
                                                     value="{{ old('referencia_familiar.6') }}"
                                                     placeholder="Teléfono..."
@@ -863,7 +907,7 @@
                                                 <label class="block font-medium text-gray-700 mt-1">Modalidad de traslado</label> 
                                                 <input 
                                                     type="text" 
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[7]"
                                                     value="{{ old('referencia_familiar.7') }}"
                                                     placeholder="Modalidad..."
@@ -890,7 +934,7 @@
                                                 <label class="block font-medium text-gray-700 mt-1">Cédula</label> 
                                                 <input 
                                                     type="text" 
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[8]"
                                                     value="{{ old('referencia_familiar.8') }}"
                                                     placeholder="Cédula..."
@@ -905,7 +949,7 @@
                                                 <label class="block font-medium text-gray-700 mt-1">Nombres</label> 
                                                 <input 
                                                     type="text" 
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[9]"
                                                     value="{{ old('referencia_familiar.9') }}"
                                                     placeholder="Nombres..."
@@ -920,7 +964,7 @@
                                                 <label class="block font-medium text-gray-700 mt-1">Teléfono</label> 
                                                 <input 
                                                     type="text" 
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[10]"
                                                     value="{{ old('referencia_familiar.10') }}"
                                                     placeholder="Teléfono..."
@@ -935,7 +979,7 @@
                                                 <label class="block font-medium text-gray-700 mt-1">Modalidad de traslado</label> 
                                                 <input 
                                                     type="text" 
-                                                    class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                                    class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[11]"
                                                     value="{{ old('referencia_familiar.11') }}"
                                                     placeholder="Modalidad..."
@@ -953,9 +997,30 @@
                         </div>
                     </div>
                     <div class="col-span-4">
+                        <div class="text-justify">
+                            <p class="text-base">
+                                Declaro que toda la información proporcionada en este formulario es verídica y correcta,
+                                y certifico que los datos ingresados corresponden a mi representado y a mí como representante legal.
+                            </p>
+                            <p class="mt-2 text-base">
+                                Acepto que cualquier inconsistencia o falsedad en la información suministrada será mi responsabilidad,
+                                eximiendo a la <strong>Unidad Educativa Nuestra Señora del Carmen</strong> de cualquier perjuicio derivado de ello.
+                            </p>
+                        </div>
+                        <div class="text-center mt-5">
+                            <input type="checkbox" name="informacion_verdadera" id="confirmCheck" class="scale-125 mr-2">
+                            <label for="confirmCheck" class="text-base">Sí, certifico que toda la información ingresada es correcta</label>
+                        </div>
+                        @error('informacion_verdadera')
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-span-4">
                         <div class="text-center">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                                Continuar
+                            <button type="submit" id="submitButton" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded opacity-50" disabled>
+                                Continuar <i class="fa-regular fa-circle-right"></i>    
                             </button>
                         </div>
                     </div>
@@ -964,36 +1029,144 @@
         </div>
     </div>
     <script>
-        Swal.fire({
-            title: "Certificación de Información",
-            html: `
-            <div style="max-height: 300px; overflow-y: auto; padding-right: 10px; text-align: justify;">
-                <p style="font-size: 16px;">
-                Declaro que toda la información proporcionada en este formulario es verídica y correcta, 
-                y certifico que los datos ingresados corresponden a mi representado y a mí como representante legal.
-                </p>
-                <p style="margin-top: 10px; font-size: 16px;">
-                Acepto que cualquier inconsistencia o falsedad en la información suministrada será mi responsabilidad, 
-                eximiendo a la <strong>Unidad Educativa Nuestra Señora del Carmen</strong> de cualquier perjuicio derivado de ello.
-                </p>
-            </div>
-            <div style="text-align: center; margin-top: 20px;">
-                <input type="checkbox" id="confirmCheck" style="transform: scale(1.2); margin-right: 10px;">
-                <label for="confirmCheck" style="font-size: 16px;">Sí, certifico que toda la información ingresada es correcta</label>
-            </div>
-            `,
-            icon: "info",
-            confirmButtonText: "Continuar",
-            showCancelButton: false,
-            width: '600px',
-            didOpen: () => {
-                const confirmButton = Swal.getConfirmButton();
-                confirmButton.disabled = true;
+        @if(session('success'))
+            Swal.fire({
+                title: "Exito",
+                text: "Los datos se han guardado con éxito.",
+                icon: "success"
+            });
+        @endif
+    </script>
+    <!-- Declaración de información -->
+    <script>
+        document.getElementById('confirmCheck').addEventListener('change', function() {
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = !this.checked;
+            submitButton.classList.toggle('opacity-50', !this.checked);
+        });
+    </script>
 
-                document.getElementById('confirmCheck').addEventListener('change', function() {
-                    confirmButton.disabled = !this.checked;
-                });
+    <!-- Facturación -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectFacturacion = document.getElementById('facturacion');
+            const camposFacturacion = [
+                document.getElementById('cedula_ruc').parentElement,
+                document.getElementById('razon_social').parentElement,
+                document.getElementById('direccion_facturacion').parentElement,
+                document.getElementById('telefono_facturacion').parentElement
+            ];
+
+            // Función para mostrar u ocultar los campos
+            function toggleCamposFacturacion() {
+                if (selectFacturacion.value === 'Si') {
+                    camposFacturacion.forEach(campo => {
+                        campo.classList.remove('hidden');
+                    });
+                } else {
+                    camposFacturacion.forEach(campo => {
+                        campo.classList.add('hidden');
+                    });
+                }
             }
+
+            // Evento para cambiar los campos cuando se seleccione una opción
+            selectFacturacion.addEventListener('change', toggleCamposFacturacion);
+
+            // Ejecutar la función al cargar la página para mantener la consistencia con old()
+            toggleCamposFacturacion();
+        });
+    </script>
+
+    <!-- Esconder o habilitar ruta escolar -->
+    <script>
+        function mostrarRutaEscolar() {
+            const transporte = document.getElementById("transporte_escolar").value;
+            const rutaDiv = document.getElementById("ruta_escolar_div");
+
+            if (transporte === "Requiero expreso") {
+                rutaDiv.style.display = "block"; // Mostrar campo
+            } else {
+                rutaDiv.style.display = "none"; // Ocultar campo
+                document.getElementById("ruta_escolar").value = "--seleccionar--"; // Resetear valor si se oculta
+            }
+        }
+
+        // Ejecutar la función al cargar la página para mostrar la opción correcta si hay datos antiguos
+        window.onload = mostrarRutaEscolar;
+    </script>
+
+    <!-- Buscar cédula en tiempo real -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cedulaInput = document.getElementById('cedula_estudiante');
+
+            cedulaInput.addEventListener('input', function () {
+                const cedula = cedulaInput.value;
+
+                if (cedula.length === 10) { // Solo ejecuta si tiene 10 dígitos
+                    fetch(`{{ route('buscar.cedula.ficha.matricula') }}?cedula=${cedula}`)
+                        .then(response => {
+                            if (response.ok) {
+                                return response.json();
+                            }
+                            console.log('Cédula no encontrada');
+                            throw new Error('Cédula no encontrada');
+                        })
+                        .then(data => {
+                            if (data) {
+                                // Llenamos los campos normales
+                                let campos = [
+                                    'primer_nombre_estudiante', 'segundo_nombre_estudiante', 'apellido_paterno_estudiante',
+                                    'apellido_materno_estudiante', 'fecha_nacimiento_estudiante', 'ano_basica',
+                                    'codigo_unico_electrico', 'genero_estudiante', 'nuevo_nsc', 
+                                    'transporte_escolar', 'ruta_escolar', 'cedula_madre', 'primer_nombre_madre',
+                                    'segundo_nombre_madre', 'apellido_paterno_madre', 'apellido_materno_madre',
+                                    'direccion_madre', 'correo_madre', 'telefono_madre', 'cedula_padre',
+                                    'primer_nombre_padre', 'segundo_nombre_padre', 'apellido_paterno_padre',
+                                    'apellido_materno_padre', 'direccion_padre', 'correo_padre', 
+                                    'telefono_padre', 'forma_pago_pensiones', 'facturacion', 
+                                    'cedula_ruc', 'razon_social', 'direccion_facturacion'
+                                ];
+
+                                campos.forEach(campo => {
+                                    if (data[campo] !== null) {
+                                        let input = document.getElementById(campo);
+                                        if (input) {
+                                            input.value = data[campo];
+                                        }
+                                    }
+                                });
+
+                                // Llenamos los campos de referencia_familiar con índices [0] hasta [11]
+                                if (data.referencia_familiar) {
+                                    let referencias = JSON.parse(data.referencia_familiar); // Convertimos a Array
+
+                                    referencias.forEach((valor, index) => {
+                                        let input = document.querySelector(`input[name="referencia_familiar[${index}]"]`);
+                                        if (input) {
+                                            input.value = valor;
+                                        }
+                                    });
+                                }
+
+                                // Llenamos autorización legal si es un array también
+                                if (data.autorizacion_legal_estudiante) {
+                                    let autorizaciones = JSON.parse(data.autorizacion_legal_estudiante);
+                                    autorizaciones.forEach((valor, index) => {
+                                        let input = document.querySelector(`input[name="autorizacion_legal_estudiante[${index}]"]`);
+                                        if (input) {
+                                            input.value = valor;
+                                        }
+                                    });
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            console.log('Error:', error);
+                        });
+                }
+            });
         });
     </script>
 </x-fichas>
