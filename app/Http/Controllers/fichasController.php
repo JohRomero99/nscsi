@@ -44,6 +44,7 @@ class fichasController extends Controller
                 'direccion_madre' => $request->direccion_madre,
                 'correo_madre' => $request->correo_madre,
                 'telefono_madre' => $request->telefono_madre,
+                'relacion_representante_uno' => $request->relacion_representante_uno,
                 // 
                 'cedula_padre' => $request->cedula_padre,
                 'primer_nombre_padre' => $request->primer_nombre_padre,
@@ -53,12 +54,14 @@ class fichasController extends Controller
                 'direccion_padre' => $request->direccion_padre,
                 'correo_padre' => $request->correo_padre,
                 'telefono_padre' => $request->telefono_padre,
+                'relacion_representante_dos' => $request->relacion_representante_dos,
                 // 
                 'forma_pago_pensiones' => $request->forma_pago_pensiones,
                 'facturacion' => $request->facturacion,
                 'cedula_ruc' => $request->cedula_ruc,
                 'razon_social' => $request->razon_social,
                 'direccion_facturacion' => $request->direccion_facturacion,
+                'correo_facturacion' => $request->correo_facturacion,
                 'referencia_familiar' => json_encode($request->referencia_familiar),
                 'informacion_verdadera' => $request->informacion_verdadera,
             ]);
@@ -89,7 +92,8 @@ class fichasController extends Controller
 
     public function buscarCedulaFichaMatricula(Request $request)
     {
-        $cedula = matriculacion::where('cedula_estudiante', '0955546601')->first(); // Buscar en la base de 
+        $cedula = matriculacion::where('cedula_estudiante', $request->cedula)->first(); // Buscar en la base de 
+        return $cedula;
         return response()->json($cedula);
         // if ($persona) {
         //     // Retornar los datos de la persona como JSON si existe

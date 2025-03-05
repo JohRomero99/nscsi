@@ -45,6 +45,7 @@ class aspiranteRequest extends FormRequest
             'direccion_madre' => ['required'],
             'correo_madre' => ['required', 'email:rfc,dns'],
             'telefono_madre' => ['required', 'regex:/^09\d{8}$/'],
+            'relacion_representante_uno' => ['required', 'not_in:--seleccionar--'],
             
             // Datos del Padre
             'cedula_padre' => ['required','numeric','document_ec:ci'],
@@ -55,6 +56,7 @@ class aspiranteRequest extends FormRequest
             'direccion_padre' => ['required'],
             'correo_padre' => ['required', 'email:rfc,dns'],
             'telefono_padre' => ['required', 'regex:/^09\d{8}$/'],
+            'relacion_representante_dos' => ['required', 'not_in:--seleccionar--'],
 
             // Forma de Pago
             'forma_pago_pensiones' => ['required','not_in:--seleccionar--'],
@@ -62,6 +64,7 @@ class aspiranteRequest extends FormRequest
             'cedula_ruc' => ['required_if:facturacion,Si'],
             'razon_social' => ['required_if:facturacion,Si'],
             'direccion_facturacion' => ['required_if:facturacion,Si'],
+            'correo_facturacion' => ['required_if:facturacion,Si'],
             'telefono_facturacion' => ['required_if:facturacion,Si'],
             'referencia_familiar.0' => ['required','document_ec:ci'],
             'referencia_familiar.1' => ['required','regex:/^[A-Za-záéíóúÁÉÍÓÚñÑ]+(?:\s[A-Za-záéíóúÁÉÍÓÚñÑ]+)*$/u'],
@@ -82,6 +85,13 @@ class aspiranteRequest extends FormRequest
     public function attributes(): array
 {
     return [
+        'cedula_estudiante' => 'cédula',
+        'primer_nombre_estudiante' => 'primer nombre',
+        'segundo_nombre_estudiante' => 'segundo nombre',
+        'apellido_paterno_estudiante' => 'apellido paterno',
+        'apellido_materno_estudiante' => 'apellido materno',
+        'relacion_representante_uno' => '--seleccionar--',
+        'relacion_representante_dos' => '--seleccionar--',
         'genero_estudiante' => 'género',
         // 
         'cedula_madre' => 'cédula',
@@ -108,6 +118,7 @@ class aspiranteRequest extends FormRequest
         'razon_social' => 'razon social',
         'telefono_facturacion' => 'teléfono',
         'direccion_facturacion' => 'dirección',
+        'correo_facturacion' => 'correo',
         'referencia_familiar.0' => 'cédula',
         'referencia_familiar.1' => 'nombre',
         'referencia_familiar.2' => 'teléfono',

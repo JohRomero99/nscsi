@@ -87,7 +87,6 @@
                                 ⚠️ <span>{{ $message }}</span>
                             </div>
                         @enderror
-
                     </div>
 
                     <!-- Segundo Nombre Estudiante -->
@@ -196,6 +195,29 @@
                         @enderror
                     </div>
 
+                    <!-- Estudiante Nuevo o NSC -->
+                    <div class="col-span-4">
+                        <label for="opcion" class="block text-gray-700 font-medium mb-2">
+                            Estudiante Nuevo o Nsc
+                        </label>
+
+                        <select 
+                            id="nuevo_nsc" 
+                            name="nuevo_nsc" 
+                            class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        >
+                            <option value="--seleccionar--" {{ old('nuevo_nsc') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
+                            <option value="Nuevo Ingreso" {{ old('nuevo_nsc') == 'Nuevo Ingreso' ? 'selected' : '' }}>Nuevo Ingreso</option>
+                            <option value="Continuidad del Periodo Anterior" {{ old('nuevo_nsc') == 'Continuidad del Periodo Anterior' ? 'selected' : '' }}>Continuidad del Periodo Anterior</option>
+                            <option value="Reingreso a la Institución" {{ old('nuevo_nsc') == 'Reingreso a la Institución' ? 'selected' : '' }}>Reingreso a la Institución</option>
+                        </select>
+                        @error('nuevo_nsc')
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
+
 
                     <!-- Codigo Unico Eléctrico -->
                     <div class="col-span-4 md:col-span-4 lg:col-span-4">
@@ -231,29 +253,6 @@
                             <option value="Mujer" {{ old('genero_estudiante') == 'Mujer' ? 'selected' : '' }}>Mujer</option>
                         </select>
                         @error('genero_estudiante')
-                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
-                                ⚠️ <span>{{ $message }}</span>
-                            </div>
-                        @enderror
-                    </div>
-
-                    <!-- Estudiante Nuevo o NSC -->
-                    <div class="col-span-4">
-                        <label for="opcion" class="block text-gray-700 font-medium mb-2">
-                            Estudiante Nuevo o Nsc
-                        </label>
-
-                        <select 
-                            id="nuevo_nsc" 
-                            name="nuevo_nsc" 
-                            class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                        >
-                            <option value="--seleccionar--" {{ old('nuevo_nsc') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
-                            <option value="Nuevo Ingreso" {{ old('nuevo_nsc') == 'Nuevo Ingreso' ? 'selected' : '' }}>Nuevo Ingreso</option>
-                            <option value="Continuidad del Periodo Anterior" {{ old('nuevo_nsc') == 'Continuidad del Periodo Anterior' ? 'selected' : '' }}>Continuidad del Periodo Anterior</option>
-                            <option value="Reingreso a la Institución" {{ old('nuevo_nsc') == 'Reingreso a la Institución' ? 'selected' : '' }}>Reingreso a la Institución</option>
-                        </select>
-                        @error('nuevo_nsc')
                             <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                 ⚠️ <span>{{ $message }}</span>
                             </div>
@@ -481,6 +480,34 @@
                         @enderror
                     </div>
 
+                    <!-- Relacion del representante con el estudiante -->
+                    <div class="col-span-4">
+                        <label for="opcion" class="block text-gray-700 font-medium mb-2">
+                            Relacion del representante con el estudiante
+                        </label>
+
+                        <select 
+                            id="relacion_representante_uno" 
+                            name="relacion_representante_uno" 
+                            class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        >
+                            <option value="--seleccionar--" {{ old('relacion_representante') == '--seleccionar--' ? 'selected' : '' }}>--seleccionar--</option>
+                            <option value="Padre" {{ old('relacion_representante_uno') == 'Padre' ? 'selected' : '' }}>Padre</option>
+                            <option value="Madre" {{ old('relacion_representante_uno') == 'Madre' ? 'selected' : '' }}>Madre</option>
+                            <option value="Abuelo" {{ old('relacion_representante_uno') == 'Abuelo' ? 'selected' : '' }}>Abuelo</option>
+                            <option value="Abuela" {{ old('relacion_representante_uno') == 'Abuela' ? 'selected' : '' }}>Abuela</option>
+                            <option value="Tío" {{ old('relacion_representante_uno') == 'Tío' ? 'selected' : '' }}>Tío</option>
+                            <option value="Tía" {{ old('relacion_representante_uno') == 'Tía' ? 'selected' : '' }}>Tía</option>
+                            <option value="Hermano" {{ old('relacion_representante_uno') == 'Hermano' ? 'selected' : '' }}>Hermano</option>
+                            <option value="Hermana" {{ old('relacion_representante_uno') == 'Hermana' ? 'selected' : '' }}>Hermana</option>
+                        </select>
+                        @error('relacion_representante_uno')
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
+
 
                     <!-- Datos del Padre -->
                     <div class="col-span-4 rounded-lg p-4 shadow-sm bg-gray-100">
@@ -641,6 +668,34 @@
                         @enderror
                     </div>
 
+                    <!-- Relacion del representante con el estudiante -->
+                    <div class="col-span-4">
+                        <label for="opcion" class="block text-gray-700 font-medium mb-2">
+                            Relacion del representante con el estudiante
+                        </label>
+
+                        <select 
+                            id="relacion_representante_dos" 
+                            name="relacion_representante_dos" 
+                            class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        >
+                            <option value="--seleccionar--" {{ old('relacion_representante_dos') == '--seleccionar--' ? 'selected' : '' }}>--seleccionar--</option>
+                            <option value="Padre" {{ old('relacion_representante_dos') == 'Padre' ? 'selected' : '' }}>Padre</option>
+                            <option value="Madre" {{ old('relacion_representante_dos') == 'Madre' ? 'selected' : '' }}>Madre</option>
+                            <option value="Abuelo" {{ old('relacion_representante_dos') == 'Abuelo' ? 'selected' : '' }}>Abuelo</option>
+                            <option value="Abuela" {{ old('relacion_representante_dos') == 'Abuela' ? 'selected' : '' }}>Abuela</option>
+                            <option value="Tío" {{ old('relacion_representante_dos') == 'Tío' ? 'selected' : '' }}>Tío</option>
+                            <option value="Tía" {{ old('relacion_representante_dos') == 'Tía' ? 'selected' : '' }}>Tía</option>
+                            <option value="Hermano" {{ old('relacion_representante_dos') == 'Hermano' ? 'selected' : '' }}>Hermano</option>
+                            <option value="Hermana" {{ old('relacion_representante_dos') == 'Hermana' ? 'selected' : '' }}>Hermana</option>
+                        </select>
+                        @error('relacion_representante_dos')
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
+
                     <div class="col-span-4 rounded-lg p-4 shadow-sm bg-gray-100">
                         <div class="relative w-full mb-1">
                             <div class="border-l-4 border-blue-500 pl-4">
@@ -769,6 +824,24 @@
                             value = "{{ old('telefono_facturacion') }}"
                         >
                         @error('telefono_facturacion')
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
+
+                    <!-- Correo -->
+                    <div class="col-span-4 hidden">
+                        <label class="block font-medium text-gray-700">Correo</label>
+                        <input 
+                            type="text" 
+                            id="correo_facturacion" 
+                            name="correo_facturacion" 
+                            placeholder="Correo..."
+                            class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                            value = "{{ old('correo_facturacion') }}"
+                        >
+                        @error('correo_facturacion')
                             <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                 ⚠️ <span>{{ $message }}</span>
                             </div>
@@ -1054,7 +1127,8 @@
                 document.getElementById('cedula_ruc').parentElement,
                 document.getElementById('razon_social').parentElement,
                 document.getElementById('direccion_facturacion').parentElement,
-                document.getElementById('telefono_facturacion').parentElement
+                document.getElementById('telefono_facturacion').parentElement,
+                document.getElementById('correo_facturacion').parentElement
             ];
 
             // Función para mostrar u ocultar los campos
@@ -1111,7 +1185,6 @@
                                 return response.json();
                             }
                             console.log('Cédula no encontrada');
-                            throw new Error('Cédula no encontrada');
                         })
                         .then(data => {
                             if (data) {
@@ -1126,7 +1199,8 @@
                                     'primer_nombre_padre', 'segundo_nombre_padre', 'apellido_paterno_padre',
                                     'apellido_materno_padre', 'direccion_padre', 'correo_padre', 
                                     'telefono_padre', 'forma_pago_pensiones', 'facturacion', 
-                                    'cedula_ruc', 'razon_social', 'direccion_facturacion'
+                                    'cedula_ruc', 'razon_social', 'direccion_facturacion', 'relacion_representante_uno',
+                                    'relacion_representante_dos'
                                 ];
 
                                 campos.forEach(campo => {
