@@ -812,24 +812,6 @@
                         @enderror
                     </div>
 
-                    <!-- Dirección -->
-                    <div class="col-span-4 hidden">
-                        <label class="block font-medium text-gray-700">Teléfono</label>
-                        <input 
-                            type="text" 
-                            id="telefono_facturacion" 
-                            name="telefono_facturacion" 
-                            placeholder="Teléfono..."
-                            class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                            value = "{{ old('telefono_facturacion') }}"
-                        >
-                        @error('telefono_facturacion')
-                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
-                                ⚠️ <span>{{ $message }}</span>
-                            </div>
-                        @enderror
-                    </div>
-
                     <!-- Correo -->
                     <div class="col-span-4 hidden">
                         <label class="block font-medium text-gray-700">Correo</label>
@@ -848,6 +830,24 @@
                         @enderror
                     </div>
 
+                    <!-- Dirección -->
+                    <div class="col-span-4 hidden">
+                        <label class="block font-medium text-gray-700">Teléfono</label>
+                        <input 
+                            type="text" 
+                            id="telefono_facturacion" 
+                            name="telefono_facturacion" 
+                            placeholder="Teléfono..."
+                            class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                            value = "{{ old('telefono_facturacion') }}"
+                        >
+                        @error('telefono_facturacion')
+                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                ⚠️ <span>{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
+
                     <div class="col-span-4">
                         <div class="space-y-4">
                             <p class="text-center h2">Autorización Representante Legal Retiro de Estudiantes</p>
@@ -860,10 +860,10 @@
                                         </div>
                                         <div class="mt-2">
                                             <p>
-                                                <label class="block font-medium text-gray-700 mt-1">Cédula</label> 
+                                                <label class="block font-medium text-gray-700 mt-1">Nombres</label> 
                                                 <input 
                                                     type="text" 
-                                                    placeholder="Cédula..."
+                                                    placeholder="Nombres..."
                                                     name="referencia_familiar[0]"
                                                     value="{{ old('referencia_familiar.0') }}"
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
@@ -875,13 +875,13 @@
                                                 </div>
                                             @enderror
                                             <p>
-                                                <label class="block font-medium text-gray-700 mt-1">Nombres</label> 
+                                                <label class="block font-medium text-gray-700 mt-1">Cédula</label> 
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[1]"
                                                     value="{{ old('referencia_familiar.1') }}"
-                                                    placeholder="Nombres..."
+                                                    placeholder="Cédula..."
                                                 >
                                             </p>
                                             @error('referencia_familiar.1')
@@ -932,13 +932,13 @@
                                         </div>
                                         <div class="mt-2">
                                             <p>
-                                                <label class="block font-medium text-gray-700 mt-1">Cédula</label> 
+                                                <label class="block font-medium text-gray-700 mt-1">Nombres</label> 
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[4]"
                                                     value="{{ old('referencia_familiar.4') }}"
-                                                    placeholder="Cédula..."
+                                                    placeholder="Nombres..."
                                                 >
                                                 @error('referencia_familiar.4')
                                                     <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
@@ -947,13 +947,13 @@
                                                 @enderror
                                             </p>
                                             <p>
-                                                <label class="block font-medium text-gray-700 mt-1">Nombres</label> 
+                                                <label class="block font-medium text-gray-700 mt-1">Cédula</label> 
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[5]"
                                                     value="{{ old('referencia_familiar.5') }}"
-                                                    placeholder="Nombres..."
+                                                    placeholder="Cédula..."
                                                 >
                                             </p>
                                             @error('referencia_familiar.5')
@@ -1004,13 +1004,13 @@
                                         </div>
                                         <div class="mt-2">
                                             <p>
-                                                <label class="block font-medium text-gray-700 mt-1">Cédula</label> 
+                                                <label class="block font-medium text-gray-700 mt-1">Nombres</label> 
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[8]"
                                                     value="{{ old('referencia_familiar.8') }}"
-                                                    placeholder="Cédula..."
+                                                    placeholder="Nombres..."
                                                 >
                                                 @error('referencia_familiar.8')
                                                     <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
@@ -1019,13 +1019,13 @@
                                                 @enderror
                                             </p>
                                             <p>
-                                                <label class="block font-medium text-gray-700 mt-1">Nombres</label> 
+                                                <label class="block font-medium text-gray-700 mt-1">Cédula</label> 
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                     name="referencia_familiar[9]"
                                                     value="{{ old('referencia_familiar.9') }}"
-                                                    placeholder="Nombres..."
+                                                    placeholder="Cédula..."
                                                 >
                                                 @error('referencia_familiar.9')
                                                     <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
@@ -1200,7 +1200,7 @@
                                     'apellido_materno_padre', 'direccion_padre', 'correo_padre', 
                                     'telefono_padre', 'forma_pago_pensiones', 'facturacion', 
                                     'cedula_ruc', 'razon_social', 'direccion_facturacion', 'relacion_representante_uno',
-                                    'relacion_representante_dos'
+                                    'relacion_representante_dos','correo_facturacion','telefono_facturacion'
                                 ];
 
                                 campos.forEach(campo => {

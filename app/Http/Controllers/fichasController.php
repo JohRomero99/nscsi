@@ -62,6 +62,7 @@ class fichasController extends Controller
                 'razon_social' => $request->razon_social,
                 'direccion_facturacion' => $request->direccion_facturacion,
                 'correo_facturacion' => $request->correo_facturacion,
+                'telefono_facturacion' => $request->telefono_facturacion,
                 'referencia_familiar' => json_encode($request->referencia_familiar),
                 'informacion_verdadera' => $request->informacion_verdadera,
             ]);

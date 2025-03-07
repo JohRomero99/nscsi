@@ -52,6 +52,7 @@ return new class extends Migration
             $table->string('razon_social')->nullable();
             $table->string('direccion_facturacion')->nullable();
             $table->string('correo_facturacion')->nullable();
+            $table->string('telefono_facturacion')->nullable();
             $table->json('referencia_familiar')->nullable();
             $table->string('informacion_verdadera')->nullable();
             $table->json('autorizacion_legal_estudiante')->nullable();
