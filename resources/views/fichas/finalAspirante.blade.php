@@ -59,66 +59,66 @@
                                 Yo,
                                 <select 
                                     class="border border-gray-300 rounded-lg p-2 w-40"
-                                    name="autorizacion_estudiante[]" 
+                                    name="autorizacion_nombres_representante" 
                                 >
-                                    <option value="--seleccionar--" {{ old('nombres_apellidos_padres') == '--seleccionar--' ? 'selected' : '' }}>--selecionar--</option>
+                                    <option value="--seleccionar--">--selecionar--</option>
                                     <option value="{{ $consulta->primer_nombre_padre }} {{ $consulta->apellido_paterno_padre }}">{{ $consulta->primer_nombre_padre }} {{ $consulta->apellido_paterno_padre }}</option>
                                     <option value="{{ $consulta->primer_nombre_madre }} {{ $consulta->apellido_paterno_madre }}">{{ $consulta->primer_nombre_madre }} {{ $consulta->apellido_paterno_madre }}</option>
                                 </select>
                                 con número de cédula
                                 <select 
                                     class="border border-gray-300 rounded-lg p-2 w-40"
-                                    name="autorizacion_estudiante[]"
+                                    name="autorizacion_cedula_representante"
                                 >
-                                    <option value="--selecionar--" >--selecionar--</option>
+                                    <option value="--seleccionar--" >--selecionar--</option>
                                     <option value="{{ $consulta->cedula_padre }}" >{{ $consulta->cedula_padre }}</option>
                                     <option value="{{ $consulta->cedula_madre }}">{{ $consulta->cedula_madre }}</option>
                                 </select>,
                                 Representante Legal del estudiante
                                 <select 
                                     class="border border-gray-300 rounded-lg p-2 w-40"
-                                    name="autorizacion_estudiante[]"
+                                    name="autorizacion_nombres_estudiante"
                                 >
-                                    <option value="--selecionar--" >--selecionar--</option>
+                                    <option value="--seleccionar--" >--selecionar--</option>
                                     <option value="{{ $consulta->primer_nombre_estudiante }} {{ $consulta->apellido_paterno_estudiante }}" >{{ $consulta->primer_nombre_estudiante }} {{ $consulta->apellido_paterno_estudiante }}</option>
                                 </select>
                                 con número de cédula
                                 <select 
                                     class="border border-gray-300 rounded-lg p-2 w-40"
-                                    name="autorizacion_estudiante[]"
+                                    name="autorizacion_cedula_estudiante"
                                 >
-                                    <option value="--selecionar--" >--selecionar--</option>
+                                    <option value="--seleccionar--" >--selecionar--</option>
                                     <option value="{{ $consulta->cedula_estudiante }}" >{{ $consulta->cedula_estudiante }}</option>
                                 </select>, perteneciente al curso
                                 <select 
                                     class="border border-gray-300 rounded-lg p-2 w-40"
-                                    name="autorizacion_estudiante[]"
+                                    name="autorizacion_curso_estudiante"
                                 >
-                                    <option value="--selecionar--">--selecionar--</option>
+                                    <option value="--seleccionar--">--selecionar--</option>
                                     <option value="{{ $consulta->ano_basica }}">{{ $consulta->ano_basica }}</option>
                                 </select>, con dirección domiciliaria
                                 <select 
                                     class="border border-gray-300 rounded-lg p-2 w-40"
-                                    name="autorizacion_estudiante[]"
+                                    name="autorizacion_direccion_representante"
                                 >
-                                    <option value="--selecionar--">--selecionar--</option>
+                                    <option value="--seleccionar--">--selecionar--</option>
                                     <option value="{{ $consulta->direccion_padre }}">{{ $consulta->direccion_padre }}</option>
                                     <option value="{{ $consulta->direccion_madre }}">{{ $consulta->direccion_madre }}</option>
                                 </select>
                                 número de teléfono
                                 <select 
                                     class="border border-gray-300 rounded-lg p-2 w-40"
-                                    name="autorizacion_estudiante[]"
+                                    name="autorizacion_telefono_representante"
                                 >
-                                    <option value="--selecionar--">--selecionar--</option>
+                                    <option value="--seleccionar--">--selecionar--</option>
                                     <option value="{{ $consulta->telefono_padre }}">{{ $consulta->telefono_padre }}</option>
                                     <option value="{{ $consulta->telefono_madre }}">{{ $consulta->telefono_madre }}</option>
                                 </select>, Email
                                 <select 
                                     class="border border-gray-300 rounded-lg p-2 w-50"
-                                    name="autorizacion_estudiante[]"
+                                    name="autorizacion_email_representante"
                                 >
-                                    <option value="--selecionar--">--selecionar--</option>
+                                    <option value="--seleccionar--">--selecionar--</option>
                                     <option value="{{ $consulta->correo_padre }}">{{ $consulta->correo_padre }}</option>
                                     <option value="{{ $consulta->correo_madre }}">{{ $consulta->correo_madre }}</option>
                                 </select>.
@@ -140,4 +140,13 @@
             </form>
         </div>
     </div>
+    <script>
+        @if ($errors->any())
+        Swal.fire({
+            title: "Error",
+            text: "Verifica que todos los campos se encuentren seleccionados",
+            icon: "error"
+        });
+        @endif
+    </script>
 </x-fichas>

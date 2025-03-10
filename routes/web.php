@@ -49,4 +49,7 @@ Route::get('/ficha/aspirante/registro/final/create/{cedula}', [fichasController:
 Route::post('/ficha/aspirante/registro/final/store', [fichasController::class, 'createStoreAspirante'])->name('ficha.aspirante.registro.final.store');
 Route::get('/ficha/aspirante/create/buscar/cedula', [fichasController::class, 'buscarCedulaFichaMatricula'])->name('buscar.cedula.ficha.matricula');
 
+Route::get('/ficha/salud/create', [fichasController::class, 'createSalud'])->name('ficha.salud.create');
+Route::post('/ficha/salud/store', [fichasController::class, 'storeSalud'])->name('ficha.salud.store');
+
 require __DIR__.'/auth.php';

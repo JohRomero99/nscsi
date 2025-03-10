@@ -248,7 +248,7 @@
                             name="genero_estudiante" 
                             class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         >
-                            <option value="--seleccionar--" {{ old('genero_estudiante') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
+                            <option value="--seleccionar--" {{ old('genero_estudiante') == '--seleccionar--' ? 'selected' : '' }}>--seleccionar--</option>
                             <option value="Hombre" {{ old('genero_estudiante') == 'Hombre' ? 'selected' : '' }}>Hombre</option>
                             <option value="Mujer" {{ old('genero_estudiante') == 'Mujer' ? 'selected' : '' }}>Mujer</option>
                         </select>
@@ -271,7 +271,7 @@
                             class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                             onchange="mostrarRutaEscolar()"
                         >
-                            <option value="--seleccionar--" {{ old('transporte_escolar') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
+                            <option value="--seleccionar--" {{ old('transporte_escolar') == '--seleccionar--' ? 'selected' : '' }}>--seleccionar--</option>
                             <option value="Retiro personalmente (o persona autorizada)" {{ old('transporte_escolar') == 'Retiro personalmente (o persona autorizada)' ? 'selected' : '' }}>Retiro personalmente (o persona autorizada)</option>
                             <option value="Expreso por mi cuenta" {{ old('transporte_escolar') == 'Expreso por mi cuenta' ? 'selected' : '' }}>Expreso por mi cuenta</option>
                             <option value="Requiero expreso" {{ old('transporte_escolar') == 'Requiero expreso' ? 'selected' : '' }}>Requiero expreso</option>
@@ -720,13 +720,13 @@
                             name="forma_pago_pensiones" 
                             class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         >
-                            <option value="--seleccionar--" {{ old('forma_pago_pensiones') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
-                            <option value="Pago total anual TC a 6 meses sin intereses (matrícula gratis)" {{ old('forma_pago_pensiones') == 'Pago total anual TC a 6 meses sin intereses (matrícula gratis)' ? 'selected' : '' }}>Pago total anual TC a 6 meses sin intereses (matrícula gratis)</option>
+                            <option value="--seleccionar--" {{ old('forma_pago_pensiones') == '--seleccionar--' ? 'selected' : '' }}>--seleccionar--</option>
+                            <option value="Pago total anual TC a 6 meses sin intereses (matricula gratis)" {{ old('forma_pago_pensiones') == 'Pago total anual TC a 6 meses sin intereses (matricula gratis)' ? 'selected' : '' }}>Pago total anual TC a 6 meses sin intereses (matrícula gratis)</option>
                             <option value="Pago total anual TC a 10 meses sin intereses (plataforma gratis)" {{ old('forma_pago_pensiones') == 'Pago total anual TC a 10 meses sin intereses (plataforma gratis)' ? 'selected' : '' }}>Pago total anual TC a 10 meses sin intereses (plataforma gratis)</option>
-                            <option value="Pago total anual con transferencia bancaria (matrícula gratis)" {{ old('forma_pago_pensiones') == 'Pago total anual con transferencia bancaria (matrícula gratis)' ? 'selected' : '' }}>Pago total anual con transferencia bancaria (matrícula gratis)</option>
-                            <option value="Pago total anual efectivo en Colecturía (matrícula gratis)" {{ old('forma_pago_pensiones') == 'Pago total anual efectivo en Colecturía (matrícula gratis)' ? 'selected' : '' }}>Pago total anual efectivo en Colecturía (matrícula gratis)</option>
+                            <option value="Pago total anual con transferencia bancaria (matricula gratis)" {{ old('forma_pago_pensiones') == 'Pago total anual con transferencia bancaria (matricula gratis)' ? 'selected' : '' }}>Pago total anual con transferencia bancaria (matrícula gratis)</option>
+                            <option value="Pago total anual efectivo en Colecturia (matricula gratis)" {{ old('forma_pago_pensiones') == 'Pago total anual efectivo en Colecturía (matricula gratis)' ? 'selected' : '' }}>Pago total anual efectivo en Colecturía (matrícula gratis)</option>
                             <option value="Pago mensual transferencia bancaria" {{ old('forma_pago_pensiones') == 'Pago mensual transferencia bancaria' ? 'selected' : '' }}>Pago mensual transferencia bancaria</option>
-                            <option value="Pago mensual tarjeta de crédito" {{ old('forma_pago_pensiones') == 'Pago mensual tarjeta de crédito' ? 'selected' : '' }}>Pago mensual tarjeta de crédito</option>
+                            <option value="Pago mensual tarjeta de credito" {{ old('forma_pago_pensiones') == 'Pago mensual tarjeta de crédito' ? 'selected' : '' }}>Pago mensual tarjeta de crédito</option>
                         </select>
                         @error('forma_pago_pensiones')
                             <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
@@ -864,12 +864,13 @@
                                                 <input 
                                                     type="text" 
                                                     placeholder="Nombres..."
-                                                    name="referencia_familiar[0]"
-                                                    value="{{ old('referencia_familiar.0') }}"
+                                                    name="primera_referencia_familiar_nombres"
+                                                    id="primera_referencia_familiar_nombres"
+                                                    value="{{ old('primera_referencia_familiar_nombres') }}"
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                                 >
                                             </p>
-                                            @error('referencia_familiar.0')
+                                            @error('primera_referencia_familiar_nombres')
                                                 <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                     ⚠️ <span>{{ $message }}</span>
                                                 </div>
@@ -879,12 +880,13 @@
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="referencia_familiar[1]"
-                                                    value="{{ old('referencia_familiar.1') }}"
+                                                    name="primera_referencia_familiar_cedula"
+                                                    id="primera_referencia_familiar_cedula"
+                                                    value="{{ old('primera_referencia_familiar_cedula') }}"
                                                     placeholder="Cédula..."
                                                 >
                                             </p>
-                                            @error('referencia_familiar.1')
+                                            @error('primera_referencia_familiar_cedula')
                                                 <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                     ⚠️ <span>{{ $message }}</span>
                                                 </div>
@@ -894,12 +896,13 @@
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="referencia_familiar[2]"
-                                                    value="{{ old('referencia_familiar.2') }}"
+                                                    name="primera_referencia_familiar_telefono"
+                                                    id="primera_referencia_familiar_telefono"
+                                                    value="{{ old('primera_referencia_familiar_telefono') }}"
                                                     placeholder="Teléfono..."
                                                 >
                                             </p>
-                                            @error('referencia_familiar.2')
+                                            @error('primera_referencia_familiar_telefono')
                                                 <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                     ⚠️ <span>{{ $message }}</span>
                                                 </div>
@@ -909,11 +912,12 @@
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="referencia_familiar[3]"
-                                                    value="{{ old('referencia_familiar.3') }}"
+                                                    name="primera_referencia_familiar_modalidad"
+                                                    id="primera_referencia_familiar_modalidad"
+                                                    value="{{ old('primera_referencia_familiar_modalidad') }}"
                                                     placeholder="Modalidad..."
                                                 >
-                                                @error('referencia_familiar.3')
+                                                @error('primera_referencia_familiar_modalidad')
                                                     <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                         ⚠️ <span>{{ $message }}</span>
                                                     </div>
@@ -936,11 +940,12 @@
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="referencia_familiar[4]"
-                                                    value="{{ old('referencia_familiar.4') }}"
+                                                    name="segunda_referencia_familiar_nombres"
+                                                    id="segunda_referencia_familiar_nombres"
+                                                    value="{{ old('segunda_referencia_familiar_nombres') }}"
                                                     placeholder="Nombres..."
                                                 >
-                                                @error('referencia_familiar.4')
+                                                @error('segunda_referencia_familiar_nombres')
                                                     <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                         ⚠️ <span>{{ $message }}</span>
                                                     </div>
@@ -951,12 +956,13 @@
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="referencia_familiar[5]"
-                                                    value="{{ old('referencia_familiar.5') }}"
+                                                    name="segunda_referencia_familiar_cedula"
+                                                    id="segunda_referencia_familiar_cedula"
+                                                    value="{{ old('segunda_referencia_familiar_cedula') }}"
                                                     placeholder="Cédula..."
                                                 >
                                             </p>
-                                            @error('referencia_familiar.5')
+                                            @error('segunda_referencia_familiar_cedula')
                                                 <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                     ⚠️ <span>{{ $message }}</span>
                                                 </div>
@@ -966,11 +972,12 @@
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="referencia_familiar[6]"
-                                                    value="{{ old('referencia_familiar.6') }}"
+                                                    name="segunda_referencia_familiar_telefono"
+                                                    id="segunda_referencia_familiar_telefono"
+                                                    value="{{ old('segunda_referencia_familiar_telefono') }}"
                                                     placeholder="Teléfono..."
                                                 >
-                                                @error('referencia_familiar.6')
+                                                @error('segunda_referencia_familiar_telefono')
                                                     <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                         ⚠️ <span>{{ $message }}</span>
                                                     </div>
@@ -981,11 +988,12 @@
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="referencia_familiar[7]"
-                                                    value="{{ old('referencia_familiar.7') }}"
+                                                    name="segunda_referencia_familiar_modalidad"
+                                                    id="segunda_referencia_familiar_modalidad"
+                                                    value="{{ old('segunda_referencia_familiar_modalidad') }}"
                                                     placeholder="Modalidad..."
                                                 >
-                                                @error('referencia_familiar.7')
+                                                @error('segunda_referencia_familiar_modalidad')
                                                     <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                         ⚠️ <span>{{ $message }}</span>
                                                     </div>
@@ -1008,11 +1016,12 @@
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="referencia_familiar[8]"
-                                                    value="{{ old('referencia_familiar.8') }}"
+                                                    name="tercera_referencia_familiar_nombres"
+                                                    id="tercera_referencia_familiar_nombres"
+                                                    value="{{ old('tercera_referencia_familiar_nombres') }}"
                                                     placeholder="Nombres..."
                                                 >
-                                                @error('referencia_familiar.8')
+                                                @error('tercera_referencia_familiar_nombres')
                                                     <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                         ⚠️ <span>{{ $message }}</span>
                                                     </div>
@@ -1023,11 +1032,12 @@
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="referencia_familiar[9]"
-                                                    value="{{ old('referencia_familiar.9') }}"
+                                                    name="tercera_referencia_familiar_cedula"
+                                                    id="tercera_referencia_familiar_cedula"
+                                                    value="{{ old('tercera_referencia_familiar_cedula') }}"
                                                     placeholder="Cédula..."
                                                 >
-                                                @error('referencia_familiar.9')
+                                                @error('tercera_referencia_familiar_cedula')
                                                     <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                         ⚠️ <span>{{ $message }}</span>
                                                     </div>
@@ -1038,11 +1048,12 @@
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="referencia_familiar[10]"
-                                                    value="{{ old('referencia_familiar.10') }}"
+                                                    name="tercera_referencia_familiar_telefono"
+                                                    id="tercera_referencia_familiar_telefono"
+                                                    value="{{ old('tercera_referencia_familiar_telefono') }}"
                                                     placeholder="Teléfono..."
                                                 >
-                                                @error('referencia_familiar.10')
+                                                @error('tercera_referencia_familiar_telefono')
                                                     <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                         ⚠️ <span>{{ $message }}</span>
                                                     </div>
@@ -1053,11 +1064,12 @@
                                                 <input 
                                                     type="text" 
                                                     class="referencia_familiar mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                                    name="referencia_familiar[11]"
-                                                    value="{{ old('referencia_familiar.11') }}"
+                                                    name="tercera_referencia_familiar_modalidad"
+                                                    id="tercera_referencia_familiar_modalidad"
+                                                    value="{{ old('tercera_referencia_familiar_modalidad') }}"
                                                     placeholder="Modalidad..."
                                                 >
-                                                @error('referencia_familiar.11')
+                                                @error('tercera_referencia_familiar_modalidad')
                                                     <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
                                                         ⚠️ <span>{{ $message }}</span>
                                                     </div>
@@ -1082,7 +1094,7 @@
                         </div>
                         <div class="text-center mt-5">
                             <input type="checkbox" name="informacion_verdadera" id="confirmCheck" class="scale-125 mr-2">
-                            <label for="confirmCheck" class="text-base">Sí, certifico que toda la información ingresada es correcta</label>
+                            <label for="confirmCheck" class="text-base">Certifico que toda la información ingresada es correcta</label>
                         </div>
                         @error('informacion_verdadera')
                             <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
@@ -1200,7 +1212,11 @@
                                     'apellido_materno_padre', 'direccion_padre', 'correo_padre', 
                                     'telefono_padre', 'forma_pago_pensiones', 'facturacion', 
                                     'cedula_ruc', 'razon_social', 'direccion_facturacion', 'relacion_representante_uno',
-                                    'relacion_representante_dos','correo_facturacion','telefono_facturacion'
+                                    'relacion_representante_dos','correo_facturacion','telefono_facturacion','primera_referencia_familiar_nombres',
+                                    'primera_referencia_familiar_cedula', 'primera_referencia_familiar_telefono', 'primera_referencia_familiar_modalidad',
+                                    'segunda_referencia_familiar_nombres', 'segunda_referencia_familiar_cedula', 'segunda_referencia_familiar_telefono',
+                                    'segunda_referencia_familiar_modalidad', 'tercera_referencia_familiar_nombres', 'tercera_referencia_familiar_cedula',
+                                    'tercera_referencia_familiar_telefono', 'tercera_referencia_familiar_modalidad'
                                 ];
 
                                 campos.forEach(campo => {
@@ -1213,16 +1229,16 @@
                                 });
 
                                 // Llenamos los campos de referencia_familiar con índices [0] hasta [11]
-                                if (data.referencia_familiar) {
-                                    let referencias = JSON.parse(data.referencia_familiar); // Convertimos a Array
+                                // if (data.referencia_familiar) {
+                                //     let referencias = JSON.parse(data.referencia_familiar); // Convertimos a Array
 
-                                    referencias.forEach((valor, index) => {
-                                        let input = document.querySelector(`input[name="referencia_familiar[${index}]"]`);
-                                        if (input) {
-                                            input.value = valor;
-                                        }
-                                    });
-                                }
+                                //     referencias.forEach((valor, index) => {
+                                //         let input = document.querySelector(`input[name="referencia_familiar[${index}]"]`);
+                                //         if (input) {
+                                //             input.value = valor;
+                                //         }
+                                //     });
+                                // }
 
                                 // Llenamos autorización legal si es un array también
                                 if (data.autorizacion_legal_estudiante) {
