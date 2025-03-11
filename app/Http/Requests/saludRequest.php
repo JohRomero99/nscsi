@@ -32,16 +32,35 @@ class saludRequest extends FormRequest
             'peso_libras' => ['required', 'numeric', 'min:20', 'max:500'],
 
             'discapacidad_si_no' => ['required','not_in:--seleccionar--'],
+
             'discapacidad_lenguaje_si_no' => ['required'],
             'discapacidad_lenguaje_porcentaje' => ['nullable','required_if:discapacidad_lenguaje_si_no,Si','numeric','min:0','max:100'],
-            'discapacidad_lenguaje_detalle' => ['nullable','required_if:discapacidad_lenguaje_si_no,Si','regex:/^[a-zA-Z0-9\s]*$/'],
+            'discapacidad_lenguaje_detalle' => ['nullable','required_if:discapacidad_lenguaje_si_no,Si'],
+
             'discapacidad_auditiva_si_no' => ['required'],
             'discapacidad_auditiva_porcentaje' => ['nullable','required_if:discapacidad_auditiva_si_no,Si','numeric','min:0','max:100'],
-            'discapacidad_auditiva_detalle' => ['nullable','required_if:discapacidad_auditiva_porcentaje,Si','regex:/^[a-zA-Z0-9\s]*$/'],
+            'discapacidad_auditiva_detalle' => ['nullable','required_if:discapacidad_auditiva_si_no,Si'],
+
             'discapacidad_visual_si_no' => ['required'],
             'discapacidad_visual_porcentaje' => ['nullable','required_if:discapacidad_visual_si_no,Si','numeric','min:0','max:100'],
-            'discapacidad_visual_detalle' => ['nullable','required_if:discapacidad_visual_si_no,Si','regex:/^[a-zA-Z0-9\s]*$/'],
-            
+            'discapacidad_visual_detalle' => ['nullable','required_if:discapacidad_visual_si_no,Si'],
+
+            'discapacidad_fisica_si_no' => ['required'],
+            'discapacidad_fisica_porcentaje' => ['nullable','required_if:discapacidad_fisica_si_no,Si','numeric','min:0','max:100'],
+            'discapacidad_fisica_detalle' => ['nullable','required_if:discapacidad_fisica_si_no,Si'],
+
+            'discapacidad_intelectual_si_no' => ['required'],
+            'discapacidad_intelectual_porcentaje' => ['nullable','required_if:discapacidad_intelectual_si_no,Si','numeric','min:0','max:100'],
+            'discapacidad_intelectual_detalle' => ['nullable','required_if:discapacidad_intelectual_si_no,Si'],
+
+            'cronicas_catastroficas_si_no' => ['required'],
+            'cronicas_catastroficas_porcentaje' => ['nullable','required_if:cronicas_catastroficas_si_no,Si','numeric','min:0','max:100'],
+            'cronicas_catastroficas_detalle' => ['nullable','required_if:cronicas_catastroficas_si_no,Si'],
+
+            'psicosocial_si_no' => ['required'],
+            'psicosocial_porcentaje' =>['nullable','required_if:psicosocial_si_no,Si','numeric','min:0','max:100'],
+            'psicosocial_detalle' => ['nullable','required_if:psicosocial_si_no,Si'],
+
             
             'aparatos_ayuda' => ['required','not_in:--seleccionar--'],
             'especifique_aparatos_ayuda' => ['nullable','required_if:aparatos_ayuda,Anteojos,Audífonos','regex:/^[a-zA-Z0-9\s]*$/'],
@@ -55,9 +74,9 @@ class saludRequest extends FormRequest
             'especifique_accidente_enfermedad' => ['nullable','required_if:enfermedades_accidentes,Varicela,Chagas,Neumonía,Diabetes,Otitis,Angina,Enfermedades de la sangre,Desgarro,Paperas,Sarampión,Asma,Fiebre reumática,Hipertiroidismo,Tendinitis,Pérdida de conocimiento,Problemas de la columna,Rubeola,Epilipsia,Bronquitis,Hepatitis,Hipotiroidismo,Arritmia,Sangrado nasal constante,Luxación'],
             'intervencion_quirurgica_si_no'=> ['required','not_in:--seleccionar--'],
             'cantidad_intervencion_quirugicas' => ['required_if:intervencion_quirurgica_si_no,Si'],
-            'tipo_intervencion_quirugica' => ['required_if:intervencion_quirurgica_si_no,Si','regex:/^[a-zA-Z0-9\s]*$/'],
-            'fecha_intervencion_quirugica' => ['required_if:intervencion_quirurgica_si_no,Si','date'],
-            'fecha_ultima_desparasitacion' => ['required','date'],
+            'tipo_intervencion_quirugica' => ['nullable','required_if:intervencion_quirurgica_si_no,Si','regex:/^[a-zA-Z0-9\s]*$/'],
+            'fecha_intervencion_quirugica' => ['nullable','required_if:intervencion_quirurgica_si_no,Si','date'],
+            'fecha_ultima_desparasitacion' => ['nullable','required','date'],
             'vacunas' => ['required','not_in:--seleccionar--'],
             'otra_vacuna' => ['nullable','required_if:vacunas,Otra','regex:/^[a-zA-Z0-9\s]*$/'],
             'dificultad_dormir' => ['required','not_in:--seleccionar--'],

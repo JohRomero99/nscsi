@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('ano_basica')->nullable();
             $table->string('estatura')->nullable();
             $table->string('peso_libras')->nullable();
+
             $table->string('discapacidad_si_no')->nullable();
             $table->string('discapacidad_lenguaje_si_no')->nullable();
             $table->string('discapacidad_lenguaje_porcentaje')->nullable();
@@ -31,6 +32,20 @@ return new class extends Migration
             $table->string('discapacidad_visual_si_no')->nullable();
             $table->string('discapacidad_visual_porcentaje')->nullable();
             $table->string('discapacidad_visual_detalle')->nullable();
+            $table->string('discapacidad_fisica_si_no')->nullable();
+            $table->string('discapacidad_fisica_porcentaje')->nullable();
+            $table->string('discapacidad_fisica_detalle')->nullable();
+            $table->string('discapacidad_intelectual_si_no')->nullable();
+            $table->string('discapacidad_intelectual_porcentaje')->nullable();
+            $table->string('discapacidad_intelectual_detalle')->nullable();
+
+            $table->string('cronicas_catastroficas_si_no')->nullable();
+            $table->string('cronicas_catastroficas_porcentaje')->nullable();
+            $table->string('cronicas_catastroficas_detalle')->nullable();
+            $table->string('psicosocial_si_no')->nullable();
+            $table->string('psicosocial_porcentaje')->nullable();
+            $table->string('psicosocial_detalle')->nullable();
+
             $table->string('aparatos_ayuda')->nullable();
             $table->string('especifique_aparatos_ayuda')->nullable();
             $table->string('carnet_conadis_si_no')->nullable();

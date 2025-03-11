@@ -43,7 +43,7 @@
                             name="cedula_estudiante" 
                             placeholder="Ingrese su cédula"
                             class="mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                            value = "{{ old('cedula_estudiante') }}"
+                            value = "{{ old('cedula_estudiante') }}" 
                         >
                         @error('cedula_estudiante')
                             <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
@@ -240,9 +240,14 @@
                                         class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 condicion-select"
                                         name="discapacidad_lenguaje_si_no"
                                     >
-                                        <option value="No">No</option>
-                                        <option value="Sí">Sí</option>
+                                        <option value="No" {{ old('discapacidad_lenguaje_si_no') == 'No' ? 'selected' : '' }}>No</option>
+                                        <option value="Si" {{ old('discapacidad_lenguaje_si_no') == 'Si' ? 'selected' : '' }}>Si</option>
                                     </select>
+                                    @error('discapacidad_lenguaje_si_no')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                     <div class="relative w-full">
                                         <input 
                                             type="number" 
@@ -252,16 +257,26 @@
                                             placeholder="0-100"
                                             name="discapacidad_lenguaje_porcentaje"
                                             value = "{{ old('discapacidad_lenguaje_porcentaje') }}"
+                                            readonly
                                         >
+                                        @error('discapacidad_lenguaje_porcentaje')
+                                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                ⚠️ <span>{{ $message }}</span>
+                                            </div>
+                                        @enderror
                                         <span class="absolute right-3 top-2 text-gray-500">%</span>
                                     </div>
                                     <textarea 
                                         class="mt-1 block w-full rounded-md border-gray-500 h-10 detalle-textarea opacity-50" 
                                         name="discapacidad_lenguaje_detalle"
-                                        value = "{{ old('discapacidad_lenguaje_detalle') }}"
-                                        disabled
+                                        readonly
                                         >
                                     </textarea>
+                                    @error('discapacidad_lenguaje_detalle')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <!-- Auditiva -->
@@ -271,9 +286,14 @@
                                         class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 condicion-select"
                                         name="discapacidad_auditiva_si_no"
                                     >
-                                        <option value="No">No</option>
-                                        <option value="Sí">Sí</option>
+                                        <option value="No" {{ old('discapacidad_auditiva_si_no') == 'No' ? 'selected' : '' }}>No</option>
+                                        <option value="Si" {{ old('discapacidad_auditiva_si_no') == 'Si' ? 'selected' : '' }}>Si</option>
                                     </select>
+                                    @error('discapacidad_auditiva_si_no')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                     <div class="relative w-full">
                                         <input 
                                             type="number" 
@@ -283,17 +303,26 @@
                                             placeholder="0-100" 
                                             name="discapacidad_auditiva_porcentaje"
                                             value = "{{ old('discapacidad_auditiva_porcentaje') }}"
-                                            disabled
+                                            readonly
                                         >
+                                        @error('discapacidad_auditiva_porcentaje')
+                                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                ⚠️ <span>{{ $message }}</span>
+                                            </div>
+                                        @enderror
                                         <span class="absolute right-3 top-2 text-gray-500">%</span>
                                     </div>
                                     <textarea 
                                         class="mt-1 block w-full rounded-md border-gray-500 h-10 detalle-textarea opacity-50" 
                                         name="discapacidad_auditiva_detalle"
-                                        value = "{{ old('discapacidad_auditiva_detalle') }}"
-                                        disabled
+                                        readonly
                                         >
                                     </textarea>
+                                    @error('discapacidad_auditiva_detalle')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <!-- Visual -->
@@ -302,10 +331,15 @@
                                     <select 
                                         class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 condicion-select"
                                         name="discapacidad_visual_si_no"
-                                        >
-                                        <option value="No">No</option>
-                                        <option value="Sí">Sí</option>
+                                    >
+                                        <option value="No" {{ old('discapacidad_visual_si_no') == 'No' ? 'selected' : '' }}>No</option>
+                                        <option value="Si" {{ old('discapacidad_visual_si_no') == 'Si' ? 'selected' : '' }}>Si</option>
                                     </select>
+                                    @error('discapacidad_visual_si_no')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                     <div class="relative w-full">
                                         <input 
                                             type="number" 
@@ -315,17 +349,26 @@
                                             placeholder="0-100"
                                             name="discapacidad_visual_porcentaje"
                                             value = "{{ old('discapacidad_visual_porcentaje') }}"
-                                            disabled
+                                            readonly
                                         >
+                                        @error('discapacidad_visual_porcentaje')
+                                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                ⚠️ <span>{{ $message }}</span>
+                                            </div>
+                                        @enderror
                                         <span class="absolute right-3 top-2 text-gray-500">%</span>
                                     </div>
                                     <textarea 
                                         class="mt-1 block w-full rounded-md border-gray-500 h-10 detalle-textarea opacity-50" 
                                         name="discapacidad_visual_detalle"
-                                        value = "{{ old('discapacidad_visual_detalle') }}"
-                                        disabled
+                                        readonly
                                         >
                                     </textarea>
+                                    @error('discapacidad_visual_detalle')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <!-- Física -->
@@ -333,11 +376,16 @@
                                     <div class="font-semibold md:font-normal">Física</div>
                                     <select 
                                         class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 condicion-select"
-                                        name="discapacidad_fisca_si_no"
+                                        name="discapacidad_fisica_si_no"
                                     >
-                                        <option value="No">No</option>
-                                        <option value="Sí">Sí</option>
+                                        <option value="No" {{ old('discapacidad_fisica_si_no') == 'No' ? 'selected' : '' }}>No</option>
+                                        <option value="Si" {{ old('discapacidad_fisica_si_no') == 'Si' ? 'selected' : '' }}>Si</option>
                                     </select>
+                                    @error('discapacidad_fisica_si_no')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                     <div class="relative w-full">
                                         <input 
                                             type="number" 
@@ -347,17 +395,26 @@
                                             placeholder="0-100"
                                             name="discapacidad_fisica_porcentaje"
                                             value = "{{ old('discapacidad_fisica_porcentaje') }}"
-                                            disabled
+                                            readonly
                                         >
+                                        @error('discapacidad_fisica_porcentaje')
+                                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                ⚠️ <span>{{ $message }}</span>
+                                            </div>
+                                        @enderror
                                         <span class="absolute right-3 top-2 text-gray-500">%</span>
                                     </div>
                                     <textarea 
                                         class="mt-1 block w-full rounded-md border-gray-500 h-10 detalle-textarea opacity-50" 
                                         name="discapacidad_fisica_detalle"
-                                        value = "{{ old('discapacidad_fisica_detalle') }}"
-                                        disabled
+                                        readonly
                                         >
                                     </textarea>
+                                    @error('discapacidad_fisica_detalle')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <!-- Intelectual -->
@@ -365,11 +422,16 @@
                                     <div class="font-semibold md:font-normal">Intelectual</div>
                                     <select 
                                         class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 condicion-select"
-                                        name="discapacidad_intelectua_si_no"
+                                        name="discapacidad_intelectual_si_no"
                                     >
-                                        <option value="No">No</option>
-                                        <option value="Sí">Sí</option>
+                                        <option value="No" {{ old('discapacidad_intelectual_si_no') == 'No' ? 'selected' : '' }}>No</option>
+                                        <option value="Si" {{ old('discapacidad_intelectual_si_no') == 'Si' ? 'selected' : '' }}>Si</option>
                                     </select>
+                                    @error('discapacidad_intelectual_si_no')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                     <div class="relative w-full">
                                         <input 
                                             type="number" 
@@ -377,47 +439,120 @@
                                             min="0" 
                                             max="100" 
                                             placeholder="0-100"
-                                            name="discapacidad_Intelectual_porcentaje" 
-                                            value = "{{ old('discapacidad_Intelectual_porcentaje') }}"
-                                            disabled
+                                            name="discapacidad_intelectual_porcentaje" 
+                                            value = "{{ old('discapacidad_intelectual_porcentaje') }}"
+                                            readonly
                                         >
+                                        @error('discapacidad_intelectual_porcentaje')
+                                            <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                ⚠️ <span>{{ $message }}</span>
+                                            </div>
+                                        @enderror
                                         <span class="absolute right-3 top-2 text-gray-500">%</span>
                                     </div>
                                     <textarea 
                                         class="mt-1 block w-full rounded-md border-gray-500 h-10 detalle-textarea opacity-50" 
-                                        name="discapacidad_Intelectual_detalle"
-                                        value = "{{ old('discapacidad_Intelectual_detalle') }}"
-                                        disabled
+                                        name="discapacidad_intelectual_detalle"
+                                        readonly
                                         >
                                     </textarea>
+                                    @error('discapacidad_intelectual_detalle')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <!-- Enfermedades Crónicas y Catastróficas -->
                                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
                                     <div class="font-semibold md:font-normal">Enfermedades Crónicas y Catastróficas</div>
-                                    <select class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 condicion-select">
-                                        <option value="No">No</option>
-                                        <option value="Sí">Sí</option>
+                                    <select 
+                                        class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 condicion-select"
+                                        name="cronicas_catastroficas_si_no"
+                                    >
+                                        <option value="No" {{ old('cronicas_catastroficas_si_no') == 'No' ? 'selected' : '' }}>No</option>
+                                        <option value="Si" {{ old('cronicas_catastroficas_si_no') == 'Si' ? 'selected' : '' }}>Si</option>
                                     </select>
+                                    @error('cronicas_catastroficas_si_no')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                     <div class="relative w-full">
-                                        <input type="number" class="mt-1 block w-full rounded-md border-gray-500 focus:border-blue-500 focus:ring-blue-500 porcentaje-input opacity-50" min="0" max="100" placeholder="0-100" disabled>
+                                        <input 
+                                            type="number" 
+                                            class="mt-1 block w-full rounded-md border-gray-500 focus:border-blue-500 focus:ring-blue-500 porcentaje-input opacity-50" 
+                                            min="0" 
+                                            max="100" 
+                                            placeholder="0-100"
+                                            name="cronicas_catastroficas_porcentaje" 
+                                            value = "{{ old('cronicas_catastroficas_porcentaje') }}"
+                                            readonly
+                                            >
+                                            @error('cronicas_catastroficas_porcentaje')
+                                                <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                    ⚠️ <span>{{ $message }}</span>
+                                                </div>
+                                            @enderror
                                         <span class="absolute right-3 top-2 text-gray-500">%</span>
                                     </div>
-                                    <textarea class="mt-1 block w-full rounded-md border-gray-500 h-10 detalle-textarea opacity-50" disabled></textarea>
+                                    <textarea 
+                                        class="mt-1 block w-full rounded-md border-gray-500 h-10 detalle-textarea opacity-50" 
+                                        name = "cronicas_catastroficas_detalle"
+                                        readonly
+                                        >
+                                    </textarea>
+                                    @error('cronicas_catastroficas_detalle')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <!-- Psicosocial -->
                                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
                                     <div class="font-semibold md:font-normal">Psicosocial</div>
-                                    <select class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 condicion-select">
-                                        <option value="No">No</option>
-                                        <option value="Sí">Sí</option>
+                                    <select 
+                                        class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 condicion-select"
+                                        name="psicosocial_si_no"
+                                    >
+                                        <option value="No" {{ old('psicosocial_si_no') == 'No' ? 'selected' : '' }}>No</option>
+                                        <option value="Si" {{ old('psicosocial_si_no') == 'Si' ? 'selected' : '' }}>Si</option>
                                     </select>
+                                    @error('psicosocial_si_no')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                     <div class="relative w-full">
-                                        <input type="number" class="mt-1 block w-full rounded-md border-gray-500 focus:border-blue-500 focus:ring-blue-500 porcentaje-input opacity-50" min="0" max="100" placeholder="0-100" disabled>
+                                        <input 
+                                            type="number" 
+                                            class="mt-1 block w-full rounded-md border-gray-500 focus:border-blue-500 focus:ring-blue-500 porcentaje-input opacity-50" 
+                                            min="0" 
+                                            max="100" 
+                                            placeholder="0-100" 
+                                            name="psicosocial_porcentaje"
+                                            value= "{{ old('psicosocial_porcentaje') }}"
+                                            readonly
+                                            >
+                                            @error('psicosocial_porcentaje')
+                                                <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                                    ⚠️ <span>{{ $message }}</span>
+                                                </div>
+                                            @enderror
                                         <span class="absolute right-3 top-2 text-gray-500">%</span>
                                     </div>
-                                    <textarea class="mt-1 block w-full rounded-md border-gray-500 h-10 detalle-textarea opacity-50" disabled></textarea>
+                                    <textarea 
+                                        class="mt-1 block w-full rounded-md border-gray-500 h-10 detalle-textarea opacity-50" 
+                                        name="psicosocial_detalle"
+                                        readonly
+                                        >
+                                    </textarea>
+                                    @error('psicosocial_detalle')
+                                        <div class="bg-red-100 text-red-600 text-sm rounded-lg p-2 mt-1 flex items-center gap-2 shadow-sm">
+                                            ⚠️ <span>{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -844,7 +979,7 @@
                             class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         >
                             <option value="--seleccionar--" {{ old('antecedentes_patologicos_famiiares') == '--seleccionar--' ? 'selected' : '' }}>-seleccionar--</option>
-                            <option value="Ninguna" {{ old('antecedentes_patologicos_famiiares') == 'Otra' ? 'selected' : '' }}>Ninguna</option>
+                            <option value="Ninguna" {{ old('antecedentes_patologicos_famiiares') == 'Ninguna' ? 'selected' : '' }}>Ninguna</option>
                             <option value="Obesidad" {{ old('antecedentes_patologicos_famiiares') == 'Obesidad' ? 'selected' : '' }}>Obesidad</option>
                             <option value="Diabetes" {{ old('antecedentes_patologicos_famiiares') == 'Diabetes' ? 'selected' : '' }}>Diabetes</option>
                             <option value="Hipertensión" {{ old('antecedentes_patologicos_famiiares') == 'Hipertensión' ? 'selected' : '' }}>Hipertensión</option>
@@ -1105,15 +1240,15 @@
                 let porcentajeInput = parentDiv.querySelector(".porcentaje-input");
                 let detalleTextarea = parentDiv.querySelector(".detalle-textarea");
 
-                if (select.value === "Sí") {
-                    porcentajeInput.disabled = false;
+                if (select.value === "Si") {
+                    porcentajeInput.removeAttribute("readonly");
                     porcentajeInput.classList.remove("opacity-50");
-                    detalleTextarea.disabled = false;
+                    detalleTextarea.removeAttribute("readonly");
                     detalleTextarea.classList.remove("opacity-50");
                 } else {
-                    porcentajeInput.disabled = true;
+                    porcentajeInput.setAttribute("readonly", true);
                     porcentajeInput.classList.add("opacity-50");
-                    detalleTextarea.disabled = true;
+                    detalleTextarea.setAttribute("readonly", true);
                     detalleTextarea.classList.add("opacity-50");
                     porcentajeInput.value = ""; // Limpiar campo
                     detalleTextarea.value = ""; // Limpiar campo

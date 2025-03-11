@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\estudianteRepresentante;
+use App\Models\matriculacion;
+use App\Models\salud;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class homeController extends Controller
 {
@@ -13,20 +16,27 @@ class homeController extends Controller
      */
     public function index()
     {
-
-        $user = Auth::user();
-        $idRepre = $user->persona->representante->id;
-        $estuRepre = estudianteRepresentante::find($idRepre)->get();
-        return view('dashboard', compact('user','estuRepre'));
+        
+        $matriculacion = matriculacion::paginate(10);
+        return view('dashboard', compact('matriculacion'));
 
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Generar PDF matriculacion
      */
-    public function create()
+    public function pdfMatriculacion($id)
     {
-        // return view('admision.FOR-AYM-005A');
+
+        $matriculacion = matriculacion::findOrFail($id);
+        $nombreArchivo = $matriculacion->primer_nombre_estudiante . '_' . $matriculacion->apellido_paterno_estudiante . '_matriculacion.pdf';
+        $imagePath = public_path('imagenes/LogoNSCFinalNegro.png'); // Asegúrate de que el nombre no tenga espacios
+        $imageData = base64_encode(file_get_contents($imagePath));
+        $imageType = pathinfo($imagePath, PATHINFO_EXTENSION);
+        $imageBase64 = "data:image/$imageType;base64,$imageData";
+        $pdf = Pdf::loadView('pdf.matriculacion', compact('matriculacion', 'imageBase64' ));
+        return $pdf->download($nombreArchivo);
+
     }
 
     /**

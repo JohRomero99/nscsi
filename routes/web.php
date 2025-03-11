@@ -52,4 +52,6 @@ Route::get('/ficha/aspirante/create/buscar/cedula', [fichasController::class, 'b
 Route::get('/ficha/salud/create', [fichasController::class, 'createSalud'])->name('ficha.salud.create');
 Route::post('/ficha/salud/store', [fichasController::class, 'storeSalud'])->name('ficha.salud.store');
 
+Route::get('/matriculacion/pdf/{id}', [homeController::class, 'pdfMatriculacion'])->name('matriculacion.pdf');
+
 require __DIR__.'/auth.php';
