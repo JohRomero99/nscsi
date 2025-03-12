@@ -554,6 +554,15 @@
                                         </div>
                                     @enderror
                                 </div>
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                                    <div class="col-span-4">
+                                        <div class="text-justify">
+                                            <p class="text-base">
+                                                En las discapacidades físicas detalle problemas motrices como pie plano, hemiplejía, columna, pie de catre, articulaciones, etc.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1231,6 +1240,24 @@
             </form>
         </div>
     </div>
+    <script>
+        @if(session('success'))
+            Swal.fire({
+                title: "Exito",
+                text: "{{ session('success') }}.",
+                icon: "success"
+            });
+        @endif
+    </script>
+    <script>
+        @if(session('info'))
+            Swal.fire({
+                title: "Info",
+                text: "{{ session('info') }}.",
+                icon: "info"
+            });
+        @endif
+    </script>
     
     <!-- Codigo para ocultar habilitar y desabilitar las opciones en el cuadro de discapacidad -->
     <script>

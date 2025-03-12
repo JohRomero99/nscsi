@@ -17,7 +17,7 @@
     <div class="w-20 h-1 bg-blue-300 rounded-full mx-auto mt-3"></div>
 </div>
 
-<form action="{{ route('buscar.estudiantes') }}" method="GET" class="bg-gray-100">
+<form action="{{ route('buscar.estudiantes.salud') }}" method="GET" class="bg-gray-100">
     <div class="flex justify-center w-full px-4">
         <div class="flex items-center space-x-2 p-4 rounded-lg w-full max-w-lg">
             <input type="text" name="query" placeholder="Buscar por cédula, nombre o año de básica..." 
@@ -47,10 +47,10 @@
                     Año de básica
                 </th>
                 <th scope="col" class="px-6 py-6 text-md font-semibold">
-                    Usuario
+                    Estatura
                 </th>
                 <th scope="col" class="px-6 py-6 text-md font-semibold">
-                    Contraseña
+                    Peso
                 </th>
                 <th scope="col" class="px-6 py-6 text-md font-semibold">
                     Descargar
@@ -58,7 +58,7 @@
             </tr>
         </thead>
         <tbody>
-            @if ($matriculacion->isEmpty())
+            @if ($salud->isEmpty())
                 <tr>
                     <td colspan="7" class="text-center bg-white py-6 text-gray-600 text-md">
                         <i class="fa-solid fa-circle-exclamation text-red-500"></i>  
@@ -66,7 +66,7 @@
                     </td>
                 </tr>
             @else
-                @foreach ($matriculacion as $registro)
+                @foreach ($salud as $registro)
                     <tr class="text-center bg-white border-b hover:bg-gray-50 transition-colors duration-300">
                         <th scope="row" class="px-8 py-3 text-gray-900 font-medium">
                             {{ $registro->cedula_estudiante }}
@@ -81,22 +81,14 @@
                             {{ $registro->ano_basica }}
                         </td>
                         <td class="px-8 py-3">
-                            @empty($registro->username)
-                                <p>Por crear</p>
-                            @else
-                                <p>{{ $registro->username }}</p>
-                            @endempty
+                            <p> {{ $registro->estatura }} cm </p>
                         </td>
                         <td class="px-8 py-3">
-                            @empty($registro->password)
-                                <p>Por crear</p>
-                            @else
-                                <p>{{ $registro->password }}</p>
-                            @endempty
+                            <p> {{ $registro->peso_libras }} kg </p>
                         </td>
                         <td class="px-8 py-3">
-                            <a href="{{ route('matriculacion.pdf', $registro->id) }}" class="bg-green-600 hover:bg-green-500 text-white font-medium py-3 px-6 rounded-sm shadow-md inline-flex items-center">
-                                F. matrícula <i class="fa-solid fa-download ml-2"></i>    
+                            <a href="{{ route('salud.pdf', $registro->id) }}" class="bg-green-600 hover:bg-green-500 text-white font-medium py-3 px-6 rounded-sm shadow-md inline-flex items-center">
+                                F. salud <i class="fa-solid fa-download ml-2"></i>    
                             </a>
                         </td>
                     </tr>
@@ -104,9 +96,9 @@
             @endif
         </tbody>
     </table>
-    @if ($matriculacion->count())
+    @if ($salud->count())
         <div class="mt-6 flex justify-center mb-8">
-            {!! $matriculacion->links() !!}
+            {!! $salud->links() !!}
         </div>
     @endif
 </div>

@@ -130,7 +130,7 @@
 
         <!-- Datos de la Madre -->
         <div class="section">
-            <h3>Datos de la Madre</h3>
+            <h3>Representante Número Uno</h3>
             <table>
                 <tr>
                     <th>Cédula</th>
@@ -161,7 +161,7 @@
 
         <!-- Datos del Padre -->
         <div class="section">
-            <h3>Datos del Padre</h3>
+            <h3>Representante Número Dos</h3>
             <table>
                 <tr>
                     <th>Cédula</th>
@@ -291,6 +291,26 @@
                 <tr>
                     <th>Modalidad</th>
                     <td>{{ $matriculacion->tercera_referencia_familiar_modalidad }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Referencia Familiar Tres -->
+        <div class="section">
+            <h3>Informacion adicional</h3>
+            <table>
+                <tr>
+                    <th>¿Autoriza el uso de su imagen para fines publicitarios de la escuela?</th>
+                    @if( $matriculacion->imagen_estudiante == 'on' )
+                        <td> Sí, autorizo el uso de mi imagen en material publicitario escolar. </td>
+                    @else
+                        <td> No, autorizo el uso de mi imagen en material publicitario escolar. </td>
+                    @endif
+                </tr>
+                <tr>
+                <th>Declaro que toda la información proporcionada en este formulario es verídica y correcta, y certifico que los datos ingresados corresponden a mi representado y a mí como representante legal.
+                    Acepto que cualquier inconsistencia o falsedad en la información suministrada será mi responsabilidad, eximiendo a la Unidad Educativa Nuestra Señora del Carmen de cualquier perjuicio derivado de ello.</th>
+                    <td> Certifico que toda la información ingresada es correcta </td>
                 </tr>
             </table>
         </div>

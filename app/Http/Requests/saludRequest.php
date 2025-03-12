@@ -95,4 +95,46 @@ class saludRequest extends FormRequest
             'aseguradora_otro_emergencia' => ['nullable','required_if:seguro_estudiante_si_no,Si','regex:/^[a-zA-Z0-9\s]*$/'],
         ];
     }
+
+    public function attributes(): array
+    {
+        return [
+            'cedula_estudiante' => 'cédula',
+            'primer_nombre_estudiante' => 'primer nombre',
+            'segundo_nombre_estudiante' => 'segundo nombre',
+            'apellido_paterno_estudiante' => 'apellido paterno',
+            'apellido_materno_estudiante' => 'apellido materno',
+            'ano_basica' => '--seleccionar--',
+            'discapacidad_si_no' => '--seleccionar--',
+            'aparatos_ayuda' => '--seleccionar--',
+            'carnet_conadis_si_no' => '--seleccionar--',
+            'medicamento_si_no' => '--seleccionar--',
+            '' => '',
+            'alergia_estudiante_si_no' => '-seleccionar--',
+            '' => '',
+            'enfermedades_accidentes' => '--selecionar--',
+            '' => '',
+            'intervencion_quirurgica_si_no' => '--seleccionar--',
+            '' => '',
+            '' => '',
+            '' => '',
+            '' => '',
+            'fecha_ultima_desparasitacion' => 'Fecha ultima desparasitacion',
+            'vacunas' => '--seleccionar--',
+            '' => '',
+            'dificultad_dormir' => '--seleccionar--',
+            '' => '',
+            'antecedentes_patologicos_famiiares' => '--seleccionar--',
+            '' => '',
+            'seguro_estudiante_si_no' => '--seleccionar--',
+            '' => '',
+            '' => '',
+            '' => '',
+            '' => '',
+            '' => '',
+            '' => '',
+            '' => '',
+            '' => '',
+        ];
+    }
 }

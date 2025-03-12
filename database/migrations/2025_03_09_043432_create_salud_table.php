@@ -59,6 +59,7 @@ return new class extends Migration
             $table->string('intervencion_quirurgica_si_no')->nullable();
             $table->string('cantidad_intervencion_quirugicas')->nullable();
             $table->string('tipo_intervencion_quirugica')->nullable();
+            $table->string('fecha_intervencion_quirugica')->nullable();
             $table->string('fecha_ultima_desparasitacion')->nullable();
             $table->string('vacunas')->nullable();
             $table->string('otra_vacuna')->nullable();

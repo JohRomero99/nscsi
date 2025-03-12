@@ -13,27 +13,27 @@ return new class extends Migration
     {
         Schema::create('matriculacion', function (Blueprint $table) {
             $table->id();
-            $table->string('cedula_estudiante')->nullable();
-            $table->string('primer_nombre_estudiante')->nullable();
-            $table->string('segundo_nombre_estudiante')->nullable();
-            $table->string('apellido_paterno_estudiante')->nullable();
-            $table->string('apellido_materno_estudiante')->nullable();
+            $table->string('cedula_estudiante',100)->nullable();
+            $table->string('primer_nombre_estudiante',100)->nullable();
+            $table->string('segundo_nombre_estudiante',100)->nullable();
+            $table->string('apellido_paterno_estudiante',100)->nullable();
+            $table->string('apellido_materno_estudiante',100)->nullable();
             $table->string('fecha_nacimiento_estudiante')->nullable();
             $table->string('ano_basica')->nullable();
             $table->string('nuevo_nsc')->nullable();
-            $table->string('codigo_unico_electrico')->nullable();
+            $table->string('codigo_unico_electrico',100)->nullable();
             $table->string('genero_estudiante')->nullable();
             $table->string('transporte_escolar')->nullable();
             $table->string('ruta_escolar')->nullable();
             // 
-            $table->string('cedula_madre')->nullable();
-            $table->string('primer_nombre_madre')->nullable();
-            $table->string('segundo_nombre_madre')->nullable();
-            $table->string('apellido_paterno_madre')->nullable();
-            $table->string('apellido_materno_madre')->nullable();
-            $table->string('direccion_madre')->nullable();
-            $table->string('correo_madre')->nullable();
-            $table->string('telefono_madre')->nullable();
+            $table->string('cedula_madre',100)->nullable();
+            $table->string('primer_nombre_madre',100)->nullable();
+            $table->string('segundo_nombre_madre',100)->nullable();
+            $table->string('apellido_paterno_madre',100)->nullable();
+            $table->string('apellido_materno_madre',100)->nullable();
+            $table->string('direccion_madre',100)->nullable();
+            $table->string('correo_madre',100)->nullable();
+            $table->string('telefono_madre',100)->nullable();
             $table->string('relacion_representante_uno')->nullable();
             // 
             $table->string('cedula_padre')->nullable();
@@ -74,6 +74,13 @@ return new class extends Migration
             $table->string('autorizacion_direccion_representante')->nullable();
             $table->string('autorizacion_telefono_representante')->nullable();
             $table->string('autorizacion_email_representante')->nullable();
+            $table->string('imagen_estudiante',100)->nullable();
+            $table->string('username',100)->nullable();
+            $table->string('password',100)->nullable();
+            $table->string('firstname',100)->nullable();
+            $table->string('lastname',100)->nullable();
+            $table->string('email',100)->nullable();
+            $table->string('role',100)->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
         });

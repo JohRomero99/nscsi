@@ -12,12 +12,12 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class homeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     *
      */
-    public function index()
+    public function indexMatriculacion()
     {
         
-        $matriculacion = matriculacion::paginate(10);
+        $matriculacion = matriculacion::where('estado', 'Matriculado')->paginate(10);
         return view('dashboard', compact('matriculacion'));
 
     }
@@ -40,35 +40,65 @@ class homeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Buscar estudiante
      */
-    public function store(Request $request)
+    public function buscar(Request $request)
     {
-        //
+        $query = $request->input('query');
+        $matriculacion = matriculacion::where('cedula_estudiante', 'LIKE', "%{$query}%")
+            ->orWhere('primer_nombre_estudiante', 'LIKE', "%{$query}%")
+            ->orWhere('segundo_nombre_estudiante', 'LIKE', "%{$query}%")
+            ->orWhere('apellido_paterno_estudiante', 'LIKE', "%{$query}%")
+            ->orWhere('apellido_materno_estudiante', 'LIKE', "%{$query}%")
+            ->orWhere('ano_basica', 'LIKE', "%{$query}%")
+            ->paginate(10);
+    
+        return view('dashboard', compact('matriculacion'));
     }
 
     /**
-     * Display the specified resource.
+     *
      */
-    public function show(string $id)
+    public function indexSalud()
     {
-        //
+
+        $salud = salud::paginate(10);
+        return view('dashboardSalud', compact('salud'));
+
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Generar PDF salud
      */
-    public function edit(string $id)
+    public function pdfsalud($id)
     {
-        //
+
+        $salud = salud::findOrFail($id);
+        $nombreArchivo = $salud->primer_nombre_estudiante . '_' . $salud->apellido_paterno_estudiante . '_salud.pdf';
+        $imagePath = public_path('imagenes/LogoNSCFinalNegro.png'); // Asegúrate de que el nombre no tenga espacios
+        $imageData = base64_encode(file_get_contents($imagePath));
+        $imageType = pathinfo($imagePath, PATHINFO_EXTENSION);
+        $imageBase64 = "data:image/$imageType;base64,$imageData";
+        $pdf = Pdf::loadView('pdf.salud', compact('salud', 'imageBase64' ));
+        return $pdf->download($nombreArchivo);
+
     }
 
     /**
-     * Update the specified resource in storage.
+     * Buscar estudiante salud
      */
-    public function update(Request $request, string $id)
+    public function buscarSalud(Request $request)
     {
-        //
+        $query = $request->input('query');
+        $salud = salud::where('cedula_estudiante', 'LIKE', "%{$query}%")
+            ->orWhere('primer_nombre_estudiante', 'LIKE', "%{$query}%")
+            ->orWhere('segundo_nombre_estudiante', 'LIKE', "%{$query}%")
+            ->orWhere('apellido_paterno_estudiante', 'LIKE', "%{$query}%")
+            ->orWhere('apellido_materno_estudiante', 'LIKE', "%{$query}%")
+            ->orWhere('ano_basica', 'LIKE', "%{$query}%")
+            ->paginate(10);
+    
+        return view('dashboardSalud', compact('salud'));
     }
 
     /**

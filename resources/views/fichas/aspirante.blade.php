@@ -326,7 +326,7 @@
                         <div class="relative w-full mb-1">
                             <div class="border-l-4 border-blue-500 pl-4">
                                 <h2 class="text-xl font-semibold text-gray-700">
-                                    Datos del Padre
+                                    Representante Número Dos
                                 </h2>
                                 <p class="text-sm text-gray-500 italic">
                                     Complete los campos con información verídica.
@@ -514,7 +514,7 @@
                         <div class="relative w-full mb-1">
                             <div class="border-l-4 border-blue-500 pl-4">
                                 <h2 class="text-xl font-semibold text-gray-700">
-                                    Datos del Padre
+                                    Representante Número Dos
                                 </h2>
                                 <p class="text-sm text-gray-500 italic">
                                     Complete los campos con información verídica.
@@ -1081,6 +1081,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-span-4 bg-gray-100 p-5">
+                        <div class="text-justify">
+                                <p class="text-base">
+                                    ¿Autoriza el uso de su imagen para fines publicitarios de la escuela?
+                                </p>
+                            </div>
+                            <div class="text-left mt-2">
+                                <input type="checkbox" name="imagen_estudiante" class="scale-125 mr-2">
+                                <label for="confirmCheck" class="text-base">Sí, autorizo el uso de mi imagen en material publicitario escolar.</label>
+                            </div>
+                        </div>
                     <div class="col-span-4">
                         <div class="text-justify">
                             <p class="text-base">
@@ -1113,15 +1124,27 @@
             </form>
         </div>
     </div>
+
     <script>
         @if(session('success'))
             Swal.fire({
-                title: "Exito",
-                text: "Los datos se han guardado con éxito.",
+                title: "Éxito",
+                text: "{{ session('success') }}.",
                 icon: "success"
             });
         @endif
     </script>
+
+    <script>
+        @if(session('registro'))
+            Swal.fire({
+                title: "Info",
+                text: "{{ session('registro') }}.",
+                icon: "info"
+            });
+        @endif
+    </script>
+    
     <!-- Declaración de información -->
     <script>
         document.getElementById('confirmCheck').addEventListener('change', function() {
@@ -1227,18 +1250,6 @@
                                         }
                                     }
                                 });
-
-                                // Llenamos los campos de referencia_familiar con índices [0] hasta [11]
-                                // if (data.referencia_familiar) {
-                                //     let referencias = JSON.parse(data.referencia_familiar); // Convertimos a Array
-
-                                //     referencias.forEach((valor, index) => {
-                                //         let input = document.querySelector(`input[name="referencia_familiar[${index}]"]`);
-                                //         if (input) {
-                                //             input.value = valor;
-                                //         }
-                                //     });
-                                // }
 
                                 // Llenamos autorización legal si es un array también
                                 if (data.autorizacion_legal_estudiante) {

@@ -17,7 +17,10 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', [homeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard/ficha/matriculacion', [homeController::class, 'indexMatriculacion'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard/ficha/salud', [homeController::class, 'indexSalud'])->middleware(['auth', 'verified'])->name('dashboard.salud');
+Route::get('/buscar/estudiantes', [homeController::class, 'buscar'])->name('buscar.estudiantes');
+Route::get('/buscar/estudiantes/salud', [homeController::class, 'buscarSalud'])->name('buscar.estudiantes.salud');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -43,15 +46,16 @@ Route::get('/dashboard/ficha-aspirantes/{id}', [admisionController::class, 'crea
 
 
 //Link de matriculacion, admision y aspirantes.
-Route::get('/ficha/aspirante/create', [fichasController::class, 'createAspirante'])->name('ficha.aspirante.create');
+Route::get('/ficha/matriculacion/create', [fichasController::class, 'createAspirante'])->name('ficha.aspirante.create');
 Route::post('/ficha/aspirante/store', [fichasController::class, 'storeAspirante'])->name('ficha.aspirante.store');
-Route::get('/ficha/aspirante/registro/final/create/{cedula}', [fichasController::class, 'createFinalAspirante'])->name('ficha.aspirante.registro.final.create');
+Route::get('/ficha/matriculacion/registro/final/create/{cedula}', [fichasController::class, 'createFinalAspirante'])->name('ficha.aspirante.registro.final.create');
 Route::post('/ficha/aspirante/registro/final/store', [fichasController::class, 'createStoreAspirante'])->name('ficha.aspirante.registro.final.store');
-Route::get('/ficha/aspirante/create/buscar/cedula', [fichasController::class, 'buscarCedulaFichaMatricula'])->name('buscar.cedula.ficha.matricula');
+Route::get('/ficha/matriculacion/create/buscar/cedula', [fichasController::class, 'buscarCedulaFichaMatricula'])->name('buscar.cedula.ficha.matricula');
 
 Route::get('/ficha/salud/create', [fichasController::class, 'createSalud'])->name('ficha.salud.create');
 Route::post('/ficha/salud/store', [fichasController::class, 'storeSalud'])->name('ficha.salud.store');
 
 Route::get('/matriculacion/pdf/{id}', [homeController::class, 'pdfMatriculacion'])->name('matriculacion.pdf');
+Route::get('/salud/pdf/{id}', [homeController::class, 'pdfsalud'])->name('salud.pdf');
 
 require __DIR__.'/auth.php';

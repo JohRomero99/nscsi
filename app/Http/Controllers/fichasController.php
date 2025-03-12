@@ -21,9 +21,7 @@ class fichasController extends Controller
 
         $consulta  = matriculacion::where('cedula_estudiante',$request->cedula_estudiante)->first();
         if($consulta){
-            return redirect()->route('ficha.aspirante.registro.final.create',[
-                'cedula' => $request->cedula_estudiante,
-            ]);
+            return redirect()->back()->with('registro', 'Ya existe un regitro con este número de cédula');
         }else{
             $matriculacion = matriculacion::create([
                 'cedula_estudiante' => $request->cedula_estudiante,
@@ -78,6 +76,8 @@ class fichasController extends Controller
                 'tercera_referencia_familiar_cedula' => $request->tercera_referencia_familiar_cedula,
                 'tercera_referencia_familiar_telefono' => $request->tercera_referencia_familiar_telefono,
                 'tercera_referencia_familiar_modalidad' => $request->tercera_referencia_familiar_modalidad,
+                'informacion_verdadera' => $request->informacion_verdadera,
+                'imagen_estudiante' => $request->imagen_estudiante,
             ]);
             return redirect()->route('ficha.aspirante.registro.final.create',[
                 'cedula' => $request->cedula_estudiante,
@@ -105,10 +105,46 @@ class fichasController extends Controller
             'autorizacion_direccion_representante' => $request->autorizacion_direccion_representante,
             'autorizacion_telefono_representante' => $request->autorizacion_telefono_representante,
             'autorizacion_email_representante' => $request->autorizacion_email_representante,
-            'estado' => 'Completado',
+            'estado' => "Matriculado",
         ]);
 
-        return redirect()->route('ficha.aspirante.create')->with('success', 'Fciha completada con éxito.');
+        $salud = salud::where('cedula_estudiante',$request->autorizacion_cedula_estudiante)->first();
+        if ($salud) {
+
+            // Usuario
+            $primerNombre = $consulta->primer_nombre_estudiante;
+            $segundoNombre = $consulta->segundo_nombre_estudiante;
+            $primerApellido = $consulta->apellido_paterno_estudiante;
+            $primeraLetraApellido = strtolower(substr($primerApellido, 0, 1));
+            $numerosAleatorios = rand(100, 999);
+            $usuario = "nsc." . strtolower($primerNombre) . strtolower($segundoNombre) . $primeraLetraApellido . $numerosAleatorios;
+
+            // Contraseña
+            $prefijo = "Nsc";
+            $numerosAleatorios = rand(1000, 99999); // Puedes ajustar el rango para obtener más o menos dígitos
+            $contraseña = $prefijo . $numerosAleatorios;
+
+            //firstname
+            $firstname = $consulta->primer_nombre_estudiante;
+
+            //lastname
+            $lastname = $consulta->apellido_paterno_estudiante;
+
+            //role
+            $role = "student";
+
+            $consulta->update([
+                'username' => $usuario,
+                'password' => $contraseña,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'email' => $consulta->correo_madre,
+                'role' => $role,
+            ]);
+            return redirect()->route('ficha.aspirante.create')->with('success', 'Fciha de matricula completada con éxito.');
+        }else{
+            return redirect()->route('ficha.aspirante.create')->with('success', 'Fciha de matricula completada con éxito.');
+        }
 
     }
 
@@ -126,11 +162,10 @@ class fichasController extends Controller
     }
 
     public function storeSalud(saludRequest $request){
-
-        // return $request->all();
+;
         $consulta  = salud::where('cedula_estudiante',$request->cedula_estudiante)->first();
         if($consulta){
-            return redirect()->route('ficha.salud.create');
+            return redirect()->route('ficha.salud.create')->with('info', 'Ya existe un regitro con este número de cédula');
         }else{
             $salud = salud::create([
                 'cedula_estudiante' => $request->cedula_estudiante,
@@ -197,7 +232,45 @@ class fichasController extends Controller
                 'aseguradora_otro_telefono' => $request->aseguradora_otro_telefono,
                 'aseguradora_otro_emergencia' => $request->aseguradora_otro_emergencia,
             ]);
-            return redirect()->route('ficha.salud.create');
+
+            $matriculacion  = matriculacion::where('cedula_estudiante',$request->cedula_estudiante)->first();
+            if ($matriculacion) {
+                
+                // Usuario
+                $primerNombre = $matriculacion->primer_nombre_estudiante;
+                $segundoNombre = $matriculacion->segundo_nombre_estudiante;
+                $primerApellido = $matriculacion->apellido_paterno_estudiante;
+                $primeraLetraApellido = strtolower(substr($primerApellido, 0, 1));
+                $numerosAleatorios = rand(100, 999);
+                $usuario = "nsc." . strtolower($primerNombre) . strtolower($segundoNombre) . $primeraLetraApellido . $numerosAleatorios;
+                
+                // Contraseña
+                $prefijo = "Nsc";
+                $numerosAleatorios = rand(1000, 99999); // Puedes ajustar el rango para obtener más o menos dígitos
+                $contraseña = $prefijo . $numerosAleatorios;
+                
+                //firstname
+                $firstname = $matriculacion->primer_nombre_estudiante;
+                
+                //lastname
+                $lastname = $matriculacion->apellido_paterno_estudiante;
+                
+                //role
+                $role = "student";
+                
+                $matriculacion->update([
+                    'username' => $usuario,
+                    'password' => $contraseña,
+                    'firstname' => $firstname,
+                    'lastname' => $lastname,
+                    'email' => $matriculacion->correo_madre,
+                    'role' => $role,
+                ]);
+                return redirect()->route('ficha.salud.create')->with('success', 'Ficha de salud completada con éxito.');
+            }else{
+                return redirect()->route('ficha.salud.create')->with('success', 'Ficha de salud completada con éxito.');
+            }
+
         }
 
     }
