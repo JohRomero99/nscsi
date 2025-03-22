@@ -14,6 +14,10 @@ class anioAcademicoSeeder extends Seeder
     public function run(): void
     {
         $anio = anioAcademico::create([
+            'anio_basica' => '--seleccionar--',
+        ]);
+
+        $anio = anioAcademico::create([
             'anio_basica' => 'Inicial',
         ]);
 

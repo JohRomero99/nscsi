@@ -139,13 +139,4 @@ class setupDosController extends Controller
         //
     }
 
-    /**
-     * Función que me permite crear formularios de acuerdo 
-     * a el número del representante
-     */
-    // public function crearFormulario(Request $request)
-    // {
-
-
-    // }
 }

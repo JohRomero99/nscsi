@@ -29,7 +29,8 @@ Route::middleware('auth')->group(function () {
 });
 
 //Buscar Cédula
-Route::get('/buscar/cedula', [buscarCedulaController::class, 'buscarCedula'])->name('buscar.cedula');
+Route::get('/buscar/cedula/representante', [buscarCedulaController::class, 'buscarCedulaRepresentante'])->name('buscar.cedula.representante');
+Route::get('/buscar/cedula/estudiante', [buscarCedulaController::class, 'buscarCedulaEstudiante'])->name('buscar.cedula.estudiante');
 
 // Representantes
 Route::get('/admision/representante', [setupUnoController::class, 'create'])->name('admision.representante.create');
@@ -42,7 +43,11 @@ Route::get('/admision/estudiante/{id}/{email}/{numeroInscripion}', [setupDosCont
 Route::post('/admision/estudiante/{id}/{email}', [setupDosController::class, 'store'])->name('admision.estudiante.store');
 
 //Muestra la ficha de aspirantes cuando el usuario ya está logeado.
-Route::get('/dashboard/ficha-aspirantes/{id}', [admisionController::class, 'create'])->name('ficha.aspirante.create');
+// Route::get('/dashboard/ficha-aspirantes/{id}', [admisionController::class, 'create'])->name('ficha.aspirante.create');
+
+
+
+
 
 
 //Link de matriculacion, admision y aspirantes.

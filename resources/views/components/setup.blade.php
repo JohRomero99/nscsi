@@ -85,7 +85,7 @@
                                 </svg>
                             </span>
                             <h3 class="font-medium leading-tight">Datos del Representante</h3>
-                            <p class="text-sm">Step details here</p>
+                            <p class="text-sm">Información del Representante</p>
                         </li>
                         {{-- Paso 2 --}}
                         <li class="mb-10 ms-6">
@@ -95,17 +95,7 @@
                                 </svg>
                             </span>
                             <h3 class="font-medium leading-tight">Datos del Estudiante</h3>
-                            <p class="text-sm">Step details here</p>
-                        </li>
-                        {{-- Paso 3 --}}
-                        <li class="mb-10 ms-6">
-                            <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-gray-700">
-                                <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                                    <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z"/>
-                                </svg>
-                            </span>
-                            <h3 class="font-medium leading-tight">Enviar Datos</h3>
-                            <p class="text-sm">Step details here</p>
+                            <p class="text-sm">Información del Estudiante</p>
                         </li>
                         {{-- Paso 4 --}}
                         <li class="ms-6">
@@ -114,8 +104,8 @@
                                     <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM7 2h4v3H7V2Zm5.7 8.289-3.975 3.857a1 1 0 0 1-1.393 0L5.3 12.182a1.002 1.002 0 1 1 1.4-1.436l1.328 1.289 3.28-3.181a1 1 0 1 1 1.392 1.435Z"/>
                                 </svg>
                             </span>
-                            <h3 class="font-medium leading-tight">Confirmation</h3>
-                            <p class="text-sm">Step details here</p>
+                            <h3 class="font-medium leading-tight">Confirmación</h3>
+                            <p class="text-sm">Confirmación de los Datos</p>
                         </li>
                     </ol>
                 </div>
@@ -134,116 +124,36 @@
         </div>
     </div>
 </body>
-<style>
-    .font-weight{
-        font-weight: 900;
-    }
-</style>
-<script>
-    // Mostrar mensaje de datos enviados.
-    @if (session('representante'))
-        Swal.fire({
-            title: "¡Exito!",
-            text: "Datos Guardados con éxito",
-            icon: "success"
-        });
-    @endif
-    @if (session('estudiante'))
-        Swal.fire({
-            title: "¡Exito!",
-            text: "Datos Guardados con éxito por favor revise su bandeja de entrada",
-            icon: "success"
-        });
-    @endif
-    @if (session('info'))
-        Swal.fire({
-            title: "Info",
-            text: "Ya tienes registro creado, por favor, revisa tu bandeja de entrada",
-            icon: "info"
-        });
-    @endif
-</script>
-{{-- Duplicar y elimnar formularios --}}
-<script>
-    function duplicateForm() {
-        // Obtén el contenedor del formulario
-        const formContainer = document.getElementById('form-container');
-        
-        // Clona la sección del formulario original
-        const originalForm = document.querySelector('.form-section');
-        const newForm = originalForm.cloneNode(true);
-        
-        // Limpia los campos de entrada en el formulario clonado y cambia los nombres
-        const index = formContainer.children.length; // índice del nuevo formulario
-        
-        newForm.querySelectorAll('input, select').forEach(input => {
-            input.value = '';
-            const name = input.getAttribute('name');
-            if (name) {
-                input.setAttribute('name', name + '[' + index + ']');
-            }
-        });
-        
-        // Añade el nuevo formulario al contenedor
-        formContainer.appendChild(newForm);
-    }
-
-    function removeLastForm() {
-        // Obtén el contenedor del formulario
-        const formContainer = document.getElementById('form-container');
-
-        // Verifica si hay más de una sección de formulario antes de eliminar
-        if (formContainer.children.length > 1) {
-            // Elimina la última sección del formulario
-            formContainer.removeChild(formContainer.lastElementChild);
-        } else {
-            Swal.fire({
-            title: "Info",
-            text: "Ya se han eliminado todos los formularios duplicados",
-            icon: "warning"
-        });
+    <style>
+        .font-weight{
+            font-weight: 900;
         }
-    }
-</script>
+    </style>
+    <script>
+        // Mostrar mensaje de datos enviados.
+        @if (session('representante'))
+            Swal.fire({
+                title: "¡Exito!",
+                text: "Datos Guardados con éxito",
+                icon: "success"
+            });
+        @endif
+        @if (session('estudiante'))
+            Swal.fire({
+                title: "¡Exito!",
+                text: "Datos Guardados con éxito por favor revise su bandeja de entrada",
+                icon: "success"
+            });
+        @endif
+        @if (session('info'))
+            Swal.fire({
+                title: "Info",
+                text: "Ya tienes registro creado, por favor, revisa tu bandeja de entrada",
+                icon: "info"
+            });
+        @endif
+    </script>
 
-{{-- Buscar en tiempo real --}}
-<script>
-    $(document).ready(function() {
-        $('#cedula').on('input', function() {
-            let cedula = $(this).val();
-    
-            if (cedula.length === 10) { // Verifica si la cédula tiene 10 dígitos
-                $.ajax({
-                    url: "{{ route('buscar.cedula') }}", // Ruta para la búsqueda
-                    method: 'GET',
-                    data: { cedula: cedula },
-                    success: function(response) {
-                        // Llenar los campos del formulario con los datos recibidos
-                        $('#primer_nombre').val(response.primer_nombre);
-                        $('#segundo_nombre').val(response.segundo_nombre);
-                        $('#apellido_paterno').val(response.apellido_paterno);
-                        $('#apellido_materno').val(response.apellido_materno);
-                        $('#email').val(response.email);
-                        $('#telefono_celular').val(response.telefono_celular);
-
-                        // Mostrar un mensaje solo si encuentra la cédula
-                        Swal.fire({
-                            title: "Info",
-                            text: "Cédula encontrada y datos cargados.",
-                            icon: "info"
-                        });
-                    },
-                    error: function() {
-                        // alert('Cédula no encontrada');
-                        // Limpiar los campos si no se encuentra la cédula
-                        $('#primer_nombre, #segundo_nombre, #apellido_paterno, #apellido_materno, #email, #telefono_celular').val('');
-                    }
-                });
-            }
-        });
-    });
-</script>
-<script>
-
-</script>
+    <!-- Sección para agregar scripts desde otras vistas -->
+    @stack('scripts')
 </html>
