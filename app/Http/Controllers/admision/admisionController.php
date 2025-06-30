@@ -25,11 +25,11 @@ class admisionController extends Controller
     public function create($id)
     {
 
-        $persona = persona::find($id);
-        $nacionalidad = nacionalidad::all();
-        $anio_academico = anioAcademico::all();
-        $sexo = sexo::all();
-        return view('admision.FOR-AYM-005A',compact('persona','nacionalidad','anio_academico','sexo'));
+        // $persona = persona::find($id);
+        // $nacionalidad = nacionalidad::all();
+        // $anio_academico = anioAcademico::all();
+        // $sexo = sexo::all();
+        // return view('admision.FOR-AYM-005A',compact('persona','nacionalidad','anio_academico','sexo'));
 
     }
 

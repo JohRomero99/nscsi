@@ -26,10 +26,10 @@ class admisionRequest extends FormRequest
         if ($this->input('setup') == 1) {
             return [
                 'cedula' => ['required','numeric','document_ec:ci'],
-                'apellido_paterno' => ['required', 'regex:/^[\p{L}\s]*$/u'],
-                'apellido_materno' => ['required', 'regex:/^[\p{L}\s]*$/u'],
-                'primer_nombre' => ['required', 'regex:/^[\p{L}\s]*$/u'],
-                'segundo_nombre' => ['required', 'regex:/^[\p{L}\s]*$/u'],
+                'apellido_paterno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+                'apellido_materno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+                'primer_nombre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+                'segundo_nombre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
                 'email' => ['required', 'email:rfc,dns'],
                 'telefono_celular' => ['required', 'numeric','digits:10'],
                 'numero_inscripion' => ['required', 'numeric','min:0'],
@@ -37,10 +37,10 @@ class admisionRequest extends FormRequest
         } elseif ($this->input('setup') == 2) {
             return [
                 'cedula.*' => ['required','numeric','document_ec:ci'],
-                'apellido_paterno.*' => ['required', 'regex:/^[\p{L}\s]*$/u'],
-                'apellido_materno.*' => ['required', 'regex:/^[\p{L}\s]*$/u'],
-                'primer_nombre.*' => ['required', 'regex:/^[\p{L}\s]*$/u'],
-                'segundo_nombre.*' => ['required', 'regex:/^[\p{L}\s]*$/u'],
+                'apellido_paterno.*' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+                'apellido_materno.*' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+                'primer_nombre.*' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+                'segundo_nombre.*' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
                 'fecha_nacimiento.*' => ['required'],
                 'anio_basica.*' => ['required','not_in:1'],
             ];

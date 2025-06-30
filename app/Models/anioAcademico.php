@@ -9,4 +9,10 @@ class anioAcademico extends Model
 {
     use HasFactory;
     protected $table = 'anio_academico';
+
+    public function estudiante(){
+
+        return $this->hasOne(estudiante::class);
+
+    }
 }

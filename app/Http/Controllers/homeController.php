@@ -6,106 +6,113 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\estudianteRepresentante;
 use App\Models\matriculacion;
+use App\Models\estudiante;
+use App\Models\persona;
+use App\Models\sexo;
+use App\Models\nacionalidad;
+use App\Models\anioAcademico;
+use App\Models\tipoVivienda;
+use App\Models\viveCon;
 use App\Models\salud;
-use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\relacionFamiliar;
+use App\Http\Requests\admision\datosEstudianteRequest;
 
 class homeController extends Controller
 {
     /**
-     *
+     * Página princial del proceso de admisión y matriculación.
      */
-    public function indexMatriculacion()
+    public function index()
     {
         
-        $matriculacion = matriculacion::where('estado', 'Matriculado')->paginate(10);
-        return view('dashboard', compact('matriculacion'));
+        // Obtengo el id del usuario que está autenticado y obtengo el id del representante.
+        $representanteId = Auth::user()->persona->representante->id;
+
+        // Busco en la tabla estudiante_representante la columna representante_id que contenga el id del representante.
+        $representanteEstudiante = estudianteRepresentante::where('representante_id',$representanteId)->get();
+
+        // Obtengo todos los datos registrados en la tabla "año acádemico".
+        $anio_academico = anioAcademico::all();
+
+        // Retorna la vista homeAdmision y envio la variable $representanteEstudiante y la variable $anio_academico.
+        return view('admision.homeAdmision', compact('representanteEstudiante', 'anio_academico'));
 
     }
+
 
     /**
-     * Generar PDF matriculacion
+     * Wizad - Datos del estudiante.
      */
-    public function pdfMatriculacion($id)
+    public function create($id)
     {
 
-        $matriculacion = matriculacion::findOrFail($id);
-        $nombreArchivo = $matriculacion->primer_nombre_estudiante . '_' . $matriculacion->apellido_paterno_estudiante . '_matriculacion.pdf';
-        $imagePath = public_path('imagenes/LogoNSCFinalNegro.png'); // Asegúrate de que el nombre no tenga espacios
-        $imageData = base64_encode(file_get_contents($imagePath));
-        $imageType = pathinfo($imagePath, PATHINFO_EXTENSION);
-        $imageBase64 = "data:image/$imageType;base64,$imageData";
-        $pdf = Pdf::loadView('pdf.matriculacion', compact('matriculacion', 'imageBase64' ));
-        return $pdf->download($nombreArchivo);
+        //Obtengo el id del estudiante.
+        $estudiante = estudiante::find($id);
+
+        // Obtengo todos los datos registrados en la tabla "sexo".
+        $sexo = sexo::all();
+
+        // Obtengo todos los datos registrados en la tabla "nacionalidad".
+        $nacionalidad = nacionalidad::all();
+
+        // Obtengo todos los datos registrados en la tabla "año acádemico".
+        $anio_academico = anioAcademico::all();
+
+        // Obtengo todos los datos registrados en la tabla "tipo de vivienda".
+        $tipoVivienda = tipoVivienda::all();
+
+        // Obtengo todos los datos registrados en la tabla "viveCon".
+        $viveCon = viveCon::all();
+
+        // Obtengo todos los datos registrados en la tabla "referencia familiar".
+        $relacionFamiliar = relacionFamiliar::all();
+
+        // Retorno a la vida dashboard con cada una de la variables creadas anteriormente.
+        return view('admision.fichaDatosEstudiante', compact('sexo','nacionalidad','anio_academico','viveCon','tipoVivienda','estudiante','relacionFamiliar'));
 
     }
 
-    /**
-     * Buscar estudiante
-     */
-    public function buscar(Request $request)
-    {
-        $query = $request->input('query');
-        $matriculacion = matriculacion::where('cedula_estudiante', 'LIKE', "%{$query}%")
-            ->orWhere('primer_nombre_estudiante', 'LIKE', "%{$query}%")
-            ->orWhere('segundo_nombre_estudiante', 'LIKE', "%{$query}%")
-            ->orWhere('apellido_paterno_estudiante', 'LIKE', "%{$query}%")
-            ->orWhere('apellido_materno_estudiante', 'LIKE', "%{$query}%")
-            ->orWhere('ano_basica', 'LIKE', "%{$query}%")
-            ->paginate(10);
-    
-        return view('dashboard', compact('matriculacion'));
-    }
+    public function store(datosEstudianteRequest $request){
 
-    /**
-     *
-     */
-    public function indexSalud()
-    {
+        // Busco en la tabla persona la cédula del estudiante que obtengo de la vista llamada "Datos del Estudiante".
+        $persona = persona::where('cedula',$request->cedula)->first();
+        // return $persona;
 
-        $salud = salud::paginate(10);
-        return view('dashboardSalud', compact('salud'));
+        // Obtengo el PDF "Boletin ultimo año" de la vista llamada "Datos del Estudiante".
+        $archivo = $request->file('boletin_ultimo_ano');
 
-    }
+        // Obtengo el nombre original del archivo tal como lo tenía en el computador del usuario.
+        $nombre = $archivo->getClientOriginalName();
 
-    /**
-     * Generar PDF salud
-     */
-    public function pdfsalud($id)
-    {
+        // Guarda el archivo dentro del disco 'public'.
+        $rutaBoletinUltimoAno = $archivo->store('documentos', 'public');
 
-        $salud = salud::findOrFail($id);
-        $nombreArchivo = $salud->primer_nombre_estudiante . '_' . $salud->apellido_paterno_estudiante . '_salud.pdf';
-        $imagePath = public_path('imagenes/LogoNSCFinalNegro.png'); // Asegúrate de que el nombre no tenga espacios
-        $imageData = base64_encode(file_get_contents($imagePath));
-        $imageType = pathinfo($imagePath, PATHINFO_EXTENSION);
-        $imageBase64 = "data:image/$imageType;base64,$imageData";
-        $pdf = Pdf::loadView('pdf.salud', compact('salud', 'imageBase64' ));
-        return $pdf->download($nombreArchivo);
+        // Actualizo nuevamente los datos en la tabla persona.
+        $persona->update([
+            "cedula" => $request->cedula,
+            "primer_nombre" => $request->primer_nombre,
+            "segundo_nombre" => $request->segundo_nombre,
+            "apellido_paterno" => $request->apellido_paterno,
+            "apellido_materno" => $request->apellido_materno,
+            "nacionalidad_id" => $request->nacionalidad_id,
+            'lugar_nacimiento_id' => $request->lugar_nacimiento_id,
+            'sexo_id' => $request->sexo_id,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+            'direccion_domiciliaria' => $request->direccion_domiciliaria,
+        ]);
+
+        // Actualizo los datos en la tabla estudiante.
+        $persona->estudiante->update([
+            'repite_ano' => $request->repite_ano,
+            'anio_academico_id' => $request->anio_academico_id,
+            'tipo_vivienda_id' => $request->tipo_vivienda_id,
+            'anos_domicilio' => $request->anos_domicilio,
+            'vive_con' => $request->vive_con,
+            'boletin_ultimo_ano' => $rutaBoletinUltimoAno,
+        ]);
+
+        return redirect()->route('dashboard.ficha.padres.create');
 
     }
 
-    /**
-     * Buscar estudiante salud
-     */
-    public function buscarSalud(Request $request)
-    {
-        $query = $request->input('query');
-        $salud = salud::where('cedula_estudiante', 'LIKE', "%{$query}%")
-            ->orWhere('primer_nombre_estudiante', 'LIKE', "%{$query}%")
-            ->orWhere('segundo_nombre_estudiante', 'LIKE', "%{$query}%")
-            ->orWhere('apellido_paterno_estudiante', 'LIKE', "%{$query}%")
-            ->orWhere('apellido_materno_estudiante', 'LIKE', "%{$query}%")
-            ->orWhere('ano_basica', 'LIKE', "%{$query}%")
-            ->paginate(10);
-    
-        return view('dashboardSalud', compact('salud'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

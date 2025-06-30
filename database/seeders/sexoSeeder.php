@@ -13,6 +13,11 @@ class sexoSeeder extends Seeder
      */
     public function run(): void
     {
+
+        $sexo = sexo::create([
+            'sexo' => '--seleccionar--',
+        ]);
+
         $sexo = sexo::create([
             'sexo' => 'Hombre',
         ]);
@@ -20,5 +25,6 @@ class sexoSeeder extends Seeder
         $sexo = sexo::create([
             'sexo' => 'Mujer',
         ]);
+
     }
 }

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('apellido_materno')->nullable();
             $table->unsignedBigInteger('sexo_id')->nullable();
             $table->date('fecha_nacimiento')->nullable();
-            $table->unsignedBigInteger('lugar_nacimiento_id')->nullable();
+            // $table->unsignedBigInteger('lugar_nacimiento_id')->nullable();
+            $table->string('lugar_nacimiento')->nullable();
             $table->unsignedBigInteger('nacionalidad_id')->nullable();
             $table->string('telefono_celular')->nullable();
             $table->string('telefono_domicilio')->nullable();
@@ -33,7 +34,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->timestamps();
 
-            $table->foreign('lugar_nacimiento_id')->references('id')->on('lugar_nacimiento')->onDelete('cascade');
+            // $table->foreign('lugar_nacimiento_id')->references('id')->on('lugar_nacimiento')->onDelete('cascade');
             $table->foreign('nacionalidad_id')->references('id')->on('nacionalidad')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('sexo_id')->references('id')->on('sexo')->onDelete('cascade');

@@ -24,6 +24,11 @@ class DatabaseSeeder extends Seeder
             anioAcademicoSeeder::class,
             nacionalidadSeeder::class,
             sexoSeeder::class,
+            tipoViviendaSeeder::class,
+            viveConSeeder::class,
+            ocupacionSeeder::class,
+            trabajaParaSeeder::class,
+            realacionFamiliarSeeder::class,
         ]);
     }
 }

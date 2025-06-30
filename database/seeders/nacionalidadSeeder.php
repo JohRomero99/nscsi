@@ -13,6 +13,11 @@ class nacionalidadSeeder extends Seeder
      */
     public function run(): void
     {
+
+        $nacionalidad = nacionalidad::create([
+            'nacionalidad' => '--seleccionar--',
+        ]);
+
         $nacionalidad = nacionalidad::create([
             'nacionalidad' => 'Afegano',
         ]);

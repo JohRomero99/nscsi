@@ -24,4 +24,10 @@ class estudiante extends Model
 
     }
 
+    public function anioAcademico(){
+
+        return $this->belongsTo(anioAcademico::class);
+
+    }
+
 }

@@ -61,6 +61,7 @@ class setupDosController extends Controller
             $x[$i] = persona::create($personas[$i]);
             $estudiante = estudiante::create([
                 'persona_id' => $x[$i]['id'],
+                'anio_academico_id' => $request->anio_basica[$i],
             ]);
             $estudianteRepresentante = estudianteRepresentante::create([
                 'estudiante_id' => $estudiante->id,
