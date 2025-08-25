@@ -3,14 +3,14 @@
     <div class="grid grid-cols-4 gap-4 p-5">
 
         <!-- Imagen -->
-        <div class="col-span-4 flex justify-center">
+        <!-- <div class="col-span-4 flex justify-center">
                 <img 
                     src="{{ asset('imagenes/LogoPlataforma.png') }}" 
                     alt="LogoPlataforma"
                     width="30%"
                     height="30%"
                 >
-        </div>
+        </div> -->
 
         <!-- Título y Subtitulo -->
         <div class="col-span-4">
@@ -19,7 +19,7 @@
                     ¡Bienvenido proceso de admisión y matriculación!
                 </h1>
                 <p class="mb-3 text-center text-gray-600 dark:text-gray-600 mt-2 text-1xl">
-                    Para continuar con el proceso de admisión da click en el botón continuar del o los estudiantes disponibles
+                    Para continuar con el proceso de admisión da click en el botón continuar del o los estudiantes disponibles.
                 </p>
             </div>
         </div>
@@ -36,7 +36,7 @@
                                 <th class="px-6 py-4 border-b text-center">Apellidos</th>
                                 <th class="px-6 py-4 border-b text-center">Curso</th>
                                 <th class="px-6 py-4 border-b text-center">Estado</th>
-                                <th class="px-6 py-4 border-b text-center">Fcihas completadas</th>
+                                <!-- <th class="px-6 py-4 border-b text-center">Fcihas completadas</th> -->
                                 <th class="px-6 py-4 border-b text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -49,12 +49,12 @@
                                     <td class="px-6 py-3 border-b">{{ $representanteEstudiante->estudiante->anioAcademico->anio_basica }}</td>
                                     <td class="px-6 py-3 border-b">
                                         <div class="inline-block">
-                                            <div class="inline-flex items-center bg-green-100 text-green-700 text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full shadow-sm">
+                                            <div class="inline-flex items-center bg-green-600 text-white text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full shadow-sm">
                                                 <span><strong>Admisión</strong></span>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="px-6 py-1 border-b"> 0/3</td>
+                                    <!-- <td class="px-6 py-1 border-b"> 0/3</td> -->
                                     <td class="px-6 py-3 border-b text-center">
                                         <a href="{{ route('dashboard.ficha.estudiante.create', $representanteEstudiante->estudiante->id ) }}"
                                             class="rounded-lg bg-gray-500 hover:bg-gray-400 text-white font-bold py-3 px-4 border-b-4 border-gray-700 hover:border-gray-500 inline-block">
@@ -149,7 +149,7 @@
 
                     // Realizo la consulta antes de eliminar el estudiante.
                     Swal.fire({
-                        title: "¿Deseas eliminar a este estudiante?",
+                        title: "¿Deseas eliminar a este postulante?",
                         text: "¡Todos sus datos serán eliminados por completo!",
                         icon: "warning",
                         showCancelButton: true,

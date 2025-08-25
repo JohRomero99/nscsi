@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('estudiante_id')->nullable();
             $table->unsignedBigInteger('representante_id')->nullable();
+            $table->string('estado')->nullable();
             $table->timestamps();
 
             $table->foreign('estudiante_id')->references('id')->on('estudiante')->onDelete('cascade');

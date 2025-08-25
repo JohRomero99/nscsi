@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vive_con', function (Blueprint $table) {
+        Schema::create('ocupacion', function (Blueprint $table) {
             $table->id();
-            $table->string("vive_con_familiar");
+            $table->string('trabajo');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vive_con');
+        Schema::dropIfExists('ocupacion');
     }
 };

@@ -12,18 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('representante', function (Blueprint $table) {
-            $table->id()->nullable();
+            // $table->id()->nullable();
+            $table->id();
             $table->unsignedBigInteger('persona_id')->nullable();
-            $table->unsignedBigInteger('ocupacion_id')->nullable();
-            $table->string('trabaja_para')->nullable();
-            $table->string('nombre_empresa')->nullable();
-            $table->string('direccion_trabajo')->nullable();
-            $table->string('situacion_financiera')->nullable();
-            $table->string('telefono_trabajo')->nullable();
+            $table->unsignedBigInteger('informacion_laboral_id')->nullable();
             $table->timestamps();
 
             $table->foreign('persona_id')->references('id')->on('persona')->onDelete('cascade');
-            $table->foreign('ocupacion_id')->references('id')->on('ocupacion')->onDelete('cascade');
+            $table->foreign('informacion_laboral_id')->references('id')->on('informacion_laboral')->onDelete('cascade');
         });
     }
 

@@ -223,6 +223,7 @@
             </button>
         </div>
     </form>
+
     @push('scripts')
         <!-- Buscar en tiempo real cédula del Estudiante -->
         <script>
@@ -235,15 +236,15 @@
                 const anoBasicaInput = document.querySelectorAll(".anio_basica");
                 const fechaNacimientoInput = document.querySelectorAll(".fecha_nacimiento");
 
-                // Recorremos solo los campos cédulas 
+                // Recorremos solo los campos cédulas.
                 for( let i = 0; i < cedulaInput.length; i++  ){
                     cedulaInput[i].addEventListener("input", function(){
    
-                        // Validamos si el campo cédula tiene solo 10 Dígitos
+                        // Validamos si el campo cédula tiene solo 10 Dígitos.
                         if( cedulaInput[i].value.length === 10){
                             
                             // Realizamos una petición para buscar la cédula en la base de datos.
-                            fetch(`{{ route('buscar.cedula.estudiante') }}?cedula=${cedulaInput[i].value}`)
+                            fetch(`{{ route('buscar.cedula.estudiante') }}?cedula=${cedulaInput[i].value}`) 
                             .then(response => {
                                 if (!response.ok) {
                                     throw new Error("No se encontró la cédula");

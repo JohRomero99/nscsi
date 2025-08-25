@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class viveCon extends Model
+class fichaEstudianteAspirante extends Model
 {
     use HasFactory;
 
-    protected $table = 'vive_con';
+    protected $table = 'ficha_estudiante_aspirante';
+    
 }

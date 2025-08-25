@@ -459,16 +459,16 @@
 
                 <select 
                     type="select" 
-                    name="vive_con"
+                    name="convivienteEstudiante"
                     class="mt-1 block border-gray-300 w-full rounded-md"
                 >
-                    @foreach ($viveCon as $viveCon)
+                    @foreach ($convivienteEstudiante as $convivienteEstudiante)
                         <option 
-                            value="{{ $viveCon->id }}"
-                            {{ old('vive_con') == $viveCon->id ? 'selected' : '' }}
+                            value="{{ $convivienteEstudiante->id }}"
+                            {{ old('convivienteEstudiante') == $convivienteEstudiante->id ? 'selected' : '' }}
                         >
 
-                            {{ $viveCon->vive_con_familiar }}
+                            {{ $convivienteEstudiante->relacion_estudiante }}
                         </option>
                     @endforeach
                 </select>
@@ -511,19 +511,19 @@
 
             </div>
 
-            <!-- Copia del cédula del estudiante -->
+            <!-- Copia del cédula del estudiante Parte Frontal -->
             <div class="col-span-4">
                 <label 
                     class="block"
                 >   
-                    Copia del Cédula del Estudiante
+                    Copia del Cédula del Estudiante parte Frontal.
                 </label>
                 <p 
                     class="mt-2 text-pink-600 text-sm">
                     Formato PDF
                 </p>
                 <input 
-                    name="copia_cedula_estudiante"
+                    name="scan_cedula_front"
                     type="file"
                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 archivo"
                     accept="application/pdf"
@@ -532,7 +532,36 @@
                     <div class="bg-blue-600 h-2.5 rounded-full barra" style="width: 0%"></div>
                 </div>
 
-                @error('copia_cedula_estudiante')
+                @error('scan_cedula_front')
+                    <p 
+                        class="mt-2 text-pink-600 text-sm">
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Copia del cédula del estudiante Parte trasera -->
+            <div class="col-span-4">
+                <label 
+                    class="block"
+                >   
+                    Copia del Cédula del Estudiante parte Trasera.
+                </label>
+                <p 
+                    class="mt-2 text-pink-600 text-sm">
+                    Formato PDF
+                </p>
+                <input 
+                    name="scan_cedula_back"
+                    type="file"
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 archivo"
+                    accept="application/pdf"
+                >     
+                <div class="w-full mt-2 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                    <div class="bg-blue-600 h-2.5 rounded-full barra" style="width: 0%"></div>
+                </div>
+
+                @error('scan_cedula_back')
                     <p 
                         class="mt-2 text-pink-600 text-sm">
                         {{ $message }}
@@ -554,8 +583,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar[]" 
-                                id="referencia_familiar"
+                                name="referencia_familiar[0]" 
                                 placeholder="Nombres completos..."
                                 value="{{ old('referencia_familiar.0') }}" 
                                 class="mt-1 block border-gray-300 w-full rounded-md"
@@ -577,7 +605,7 @@
 
                             <select 
                                 type="select" 
-                                name="referencia_familiar[]"
+                                name="referencia_familiar[1]"
                                 class="mt-1 block border-gray-300 w-full rounded-md"
                             >
                                 @foreach ($relacionFamiliar as $relacion)
@@ -608,8 +636,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar[]" 
-                                id="referencia_familiar"
+                                name="referencia_familiar[2]" 
                                 placeholder="Teléfono celular..."
                                 value="{{ old('referencia_familiar.2') }}" 
                                 class="mt-1 block border-gray-300 w-full rounded-md"
@@ -634,8 +661,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar[]" 
-                                id="referencia_familiar"
+                                name="referencia_familiar[3]" 
                                 placeholder="Nombres completos..."
                                 value="{{ old('referencia_familiar.3') }}" 
                                 class="mt-1 block border-gray-300 w-full rounded-md"
@@ -657,7 +683,7 @@
 
                             <select 
                                 type="select" 
-                                name="referencia_familiar[]"
+                                name="referencia_familiar[4]"
                                 class="mt-1 block border-gray-300 w-full rounded-md"
                                 value="{{ old('referencia_familiar.4') }}" 
                             >
@@ -689,8 +715,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar[]" 
-                                id="referencia_familiar"
+                                name="referencia_familiar[5]" 
                                 placeholder="Teléfono celular..."
                                 value="{{ old('referencia_familiar.5') }}" 
                                 class="mt-1 block border-gray-300 w-full rounded-md"
@@ -714,8 +739,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar[]" 
-                                id="referencia_familiar"
+                                name="referencia_familiar[6]" 
                                 placeholder="Nombres completos..."
                                 value="{{ old('referencia_familiar.6') }}" 
                                 class="mt-1 block border-gray-300 w-full rounded-md"
@@ -737,8 +761,9 @@
 
                             <select 
                                 type="select" 
-                                name="referencia_familiar[]"
+                                name="referencia_familiar[7]"
                                 class="mt-1 block border-gray-300 w-full rounded-md"
+                                value="{{ old('referencia_familiar.7') }}" 
                             >
                                 @foreach ($relacionFamiliar as $relacion)
                                     <option 
@@ -767,7 +792,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar[]" 
+                                name="referencia_familiar[8]" 
                                 id="referencia_familiar"
                                 placeholder="Teléfono celular..."
                                 value="{{ old('referencia_familiar.8') }}" 
@@ -832,28 +857,4 @@
             }
         </script>
     @endpush
-
-<!-- Habilita o desabilita el campo de cédula -->
-<!-- @push('scripts')
-    <script>
-        window.addEventListener('DOMContentLoaded', function () {
-            var cedula = document.getElementById('cedula');
-            var nacionalidad = document.getElementById('nacionalidad');
-
-            nacionalidad.addEventListener('change', function () {
-                if (this.value !== "1") {
-                    cedula.disabled = false;
-                    cedula.classList.remove("opacity-50");
-                    cedula.classList.add("opacity-100");
-                } else {
-                    cedula.disabled = true;
-                    cedula.value = "";
-                    cedula.classList.remove("opacity-100");
-                    cedula.classList.add("opacity-50");
-                }
-            });
-
-        });
-    </script>
-@endpush -->
 </x-app-layout>

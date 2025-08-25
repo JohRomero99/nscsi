@@ -12,7 +12,7 @@ use App\Models\sexo;
 use App\Models\nacionalidad;
 use App\Models\anioAcademico;
 use App\Models\tipoVivienda;
-use App\Models\viveCon;
+use App\Models\convivienteEstudiante;
 use App\Models\salud;
 use App\Models\relacionFamiliar;
 use App\Http\Requests\admision\datosEstudianteRequest;
@@ -62,13 +62,13 @@ class homeController extends Controller
         $tipoVivienda = tipoVivienda::all();
 
         // Obtengo todos los datos registrados en la tabla "viveCon".
-        $viveCon = viveCon::all();
+        $convivienteEstudiante = convivienteEstudiante::all();
 
         // Obtengo todos los datos registrados en la tabla "referencia familiar".
         $relacionFamiliar = relacionFamiliar::all();
 
         // Retorno a la vida dashboard con cada una de la variables creadas anteriormente.
-        return view('admision.fichaDatosEstudiante', compact('sexo','nacionalidad','anio_academico','viveCon','tipoVivienda','estudiante','relacionFamiliar'));
+        return view('admision.fichaDatosEstudiante', compact('sexo','nacionalidad','anio_academico','convivienteEstudiante','tipoVivienda','estudiante','relacionFamiliar'));
 
     }
 
@@ -78,6 +78,7 @@ class homeController extends Controller
         $persona = persona::where('cedula',$request->cedula)->first();
         // return $persona;
 
+        // PDF - Ultimo Boletin.
         // Obtengo el PDF "Boletin ultimo año" de la vista llamada "Datos del Estudiante".
         $archivo = $request->file('boletin_ultimo_ano');
 
@@ -86,6 +87,29 @@ class homeController extends Controller
 
         // Guarda el archivo dentro del disco 'public'.
         $rutaBoletinUltimoAno = $archivo->store('documentos', 'public');
+
+
+        // PDF - Cédula parte Frontal.
+        // Obtengo el PDF "scan_cedula_front" de la vista llamada "Datos del Estudiante".
+        $cedula_parte_frontal = $request->file('scan_cedula_front');
+
+        // Obtengo el nombre original del archivo tal como lo tenía en el computador del usuario.
+        $nombre_uno = $cedula_parte_frontal->getClientOriginalName();
+
+        //Guarda el archivo dentro del disco 'public'.
+        $rutaCedulaFrontal = $cedula_parte_frontal->store('documentos', 'public');
+
+
+        // PDF - Cédula Parte Trasera.
+        // Obtengo el PDF "scan_cedula_back" de la vista llamada "Datos del Estudiante".
+        $cedula_parte_trasera = $request->file('scan_cedula_back');
+
+        // Obtengo el nombre original del archivo tal como lo tenía en el computador del usuario.
+        $nombre_dos = $cedula_parte_trasera->getClientOriginalName();
+
+        //Guarda el archivo dentro del disco 'public'.
+        $rutaCedulaTrasera = $cedula_parte_trasera->store('documentos', 'public');
+
 
         // Actualizo nuevamente los datos en la tabla persona.
         $persona->update([
@@ -99,6 +123,8 @@ class homeController extends Controller
             'sexo_id' => $request->sexo_id,
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'direccion_domiciliaria' => $request->direccion_domiciliaria,
+            "scan_cedula_front" => $rutaCedulaFrontal,
+            "scan_cedula_back" => $rutaCedulaTrasera,
         ]);
 
         // Actualizo los datos en la tabla estudiante.

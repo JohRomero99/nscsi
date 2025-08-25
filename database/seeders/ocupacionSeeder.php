@@ -15,299 +15,299 @@ class ocupacionSeeder extends Seeder
     {
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => '--seleccionar--',
+            'trabajo' => '--seleccionar--',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Actor/actriz',
+            'trabajo' => 'Actor/actriz',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Agente de tránsito',
+            'trabajo' => 'Agente de tránsito',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Agricultor',
+            'trabajo' => 'Agricultor',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Albañil',
+            'trabajo' => 'Albañil',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Analista de datos',
+            'trabajo' => 'Analista de datos',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Asistente contable',
+            'trabajo' => 'Asistente contable',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Ayudante de cocina',
+            'trabajo' => 'Ayudante de cocina',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Barbero',
+            'trabajo' => 'Barbero',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Bombero',
+            'trabajo' => 'Bombero',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Cajero bancario',
+            'trabajo' => 'Cajero bancario',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Cantante',
+            'trabajo' => 'Cantante',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Carpintero',
+            'trabajo' => 'Carpintero',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Cirujano',
+            'trabajo' => 'Cirujano',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Comerciante',
+            'trabajo' => 'Comerciante',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Conductor de bus',
+            'trabajo' => 'Conductor de bus',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Conductor de taxi',
+            'trabajo' => 'Conductor de taxi',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Conserje',
+            'trabajo' => 'Conserje',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Contador',
+            'trabajo' => 'Contador',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Cobrador informal',
+            'trabajo' => 'Cobrador informal',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Despachador',
+            'trabajo' => 'Despachador',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Diseñador de moda',
+            'trabajo' => 'Diseñador de moda',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Diseñador gráfico',
+            'trabajo' => 'Diseñador gráfico',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Docente universitario',
+            'trabajo' => 'Docente universitario',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Electricista',
+            'trabajo' => 'Electricista',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Empleada doméstica',
+            'trabajo' => 'Empleada doméstica',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Enfermero/a',
+            'trabajo' => 'Enfermero/a',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Farmacéutico',
+            'trabajo' => 'Farmacéutico',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Fiscal',
+            'trabajo' => 'Fiscal',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Fisioterapeuta',
+            'trabajo' => 'Fisioterapeuta',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Floricultor',
+            'trabajo' => 'Floricultor',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Fotógrafo',
+            'trabajo' => 'Fotógrafo',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Ganadero',
+            'trabajo' => 'Ganadero',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Gerente de empresa',
+            'trabajo' => 'Gerente de empresa',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Guardia de seguridad',
+            'trabajo' => 'Guardia de seguridad',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Ingeniero civil',
+            'trabajo' => 'Ingeniero civil',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Ingeniero en sistemas',
+            'trabajo' => 'Ingeniero en sistemas',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Jardinero',
+            'trabajo' => 'Jardinero',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Juez',
+            'trabajo' => 'Juez',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Lavandero',
+            'trabajo' => 'Lavandero',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Maestro de obra',
+            'trabajo' => 'Maestro de obra',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Mecánico automotriz',
+            'trabajo' => 'Mecánico automotriz',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Mesero/a',
+            'trabajo' => 'Mesero/a',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Militar',
+            'trabajo' => 'Militar',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Motorizado',
+            'trabajo' => 'Motorizado',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Médico general',
+            'trabajo' => 'Médico general',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Músico',
+            'trabajo' => 'Músico',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Niñera',
+            'trabajo' => 'Niñera',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Notario',
+            'trabajo' => 'Notario',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Obrero',
+            'trabajo' => 'Obrero',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Odontólogo',
+            'trabajo' => 'Odontólogo',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Operador de maquinaria pesada',
+            'trabajo' => 'Operador de maquinaria pesada',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Paramédico',
+            'trabajo' => 'Paramédico',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Peluquero/a',
+            'trabajo' => 'Peluquero/a',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Pescador artesanal',
+            'trabajo' => 'Pescador artesanal',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Pintor',
+            'trabajo' => 'Pintor',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Pintor de obra',
+            'trabajo' => 'Pintor de obra',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Plomero',
+            'trabajo' => 'Plomero',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Policía nacional',
+            'trabajo' => 'Policía nacional',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Profesor de educación inicial',
+            'trabajo' => 'Profesor de educación inicial',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Profesor de primaria',
+            'trabajo' => 'Profesor de primaria',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Profesor de secundaria',
+            'trabajo' => 'Profesor de secundaria',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Programador',
+            'trabajo' => 'Programador',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Psicólogo clínico',
+            'trabajo' => 'Psicólogo clínico',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Psicopedagogo',
+            'trabajo' => 'Psicopedagogo',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Recepcionista',
+            'trabajo' => 'Recepcionista',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Repartidor',
+            'trabajo' => 'Repartidor',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Secretario/a',
+            'trabajo' => 'Secretario/a',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Soldador',
+            'trabajo' => 'Soldador',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Técnico electrónico',
+            'trabajo' => 'Técnico electrónico',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Técnico en redes',
+            'trabajo' => 'Técnico en redes',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Trabajador social',
+            'trabajo' => 'Trabajador social',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Vendedor',
+            'trabajo' => 'Vendedor',
         ]);
 
         $ocupacion = ocupacion::create([
-            'ocupacion' => 'Otro',
+            'trabajo' => 'Otro',
         ]);
 
 

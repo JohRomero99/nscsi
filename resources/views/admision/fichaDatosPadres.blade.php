@@ -128,7 +128,7 @@
                 <label 
                     class="block"
                 >   
-                    Segundo Nombre
+                    Apellido Paterno
                 </label>
 
                 <input 
@@ -153,18 +153,18 @@
                 <label 
                     class="block"
                 >   
-                    Segundo Nombre
+                    Apellido Materno
                 </label>
 
                 <input 
                     type="text" 
-                    name="apellido_paterno_madre" 
-                    id="apellido_paterno_madre" 
-                    value="{{ old('apellido_paterno_madre') }}"
+                    name="apellido_materno_padre" 
+                    id="apellido_materno_padre" 
+                    value="{{ old('apellido_materno_padre') }}"
                     placeholder="Sanchez..." 
                     class="mt-1 block border-gray-300 w-full rounded-md"
                 >
-                @error('apellido_paterno_madre')
+                @error('apellido_materno_padre')
                     <p 
                         class="mt-2 text-pink-600 text-sm">
                         {{ $message }}
@@ -307,9 +307,33 @@
                 @enderror
             </div>
 
+            <!-- Direccion Domiciliaria -->
+            <div class="col-span-4 md:col-span-2 lg:col-span-1">
+                <label 
+                    class="block"
+                >   
+                    Direccion Domiciliaria
+                </label>
+
+                <input 
+                    type="text" 
+                    name="direccion_domiciliaria" 
+                    id="direccion_domiciliaria" 
+                    value="{{ old('direccion_domiciliaria') }}" 
+                    placeholder="Dirección de la empresa..." 
+                    class="mt-1 block border-gray-300 w-full rounded-md"
+                >
+
+                @error('direccion_domiciliaria')
+                    <p 
+                        class="mt-2 text-pink-600 text-sm">
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
 
             <!-- Correo Electrónico frecuente padre -->
-            <div class="col-span-4 md:col-span-1 lg:col-span-1">
+            <div class="col-span-4 md:col-span-1 lg:col-span-4">
                 <label 
                     class="block"
                 >   
@@ -350,7 +374,7 @@
                             value="{{$o->id}}"
                             {{ old('ocupacion_id') == $o->id ? 'selected' : '' }}
                         >
-                            {{$o->ocupacion}}
+                            {{$o->trabajo}}
                         </option>
                     @endforeach
                 </select>
@@ -383,7 +407,7 @@
                 @error('otra_ocupacion')
                     <p 
                         class="mt-2 text-pink-600 text-sm">
-                        No puedes eligir la opción "--seleccionar--"
+                        {{ $message }}
                     </p>
                 @enderror
             </div>
@@ -510,7 +534,7 @@
 
                             <input 
                                 type="number" 
-                                name="ingresos_egresos_padre[]" 
+                                name="ingresos_egresos_padre[0]" 
                                 id="ingresos_egresos_padre"
                                 placeholder="Digite un aproximado de sus ingresos..."
                                 value="{{ old('ingresos_egresos_padre.0') }}"
@@ -533,7 +557,7 @@
 
                             <input 
                                 type="number" 
-                                name="ingresos_egresos_padre[]" 
+                                name="ingresos_egresos_padre[1]" 
                                 id="ingresos_egresos_padre"
                                 placeholder="Digite un aproximado de sus ingresos..."
                                 value="{{ old('ingresos_egresos_padre.1') }}"
@@ -559,7 +583,7 @@
 
                             <input 
                                 type="number" 
-                                name="ingresos_egresos_padre[]" 
+                                name="ingresos_egresos_padre[2]" 
                                 id="ingresos_egresos_padre"
                                 placeholder="Digite un aproximado de sus egresos..."
                                 value="{{ old('ingresos_egresos_padre.2') }}"
@@ -582,7 +606,7 @@
 
                             <input 
                                 type="number" 
-                                name="ingresos_egresos_padre[]" 
+                                name="ingresos_egresos_padre[3]" 
                                 id="ingresos_egresos_padre"
                                 placeholder="Digite un aproximado de sus egresos..."
                                 value="{{ old('ingresos_egresos_padre.3') }}"
@@ -599,6 +623,7 @@
                 </div>
             </div>
 
+            <!-- Referencias familiares -->
             <div class="col-span-4 md:col-span-4 lg:col-span-4">
                 <p class="mb-4">Referencias Familiares</p>
                 <div class="grid grid-cols-3 gap-4">
@@ -612,8 +637,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar[]" 
-                                id="referencia_familiar"
+                                name="referencia_familiar[0]" 
                                 placeholder="Nombres completos..."
                                 value="{{ old('referencia_familiar.0') }}"
                                 class="mt-1 block border-gray-300 w-full rounded-md"
@@ -635,7 +659,7 @@
 
                             <select 
                                 type="select" 
-                                name="referencia_familiar[]"
+                                name="referencia_familiar[1]"
                                 class="mt-1 block border-gray-300 w-full rounded-md"
                             >
                                 @foreach ($relacionFamiliar as $relacion)
@@ -666,8 +690,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar" 
-                                id="referencia_familiar"
+                                name="referencia_familiar[2]" 
                                 placeholder="Teléfono celular..."
                                 value="{{ old('referencia_familiar.2') }}"
                                 class="mt-1 block border-gray-300 w-full rounded-md"
@@ -692,8 +715,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar[]" 
-                                id="referencia_familiar"
+                                name="referencia_familiar[3]" 
                                 placeholder="Nombres completos..."
                                 value="{{ old('referencia_familiar.3') }}" 
                                 class="mt-1 block border-gray-300 w-full rounded-md"
@@ -715,8 +737,8 @@
 
                             <select 
                                 type="select" 
-                                name="referencia_familiar[]"
-                                class="mt-1 block border-gray-300 w-full rounded-md"
+                                name="referencia_familiar[4]"
+                                class="mt-1 block border-gray-300 w-full rounded-md" 
                             >
                                 @foreach ($relacionFamiliar as $relacion)
                                     <option 
@@ -746,8 +768,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar[]" 
-                                id="referencia_familiar"
+                                name="referencia_familiar[5]" 
                                 placeholder="Teléfono celular..."
                                 value="{{ old('referencia_familiar.5') }}" 
                                 class="mt-1 block border-gray-300 w-full rounded-md"
@@ -771,8 +792,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar[]" 
-                                id="referencia_familiar"
+                                name="referencia_familiar[6]" 
                                 placeholder="Nombres completos..."
                                 value="{{ old('referencia_familiar.6') }}" 
                                 class="mt-1 block border-gray-300 w-full rounded-md"
@@ -794,7 +814,7 @@
 
                             <select 
                                 type="select" 
-                                name="referencia_familiar[]"
+                                name="referencia_familiar[7]"
                                 class="mt-1 block border-gray-300 w-full rounded-md"
                             >
                                 @foreach ($relacionFamiliar as $relacion)
@@ -825,7 +845,7 @@
 
                             <input 
                                 type="text" 
-                                name="referencia_familiar[]" 
+                                name="referencia_familiar[8]" 
                                 id="referencia_familiar"
                                 placeholder="Teléfono celular..."
                                 value="{{ old('referencia_familiar.8') }}" 
@@ -842,11 +862,69 @@
                 </div>
             </div>
 
+            <!-- Copia del cédula del estudiante Parte Frontal -->
+            <div class="col-span-4">
+                <label 
+                    class="block"
+                >   
+                    Copia del Cédula del Estudiante parte Frontal.
+                </label>
+                <p 
+                    class="mt-2 text-pink-600 text-sm">
+                    Formato PDF
+                </p>
+                <input 
+                    name="scan_cedula_front"
+                    type="file"
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 archivo"
+                    accept="application/pdf"
+                >     
+                <div class="w-full mt-2 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                    <div class="bg-blue-600 h-2.5 rounded-full barra" style="width: 0%"></div>
+                </div>
+
+                @error('scan_cedula_front')
+                    <p 
+                        class="mt-2 text-pink-600 text-sm">
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Copia del cédula del estudiante Parte trasera -->
+            <div class="col-span-4">
+                <label 
+                    class="block"
+                >   
+                    Copia del Cédula del Estudiante parte Trasera.
+                </label>
+                <p 
+                    class="mt-2 text-pink-600 text-sm">
+                    Formato PDF
+                </p>
+                <input 
+                    name="scan_cedula_back"
+                    type="file"
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 archivo"
+                    accept="application/pdf"
+                >     
+                <div class="w-full mt-2 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                    <div class="bg-blue-600 h-2.5 rounded-full barra" style="width: 0%"></div>
+                </div>
+
+                @error('copia_cedula_estudiante')
+                    <p 
+                        class="mt-2 text-pink-600 text-sm">
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
             <div class="col-span-4">
                 <div class="text-center">
-                    <button class="rounded-lg bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-4 border-b-4 border-red-700 hover:border-red-500">
+                    <!-- <button class="rounded-lg bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-4 border-b-4 border-red-700 hover:border-red-500">
                         <i class="fa-regular fa-circle-left"></i> Regresar
-                    </button>
+                    </button> -->
                     <button class="rounded-lg bg-gray-500 hover:bg-gray-400 text-white font-bold py-3 px-4 border-b-4 border-gray-700 hover:border-gray-500">
                         Continuar <i class="fa-regular fa-circle-right"></i>
                     </button>
@@ -854,4 +932,50 @@
             </div>
         </div>
     </form>
+
+    <!-- Buscar en tiempo real cédula representantes -->
+    @push('scripts')
+
+    <script>
+        document.addEventListener("DOMContentLoaded",function(){
+            const cedulaInput = document.getElementById("cedula_padre");
+            const primerNombreInput = document.getElementById("primer_nombre_padre");
+            const segundoNombreInput = document.getElementById("segundo_nombre_padre");
+            const apellidoPaternoInput = document.getElementById("apellido_paterno_padre");
+            const apellidoMaternoInput = document.getElementById("apellido_materno_padre");
+
+            cedulaInput.addEventListener("input",function(){
+
+                if( cedulaInput.value.length === 10){
+
+                    // Realizamos una petición para buscar la cédula en la base de datos.
+                    fetch(`{{ route('buscar.cedula.representante') }}?cedula=${cedulaInput.value}`) 
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("No se encontró la cédula");
+                        }
+                        return response.json(); // Convertimos la respuesta en JSON
+                    })
+                    .then( data =>{
+                        primerNombreInput.value = data.primer_nombre;
+                        segundoNombreInput.value = data.segundo_nombre;
+                        apellidoPaternoInput.value = data.apellido_paterno;
+                        apellidoMaternoInput.value = data.apellido_materno;
+                            })
+                    .catch(error=>{
+                        primerNombreInput.value = "";
+                        segundoNombreInput.value = "";
+                        apellidoPaternoInput.value = "";
+                        apellidoMaternoInput.value = "";
+                    })
+
+                }
+
+            });
+
+        })
+    </script>
+
+
+    @endpush
 </x-app-layout>

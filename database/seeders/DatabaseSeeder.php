@@ -25,10 +25,10 @@ class DatabaseSeeder extends Seeder
             nacionalidadSeeder::class,
             sexoSeeder::class,
             tipoViviendaSeeder::class,
-            viveConSeeder::class,
             ocupacionSeeder::class,
             trabajaParaSeeder::class,
             realacionFamiliarSeeder::class,
+            convivienteEstudianteSeeder::class,
         ]);
     }
 }
