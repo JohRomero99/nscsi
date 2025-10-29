@@ -1,11 +1,14 @@
-<x-setup>
+<x-setup colorFondo="bg-gray-100" icono="fa-solid fa-graduation-cap" colorFondoTres="bg-gray-100" iconoTres="fa-solid fa-paper-plane">
+    <div class="conatiner m-auto pt-6 pl-5">
+        <h2 class="text-4xl font-extrabold text-green-400 dark:text-white">Formulario de Inscripción</h2>
+    </div>
     <form action="{{ route('admision.representante.store') }}" method="POST" id="formulario">
         @csrf
         <div id="setup-1">
             <div class="grid grid-cols-4 gap-4 pl-5 pt-1 pr-5">
                 <input type="hidden" name="setup" value="1"> <!-- Setup 1 -->
                 <div class="col-span-4">
-                    <p class="text-gray-500">Paso 1 de 3 - Datos del Representante</p>
+                    <p class="text-gray-500 text-center mt-5 text-green-900">Paso 1 de 3 - Datos del Representante</p>
                 </div>
 
                 <!-- Cédula del Representante -->

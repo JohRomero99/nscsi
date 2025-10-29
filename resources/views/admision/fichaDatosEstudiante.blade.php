@@ -459,13 +459,13 @@
 
                 <select 
                     type="select" 
-                    name="convivienteEstudiante"
+                    name="conviviente_estudiante_id"
                     class="mt-1 block border-gray-300 w-full rounded-md"
                 >
                     @foreach ($convivienteEstudiante as $convivienteEstudiante)
                         <option 
                             value="{{ $convivienteEstudiante->id }}"
-                            {{ old('convivienteEstudiante') == $convivienteEstudiante->id ? 'selected' : '' }}
+                            {{ old('conviviente_estudiante_id') == $convivienteEstudiante->id ? 'selected' : '' }}
                         >
 
                             {{ $convivienteEstudiante->relacion_estudiante }}
@@ -473,7 +473,72 @@
                     @endforeach
                 </select>
 
-                @error('vive_con')
+                @error('conviviente_estudiante_id')
+                    <p 
+                        class="mt-2 text-pink-600 text-sm">
+                        No puedes eligir la opción "--seleccionar--"
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Servicio escolar -->
+            <div class="col-span-4">
+                <label 
+                    class="block"
+                >   
+                    Transporte Escolar
+                </label>
+
+                <select 
+                    type="select"
+                    name="servicio_transporte"
+                    id="servicio_transporte"
+                    class="mt-1 block border-gray-300 w-full rounded-md"
+                >
+                    @foreach ($servicioTransporte as $transporte)
+                        <option 
+                            value="{{ $transporte->id }}"
+                            {{ old('servicio_transporte') == $transporte->id ? 'selected' : '' }}
+                        >
+
+                            {{ $transporte->metodo_transporte }}
+                        </option>
+                    @endforeach
+                </select>
+
+                @error('servicioTransporte')
+                    <p 
+                        class="mt-2 text-pink-600 text-sm">
+                        No puedes eligir la opción "--seleccionar--"
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Ruta -->
+            <div class="col-span-4" id="ruta" style="display: none">
+                <label 
+                    class="block"
+                >   
+                    Ruta
+                </label>
+
+                <select 
+                    type="select"
+                    name="ruta"
+                    class="mt-1 block border-gray-300 w-full rounded-md"
+                >
+                    @foreach ($ruta as $ruta)
+                        <option 
+                            value="{{ $ruta->id }}"
+                            {{ old('ruta') == $ruta->id ? 'selected' : '' }}
+                        >
+
+                            {{ $ruta->rutas_escolares }}
+                        </option>
+                    @endforeach
+                </select>
+
+                @error('ruta')
                     <p 
                         class="mt-2 text-pink-600 text-sm">
                         No puedes eligir la opción "--seleccionar--"
@@ -855,6 +920,24 @@
                 });
 
             }
+        </script>
+    @endpush
+
+    <!-- Permite ocultar o mostrar el select "Ruta" -->
+    @push('scripts')
+        <script>
+            var servicio_transporte = document.getElementById('servicio_transporte');
+            var ruta = document.getElementById('ruta');
+
+            servicio_transporte.addEventListener('change', function() {
+                if (this.value === "1") {
+                    // Si está en "--seleccionar--", ocultamos el select "Ruta".
+                    ruta.style.display = 'none';
+                } else {
+                    // Si selecciona otra opción, mostramos el select "Ruta".
+                    ruta.style.display = 'block';
+                }
+            });
         </script>
     @endpush
 </x-app-layout>

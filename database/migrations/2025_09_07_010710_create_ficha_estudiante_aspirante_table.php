@@ -20,10 +20,15 @@ return new class extends Migration
             $table->string('anos_domicilio')->nullable();
             $table->string('ano_basica_postula')->nullable();
             $table->unsignedBigInteger('conviviente_estudiante_id')->nullable();
-            $table->unsignedBigInteger('representante_padres_id')->nullable();
-            $table->unsignedBigInteger('situacion_financiera_id')->nullable();
             $table->unsignedBigInteger('transporte_escolar_id')->nullable();
-            $table->string('estado');
+            $table->string('boletin_ultimo_anos')->nullable();
+            //$table->unsignedBigInteger('representante_padres_id')->nullable();
+            $table->json('referencia_familiar')->nullable();
+            $table->string('estado')->nullable();
+
+            $table->foreign('estudiante_id')->references('id')->on('estudiante')->onDelete('cascade');
+            $table->foreign('conviviente_estudiante_id')->references('id')->on('conviviente_estudiante')->onDelete('cascade');
+            $table->foreign('transporte_escolar_id')->references('id')->on('transporte_escolar')->onDelete('cascade');
             $table->timestamps();
         });
     }

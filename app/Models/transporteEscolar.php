@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class fichaEstudianteAspirante extends Model
+class transporteEscolar extends Model
 {
     use HasFactory;
     protected $guarded = ['id', 'created_at', 'updated_at'];
-    protected $table = 'ficha_estudiante_aspirante';
+    protected $table = 'transporte_escolar';
 
-    public function transporteEscolar(){
+    public function fichaDatosEstudiante(){
 
-        return $this->belongsTo(transporteEscolar::class);
+        return $this->hasMany(fichaDatosEstudiante::class);
 
     }
-    
 }

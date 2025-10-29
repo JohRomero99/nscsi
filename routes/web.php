@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admision\setupUnoController;
 use App\Http\Controllers\admision\setupDosController;
+use App\Http\Controllers\admision\setupTresController;
 use App\Http\Controllers\admision\buscarCedulaController;
 use App\Http\Controllers\admision\admisionController;
 use App\Http\Controllers\admision\agregarEstudianteController;
@@ -29,6 +30,10 @@ Route::get('/admision/estudiante/{id}/{email}/{numeroInscripion}', [setupDosCont
 Route::post('/admision/estudiante/{id}/{email}', [setupDosController::class, 'store'])->name('admision.estudiante.store');
 Route::get('/admision/buscar/cedula/representante', [buscarCedulaController::class, 'buscarCedulaRepresentante'])->name('buscar.cedula.representante');
 Route::get('/admision/buscar/cedula/estudiante', [buscarCedulaController::class, 'buscarCedulaEstudiante'])->name('buscar.cedula.estudiante');
+
+Route::get('/admision/representante/email/{userId}', [setupTresController::class, 'email'])->name('admision.representante.email');
+Route::post('/admision/representante/reenviar/email/{userId}', [setupTresController::class, 'reenviarEmail'])->name('admision.representante.reenviar.email');
+
 
 Route::get('/dashboard/home/index', [homeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard/agregar/estudiante/create', [agregarEstudianteController::class, 'create'])->middleware(['auth', 'verified'])->name('dashboard.agregar.estudiante.create');

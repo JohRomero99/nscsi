@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('estudiante_id')->nullable();
             $table->unsignedBigInteger('representante_id')->nullable();
+            //$table->string('tipo_representante')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
 

@@ -36,12 +36,10 @@ class datosEstudianteRequest extends FormRequest
             'direccion_domiciliaria' => ['required', 'regex:/^[\p{L}\p{M}0-9\s\.\,\-\#\/\(\)\'\"\&]+$/u', 'max:150'],
             'tipo_vivienda' => ['required', 'not_in:1'],
             'anos_domicilio' => ['required', 'not_in:--seleccionar--'],
-            'convivienteEstudiante' => ['required', 'not_in:1'],
-
+            'conviviente_estudiante_id' => ['required', 'not_in:1'],
             'boletin_ultimo_ano' => ['required', 'file', 'mimes:pdf', 'max:5120'],
             'scan_cedula_front' => ['required', 'file', 'mimes:pdf', 'max:5120'],
             'scan_cedula_back' => ['required', 'file', 'mimes:pdf', 'max:5120'],
-
             'referencia_familiar.0' => ['required','regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'referencia_familiar.1' => ['required', 'not_in:1'],
             'referencia_familiar.2' => ['required', 'numeric','digits:10'],

@@ -1,4 +1,7 @@
-<x-setup>
+<x-setup colorFondo="bg-green-500" icono="fa-solid fa-check text-white" colorFondoTres="bg-gray-100" iconoTres="fa-solid fa-paper-plane">
+    <div class="conatiner m-auto pt-6 pl-5">
+        <h2 class="text-4xl font-extrabold text-green-400 dark:text-white">Formulario de Inscripción</h2>
+    </div>
     <form id="main-form" action="{{ route('admision.estudiante.store', ['id' => $id, 'email' => $email]) }}" method="POST">
         @csrf
         <div id="form-container">

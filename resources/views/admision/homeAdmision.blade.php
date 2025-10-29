@@ -28,7 +28,7 @@
         <div class="col-span-4">
             <div class="">
                 <div class="overflow-x-auto flex justify-center">
-                    <table class="w-full max-w-8xl border border-gray-300 rounded-lg shadow-lg">
+                    <table class="w-full max-w-6xl border border-gray-300 rounded-lg shadow-lg">
                         <thead class="bg-gray-300 text-gray-700 uppercase text-sm text-center">
                             <tr class=""> 
                                 <th class="px-6 py-4 border-b text-center">DNI</th>

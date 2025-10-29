@@ -23,6 +23,7 @@ class setupUnoController extends Controller
      */
     public function create()
     {
+        //$colorFondo = "bg-gray-100";
         return view('admision.setupUno');
     }
 

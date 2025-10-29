@@ -15,7 +15,6 @@ use App\Http\Requests\admision\datosPadresRequest;
 
 class datosPadresController extends Controller
 {
-    
     /**
      * 
      */
@@ -128,6 +127,8 @@ class datosPadresController extends Controller
             $datosPadre->representante->update([
                 'informacion_laboral_id' => $informacionLaboral->id,
             ]);
+
+            // Obtener el ID del estudiante_representante
 
         }
 

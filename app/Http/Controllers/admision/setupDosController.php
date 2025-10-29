@@ -80,7 +80,8 @@ class setupDosController extends Controller
 
         $estudianteRepresentante->representante->persona()->update(['user_id' => $user->id]);
         Mail::to('soporte.tecnico.2@nsc.edu.ec')->send(new crearUsuarioMail($user, $randomContrasena));
-        return redirect()->route('admision.representante.create')->with('estudiante', 'Datos guardados con éxito por favor revise su bandeja de entrega');
+        //return redirect()->route('admision.representante.create')->with('estudiante', 'Datos guardados con éxito por favor revise su bandeja de entrega');
+        return redirect()->route('admision.representante.email',['userId' => $user->id])->with('estudiante', 'Datos guardados con éxito por favor revise su bandeja de entrega');
 
     }
 

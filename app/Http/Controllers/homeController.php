@@ -15,6 +15,10 @@ use App\Models\tipoVivienda;
 use App\Models\convivienteEstudiante;
 use App\Models\salud;
 use App\Models\relacionFamiliar;
+use App\Models\ruta;
+use App\Models\servicioTransporte;
+use App\Models\fichaEstudianteAspirante;
+use App\Models\transporteEscolar;
 use App\Http\Requests\admision\datosEstudianteRequest;
 
 class homeController extends Controller
@@ -67,8 +71,14 @@ class homeController extends Controller
         // Obtengo todos los datos registrados en la tabla "referencia familiar".
         $relacionFamiliar = relacionFamiliar::all();
 
+        // Obtengo todos los datos registrados en la tabla "ruta".
+        $ruta = ruta::all();
+
+        // Obtengo todos los datos registrados en la tabla "servicioTransporte".
+        $servicioTransporte = servicioTransporte::all();
+
         // Retorno a la vida dashboard con cada una de la variables creadas anteriormente.
-        return view('admision.fichaDatosEstudiante', compact('sexo','nacionalidad','anio_academico','convivienteEstudiante','tipoVivienda','estudiante','relacionFamiliar'));
+        return view('admision.fichaDatosEstudiante', compact('sexo','nacionalidad','anio_academico','convivienteEstudiante','tipoVivienda','estudiante','relacionFamiliar','ruta','servicioTransporte'));
 
     }
 
@@ -127,15 +137,26 @@ class homeController extends Controller
             "scan_cedula_back" => $rutaCedulaTrasera,
         ]);
 
-        // Actualizo los datos en la tabla estudiante.
-        $persona->estudiante->update([
+        // Cardo los datos en la tabla "Transporte Escolar".
+        $transporteEscolar = transporteEscolar::create([
+            'transporte_escolar_id' => $request->servicio_transporte,
+            'ruta' => $request->ruta,
+        ]);
+
+        // Guardos los datos en la tabla "Ficha datos del Estudiante".
+        $fichaEstudianteAspirante = fichaEstudianteAspirante::create([
+            'estudiante_id' => $persona->estudiante->id,
             'repite_ano' => $request->repite_ano,
             'anio_academico_id' => $request->anio_academico_id,
             'tipo_vivienda_id' => $request->tipo_vivienda_id,
             'anos_domicilio' => $request->anos_domicilio,
-            'vive_con' => $request->vive_con,
+            'ano_basica_postula' => $request->anio_academico_id,
+            'conviviente_estudiante_id' => $request->conviviente_estudiante_id,
+            'transporte_escolar_id' => $request->transporteEscolar,
             'boletin_ultimo_ano' => $rutaBoletinUltimoAno,
+            // Falta guardar la referencia familira.....
         ]);
+
 
         return redirect()->route('dashboard.ficha.padres.create');
 

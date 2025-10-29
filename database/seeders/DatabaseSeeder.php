@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             trabajaParaSeeder::class,
             realacionFamiliarSeeder::class,
             convivienteEstudianteSeeder::class,
+            rutaSeeder::class,
+            servicioTransporteSeeder::class,
         ]);
     }
 }
