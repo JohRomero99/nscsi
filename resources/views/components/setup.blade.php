@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="col-start-1 sm:col-span-4 md:col-span-4 lg:col-span-3">
-                <div class="container">
+                <div class="container" style="background-image: url('{{ asset('imagenes/fondoAcademico.png') }}')">
                     <div class="container mt-1 p-1">
                         {{ $slot }}
                     </div>
@@ -85,7 +85,7 @@
         @if (session('info'))
             Swal.fire({
                 title: "Info",
-                text: "Ya tienes registro creado, por favor, revisa tu bandeja de entrada",
+                text: "Ya existe un registro asociado a tu información. Por favor, revisa tu correo electrónico para continuar el proceso.",
                 icon: "info"
             });
         @endif

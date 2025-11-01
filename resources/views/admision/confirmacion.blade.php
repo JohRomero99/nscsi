@@ -10,18 +10,18 @@
             height="40%"
         >
     </div>
-    <h2 class="text-4xl mt-2 text-center text-green-500 dark:text-white">¡Datos guardados correctamente!</h2>
+    <h2 class="text-4xl mt-2 text-center text-green-800 dark:text-white">¡Datos guardados correctamente!</h2>
     <div class="flex justify-center">
         <img 
-            src="{{ asset('imagenes/send.png') }}"
-            class="mt-3"
+            src="{{ asset('imagenes/check.png') }}"
+            class=""
             alt="send"
             width="40%"
             height="40%"
         >
     </div>
-    <p class="text-3xl text-center text-green-900 mb-3">¡Muchas gracias por tu registro, {{ $primerNombre }}!</p>
-    <p class="text-center text-green-900">Revisa tu baneja de entrada para continuar con el proceso de admision</p>
+    <p class="text-3xl text-center text-green-900 mb-3 mt-3">¡Muchas gracias por tu registro, {{ $primerNombre }}!</p>
+    <p class="text-center text-green-900">Revisa tu baneja de entrada para continuar con el proceso de admision.</p>
     <p class="text-center text-green-900">¿El correo no llegó?</p>
     <form 
         
