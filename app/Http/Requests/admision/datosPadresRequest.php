@@ -22,7 +22,7 @@ class datosPadresRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cedula_padre' => ['required', 'digits:10'],
+            'cedula_padre' => ['required', 'digits:10','unique:persona,cedula'],
             'primer_nombre_padre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'segundo_nombre_padre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'apellido_paterno_padre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],

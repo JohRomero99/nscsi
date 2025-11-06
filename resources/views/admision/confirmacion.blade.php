@@ -1,16 +1,10 @@
 <x-setup colorFondo="bg-green-500" icono="fa-solid fa-check text-white" colorFondoTres="bg-green-500" iconoTres="fa-solid fa-check text-white">
 
+
 <div class="container mt-2 mb-50">
-    <div class="flex justify-center">
-        <img 
-            src="{{ asset('imagenes/LogoNSCFinalNegro.png') }}"
-            class="mt-1"
-            alt="send"
-            width="40%"
-            height="40%"
-        >
+    <div class="block lg:hidden p-5">
+        <x-setupmobil textoTres="text-green-900" textoDos="text-green-900" borderTres="border-green-600" borderDos="border-green-600"></x-setupmobil>
     </div>
-    <h2 class="text-4xl mt-2 text-center text-green-800 dark:text-white">¡Datos guardados correctamente!</h2>
     <div class="flex justify-center">
         <img 
             src="{{ asset('imagenes/check.png') }}"
@@ -33,7 +27,7 @@
                 class="bg-green-500 hover:bg-green-400 text-white font-bold p-3 px-4 rounded" 
                 id="reenviarEmail"
             >
-                Reenviar email
+                Reenviar email <i class="fa-solid fa-paper-plane"></i>
             </button>
         </div>
     </form>

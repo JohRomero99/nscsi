@@ -1,11 +1,19 @@
 <x-setup colorFondo="bg-green-500" icono="fa-solid fa-check text-white" colorFondoTres="bg-gray-100" iconoTres="fa-solid fa-paper-plane">
     <div class="conatiner m-auto pt-6 pl-5">
-        <h2 class="text-4xl font-extrabold text-green-400 dark:text-white">Formulario de Inscripción</h2>
+        <h2 class="text-4xl text-center font-extrabold text-green-400 dark:text-white">Formulario de Inscripción</h2>
+        <p class="mt-4 text-green-900">
+            Estimado padre, madre o representante
+            antes de completar el formulario de inscripción, le recordamos que todos los datos ingresados deben ser verídicos y corresponder a la información real del estudiante y su representante.
+        </p>
     </div>
+
+    <div class="block lg:hidden p-10">
+        <x-setupmobil textoDos="text-green-900" borderDos="border-green-600"></x-setupmobil>
+    </div>
+
     <form id="main-form" action="{{ route('admision.estudiante.store', ['id' => $id, 'email' => $email]) }}" method="POST">
         @csrf
         <div id="form-container">
-            <p class="pl-5">Datos del Estudiante</p>
             @for ($i = 0; $i < $numeroEstudiante; $i++)
                 <div class="flex items-center justify-center">
                     <!-- Línea antes del número -->
@@ -23,10 +31,6 @@
                     {{-- <div class="py-3 flex items-center text-md text-gray-800 before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-white dark:before:border-neutral-600 dark:after:border-neutral-600">Estudiante {{ $i + 1 }}</div> --}}
                     <div class="grid grid-cols-4 gap-4 pl-5 pt-1 pr-5">
                         <input type="hidden" name="setup" value="2"> <!-- Setup 2 --> 
-
-                        <div class="col-span-4">
-                            <p class="text-gray-500">Paso 2 de 3 - Datos del Representante</p>
-                        </div>
                         
                         <!-- Cédula del Estudiante -->
                         <div class="col-span-4">

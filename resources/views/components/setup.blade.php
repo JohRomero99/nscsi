@@ -11,12 +11,13 @@
     <meta charset="UTF-8">                      
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="{{ asset('imagenes/VirgenNSC.ico') }}" type="image/x-icon">
     @vite('resources/css/app.css')
     
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <title>Admision</title>
+    <title>Formulario de Inscripción</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- Fontawemesome --}}
@@ -60,7 +61,17 @@
             </div>
             <div class="col-start-1 sm:col-span-4 md:col-span-4 lg:col-span-3">
                 <div class="container" style="background-image: url('{{ asset('imagenes/fondoAcademico.png') }}')">
+                    
                     <div class="container mt-1 p-1">
+                        <div class="flex justify-center">
+                            <img 
+                                src="{{ asset('imagenes/LogoNSCFinalNegro.png') }}"
+                                class="mt-1"
+                                alt="send"
+                                width="40%"
+                                height="40%"
+                            >
+                        </div>
                         {{ $slot }}
                     </div>
                 </div>
