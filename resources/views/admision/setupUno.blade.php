@@ -1,6 +1,6 @@
 <x-setup colorFondo="bg-gray-100" icono="fa-solid fa-graduation-cap" colorFondoTres="bg-gray-100" iconoTres="fa-solid fa-paper-plane">
     <div class="conatiner m-auto pt-6 pl-5">
-        <h2 class="text-4xl mt-1 text-center font-extrabold text-green-400 dark:text-white">Formulario de Inscripción</h2>
+        <h2 class="text-4xl mt-1 text-center font-extrabold text-[#89462a] dark:text-white">Formulario de Inscripción</h2>
         <p class="mt-4 text-green-900">
             Estimado padre, madre o representante
             antes de completar el formulario de inscripción, le recordamos que todos los datos ingresados deben ser verídicos y corresponder a la información real del estudiante y su representante.
@@ -223,11 +223,11 @@
             <div class="text-right mt-4 pl-3 pr-3 pb-6" id="setup-1-button">
                 <button 
                     type="submit" 
-                    class="bg-green-400 hover:bg-green-300 text-white font-bold p-3 px-4 rounded" 
+                    class="bg-[#89462a] text-white font-bold p-3 px-4 rounded" 
                     id="setpButton"
                 >
                     Siguiente 
-                    <i class="fas fa-arrow-alt-circle-right"></i>
+                    <i class="fas fa-arrow-circle-right"></i>
                 </button>
             </div>
         </div>

@@ -137,13 +137,13 @@ class homeController extends Controller
             "scan_cedula_back" => $rutaCedulaTrasera,
         ]);
 
-        // Cardo los datos en la tabla "Transporte Escolar".
+        // Guardo los datos en la tabla "Transporte Escolar".
         $transporteEscolar = transporteEscolar::create([
             'transporte_escolar_id' => $request->servicio_transporte,
             'ruta' => $request->ruta,
         ]);
 
-        // Guardos los datos en la tabla "Ficha datos del Estudiante".
+        // Guardo los datos en la tabla "Ficha datos del Estudiante".
         $fichaEstudianteAspirante = fichaEstudianteAspirante::create([
             'estudiante_id' => $persona->estudiante->id,
             'repite_ano' => $request->repite_ano,

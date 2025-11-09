@@ -1,4 +1,4 @@
-<x-setup colorFondo="bg-green-500" icono="fa-solid fa-check text-white" colorFondoTres="bg-green-500" iconoTres="fa-solid fa-check text-white">
+<x-setup colorFondo="bg-[#89462a]" icono="fa-solid fa-check text-white" colorFondoTres="bg-[#89462a]" iconoTres="fa-solid fa-check text-white">
 
 
 <div class="container mt-2 mb-50">
@@ -7,8 +7,8 @@
     </div>
     <div class="flex justify-center">
         <img 
-            src="{{ asset('imagenes/check.png') }}"
-            class=""
+            src="{{ asset('imagenes/sendEmail.png') }}"
+            class="mt-3"
             alt="send"
             width="40%"
             height="40%"
@@ -24,10 +24,10 @@
         <div class="text-center mt-4 pl-3 pr-3 pb-6 mb-10">
             <button 
                 type="submit" 
-                class="bg-green-500 hover:bg-green-400 text-white font-bold p-3 px-4 rounded" 
+                class="bg-[#89462a] text-white font-bold p-3 px-4 rounded" 
                 id="reenviarEmail"
             >
-                Reenviar email <i class="fa-solid fa-paper-plane"></i>
+                Reenviar email <i class="fa-solid fa-arrows-rotate"></i>
             </button>
         </div>
     </form>

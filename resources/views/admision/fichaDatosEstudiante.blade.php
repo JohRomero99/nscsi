@@ -619,7 +619,7 @@
                 <input 
                     name="scan_cedula_back"
                     type="file"
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 archivo"
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer  dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 archivo"
                     accept="application/pdf"
                 >     
                 <div class="w-full mt-2 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -876,10 +876,10 @@
 
             <div class="col-span-4">
                 <div class="text-center">
-                    <button class="rounded-lg bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-4 border-b-4 border-red-700 hover:border-red-500">
+                    <button class="rounded-lg bg-[#89462a] text-white font-bold py-3 px-4">
                         <i class="fa-regular fa-circle-left"></i> Regresar
                     </button>
-                    <button class="rounded-lg bg-gray-500 hover:bg-gray-400 text-white font-bold py-3 px-4 border-b-4 border-gray-700 hover:border-gray-500">
+                    <button class="rounded-lg bg-[#89462a] text-white font-bold py-3 px-4">
                         Continuar <i class="fa-regular fa-circle-right"></i>
                     </button>
                 </div>

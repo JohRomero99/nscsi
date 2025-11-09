@@ -1,4 +1,4 @@
-<x-setup colorFondo="bg-green-500" icono="fa-solid fa-check text-white" colorFondoTres="bg-gray-100" iconoTres="fa-solid fa-paper-plane">
+<x-setup colorFondo="bg-[#89462a]" icono="fa-solid fa-check text-white" colorFondoTres="bg-gray-100" iconoTres="fa-solid fa-paper-plane">
     <div class="conatiner m-auto pt-6 pl-5">
         <h2 class="text-4xl text-center font-extrabold text-green-400 dark:text-white">Formulario de Inscripción</h2>
         <p class="mt-4 text-green-900">
@@ -214,8 +214,8 @@
         <div class="container mt-4 flex justify-between gap-4 pb-6 pl-6 pr-6">
             <!-- Enalce para retroceder a la página principal -->
             <a 
-                href="{{ route('admision.representante.create') }}" 
-                class="bg-green-400 hover:bg-green-300 text-white font-bold p-3 px-4 rounded flex items-center">
+                href="{{ route('admision.representante.create') }}"
+                class="bg-[#89462a] text-white font-bold p-3 px-4 rounded flex items-center">
                 <i class="fas fa-arrow-circle-left mr-1"></i> 
                 Atras
             </a>
@@ -224,7 +224,7 @@
             <button 
                 type="submit" 
                 form="main-form" 
-                class="bg-green-400 hover:bg-green-300 text-white font-bold p-3 px-4 rounded flex items-center"> 
+                class="bg-[#89462a] text-white font-bold p-3 px-4 rounded flex items-center"> 
                 Continuar
                 <i class="fa-solid fa-circle-arrow-right ml-1"></i>
             </button>
@@ -234,6 +234,7 @@
     @push('scripts')
         <!-- Buscar en tiempo real cédula del Estudiante -->
         <script>
+            /*
             document.addEventListener("DOMContentLoaded", function() {
                 const cedulaInput = document.querySelectorAll(".cedula");
                 const primerNombreInput = document.querySelectorAll(".primer_nombre");
@@ -261,10 +262,10 @@
                             .then( data =>{
                                 primerNombreInput[i].value = data.primer_nombre;
                                 segundoNombreInput[i].value = data.segundo_nombre;
-                                apellidoPaternoInput[i].value = data.apellido_paterno;
+                                apellidoPaternoInput[i].value = data.apellido_paterno
                                 apellidoMaternoInput[i].value = data.apellido_materno;
-                                anoBasicaInput[i].value = data.anio_basica;
                                 fechaNacimientoInput[i].value = data.fecha_nacimiento;
+                                anoBasicaInput[i].value = data.anio_basica;
                             })
                             .catch(error=>{
                                 primerNombreInput[i].value = "";
@@ -280,6 +281,7 @@
                 }
 
             });
+            */
         </script>
     @endpush
 </x-setup>

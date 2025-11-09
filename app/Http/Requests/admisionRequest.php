@@ -25,7 +25,7 @@ class admisionRequest extends FormRequest
         // Condicional según el valor de 'setup'
         if ($this->input('setup') == 1) {
             return [
-                'cedula' => ['required','numeric','document_ec:ci'],
+                'cedula' => ['required','numeric'],
                 'apellido_paterno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
                 'apellido_materno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
                 'primer_nombre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
@@ -36,7 +36,7 @@ class admisionRequest extends FormRequest
             ];
         } elseif ($this->input('setup') == 2) {
             return [
-                'cedula.*' => ['required','numeric','document_ec:ci'],
+                'cedula.*' => ['required','numeric','unique:persona,cedula'],
                 'apellido_paterno.*' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
                 'apellido_materno.*' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
                 'primer_nombre.*' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],

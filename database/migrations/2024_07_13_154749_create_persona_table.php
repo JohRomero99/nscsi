@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('persona', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('cedula')->nullable();
+            $table->string('cedula')->nullable()->unique();
             $table->string('primer_nombre')->nullable();
             $table->string('segundo_nombre')->nullable();
             $table->string('apellido_paterno')->nullable();

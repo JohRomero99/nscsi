@@ -3,14 +3,14 @@
     <div class="grid grid-cols-4 gap-4 p-5">
 
         <!-- Imagen -->
-        <!-- <div class="col-span-4 flex justify-center">
+        <div class="col-span-4 flex justify-center">
                 <img 
                     src="{{ asset('imagenes/LogoPlataforma.png') }}" 
                     alt="LogoPlataforma"
                     width="30%"
                     height="30%"
                 >
-        </div> -->
+        </div>
 
         <!-- Título y Subtitulo -->
         <div class="col-span-4">
@@ -19,7 +19,7 @@
                     ¡Bienvenido proceso de admisión y matriculación!
                 </h1>
                 <p class="mb-3 text-center text-gray-600 dark:text-gray-600 mt-2 text-1xl">
-                    Para continuar con el proceso de admisión da click en el botón continuar del o los estudiantes disponibles.
+                    Para continuar con el proceso de admisión da click en el botón completar del o los estudiantes disponibles.
                 </p>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div class="">
                 <div class="overflow-x-auto flex justify-center">
                     <table class="w-full max-w-6xl border border-gray-300 rounded-lg shadow-lg">
-                        <thead class="bg-gray-300 text-gray-700 uppercase text-sm text-center">
+                        <thead class="bg-[#89462a] text-white uppercase text-sm text-center">
                             <tr class=""> 
                                 <th class="px-6 py-4 border-b text-center">DNI</th>
                                 <th class="px-6 py-4 border-b text-center">Nombres</th>
@@ -57,8 +57,8 @@
                                     <!-- <td class="px-6 py-1 border-b"> 0/3</td> -->
                                     <td class="px-6 py-3 border-b text-center">
                                         <a href="{{ route('dashboard.ficha.estudiante.create', $representanteEstudiante->estudiante->id ) }}"
-                                            class="rounded-lg bg-gray-500 hover:bg-gray-400 text-white font-bold py-3 px-4 border-b-4 border-gray-700 hover:border-gray-500 inline-block">
-                                            Completar Fichas <i class="fa-regular fa-circle-right"></i>
+                                            class="rounded-lg bg-[#89462a] text-white font-bold py-3 px-4 inline-block">
+                                            Completar <i class="fa-regular fa-circle-right"></i>
                                         </a>
 
                                         <form 
@@ -67,7 +67,7 @@
                                             class="inline-block formulario-eliminar">
                                             @csrf
                                             <button 
-                                                class="rounded-lg bg-red-500 hover:bg-red-400 text-white font-bold py-3 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+                                                class="rounded-lg bg-red-500 text-white font-bold py-3 px-4 rounded"
                                                 id="boton">
                                                 Eliminar <i class="fa-solid fa-trash-can"></i>
                                             </button>
@@ -98,10 +98,10 @@
 
                     <!-- Boton de acción modal -->
                     <a 
-                        class="rounded-lg bg-gray-500 hover:bg-gray-400 text-white font-bold py-4 px-4 border-b-4 border-gray-700 hover:border-gray-500 rounded" 
+                        class="rounded-lg bg-[#89462a] text-white font-bold py-4 px-4 rounded" 
                         href="{{ route('dashboard.agregar.estudiante.create') }}"
                         >
-                        Nuevo estudiante <i class="fa-solid fa-user-large"></i>
+                        Nuevo estudiante <i class="fa-solid fa-user"></i>
                     </a>
 
                 </div>

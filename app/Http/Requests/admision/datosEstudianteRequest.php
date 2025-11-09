@@ -22,7 +22,7 @@ class datosEstudianteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cedula' => ['required', 'digits:10', 'unique:persona,cedula'],
+            'cedula' => ['required', 'digits:10'],
             'primer_nombre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'segundo_nombre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'apellido_paterno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
