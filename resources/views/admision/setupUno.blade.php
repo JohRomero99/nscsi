@@ -143,6 +143,37 @@
                     @enderror
                 </div>
 
+                <!-- Parentesco del Representante -->
+                <div class="col-span-4">
+                    <label 
+                        class="block"
+                    >
+                        Parentesco
+                    </label>
+
+                    <select 
+                        type="select" 
+                        name="parentesco"
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                        @foreach ($relacionFamiliar as $relacionFamiliar)
+                            <option 
+                                value="{{ $relacionFamiliar->id }}">
+
+                                {{ $relacionFamiliar->relacion_familiar }}
+                            </option>
+                        @endforeach
+                    </select>
+
+
+                    @error('parentesco')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            Por favor, elija una opción distinta a --Seleccionar--.
+                        </p>
+                    @enderror
+                </div>
+
                 <!-- Correo del Representante -->
                 <div class="col-span-2">
                     <label 

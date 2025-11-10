@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\persona;
 use App\Models\representante;
+use App\Models\relacionFamiliar;
 use App\Http\Requests\admisionRequest;
 
 class setupUnoController extends Controller
@@ -23,8 +24,8 @@ class setupUnoController extends Controller
      */
     public function create()
     {
-        //$colorFondo = "bg-gray-100";
-        return view('admision.setupUno');
+        $relacionFamiliar = relacionFamiliar::all();
+        return view('admision.setupUno', compact('relacionFamiliar'));
     }
 
     /**
@@ -40,6 +41,7 @@ class setupUnoController extends Controller
                 $persona = persona::create($request->all());
                 $representante = representante::create([
                     'persona_id' => $persona->id,
+                    'parentesco' => $request->parentesco,
                 ]);
                 $representante = $representante->id;
             }else{

@@ -15,20 +15,22 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('estudiante_id')->nullable();
             $table->string('repite_ano')->nullable();
-            $table->string('anio_academico_postula_id')->nullable();
-            $table->string('tipo_vivienda_id')->nullable();
+            $table->unsignedBigInteger('anio_academico_postula_id')->nullable();
+            $table->unsignedBigInteger('tipo_vivienda_id')->nullable();
             $table->string('anos_domicilio')->nullable();
             $table->string('ano_basica_postula')->nullable();
             $table->unsignedBigInteger('conviviente_estudiante_id')->nullable();
             $table->unsignedBigInteger('transporte_escolar_id')->nullable();
             $table->string('boletin_ultimo_anos')->nullable();
-            //$table->unsignedBigInteger('representante_padres_id')->nullable();
             $table->json('referencia_familiar')->nullable();
             $table->string('estado')->nullable();
 
             $table->foreign('estudiante_id')->references('id')->on('estudiante')->onDelete('cascade');
             $table->foreign('conviviente_estudiante_id')->references('id')->on('conviviente_estudiante')->onDelete('cascade');
             $table->foreign('transporte_escolar_id')->references('id')->on('transporte_escolar')->onDelete('cascade');
+            $table->foreign('anio_academico_postula_id')->references('id')->on('anio_academico')->onDelete('cascade');
+            $table->foreign('tipo_vivienda_id')->references('id')->on('tipo_vivvienda')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

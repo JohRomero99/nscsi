@@ -26,19 +26,35 @@ class realacionFamiliarSeeder extends Seeder
         ]);
 
         $relacionFamiliar = relacionFamiliar::create([
-            'relacion_familiar' => 'Abuelo',
+            'relacion_familiar' => 'Abuelo paterno',
         ]);
 
         $relacionFamiliar = relacionFamiliar::create([
-            'relacion_familiar' => 'Abuela',
+            'relacion_familiar' => 'Abuela paterna',
         ]);
 
         $relacionFamiliar = relacionFamiliar::create([
-            'relacion_familiar' => 'Tío',
+            'relacion_familiar' => 'Abuelo materno',
         ]);
 
         $relacionFamiliar = relacionFamiliar::create([
-            'relacion_familiar' => 'Tía',
+            'relacion_familiar' => 'Abuela materna',
+        ]);
+
+        $relacionFamiliar = relacionFamiliar::create([
+            'relacion_familiar' => 'Bisabuelo paterno',
+        ]);
+
+        $relacionFamiliar = relacionFamiliar::create([
+            'relacion_familiar' => 'Bisabuela paterna',
+        ]);
+
+        $relacionFamiliar = relacionFamiliar::create([
+            'relacion_familiar' => 'Bisabuelo materno',
+        ]);
+
+        $relacionFamiliar = relacionFamiliar::create([
+            'relacion_familiar' => 'Bisabuela materna',
         ]);
 
         $relacionFamiliar = relacionFamiliar::create([
@@ -47,6 +63,22 @@ class realacionFamiliarSeeder extends Seeder
 
         $relacionFamiliar = relacionFamiliar::create([
             'relacion_familiar' => 'Hermana',
+        ]);
+
+        $relacionFamiliar = relacionFamiliar::create([
+            'relacion_familiar' => 'Tío paterno',
+        ]);
+
+        $relacionFamiliar = relacionFamiliar::create([
+            'relacion_familiar' => 'Tía paterna',
+        ]);
+
+        $relacionFamiliar = relacionFamiliar::create([
+            'relacion_familiar' => 'Tío materno',
+        ]);
+
+        $relacionFamiliar = relacionFamiliar::create([
+            'relacion_familiar' => 'Tía materna',
         ]);
         
     }

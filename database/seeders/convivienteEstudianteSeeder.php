@@ -18,7 +18,7 @@ class convivienteEstudianteSeeder extends Seeder
         ]);
 
         $convivienteEstudiante = convivienteEstudiante::create([
-            'relacion_estudiante' => 'Con ambos Padres',
+            'relacion_estudiante' => 'Padre',
         ]);
 
         $convivienteEstudiante = convivienteEstudiante::create([
@@ -26,15 +26,35 @@ class convivienteEstudianteSeeder extends Seeder
         ]);
 
         $convivienteEstudiante = convivienteEstudiante::create([
-            'relacion_estudiante' => 'Padre',
+            'relacion_estudiante' => 'Abuelo paterno',
         ]);
 
         $convivienteEstudiante = convivienteEstudiante::create([
-            'relacion_estudiante' => 'Abuelo',
+            'relacion_estudiante' => 'Abuela paterna',
         ]);
 
         $convivienteEstudiante = convivienteEstudiante::create([
-            'relacion_estudiante' => 'Abuela',
+            'relacion_estudiante' => 'Abuelo materno',
+        ]);
+
+        $convivienteEstudiante = convivienteEstudiante::create([
+            'relacion_estudiante' => 'Abuela materna',
+        ]);
+
+        $convivienteEstudiante = convivienteEstudiante::create([
+            'relacion_estudiante' => 'Bisabuelo paterno',
+        ]);
+
+        $convivienteEstudiante = convivienteEstudiante::create([
+            'relacion_estudiante' => 'Bisabuela paterna',
+        ]);
+
+        $convivienteEstudiante = convivienteEstudiante::create([
+            'relacion_estudiante' => 'Bisabuelo materno',
+        ]);
+
+        $convivienteEstudiante = convivienteEstudiante::create([
+            'relacion_estudiante' => 'Bisabuela materna',
         ]);
 
         $convivienteEstudiante = convivienteEstudiante::create([
@@ -46,11 +66,20 @@ class convivienteEstudianteSeeder extends Seeder
         ]);
 
         $convivienteEstudiante = convivienteEstudiante::create([
-            'relacion_estudiante' => 'Tío',
+            'relacion_estudiante' => 'Tío paterno',
         ]);
 
         $convivienteEstudiante = convivienteEstudiante::create([
-            'relacion_estudiante' => 'Tía',
+            'relacion_estudiante' => 'Tía paterna',
         ]);
+
+        $convivienteEstudiante = convivienteEstudiante::create([
+            'relacion_estudiante' => 'Tío materno',
+        ]);
+
+        $convivienteEstudiante = convivienteEstudiante::create([
+            'relacion_estudiante' => 'Tía materna',
+        ]);
+
     }
 }

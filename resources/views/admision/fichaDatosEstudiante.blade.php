@@ -140,8 +140,8 @@
 
                 <input 
                     type="text" 
-                    name="apellido_paterno" 
-                    id="apellido_paterno" 
+                    name="apellido_paterno"
+                    id="apellido_paterno"
                     value = "{{ $estudiante->persona->apellido_paterno }}"  
                     placeholder="Romero..." 
                     class="mt-1 block border-gray-300 w-full rounded-md"

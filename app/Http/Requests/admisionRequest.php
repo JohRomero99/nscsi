@@ -30,6 +30,7 @@ class admisionRequest extends FormRequest
                 'apellido_materno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
                 'primer_nombre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
                 'segundo_nombre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+                'parentesco' => ['required','not_in:1'],
                 'email' => ['required', 'email:rfc,dns'],
                 'telefono_celular' => ['required', 'numeric','digits:10'],
                 'numero_inscripion' => ['required', 'numeric','min:0'],

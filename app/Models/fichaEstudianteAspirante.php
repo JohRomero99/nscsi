@@ -11,6 +11,11 @@ class fichaEstudianteAspirante extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $table = 'ficha_estudiante_aspirante';
 
+    // Esto convierte el JSON en array automáticamente.
+    protected $casts = [
+        'referencia_familiar' => 'array',
+    ];
+
     public function transporteEscolar(){
 
         return $this->belongsTo(transporteEscolar::class);

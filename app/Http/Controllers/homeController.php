@@ -86,7 +86,6 @@ class homeController extends Controller
 
         // Busco en la tabla persona la cédula del estudiante que obtengo de la vista llamada "Datos del Estudiante".
         $persona = persona::where('cedula',$request->cedula)->first();
-        // return $persona;
 
         // PDF - Ultimo Boletin.
         // Obtengo el PDF "Boletin ultimo año" de la vista llamada "Datos del Estudiante".
@@ -120,7 +119,6 @@ class homeController extends Controller
         //Guarda el archivo dentro del disco 'public'.
         $rutaCedulaTrasera = $cedula_parte_trasera->store('documentos', 'public');
 
-
         // Actualizo nuevamente los datos en la tabla persona.
         $persona->update([
             "cedula" => $request->cedula,
@@ -137,26 +135,57 @@ class homeController extends Controller
             "scan_cedula_back" => $rutaCedulaTrasera,
         ]);
 
-        // Guardo los datos en la tabla "Transporte Escolar".
-        $transporteEscolar = transporteEscolar::create([
-            'transporte_escolar_id' => $request->servicio_transporte,
-            'ruta' => $request->ruta,
-        ]);
-
-        // Guardo los datos en la tabla "Ficha datos del Estudiante".
-        $fichaEstudianteAspirante = fichaEstudianteAspirante::create([
-            'estudiante_id' => $persona->estudiante->id,
-            'repite_ano' => $request->repite_ano,
+        $persona->estudiante->update([
             'anio_academico_id' => $request->anio_academico_id,
-            'tipo_vivienda_id' => $request->tipo_vivienda_id,
-            'anos_domicilio' => $request->anos_domicilio,
-            'ano_basica_postula' => $request->anio_academico_id,
-            'conviviente_estudiante_id' => $request->conviviente_estudiante_id,
-            'transporte_escolar_id' => $request->transporteEscolar,
-            'boletin_ultimo_ano' => $rutaBoletinUltimoAno,
-            // Falta guardar la referencia familira.....
         ]);
 
+        // Hago una conuslta a la tabla "fichaEstudianteAspirante" para verificar si ya existe un registro creado.
+        $fichaEstudianteAspirante = fichaEstudianteAspirante::where('estudiante_id',$persona->estudiante->id)->first();
+
+        if (empty($fichaEstudianteAspirante)) {
+
+            // Guardo los datos en la tabla "Transporte Escolar".
+            $transporteEscolar = transporteEscolar::create([
+                'servicio_transporte_id' => $request->servicio_transporte,
+                'ruta_id' => $request->ruta,
+            ]);
+
+            // Guardo los datos en la tabla "Ficha datos del Estudiante".
+            $fichaEstudianteAspirante = fichaEstudianteAspirante::create([
+                'estudiante_id' => $persona->estudiante->id,
+                'repite_ano' => $request->repite_ano,
+                'anio_academico_postula_id' => $request->anio_academico_id,
+                'tipo_vivienda_id' => $request->tipo_vivienda,
+                'anos_domicilio' => $request->anos_domicilio,
+                'ano_basica_postula' => $request->anio_academico_id,
+                'conviviente_estudiante_id' => $request->conviviente_estudiante_id,
+                'transporte_escolar_id' => $transporteEscolar->id,
+                'boletin_ultimo_ano' => $rutaBoletinUltimoAno,
+                'referencia_familiar' => json_encode($request->referencia_familiar),
+            ]);
+            
+        }else {
+        
+            // Actualizo la tabla "Ficha estudiante" para que no se cree registros multiples.
+            $fichaEstudianteAspirante->transporteEscolar->update([
+                'servicio_transporte_id' => $request->servicio_transporte,
+                'ruta_id' => $request->ruta,
+            ]);
+
+            $fichaEstudianteAspirante->update([
+                'estudiante_id' => $persona->estudiante->id,
+                'repite_ano' => $request->repite_ano,
+                'anio_academico_postula_id' => $request->anio_academico_id,
+                'tipo_vivienda_id' => $request->tipo_vivienda,
+                'anos_domicilio' => $request->anos_domicilio,
+                'ano_basica_postula' => $request->anio_academico_id,
+                'conviviente_estudiante_id' => $request->conviviente_estudiante_id,
+                'transporte_escolar_id' => $fichaEstudianteAspirante->transporteEscolar->id,
+                'boletin_ultimo_ano' => $rutaBoletinUltimoAno,
+                'referencia_familiar' => json_encode($request->referencia_familiar),
+            ]);
+
+        }
 
         return redirect()->route('dashboard.ficha.padres.create');
 
