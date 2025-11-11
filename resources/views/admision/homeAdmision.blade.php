@@ -36,9 +36,9 @@
         @foreach( $representanteEstudiante as $representanteEstudiante)
             <div class="col-span-4">
                 <div class="flex justify-center">
-                    <div class="bg-white shadow-md rounded-md overflow-hidden border border-gray-200 w-full max-w-4xl">
+                    <div class="bg-white shadow-md rounded-md overflow-hidden border border-gray-200 w-full max-w-6xl">
                         <!-- Header -->
-                        <div class="bg-[#89462a] text-white px-5 py-3 flex items-center justify-between border-b">
+                        <div class="bg-gray-200 text-gray-500 px-5 py-3 flex items-center justify-between border-b">
                             <h5 class="text-lg text-dark font-extrabold">{{ $representanteEstudiante->estudiante->persona->primer_nombre }} {{ $representanteEstudiante->estudiante->persona->segundo_nombre }} {{ $representanteEstudiante->estudiante->persona->apellido_paterno }} {{ $representanteEstudiante->estudiante->persona->apellido_materno }}</h5>
                             <!-- <span class="text-sm bg-white text-brown-700 px-2 py-0.5 rounded-full font-medium">
                                 Admisión
@@ -59,7 +59,7 @@
                         <!-- Footer -->
                         <div class="bg-gray-50 border-t border-gray-200 px-5 py-3 flex justify-end gap-3">
                             <a href="{{ route('dashboard.ficha.estudiante.create', $representanteEstudiante->estudiante->id ) }}"
-                                class="rounded-lg bg-[#89462a] text-white font-bold py-3 px-4 inline-block">
+                                class="rounded-sm bg-[#89462a] text-white font-bold py-3 px-4 inline-block">
                                 Completar <i class="fa-regular fa-circle-right"></i>
                             </a>
                             <form 
@@ -68,7 +68,7 @@
                                 class="inline-block formulario-eliminar">
                                 @csrf
                                 <button 
-                                    class="rounded-lg bg-red-500 text-white font-bold py-3 px-4 rounded"
+                                    class="rounded-lg bg-red-500 text-white font-bold py-3 px-4 rounded-sm"
                                     id="boton">
                                     Eliminar <i class="fa-solid fa-trash-can"></i>
                                 </button>
@@ -102,7 +102,7 @@
 
                     <!-- Boton de acción modal -->
                     <a 
-                        class="rounded-lg bg-[#89462a] text-white font-bold py-4 px-4 rounded" 
+                        class="rounded-lg bg-[#89462a] text-white font-bold py-4 px-4 rounded-sm" 
                         href="{{ route('dashboard.agregar.estudiante.create') }}"
                         >
                         Nuevo estudiante <i class="fa-solid fa-user"></i>
