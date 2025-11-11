@@ -26,7 +26,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-white" style="background-image: url('{{ asset('imagenes/fondoAcademico.png') }}')">
+        <div class="sm:ml-64 min-h-screen bg-white" style="background-image: url('{{ asset('imagenes/fondoAcademico.png') }}')">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

@@ -1,6 +1,15 @@
 <x-app-layout>
 
-    <div class="grid grid-cols-4 gap-4 p-5">
+    
+<button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+   <span class="sr-only">Open sidebar</span>
+   <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+   <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+   </svg>
+</button>
+
+<div class="">
+        <div class="grid grid-cols-4 gap-4 p-5">
 
         <!-- Imagen -->
         <div class="col-span-4 flex justify-center">
@@ -24,62 +33,57 @@
             </div>
         </div>
 
+        @foreach( $representanteEstudiante as $representanteEstudiante)
+            <div class="col-span-4">
+                <div class="flex justify-center">
+                    <div class="bg-white shadow-md rounded-md overflow-hidden border border-gray-200 w-full max-w-4xl">
+                        <!-- Header -->
+                        <div class="bg-[#89462a] text-white px-5 py-3 flex items-center justify-between border-b">
+                            <h5 class="text-lg text-dark font-extrabold">{{ $representanteEstudiante->estudiante->persona->primer_nombre }} {{ $representanteEstudiante->estudiante->persona->segundo_nombre }} {{ $representanteEstudiante->estudiante->persona->apellido_paterno }} {{ $representanteEstudiante->estudiante->persona->apellido_materno }}</h5>
+                            <!-- <span class="text-sm bg-white text-brown-700 px-2 py-0.5 rounded-full font-medium">
+                                Admisión
+                            </span> -->
+                        </div>
+
+                        <!-- Body -->
+                        <div class="p-5 space-y-2 text-gray-700">
+                            <p><span class="font-semibold">Cédula:</span> {{ $representanteEstudiante->estudiante->persona->cedula }} </p>
+                            <p><span class="font-semibold">Curso:</span> {{ $representanteEstudiante->estudiante->anioAcademico->anio_basica }} </p>
+                            <p><span class="font-semibold">Estado:</span>
+                                <span class="text-green-700 bg-green-100 px-2 py-0.5 rounded-full text-xs font-medium">
+                                    Completo
+                                </span>
+                            </p>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="bg-gray-50 border-t border-gray-200 px-5 py-3 flex justify-end gap-3">
+                            <a href="{{ route('dashboard.ficha.estudiante.create', $representanteEstudiante->estudiante->id ) }}"
+                                class="rounded-lg bg-[#89462a] text-white font-bold py-3 px-4 inline-block">
+                                Completar <i class="fa-regular fa-circle-right"></i>
+                            </a>
+                            <form 
+                                action="{{ route('dashboard.eliminar.estudiante.destroy', $representanteEstudiante->estudiante->persona->id) }}" 
+                                method="POST" 
+                                class="inline-block formulario-eliminar">
+                                @csrf
+                                <button 
+                                    class="rounded-lg bg-red-500 text-white font-bold py-3 px-4 rounded"
+                                    id="boton">
+                                    Eliminar <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+
         <!-- Table -->
         <div class="col-span-4">
             <div class="">
-                <div class="overflow-x-auto flex justify-center">
-                    <table class="w-full max-w-6xl border border-gray-300 rounded-lg shadow-lg">
-                        <thead class="bg-[#89462a] text-white uppercase text-sm text-center">
-                            <tr class=""> 
-                                <th class="px-6 py-4 border-b text-center">DNI</th>
-                                <th class="px-6 py-4 border-b text-center">Nombres</th>
-                                <th class="px-6 py-4 border-b text-center">Apellidos</th>
-                                <th class="px-6 py-4 border-b text-center">Curso</th>
-                                <th class="px-6 py-4 border-b text-center">Estado</th>
-                                <!-- <th class="px-6 py-4 border-b text-center">Fcihas completadas</th> -->
-                                <th class="px-6 py-4 border-b text-center">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-gray-800">
-                            @foreach( $representanteEstudiante as $representanteEstudiante)
-                                <tr class="bg-white hover:bg-gray-50 text-center">
-                                    <td class="px-6 py-3 border-b">{{ $representanteEstudiante->estudiante->persona->cedula }}</td>
-                                    <td class="px-6 py-3 border-b">{{ $representanteEstudiante->estudiante->persona->primer_nombre }} {{ $representanteEstudiante->estudiante->persona->segundo_nombre }}</td>
-                                    <td class="px-6 py-3 border-b">{{ $representanteEstudiante->estudiante->persona->apellido_paterno }} {{ $representanteEstudiante->estudiante->persona->apellido_materno }}</td>
-                                    <td class="px-6 py-3 border-b">{{ $representanteEstudiante->estudiante->anioAcademico->anio_basica }}</td>
-                                    <td class="px-6 py-3 border-b">
-                                        <div class="inline-block">
-                                            <div class="inline-flex items-center bg-green-600 text-white text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full shadow-sm">
-                                                <span><strong>Admisión</strong></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <!-- <td class="px-6 py-1 border-b"> 0/3</td> -->
-                                    <td class="px-6 py-3 border-b text-center">
-                                        <a href="{{ route('dashboard.ficha.estudiante.create', $representanteEstudiante->estudiante->id ) }}"
-                                            class="rounded-lg bg-[#89462a] text-white font-bold py-3 px-4 inline-block">
-                                            Completar <i class="fa-regular fa-circle-right"></i>
-                                        </a>
 
-                                        <form 
-                                            action="{{ route('dashboard.eliminar.estudiante.destroy', $representanteEstudiante->estudiante->persona->id) }}" 
-                                            method="POST" 
-                                            class="inline-block formulario-eliminar">
-                                            @csrf
-                                            <button 
-                                                class="rounded-lg bg-red-500 text-white font-bold py-3 px-4 rounded"
-                                                id="boton">
-                                                Eliminar <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- <hr class="w-48 h-1 mx-auto my-2 bg-gray-300 border-0 rounded-sm md:my-10 dark:bg-gray-700"> -->
+                <hr class="w-48 h-1 mx-auto my-2 bg-gray-300 border-0 rounded-sm md:my-10 dark:bg-gray-700">
 
                 <!-- Agregar a otro estudiante -->
                 <div class="text-center mb-5">
@@ -108,6 +112,10 @@
             </div>
         </div>
     </div>
+</div>
+
+
+
 
     @push('scripts')
         @if(session()->has('guardado'))
