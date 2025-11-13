@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('direccion_domiciliaria')->nullable();
             $table->string('scan_cedula_front')->nullable();
             $table->string('scan_cedula_back')->nullable();
-            $table->string('dir_scan_cedula_front')->nullable();;
             $table->string('estado')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();

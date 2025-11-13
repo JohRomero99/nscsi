@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('ano_basica_postula')->nullable();
             $table->unsignedBigInteger('conviviente_estudiante_id')->nullable();
             $table->unsignedBigInteger('transporte_escolar_id')->nullable();
-            $table->string('boletin_ultimo_anos')->nullable();
+            $table->string('boletin_ultimo_ano')->nullable();
             $table->json('referencia_familiar')->nullable();
             $table->string('estado')->nullable();
 

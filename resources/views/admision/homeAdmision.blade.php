@@ -39,14 +39,79 @@
                     <div class="bg-white shadow-md rounded-md overflow-hidden border border-gray-200 w-full max-w-6xl">
                         <!-- Header -->
                         <div class="bg-gray-200 text-gray-500 px-5 py-3 flex items-center justify-between border-b">
-                            <h5 class="text-lg text-dark font-extrabold">{{ $representanteEstudiante->estudiante->persona->primer_nombre }} {{ $representanteEstudiante->estudiante->persona->segundo_nombre }} {{ $representanteEstudiante->estudiante->persona->apellido_paterno }} {{ $representanteEstudiante->estudiante->persona->apellido_materno }}</h5>
-                            <!-- <span class="text-sm bg-white text-brown-700 px-2 py-0.5 rounded-full font-medium">
+                            <!-- <h5 class="text-lg text-dark font-extrabold">{{ $representanteEstudiante->estudiante->persona->primer_nombre }} {{ $representanteEstudiante->estudiante->persona->segundo_nombre }} {{ $representanteEstudiante->estudiante->persona->apellido_paterno }} {{ $representanteEstudiante->estudiante->persona->apellido_materno }}</h5>
+                            <span class="text-sm bg-white text-brown-700 px-2 py-0.5 rounded-full font-medium">
                                 Admisión
                             </span> -->
+                                <div class="flex items-center justify-center w-full bg-white shadow-md rounded-lg overflow-hidden">
+                                    <!-- Paso 1 -->
+                                    <div class="flex-1 relative flex items-center border-r border-gray-200">
+                                        <div class="flex items-center gap-3 p-4 w-full">
+                                        <!-- Icono -->
+                                        <div class="w-10 h-10 rounded-full bg-[#89462a] flex items-center justify-center text-white font-bold flex-shrink-0">
+                                            ✓
+                                        </div>
+                                        <!-- Texto -->
+                                        <div class="text-left">
+                                            <h3 class="font-semibold text-gray-900">Estudiante</h3>
+                                            <p class="text-sm text-gray-500">Vitae sed mi luctus laoreet.</p>
+                                        </div>
+                                        </div>
+                                        <div class="absolute bottom-0 left-0 w-full h-1 bg-[#89462a]"></div>
+                                    </div>
+
+                                    <!-- Paso 2 -->
+                                    <div class="flex-1 relative flex items-center border-r border-gray-200">
+                                        <div class="flex items-center gap-3 p-4 w-full">
+                                        <!-- Icono -->
+                                        <div class="w-10 h-10 rounded-full border-2 bg-[#89462a] text-white flex items-center justify-center font-semibold flex-shrink-0">
+                                            ✓
+                                        </div>
+                                        <!-- Texto -->
+                                        <div class="text-left">
+                                            <h3 class="font-semibold text-indigo-600">Representante</h3>
+                                            <p class="text-sm text-gray-500">Cursus semper viverra.</p>
+                                        </div>
+                                        </div>
+                                        <div class="absolute bottom-0 left-0 w-full h-1 bg-[#89462a]"></div>
+                                    </div>
+
+                                    <!-- Paso 3 -->
+                                    <div class="flex-1 relative flex items-center">
+                                        <div class="flex items-center gap-3 p-4 w-full">
+                                        <!-- Icono -->
+                                        <div class="w-10 h-10 rounded-full border-2 border-gray-300 text-gray-400 flex items-center justify-center font-semibold flex-shrink-0">
+                                            03
+                                        </div>
+                                        <!-- Texto -->
+                                        <div class="text-left">
+                                            <h3 class="font-semibold text-gray-400">Preview</h3>
+                                            <p class="text-sm text-gray-400">Penatibus eu quis ante.</p>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Paso 3 -->
+                                    <div class="flex-1 relative flex items-center">
+                                        <div class="flex items-center gap-3 p-4 w-full">
+                                        <!-- Icono -->
+                                        <div class="w-10 h-10 rounded-full border-2 border-gray-300 text-gray-400 flex items-center justify-center font-semibold flex-shrink-0">
+                                            03
+                                        </div>
+                                        <!-- Texto -->
+                                        <div class="text-left">
+                                            <h3 class="font-semibold text-gray-400">Preview</h3>
+                                            <p class="text-sm text-gray-400">Penatibus eu quis ante.</p>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
 
                         <!-- Body -->
                         <div class="p-5 space-y-2 text-gray-700">
+                            <p><span class="font-semibold">Nombres:</span> {{ $representanteEstudiante->estudiante->persona->primer_nombre }} {{ $representanteEstudiante->estudiante->persona->segundo_nombre }}</p>
+                            <p><span class="font-semibold">Apellidos:</span> {{ $representanteEstudiante->estudiante->persona->apellido_paterno }} {{ $representanteEstudiante->estudiante->persona->apellido_materno }}</p>
                             <p><span class="font-semibold">Cédula:</span> {{ $representanteEstudiante->estudiante->persona->cedula }} </p>
                             <p><span class="font-semibold">Curso:</span> {{ $representanteEstudiante->estudiante->anioAcademico->anio_basica }} </p>
                             <p><span class="font-semibold">Estado:</span>

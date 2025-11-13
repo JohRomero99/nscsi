@@ -114,16 +114,16 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <i class="fa-solid fa-house"></i>
-                <span class="ms-3">Incio</span>
-                </a>
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="ms-3">Incio</span>
+                </x-responsive-nav-link>
             </li>
             <li>
-                <a href="{{ route('profile.edit') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <i class="fa-solid fa-user"></i>
-                <span class="flex-1 ms-3 whitespace-nowrap">Perfil</span>
-                </a>
+                <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Perfil</span>
+                </x-responsive-nav-link>    
             </li>
             <li>
                 <!-- Authentication -->
@@ -131,8 +131,8 @@
                     @csrf
                     <a href="route('logout')" onclick="event.preventDefault();this.closest('form').submit(); "class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 </form>
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span class="flex-1 ms-3 whitespace-nowrap">Cerrar Sesión</span>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Cerrar Sesión</span>
                 </a>
             </li>
         </ul>

@@ -127,7 +127,7 @@ class homeController extends Controller
             "apellido_paterno" => $request->apellido_paterno,
             "apellido_materno" => $request->apellido_materno,
             "nacionalidad_id" => $request->nacionalidad_id,
-            'lugar_nacimiento_id' => $request->lugar_nacimiento_id,
+            'lugar_nacimiento' => $request->lugar_nacimiento_id,
             'sexo_id' => $request->sexo_id,
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'direccion_domiciliaria' => $request->direccion_domiciliaria,
@@ -160,8 +160,8 @@ class homeController extends Controller
                 'ano_basica_postula' => $request->anio_academico_id,
                 'conviviente_estudiante_id' => $request->conviviente_estudiante_id,
                 'transporte_escolar_id' => $transporteEscolar->id,
-                'boletin_ultimo_ano' => $rutaBoletinUltimoAno,
-                'referencia_familiar' => json_encode($request->referencia_familiar),
+                'boletin_ultimo_anos' => $rutaBoletinUltimoAno,
+                'referencia_familiar' => json_encode($request->ingresos_egresos_padre),
             ]);
             
         }else {
@@ -181,7 +181,7 @@ class homeController extends Controller
                 'ano_basica_postula' => $request->anio_academico_id,
                 'conviviente_estudiante_id' => $request->conviviente_estudiante_id,
                 'transporte_escolar_id' => $fichaEstudianteAspirante->transporteEscolar->id,
-                'boletin_ultimo_ano' => $rutaBoletinUltimoAno,
+                'boletin_ultimo_anos' => $rutaBoletinUltimoAno,
                 'referencia_familiar' => json_encode($request->referencia_familiar),
             ]);
 

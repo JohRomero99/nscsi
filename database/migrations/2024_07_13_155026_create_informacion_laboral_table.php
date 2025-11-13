@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('situacion_financiera')->nullable();
             $table->string('telefono_trabajo')->nullable();
             $table->json('ingreso_egresos')->nullable();
+            $table->json('referencia_familiar')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
 

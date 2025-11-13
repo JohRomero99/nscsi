@@ -43,6 +43,7 @@ class datosPadresController extends Controller
 
     public function store(datosPadresRequest $request)
     {
+        return $request->all();
 
         // PDF - Cédula parte Frontal.
         // Obtengo el PDF "scan_cedula_front" de la vista llamada "Datos del Estudiante".
@@ -75,6 +76,7 @@ class datosPadresController extends Controller
             'nombre_empresa' => $request->nombre_empresa,
             'direccion_trabajo' => $request->direccion_trabajo,
             'telefono_trabajo' => $request->telefono_trabajo,
+            'ingreso_egresos' => $request->json_encode($request->referencia_familiar),
         ]);
 
         // Valido la variable "datosPadre" para ver si tiene un valor "null" o no.
