@@ -9,4 +9,6 @@ class ocupacion extends Model
 {
     use HasFactory;
     protected $table = 'ocupacion';
+
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 }

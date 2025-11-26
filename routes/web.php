@@ -40,9 +40,11 @@ Route::get('/dashboard/agregar/estudiante/create', [agregarEstudianteController:
 Route::post('/dashboard/agregar/estudiante/store', [agregarEstudianteController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.agregar.estudiante.store');
 Route::post('/dashboard/eliminar/estudiante/destroy/{id}', [agregarEstudianteController::class, 'destroy'])->middleware(['auth', 'verified'])->name('dashboard.eliminar.estudiante.destroy');
 Route::get('/dashboard/ficha/estudiante/create/{id}', [homeController::class, 'create'])->middleware(['auth', 'verified'])->name('dashboard.ficha.estudiante.create');
-Route::get('/dashboard/ficha/padres/create', [datosPadresController::class, 'create'])->middleware(['auth', 'verified'])->name('dashboard.ficha.padres.create');
+Route::get('/dashboard/ficha/padre/create/{estudianteId}/{genero}', [datosPadresController::class, 'create'])->middleware(['auth', 'verified'])->name('dashboard.ficha.padre.create');
 Route::post('/dashboard/ficha/estudiante/store', [homeController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.ficha.estudiante.store');
-Route::post('/dashboard/ficha/padres/store', [datosPadresController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.ficha.padres.store');
+Route::post('/dashboard/ficha/padre/store/{id}/{genero}', [datosPadresController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.ficha.padre.store');
+Route::get('/dashboard/ficha/madre/create/{estudianteId}/{genero}', [datosPadresController::class, 'create'])->middleware(['auth', 'verified'])->name('dashboard.ficha.madre.create');
+Route::post('/dashboard/ficha/madre/store/{id}/{genero}', [datosPadresController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.ficha.madre.store');
 
 
 // Route::get('/dashboard/ficha-aspirantes/{id}', [admisionController::class, 'create'])->name('ficha.aspirante.create');

@@ -11,6 +11,8 @@ use App\Models\trabajaPara;
 use App\Models\relacionFamiliar;
 use App\Models\informacionLaboral;
 use App\Models\persona;
+use App\Models\representante;
+use App\Models\estudianteRepresentante;
 use App\Http\Requests\admision\datosPadresRequest;
 
 class datosPadresController extends Controller
@@ -18,7 +20,7 @@ class datosPadresController extends Controller
     /**
      * 
      */
-    public function create()
+    public function create($estudianteId, $genero)
     {
 
         // Obtengo todos los datos registrados en la tabla "nacionalidad".
@@ -37,13 +39,12 @@ class datosPadresController extends Controller
         $relacionFamiliar = relacionFamiliar::all();
 
         // Retorno a la vida dashboard con cada una de la variables creadas anteriormente.
-        return view("admision.fichaDatosPadres", compact("nacionalidad","sexo","ocupacion","trabajaPara","relacionFamiliar"));
+        return view("admision.fichaDatosPadres", compact("nacionalidad","sexo","ocupacion","trabajaPara","relacionFamiliar","estudianteId","genero"));
 
     }
 
-    public function store(datosPadresRequest $request)
+    public function store(datosPadresRequest $request, $estudianteId, $genero)
     {
-        return $request->all();
 
         // PDF - Cédula parte Frontal.
         // Obtengo el PDF "scan_cedula_front" de la vista llamada "Datos del Estudiante".
@@ -66,19 +67,10 @@ class datosPadresController extends Controller
         //Guarda el archivo dentro del disco 'public'.
         $rutaCedulaTrasera = $cedula_parte_trasera->store('documentos', 'public');
 
+
         // Consulto en la base de datos "Persona" si la cédula ya está registrada o es nueva.
         $datosPadre = persona::where('cedula',$request->cedula_padre)->first();
-
-        // Guardamos la imformación laboral del padre (representante).
-        $informacionLaboral = informacionLaboral::create([
-            'ocupacion_id' => $request->ocupacion_id,
-            'trabaja_para' => $request->trabaja_para,
-            'nombre_empresa' => $request->nombre_empresa,
-            'direccion_trabajo' => $request->direccion_trabajo,
-            'telefono_trabajo' => $request->telefono_trabajo,
-            'ingreso_egresos' => $request->json_encode($request->referencia_familiar),
-        ]);
-
+        
         // Valido la variable "datosPadre" para ver si tiene un valor "null" o no.
         if($datosPadre == null){
 
@@ -100,14 +92,30 @@ class datosPadresController extends Controller
                 'scan_cedula_back' => $rutaCedulaTrasera,
             ]);
 
-            $representante = informacionLaboral::create([
+            // Guardamos la imformación laboral del padre (representante).
+            $informacionLaboral = informacionLaboral::create([
+                'ocupacion_id' => $request->ocupacion_id,
+                'trabaja_para' => $request->trabaja_para,
+                'nombre_empresa' => $request->nombre_empresa,
+                'direccion_trabajo' => $request->direccion_trabajo,
+                'telefono_trabajo' => $request->telefono_trabajo,
+                'ingreso_egresos' => json_encode($request->ingreso_egresos),
+                'referencia_familiar' => json_encode($request->referencia_familiar),
+            ]);
+
+            $representante = representante::create([
                 'persona_id' => $nuevaPersona->id,
                 'informacion_laboral_id' => $informacionLaboral->id,
             ]);
 
+            $estudianteRepresentante = estudianteRepresentante::create([
+                'estudiante_id' => $estudianteId,
+                'representante_id' => $representante->id,
+            ]);
+
         }else{
 
-            // Como la cédula si existe solo actualizo los campos.
+            // Si la cédula existe solo actualizo los campos.
             $datosPadre->update([
                 "cedula" => $request->cedula_padre,
                 "primer_nombre" => $request->primer_nombre_padre,
@@ -125,17 +133,50 @@ class datosPadresController extends Controller
                 'scan_cedula_back' => $rutaCedulaTrasera,
             ]);
 
-            // Actualizamos la información laboral del representante que si existe.
-            $datosPadre->representante->update([
-                'informacion_laboral_id' => $informacionLaboral->id,
-            ]);
+            // Se realiza una consulta a la base de datos para verificar si ya hay un regitro de "informacion laboral".
+            if ($datosPadre->representante->informacion_laboral_id == null) {
 
-            // Obtener el ID del estudiante_representante
+                // Guardamos la imformación laboral del padre (representante).
+                $informacionLaboral = informacionLaboral::create([
+                    'ocupacion_id' => $request->ocupacion_id,
+                    'trabaja_para' => $request->trabaja_para,
+                    'nombre_empresa' => $request->nombre_empresa,
+                    'direccion_trabajo' => $request->direccion_trabajo,
+                    'telefono_trabajo' => $request->telefono_trabajo,
+                    'ingreso_egresos' => json_encode($request->ingreso_egresos),
+                    'referencia_familiar' => json_encode($request->referencia_familiar),
+                ]);
+
+            }else {
+
+                // Actualizamos la información laboral del representante que si existe.
+                $datosPadre->representante->informacionLaboral->update([
+                    'ocupacion_id' => $request->ocupacion_id,
+                    'trabaja_para' => $request->trabaja_para,
+                    'nombre_empresa' => $request->nombre_empresa,
+                    'direccion_trabajo' => $request->direccion_trabajo,
+                    'telefono_trabajo' => $request->telefono_trabajo,
+                    'ingreso_egresos' => json_encode($request->ingreso_egresos),
+                    'referencia_familiar' => json_encode($request->referencia_familiar),
+                ]);
+
+            }
 
         }
 
+        if ($genero == "padre") {
+            
+             return redirect()->route('dashboard.ficha.madre.create', [
+                'estudianteId' => $estudianteId,
+                'genero' => 'madre',
+            ]);
+
+        }elseif ($genero == "madre") {
+            
+            return "Datos padre y madre creados";
+
+        } 
 
     }
-
 
 }

@@ -179,9 +179,6 @@
     </div>
 </div>
 
-
-
-
     @push('scripts')
         @if(session()->has('guardado'))
             <script>
@@ -200,6 +197,18 @@
                 Swal.fire({
                     title: "¡Éxito!",
                     text: "El estudiante ha sido eliminado con éxito",
+                    icon: "success"
+                });
+            </script>
+        @endif
+    @endpush
+
+    @push('scripts')
+        @if(session()->has('success'))
+            <script>
+                Swal.fire({
+                    title: "¡Éxito!",
+                    text: "Registro guardado correctamente",
                     icon: "success"
                 });
             </script>

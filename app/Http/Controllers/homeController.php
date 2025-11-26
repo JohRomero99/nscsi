@@ -187,7 +187,11 @@ class homeController extends Controller
 
         }
 
-        return redirect()->route('dashboard.ficha.padres.create');
+        return redirect()->route('dashboard.ficha.padre.create', [
+            'estudianteId' => $persona->estudiante->id,
+            'genero' => 'padre',
+        ]);
+        // return redirect()->route('dashboard.ficha.padres.create');
 
     }
 

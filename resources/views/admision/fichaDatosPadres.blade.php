@@ -15,7 +15,7 @@
 
                         <!-- Body -->
                         <div class="p-5 space-y-2 text-gray-700">
-                                <form action="{{ route('dashboard.ficha.padres.store') }}" method="POST">
+                            <form action="{{ route('dashboard.ficha.padre.store', ['id' => $estudianteId, 'genero' => $genero]) }}" method="POST"  enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="grid grid-cols-4 gap-4">

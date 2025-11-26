@@ -25,7 +25,7 @@
             </div>
             <!-- Texto -->
             <div class="text-left">
-                <h3 class="font-semibold text-indigo-600">Representante</h3>
+                <h3 class="font-semibold text-indigo-600">Datos Padre</h3>
                 <p class="text-sm text-gray-500">Cursus semper viverra.</p>
             </div>
             </div>
@@ -41,7 +41,7 @@
             </div>
             <!-- Texto -->
             <div class="text-left">
-                <h3 class="font-semibold text-gray-400">Preview</h3>
+                <h3 class="font-semibold text-gray-400">Datos Madre</h3>
                 <p class="text-sm text-gray-400">Penatibus eu quis ante.</p>
             </div>
             </div>

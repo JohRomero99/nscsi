@@ -24,4 +24,10 @@ class representante extends Model
 
     }
 
+    public function informacionLaboral(){
+
+        return $this->belongsTo(informacionLaboral::class);
+
+    }
+
 }

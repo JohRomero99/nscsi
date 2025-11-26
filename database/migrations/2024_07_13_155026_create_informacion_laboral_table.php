@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('trabaja_para')->nullable();
             $table->string('nombre_empresa')->nullable();
             $table->string('direccion_trabajo')->nullable();
-            $table->string('situacion_financiera')->nullable();
             $table->string('telefono_trabajo')->nullable();
             $table->json('ingreso_egresos')->nullable();
             $table->json('referencia_familiar')->nullable();
