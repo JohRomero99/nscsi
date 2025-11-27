@@ -8,6 +8,7 @@ use App\Http\Controllers\admision\buscarCedulaController;
 use App\Http\Controllers\admision\admisionController;
 use App\Http\Controllers\admision\agregarEstudianteController;
 use App\Http\Controllers\admision\datosPadresController;
+use App\Http\Controllers\admision\fichaMedicaController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\fichasController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,9 @@ Route::post('/dashboard/ficha/estudiante/store', [homeController::class, 'store'
 Route::post('/dashboard/ficha/padre/store/{id}/{genero}', [datosPadresController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.ficha.padre.store');
 Route::get('/dashboard/ficha/madre/create/{estudianteId}/{genero}', [datosPadresController::class, 'create'])->middleware(['auth', 'verified'])->name('dashboard.ficha.madre.create');
 Route::post('/dashboard/ficha/madre/store/{id}/{genero}', [datosPadresController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.ficha.madre.store');
+
+Route::get('/dashboard/ficha/medica/create', [fichaMedicaController::class, 'create'])->middleware(['auth', 'verified'])->name('dashboard.ficha.medica.create');
+Route::post('/dashboard/ficha/medica/store', [fichaMedicaController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.ficha.medica.store');
 
 
 // Route::get('/dashboard/ficha-aspirantes/{id}', [admisionController::class, 'create'])->name('ficha.aspirante.create');
