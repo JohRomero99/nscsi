@@ -173,7 +173,7 @@ class datosPadresController extends Controller
 
         }elseif ($genero == "madre") {
             
-            return "Datos padre y madre creados";
+            return redirect()->route('dashboard')->with('success','Registro guardado correctamente');
 
         } 
 
