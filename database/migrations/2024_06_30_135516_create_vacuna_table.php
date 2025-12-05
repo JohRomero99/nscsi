@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('vacuna', function (Blueprint $table) {
             $table->id();
-            $table->string('vacuna')->nullable();
+            $table->string('tipo_vacunas')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
         });

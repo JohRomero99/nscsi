@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder
             convivienteEstudianteSeeder::class,
             rutaSeeder::class,
             servicioTransporteSeeder::class,
+            tiposDiscapacidadSeeder::class,
+            tiposAlergiaSeeder::class,
+            vacunasSeeder::class,
         ]);
     }
 }

@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('alergia', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_alergia')->nullable();
+            $table->unsignedBigInteger('tipos_alergia_id')->nullable();
             $table->string('restriccion')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
+
+            $table->foreign('tipos_alergia_id')->references('id')->on('tipos_alergia')->onDelete('cascade');
         });
     }
 

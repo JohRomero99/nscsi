@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('discapacidad', function (Blueprint $table) {
+        Schema::create('tipos_alergia', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tipos_discapacidad_id')->nullable();
-            $table->string('porcentaje')->nullable();
-            $table->string('detalle')->nullable();
+            $table->string('alergias')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
-
-            $table->foreign('tipos_discapacidad_id')->references('id')->on('tipos_discapacidad')->onDelete('cascade');
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('discapacidad');
+        Schema::dropIfExists('tipos_alergia');
     }
 };
