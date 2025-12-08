@@ -69,7 +69,7 @@
                                         </div>
                                         <!-- Texto -->
                                         <div class="text-left">
-                                            <h3 class="font-semibold text-indigo-600">Representante</h3>
+                                            <h3 class="font-semibold text-indigo-600">representante</h3>
                                             <p class="text-sm text-gray-500">Cursus semper viverra.</p>
                                         </div>
                                         </div>

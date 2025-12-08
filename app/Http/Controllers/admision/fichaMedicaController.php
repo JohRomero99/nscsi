@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\tipos_discapacidad;
 use App\Models\tiposAlergia;
+use App\Models\vacuna;
 
 class fichaMedicaController extends Controller
 {
@@ -19,8 +20,11 @@ class fichaMedicaController extends Controller
 
         // Obtengo todos los datos registrados en la tabla "tipos Alergia".
         $tiposAlergia = tiposAlergia::all();
+
+        // Obtengo todos los datos registrados en la tabla "tipos de vacuna".
+        $tipoVacuna =  vacuna::all();
         
-        return view("admision.fichaDatosMedica", compact('tiposDiscapacidad','tiposAlergia'));
+        return view("admision.fichaDatosMedica", compact('tiposDiscapacidad','tiposAlergia','tipoVacuna'));
 
     }
 

@@ -66,7 +66,7 @@
 
                             <input 
                                 type="text" 
-                                name="primer_nombre" 
+                                name="primer_nombre"
                                 id="primer_nombre"
                                 value="John"
                                 class="mt-1 block border-gray-300 w-full rounded-md"
@@ -532,8 +532,8 @@
                             </label>
 
                             <select 
-                                name="vacunas_si_no" 
-                                id="vacunas_si_no"
+                                name="vacuna_si_no" 
+                                id="vacuna_si_no"
                                 class="mt-1 block border-gray-300 w-full rounded-md"
                             >
                        
@@ -543,7 +543,7 @@
                     
                             </select>
 
-                            @error('vacunas_si_no_si_no')
+                            @error('vacuna_si_no')
                                 <p 
                                     class="mt-2 text-pink-600 text-sm">
                                     No puedes eligir la opción "--seleccionar--"
@@ -552,23 +552,124 @@
                         </div>
 
                         <!-- Tipos de vacunas estudiante -->
-                        <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                        <div class="col-span-4 md:col-span-4 lg:col-span-4" id="detalle_vacuna" style="display: none;">
                             <label 
                                 class="block font-medium"
                             >   
                                 Seleccione el tipo de vacunas que tiene el estudiante.
                             </label>
 
-                        
-                            <div class="flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700">
-                                <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label>
-                            </div>
-                            <div class="flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700">
-                                <input checked id="bordered-checkbox-2" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="bordered-checkbox-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Checked state</label>
+                            @foreach($tipoVacuna as $tipoVacuna)
+                                <div class="flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700">
+                                    <input id="bordered-checkbox-{ $tipoVacuna->id }" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="bordered-checkbox-{ $tipoVacuna->id }" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $tipoVacuna->tipo_vacunas }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <!-- Dificultad para dormir si o no -->
+                        <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                            <label 
+                                class="block font-medium"
+                            >   
+                                ¿El estudiante presenta alguna dificultad para dormir?
+                            </label>
+
+                            <select 
+                                name="dificultad_dormir_si_no" 
+                                id="dificultad_dormir_si_no"
+                                class="mt-1 block border-gray-300 w-full rounded-md"
+                            >
+                       
+                                <option value="--seleccionar--">--seleccionar--</option>
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
+                    
+                            </select>
+                        </div>
+
+                        <!-- Detalle dificultad para dormir -->
+                        <div class="col-span-4 md:col-span-4 lg:col-span-4" id="detalle_dificultad_dormir" style="display: none;">
+                            <div class="grid grid-cols-4 gap-4 border-gray-600">
+
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        ¿Cuáles son los problemas que el estudiante tiene al momento de dormir?
+                                    </label>
+
+                                    <textarea 
+                                        name="problemas_dormir"
+                                        id="problemas_dormir"
+                                        class="mt-1 block border-gray-300 w-full rounded-md">
+                                    </textarea>
+                                </div>
+
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        ¿Con que frecuencía el estudiante presenta este problemas?
+                                    </label>
+
+                                    <select 
+                                        name="" 
+                                        id=""
+                                        class="mt-1 block border-gray-300 w-full rounded-md"
+                                    >
+                            
+                                        <option value="">--seleccionar--</option>
+                                        <option value="raras_veces">Raras veces</option>
+                                        <option value="a_veces">A veces</option>
+                                        <option value="frecuente">Frecuente</option>
+                                        <option value="siempre">Siempre</option>
+                            
+                                    </select>
+                                </div>
+
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        ¿El estudiante se encuentra bajo algún tipo de tratamiento?
+                                    </label>
+
+                                    <select 
+                                        name=""
+                                        id=""
+                                        class="mt-1 block border-gray-300 w-full rounded-md"
+                                    >
+                            
+                                        <option value="--seleccionar--">--seleccionar--</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Historial Patológico -->
+                        <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                            <label 
+                                class="block font-medium"
+                            >   
+                                ¿El estudiante presenta algún historial patológico?
+                            </label>
+
+                            <select 
+                                name="historial_patologico_si_no"
+                                id="historial_patologico_si_no"
+                                class="mt-1 block border-gray-300 w-full rounded-md"
+                            >
+                       
+                                <option value="--seleccionar--">--seleccionar--</option>
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        
 
                     </div>
                 </form>
@@ -652,6 +753,38 @@
                     detalle_intervenciones_quirurgicas.style.display = 'block';
                 } else {
                     detalle_intervenciones_quirurgicas.style.display = 'none';
+                }
+            });
+        </script>
+    @endpush
+
+    <!-- Me permite ocultar y mostrar el imput radio de "Tipos de vacunas" -->
+    @push('scripts')
+        <script>
+            var vacuna_si_no = document.getElementById('vacuna_si_no');
+            var detalle_vacuna = document.getElementById('detalle_vacuna');
+
+            vacuna_si_no.addEventListener('change', function () {
+                if (this.value === 'Si') {
+                    detalle_vacuna.style.display = 'block';
+                } else {
+                    detalle_vacuna.style.display = 'none';
+                }
+            });
+        </script>
+    @endpush
+
+    <!-- Me permite ocultar y mostrar el imput radio de "Dificultad para dormir" -->
+    @push('scripts')
+        <script>
+            var dificultad_dormir_si_no = document.getElementById('dificultad_dormir_si_no');
+            var detalle_dificultad_dormir = document.getElementById('detalle_dificultad_dormir');
+
+            dificultad_dormir_si_no.addEventListener('change', function () {
+                if (this.value === 'Si') {
+                    detalle_dificultad_dormir.style.display = 'block';
+                } else {
+                    detalle_dificultad_dormir.style.display = 'none';
                 }
             });
         </script>
