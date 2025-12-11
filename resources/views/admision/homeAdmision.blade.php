@@ -53,7 +53,7 @@
                                         </div>
                                         <!-- Texto -->
                                         <div class="text-left">
-                                            <h3 class="font-semibold text-gray-900">Estudiante</h3>
+                                            <h2 class="font-semibold text-gray-900">Estudiante</h2>
                                             <p class="text-sm text-gray-500">Vitae sed mi luctus laoreet.</p>
                                         </div>
                                         </div>
@@ -69,7 +69,7 @@
                                         </div>
                                         <!-- Texto -->
                                         <div class="text-left">
-                                            <h3 class="font-semibold text-indigo-600">representante</h3>
+                                            <h2 class="font-semibold text-indigo-600">Representante</h2>
                                             <p class="text-sm text-gray-500">Cursus semper viverra.</p>
                                         </div>
                                         </div>
@@ -109,7 +109,7 @@
                         </div>
 
                         <!-- Body -->
-                        <div class="p-5 space-y-2 text-gray-700">
+                        <div class="p-10 space-y-2 text-gray-700">
                             <p><span class="font-semibold">Nombres:</span> {{ $representanteEstudiante->estudiante->persona->primer_nombre }} {{ $representanteEstudiante->estudiante->persona->segundo_nombre }}</p>
                             <p><span class="font-semibold">Apellidos:</span> {{ $representanteEstudiante->estudiante->persona->apellido_paterno }} {{ $representanteEstudiante->estudiante->persona->apellido_materno }}</p>
                             <p><span class="font-semibold">Cédula:</span> {{ $representanteEstudiante->estudiante->persona->cedula }} </p>

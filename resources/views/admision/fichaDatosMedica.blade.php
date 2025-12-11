@@ -229,7 +229,7 @@
                         <!-- discapacidad estudiante -->
                         <div class="col-span-4 md:col-span-4 lg:col-span-4" id="discapacidad_contenedor" style="display: none;">
                             
-                            <div class="grid grid-cols-4 gap-4 border-gray-600">
+                            <div class="grid grid-cols-4 gap-4 border-gray-600 p-6">
                                 <div class="col-span-2 md:col-span-3 lg:col-span-4 shadow-md">
                                     <label 
                                         class="block font-medium bg-gray-700 text-white p-3"
@@ -552,7 +552,7 @@
                         </div>
 
                         <!-- Tipos de vacunas estudiante -->
-                        <div class="col-span-4 md:col-span-4 lg:col-span-4" id="detalle_vacuna" style="display: none;">
+                        <div class="col-span-4 md:col-span-4 lg:col-span-4 p-6" id="detalle_vacuna" style="display: none;">
                             <label 
                                 class="block font-medium"
                             >   
@@ -576,7 +576,7 @@
                             </label>
 
                             <select 
-                                name="dificultad_dormir_si_no" 
+                                name="dificultad_dormir_si_no"
                                 id="dificultad_dormir_si_no"
                                 class="mt-1 block border-gray-300 w-full rounded-md"
                             >
@@ -590,7 +590,7 @@
 
                         <!-- Detalle dificultad para dormir -->
                         <div class="col-span-4 md:col-span-4 lg:col-span-4" id="detalle_dificultad_dormir" style="display: none;">
-                            <div class="grid grid-cols-4 gap-4 border-gray-600">
+                            <div class="grid grid-cols-4 gap-4 border-gray-600 p-7">
 
                                 <div class="col-span-4 md:col-span-4 lg:col-span-4">
                                     <label 
@@ -645,6 +645,20 @@
                                         <option value="Si">Si</option>
                                         <option value="No">No</option>
                                     </select>
+                                </div>
+
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        ¿Cuál es el tratamiento que sigue el estudiante? 
+                                    </label>
+
+                                    <textarea 
+                                        name=""
+                                        id=""
+                                        class="mt-1 block border-gray-300 w-full rounded-md">
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
