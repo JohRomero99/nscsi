@@ -683,6 +683,42 @@
                             </select>
                         </div>
 
+                        <!-- Detalle Historial Patolígico -->
+                        <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                            <div class="grid grid-cols-4 gap-4 border-gray-600 p-7">
+
+                                <!-- Enfermedad Hereditaria -->
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        ¿El estudiante presenta algún historial patológico?
+                                    </label>
+
+                                    <select 
+                                        name="tipos_enfermedades_hereditarias" 
+                                        id="tipos_enfermedades_hereditarias"
+                                        class="mt-1 block border-gray-300 w-full rounded-md"
+                                        >
+
+                                        @foreach($tipoEnfermedadesHereditarias as $tipoEnfermedadesHereditarias)
+                                            <option 
+                                                value="{{$tipoEnfermedadesHereditarias->id}}"
+                                                {{ old('tipos_enfermedades_hereditarias') == $tipoEnfermedadesHereditarias->id ? 'selected' : '' }}    
+                                            >
+                                                {{ $tipoEnfermedadesHereditarias->enfermedades_hereditarias }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!--  -->
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                                    
+                                </div>
+                            </div>
+                        </div>
+
                         
 
                     </div>
