@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('condicion_medica', function (Blueprint $table) {
+        Schema::create('porcentaje', function (Blueprint $table) {
             $table->id();
-            $table->string('condicion_medica')->nullable();
+            $table->string('porcentaje')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('condicion_medica');
+        Schema::dropIfExists('porcentaje');
     }
 };

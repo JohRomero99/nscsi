@@ -161,7 +161,7 @@
                             </label>
 
                             <input 
-                                type="text" 
+                                type="number" 
                                 name="peso" 
                                 id="peso"
                                 placeholder="peso..." 
@@ -184,7 +184,7 @@
                             </label>
 
                             <input 
-                                type="text" 
+                                type="number" 
                                 name="estatura" 
                                 id="estatura"
                                 placeholder="estatura..." 
@@ -228,87 +228,7 @@
 
                         <!-- discapacidad estudiante -->
                         <div class="col-span-4 md:col-span-4 lg:col-span-4" id="discapacidad_contenedor" style="display: none;">
-                            
-                            <div class="grid grid-cols-4 gap-4 border-gray-600 p-6">
-                                <div class="col-span-2 md:col-span-3 lg:col-span-4 shadow-md">
-                                    <label 
-                                        class="block font-medium bg-gray-700 text-white p-3"
-                                    >   
-                                        Tipo de discapacidad
-                                    </label>
-                                </div>
-                                <div class="col-span-2 md:col-span-4 lg:col-span-2">
-                                    <label 
-                                        class="block font-medium"
-                                    >   
-                                        ¿Cuál es el tipo de discapacidad que tiene el estudiante?
-                                    </label>
-
-                                    <select 
-                                        name="discapacidad_id" 
-                                        id="discapacidad_id"
-                                        class="mt-1 block border-gray-300 w-full rounded-md"
-                                    >
-                                        @foreach($tiposDiscapacidad as $tiposDiscapacidad)
-                                            <option 
-                                                value="{{$tiposDiscapacidad->id}}"
-                                                {{ old('tiposDiscapacidad') == $tiposDiscapacidad->id ? 'selected' : '' }}    
-                                            >
-                                                {{$tiposDiscapacidad->tipos_discapacidad}}
-                                            </option>
-                                        @endforeach
-
-                                    </select>
-
-                                    @error('discapacidad_id')
-                                        <p 
-                                            class="mt-2 text-pink-600 text-sm">
-                                            No puedes eligir la opción "--seleccionar--"
-                                        </p>
-                                    @enderror
-                                </div>
-
-                                <div class="col-span-4 md:col-span-4 lg:col-span-2">
-                                    <label 
-                                        class="block font-medium"
-                                    >   
-                                        Porcentaje de discapacidad
-                                    </label>
-
-                                    <div class="flex rounded-lg overflow-hidden border border-gray-300">
-                                        
-                                        <!-- Cuadro gris del icono con más padding -->
-                                        <span class="bg-gray-200 text-gray-600 px-4 py-2 flex items-center">
-                                            %
-                                        </span>
-
-                                        <!-- Input con más padding -->
-                                        <input 
-                                            type="number"
-                                            id="porcentaje"
-                                            name="porcentaje"
-                                            min="0" 
-                                            max="100"
-                                            class="w-full px-4 py-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                                            placeholder="0"
-                                        >
-                                    </div>
-                                </div>
-
-                                <div class="col-span-4 md:col-span-4 lg:col-span-4">
-                                    <label 
-                                        class="block font-medium"
-                                    >   
-                                        Mas detalle sobre el tipo de discapacidad del estudiante
-                                    </label>
-
-                                    <textarea 
-                                        name="detalle_discapacidad"
-                                        id="detalle_discapacidad"
-                                        class="mt-1 block border-gray-300 w-full rounded-md">
-                                    </textarea>
-                                </div>
-                            </div>
+                            @livewire('BloqueDiscapacidad')
                         </div>
                         
                         <!-- Si o No - Medicación estudiante -->
@@ -316,7 +236,7 @@
                             <label 
                                 class="block font-medium"
                             >   
-                                ¿Es estudiante está bao algún tipo de medicación?
+                                ¿Es estudiante está bajo algún tipo de medicación?
                             </label>
 
                             <select 
@@ -339,19 +259,103 @@
                             @enderror
                         </div>
 
-                        <!-- Medicación detalle -->
-                        <div class="col-span-4 md:col-span-4 lg:col-span-4" id="medicacion_contenedor" style="display: none;">
-                            <label 
-                                class="block font-medium"
-                            >   
-                               Deatlle la medicación del estudiante
-                            </label>
+                        <!-- Medicamentos de forma permanente -->
+                        <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                            <div class="grid grid-cols-4 gap-4 border-gray-600 p-7 shadow-lg" id="medicacion_contenedor" style="display: none;">
+                                
+                                <div class="col-span-2 md:col-span-3 lg:col-span-4">
+                                    <label 
+                                        class="block font-medium bg-gray-700 text-white p-3"
+                                    >   
+                                        Medicamentos
+                                    </label>
+                                </div>
+                            
+                                <!-- Medicamento de forma permanente -->
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4 mt-2">
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        ¿Toma medicamentos de forma permanente?
+                                    </label>
 
-                            <textarea 
-                                name="detalle_medicacion"
-                                id="detalle_medicacion"
-                                class="mt-1 block border-gray-300 w-full rounded-md">
-                            </textarea>
+                                    <select 
+                                        name="medicamento_forma_permanente" 
+                                        id="medicamento_forma_permanente"
+                                        class="mt-1 block border-gray-300 w-full rounded-md"
+                                    >
+                            
+                                        <option value="--seleccionar--">--seleccionar--</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                            
+                                    </select>
+                                </div>
+
+                                <!-- ¿Cual es el nombre del medicamento? -->
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4 mt-2">
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        ¿Cuál es el nombre del medicamento?
+                                    </label>
+
+                                    <input 
+                                        type="text"
+                                        id="nombre_medicamento"
+                                        name="nombre_medicamento"
+                                        placeholder="Especifique el nombre del medicamento.."
+                                        class="mt-1 block border-gray-300 w-full rounded-md"
+                                    >
+                                </div>
+
+                                <!-- Dosis  -->
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4 mt-2">
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        Dosis
+                                    </label>
+
+                                    <select 
+                                        name="dosis_medicamento" 
+                                        id="dosis_medicamento"
+                                        class="mt-1 block border-gray-300 w-full rounded-md"
+                                    >
+                            
+                                        <option value="--seleccionar--">--seleccionar--</option>
+                                        <option value="1/4">¼ pastilla</option>
+                                        <option value="1/2">½ pastilla</option>
+                                        <option value="1">1 pastilla</option>
+                                        <option value="2">2 pastillas</option>
+                                        <option value="5ml">5 ml</option>
+                                        <option value="10ml">10 ml</option>
+                                        <option value="15ml">15 ml</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4 mt-2">
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        Horario
+                                    </label>
+
+                                    <select 
+                                        name="hoario_medicamento" 
+                                        id="horario_medicamento"
+                                        class="mt-1 block border-gray-300 w-full rounded-md"
+                                        >
+
+                                        <option value="--seleccionar--">--selecionar--</option>
+                                        <option value="1_dia">1 vez al día</option>
+                                        <option value="2_dia">2 veces al día</option>
+                                        <option value="3_dia">3 veces al día</option>
+                                        <option value="cada_8h">Cada 8 horas</option>
+                                        <option value="cada_12h">Cada 12 horas</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Si o No - Alergia estudiante -->
@@ -444,17 +448,56 @@
 
                         <!-- Condiciones médicas detalle estudiante -->
                         <div class="col-span-4 md:col-span-4 lg:col-span-4" id="condicion_medica_contenedor" style="display: none;">
-                            <label 
-                                class="block font-medium"
-                            >   
-                               Deatlle las condicones médicas
-                            </label>
+                            <div class="grid grid-cols-4 gap-4 border-gray-600 p-7 shadow-lg">
 
-                            <textarea 
-                                name="detalle_condicion_medica"
-                                id="detalle_condicion_medica"
-                                class="mt-1 block border-gray-300 w-full rounded-md">
-                            </textarea>
+                                <div class="col-span-4 md:col-soan-4 lg:col-span-4">
+                                    <label class="block font-medium bg-gray-700 text-white p-3">
+                                        Enfermedades Médicas
+                                    </label>
+                                </div>
+
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                                    <!-- Enfermedades -->
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        Enfermedades
+                                    </label>
+
+                                    <select 
+                                        name="condicion_medica" 
+                                        id="condicion_medica"
+                                        class="mt-1 block border-gray-300 w-full rounded-md"
+                                        >
+
+                                        @foreach($condicionMedica as $condicionMedica)
+                                            <option 
+                                                value="{{ $condicionMedica->id }}"
+                                                {{ old('condicion_medica') == $condicionMedica->id ? 'selected' : '' }}    
+                                            >
+                                                {{ $condicionMedica->condicion_medica }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        Otra enfermedad
+                                    </label>
+
+                                    <textarea 
+                                        name="otra_enfermedad"
+                                        id="otra_enfermedad"
+                                        class="mt-1 block border-gray-300 w-full rounded-md"
+                                        >
+
+                                    </textarea>
+                                </div>
+                            </div>
+
                         </div>
 
                         <!-- Si o No - Intervenciones Quirurgicas -->
@@ -554,7 +597,7 @@
                         <!-- Tipos de vacunas estudiante -->
                         <div class="col-span-4 md:col-span-4 lg:col-span-4 p-6" id="detalle_vacuna" style="display: none;">
                             <label 
-                                class="block font-medium"
+                                class="block font-medium bg-gray-700 text-white p-3"
                             >   
                                 Seleccione el tipo de vacunas que tiene el estudiante.
                             </label>
@@ -590,7 +633,7 @@
 
                         <!-- Detalle dificultad para dormir -->
                         <div class="col-span-4 md:col-span-4 lg:col-span-4" id="detalle_dificultad_dormir" style="display: none;">
-                            <div class="grid grid-cols-4 gap-4 border-gray-600 p-7">
+                            <div class="grid grid-cols-4 gap-4 border-gray-600 p-7 shadow-lg">
 
                                 <div class="col-span-4 md:col-span-4 lg:col-span-4">
                                     <label 
@@ -684,8 +727,16 @@
                         </div>
 
                         <!-- Detalle Historial Patolígico -->
-                        <div class="col-span-4 md:col-span-4 lg:col-span-4">
-                            <div class="grid grid-cols-4 gap-4 border-gray-600 p-7">
+                        <div class="col-span-4 md:col-span-4 lg:col-span-4" id="detalle_historial_patologico" style="display: none;"> 
+                            <div class="grid grid-cols-4 gap-4 border-gray-600 p-7 shadow-lg">
+
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                                    <label 
+                                        class="block font-medium bg-gray-700 text-white p-3"
+                                    >   
+                                        Historial Patológico
+                                    </label>
+                                </div>
 
                                 <!-- Enfermedad Hereditaria -->
                                 <div class="col-span-4 md:col-span-4 lg:col-span-4">
@@ -712,9 +763,47 @@
                                     </select>
                                 </div>
 
-                                <!--  -->
+                                <!-- Parentesco Patelógicos -->
                                 <div class="col-span-4 md:col-span-4 lg:col-span-4">
-                                    
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        Parentesco
+                                    </label>
+
+                                    <select 
+                                        name="relacion_familiar" 
+                                        id="relacion_familiar"
+                                        class="mt-1 block border-gray-300 w-full rounded-md"
+                                        >
+
+                                        @foreach($relacionFamiliar as $relacionFamiliar)
+                                            <option 
+                                                value="{{$relacionFamiliar->id}}"
+                                                {{ old('relacion_familiar') == $relacionFamiliar->id ? 'selected' : '' }}    
+                                            >
+                                                {{ $relacionFamiliar->relacion_familiar }}
+                                            </option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+
+                                <!-- Estado Actual -->
+                                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                                    <label 
+                                        class="block font-medium"
+                                    >   
+                                        ¿Cual es el estado actual del Estudiante?
+                                    </label>
+
+                                    <textarea 
+                                        name="" 
+                                        id=""
+                                        class="mt-1 block border-gray-300 w-full rounded-md"
+                                    >
+
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -835,6 +924,22 @@
                     detalle_dificultad_dormir.style.display = 'block';
                 } else {
                     detalle_dificultad_dormir.style.display = 'none';
+                }
+            });
+        </script>
+    @endpush
+
+    <!-- Me permite ocultar y mostrar el imput radio de "Dificultad para dormir" -->
+    @push('scripts')
+        <script>
+            var historial_patologico_si_no = document.getElementById('historial_patologico_si_no');
+            var detalle_historial_patologico = document.getElementById('detalle_historial_patologico');
+
+            historial_patologico_si_no.addEventListener('change', function () {
+                if (this.value === 'Si') {
+                    detalle_historial_patologico.style.display = 'block';
+                } else {
+                    detalle_historial_patologico.style.display = 'none';
                 }
             });
         </script>

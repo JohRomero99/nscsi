@@ -24,6 +24,9 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- livewireStyles -->
+        @livewireStyles
     </head>
     <body class="font-sans antialiased">
         <div class="sm:ml-64 min-h-screen bg-white" style="background-image: url('{{ asset('imagenes/fondoAcademico.png') }}')">
@@ -46,6 +49,9 @@
 
         <!-- Flowbite -->
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+        <!-- Livewire scripts -->
+        @livewireScripts
     </body>
     @stack('scripts')
 </html>

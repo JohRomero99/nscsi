@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
             tiposAlergiaSeeder::class,
             vacunasSeeder::class,
             tiposEnfermedadesHereditariasSeeders::class,
+            condicionMedicaSeeder::class,
+            porcentajeSeeder::class,
         ]);
     }
 }

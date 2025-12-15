@@ -8,6 +8,8 @@ use App\Models\tipos_discapacidad;
 use App\Models\tiposAlergia;
 use App\Models\vacuna;
 use App\Models\tiposEnfermedadesHereditarias;
+use App\Models\relacionFamiliar;
+use App\Models\condicionMedica;
 
 class fichaMedicaController extends Controller
 {
@@ -28,8 +30,13 @@ class fichaMedicaController extends Controller
         // Obtengo todos los datos registrados en la tabla "tipos de enfermedades hereditarias".
         $tipoEnfermedadesHereditarias =  tiposEnfermedadesHereditarias::all();
 
+        // Obtengo todos los datos registrados en la tabla "relacion Familiar".
+        $relacionFamiliar = relacionFamiliar::all();
+
+        // Obtengo todos los datos registrados en la tabla "Condicion Médica".
+        $condicionMedica = condicionMedica::all();
         
-        return view("admision.fichaDatosMedica", compact('tiposDiscapacidad','tiposAlergia','tipoVacuna','tipoEnfermedadesHereditarias'));
+        return view("admision.fichaDatosMedica", compact('tiposDiscapacidad','tiposAlergia','tipoVacuna','tipoEnfermedadesHereditarias','relacionFamiliar','condicionMedica'));
 
     }
 

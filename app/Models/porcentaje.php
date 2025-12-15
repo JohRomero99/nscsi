@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class condicionMedica extends Model
+class porcentaje extends Model
 {
     use HasFactory;
 
-    protected $table = 'condicion_medica';
+    protected $table = 'porcentaje';
 }
-
