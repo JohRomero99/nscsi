@@ -84,7 +84,6 @@
     @endFor
 
     <div class="text-center mt-7">
-
         <button
             type="button"
             wire:click="incrementar"

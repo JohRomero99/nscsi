@@ -7,18 +7,18 @@ use Livewire\Component;
 class Medicamentos extends Component
 {
 
-    public $contador = 1;
+    public $contadorMedicamentos = 1;
 
-    public function incrementar(){
+    public function incrementarMedicamento(){
 
-        $this->contador++;
+        $this->contadorMedicamentos++;
 
     }
 
-    public function disminuir(){
+    public function disminuirMedicamento(){
 
-        if($this->contador > 1){
-            $this->contador--;
+        if($this->contadorMedicamentos > 1){
+            $this->contadorMedicamentos--;
         }
 
     }
