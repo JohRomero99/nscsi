@@ -37,6 +37,8 @@ class DatabaseSeeder extends Seeder
             tiposEnfermedadesHereditariasSeeders::class,
             condicionMedicaSeeder::class,
             porcentajeSeeder::class,
+            tiposIntervencionesQuirurgicasSeeders::class,
+
         ]);
     }
 }

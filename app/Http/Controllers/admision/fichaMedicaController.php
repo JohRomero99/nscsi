@@ -9,6 +9,7 @@ use App\Models\tiposAlergia;
 use App\Models\vacuna;
 use App\Models\tiposEnfermedadesHereditarias;
 use App\Models\relacionFamiliar;
+use App\Models\tiposIntervencionesQuirurgicas;
 
 class fichaMedicaController extends Controller
 {
@@ -32,7 +33,10 @@ class fichaMedicaController extends Controller
         // Obtengo todos los datos registrados en la tabla "relaciionFamiliar".
         $relacionFamiliar = relacionFamiliar::all();
 
-        return view("admision.fichaDatosMedica", compact('tiposDiscapacidad','tiposAlergia','tipoVacuna','tipoEnfermedadesHereditarias','relacionFamiliar'));
+        // Obtengo todos los datos registrados en la tabla "tipos intervenciones quirurgicas".
+        $tiposIntervencionesQuirurgicas = tiposIntervencionesQuirurgicas::all();
+
+        return view("admision.fichaDatosMedica", compact('tiposDiscapacidad','tiposAlergia','tipoVacuna','tipoEnfermedadesHereditarias','relacionFamiliar','tiposIntervencionesQuirurgicas'));
 
     }
 

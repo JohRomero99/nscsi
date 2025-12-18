@@ -97,5 +97,9 @@ class tiposAlergiaSeeder extends Seeder
             'alergias' => 'Humo / Cigarrillo',
         ]);
 
+        $tiposAlergia = tiposAlergia::create([
+            'alergias' => 'Otra',
+        ]);
+
     }
 }
