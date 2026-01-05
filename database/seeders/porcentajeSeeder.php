@@ -15,12 +15,6 @@ class porcentajeSeeder extends Seeder
     {
         for ($i = 0; $i <= 100; $i++) {
 
-            if ($i == 0) {
-                Porcentaje::create([
-                    'porcentaje' => '--seleccionar--',
-                ]);
-            }
-
             Porcentaje::create([
                 'porcentaje' => $i . '%',
             ]);

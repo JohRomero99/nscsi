@@ -1,12 +1,8 @@
 <div>
     @for( $i = 0; $i < $contadorMedicamentos ; $i++)
         <div class="grid grid-cols-4 gap-4 border-gray-600 p-7 shadow-lg">
-            <div class="col-span-2 md:col-span-3 lg:col-span-4">
-                <label 
-                    class="block font-medium bg-gray-700 text-white p-3"
-                >   
-                    Medicamentos
-                </label>
+            <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                <hr class="w-48 h-1 mx-auto my-4 bg-gray-200 rounded-sm md:my-4">
             </div>
                                 
             <!-- Medicamento de forma permanente -->
@@ -28,6 +24,13 @@
                     <option value="No">No</option>
         
                 </select>
+
+                @error('')
+                    <p 
+                        class="mt-2 text-pink-600 text-sm">
+                        No puedes eligir la opción "--seleccionar--"
+                    </p>
+                @enderror
             </div>
 
             <!-- ¿Cual es el nombre del medicamento? -->
@@ -42,9 +45,16 @@
                     type="text"
                     id="nombre_medicamento"
                     name="nombre_medicamento"
-                    placeholder="Especifique el nombre del medicamento.."
+                    placeholder="Digite el nombre del medicamento.."
                     class="mt-1 block border-gray-300 w-full rounded-md"
                 >
+
+                @error('nombre_medicamento')
+                    <p 
+                        class="mt-2 text-pink-600 text-sm">
+                        No puedes eligir la opción "--seleccionar--"
+                    </p>
+                @enderror
             </div>
 
             <!-- Dosis  -->
@@ -60,18 +70,27 @@
                     id="dosis_medicamento"
                     class="mt-1 block border-gray-300 w-full rounded-md"
                 >
-        
-                    <option value="--seleccionar--">--seleccionar--</option>
-                    <option value="1/4">¼ pastilla</option>
-                    <option value="1/2">½ pastilla</option>
-                    <option value="1">1 pastilla</option>
-                    <option value="2">2 pastillas</option>
-                    <option value="5ml">5 ml</option>
-                    <option value="10ml">10 ml</option>
-                    <option value="15ml">15 ml</option>
+
+                    @foreach($dosisMedicamento as $d)
+                        <option 
+                            value="{{$d->id}}"
+                            {{ old('dosis_medicamento') == $d->id ? 'selected' : '' }}    
+                        >
+                            {{ $d->dosis_medicamentos }}
+                        </option>
+                    @endforeach
+                    
                 </select>
+
+                @error('')
+                    <p 
+                        class="mt-2 text-pink-600 text-sm">
+                        No puedes eligir la opción "--seleccionar--"
+                    </p>
+                @enderror
             </div>
 
+            <!-- Frecuencia -->
             <div class="col-span-4 md:col-span-4 lg:col-span-4 mt-2">
                 <label 
                     class="block font-medium"
@@ -80,18 +99,27 @@
                 </label>
 
                 <select 
-                    name="hoario_medicamento" 
-                    id="horario_medicamento"
+                    name="frecuencia_medicamento" 
+                    id="frecuencia_medicamento"
                     class="mt-1 block border-gray-300 w-full rounded-md"
                     >
 
-                    <option value="--seleccionar--">--selecionar--</option>
-                    <option value="1_dia">1 vez al día</option>
-                    <option value="2_dia">2 veces al día</option>
-                    <option value="3_dia">3 veces al día</option>
-                    <option value="cada_8h">Cada 8 horas</option>
-                    <option value="cada_12h">Cada 12 horas</option>
+                    @foreach($frecuenciaMedicamento as $f)
+                        <option 
+                            value="{{$d->id}}"
+                            {{ old('frecuencia_medicamento') == $f->id ? 'selected' : '' }}    
+                        >
+                            {{ $f->frecuencia_medicamentos }}
+                        </option>
+                    @endforeach
                 </select>
+
+                @error('')
+                    <p 
+                        class="mt-2 text-pink-600 text-sm">
+                        No puedes eligir la opción "--seleccionar--"
+                    </p>
+                @enderror
             </div>
         </div>
     @endFor

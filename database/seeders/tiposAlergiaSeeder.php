@@ -13,9 +13,6 @@ class tiposAlergiaSeeder extends Seeder
      */
     public function run(): void
     {
-        $tiposAlergia = tiposAlergia::create([
-            'alergias' => '--seleccionar--',
-        ]);
 
         $tiposAlergia = tiposAlergia::create([
             'alergias' => 'Polvo / Ácaros',

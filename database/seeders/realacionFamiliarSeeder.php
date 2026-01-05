@@ -13,9 +13,6 @@ class realacionFamiliarSeeder extends Seeder
      */
     public function run(): void
     {
-        $relacionFamiliar = relacionFamiliar::create([
-            'relacion_familiar' => '--seleccionar--',
-        ]);
 
         $relacionFamiliar = relacionFamiliar::create([
             'relacion_familiar' => 'Padre',

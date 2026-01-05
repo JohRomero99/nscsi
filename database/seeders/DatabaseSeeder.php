@@ -38,7 +38,9 @@ class DatabaseSeeder extends Seeder
             condicionMedicaSeeder::class,
             porcentajeSeeder::class,
             tiposIntervencionesQuirurgicasSeeders::class,
-
+            dosisMedicamentoSeeder::class,
+            frecuenciaMedicamentoSeeder::class,
+            escalaCalificacionSeeder::class,
         ]);
     }
 }

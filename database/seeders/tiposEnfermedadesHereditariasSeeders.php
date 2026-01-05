@@ -13,9 +13,6 @@ class tiposEnfermedadesHereditariasSeeders extends Seeder
      */
     public function run(): void
     {
-        $enfermedades_hereditarias = tiposEnfermedadesHereditarias::create([
-            'enfermedades_hereditarias' => '--seleccionar--',
-        ]);
 
         $enfermedades_hereditarias = tiposEnfermedadesHereditarias::create([
             'enfermedades_hereditarias' => 'Diabetes (antecedente familiar)',

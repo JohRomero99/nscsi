@@ -13,9 +13,6 @@ class condicionMedicaSeeder extends Seeder
      */
     public function run(): void
     {
-        $condicionMedica = condicionMedica::create([
-            'condicion_medica' => '--seleccionar--',
-        ]);
 
         $condicionMedica = condicionMedica::create([
             'condicion_medica' => 'Asma',

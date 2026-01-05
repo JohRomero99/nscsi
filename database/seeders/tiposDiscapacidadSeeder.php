@@ -13,9 +13,6 @@ class tiposDiscapacidadSeeder extends Seeder
      */
     public function run(): void
     {
-        $tiposDiscapacidad = tipos_discapacidad::create([
-            'tipos_discapacidad' => '--seleccionar--',
-        ]);
 
         $tiposDiscapacidad = tipos_discapacidad::create([
             'tipos_discapacidad' => 'Discapacidad física',

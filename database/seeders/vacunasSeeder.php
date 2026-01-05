@@ -15,10 +15,6 @@ class vacunasSeeder extends Seeder
     {
      
         $tipoVivienda = vacuna::create([
-            'tipo_vacunas' => '--seleccionar--',
-        ]);
-
-        $tipoVivienda = vacuna::create([
             'tipo_vacunas' => 'BCG (Tuberculosis)',
         ]);
 
@@ -78,5 +74,8 @@ class vacunasSeeder extends Seeder
             'tipo_vacunas' => 'Refuerzo DT (Difteria y Tétanos)',
         ]);
         
+        $tipoVivienda = vacuna::create([
+            'tipo_vacunas' => 'Otra',
+        ]);
     }
 }

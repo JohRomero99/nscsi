@@ -51,6 +51,7 @@ Route::get('/dashboard/ficha/medica/create', [fichaMedicaController::class, 'cre
 Route::post('/dashboard/ficha/medica/store', [fichaMedicaController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.ficha.medica.store');
 
 
+
 // Route::get('/dashboard/ficha-aspirantes/{id}', [admisionController::class, 'create'])->name('ficha.aspirante.create');
 //Link de matriculacion, admision y aspirantes.
 // Route::get('/ficha/matriculacion/create', [fichasController::class, 'createAspirante'])->name('ficha.aspirante.create');

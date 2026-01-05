@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\frecuenciaMedicamento;
+use App\Models\dosisMedicamento;
 
 class Medicamentos extends Component
 {
@@ -25,6 +27,12 @@ class Medicamentos extends Component
 
     public function render()
     {
-        return view('livewire.medicamentos');
+        // Obtengo todos los datos registrados en la tabla "Dosis Medicamentos".
+        $dosisMedicamento = dosisMedicamento::all();
+
+        // Obtengo todos los datos registrados en la tabla "Frecuencia Medicamento".
+        $frecuenciaMedicamento = frecuenciaMedicamento::all();
+
+        return view('livewire.medicamentos', compact('dosisMedicamento','frecuenciaMedicamento'));
     }
 }
