@@ -240,7 +240,7 @@
                                     </div>
 
 
-                                    <!-- Teléfono domicilio padre -->
+                                    <!-- Teléfono domicilio padres -->
                                     <div class="col-span-4 md:col-span-1 lg:col-span-1">
                                         <label 
                                             class="block"
@@ -253,7 +253,7 @@
                                             name="telefono_domicilio" 
                                             id="telefono_domicilio" 
                                             value="{{ old('telefono_domicilio') }}"
-                                            placeholder="teléfono domicilio..." 
+                                            placeholder="042345678..." 
                                             class="mt-1 block border-gray-300 w-full rounded-md"
                                         >
                                         @error('telefono_domicilio')
@@ -277,7 +277,7 @@
                                             name="telefono_celular" 
                                             id="telefono_celular" 
                                             value="{{ old('telefono_celular') }}"
-                                            placeholder="telefono_celular..." 
+                                            placeholder="0991035787..." 
                                             class="mt-1 block border-gray-300 w-full rounded-md"
                                         >
                                         @error('telefono_celular')
@@ -369,7 +369,7 @@
                                     </div>
 
                                     <!-- Ocupación otro -->
-                                    <div class="col-span-4 md:col-span-2 lg:col-span-4">
+                                    <div class="col-span-4 md:col-span-2 lg:col-span-4" id="contenedor_otra_ocupacion" style="display:none;">
                                         <label 
                                             class="block"
                                         >   
@@ -968,5 +968,21 @@
 
             })
         </script>   
+    @endpush
+
+    @push('scripts')
+        <script>
+            var contenedor_otra_ocupacion = document.getElementById('contenedor_otra_ocupacion');
+            var ocupacion_id = document.getElementById('ocupacion_id');22
+
+            contenedor_otra_ocupacion.addEventListener('change', function(){
+                if (this.value === '1') {
+                    contenedor_otra_ocupacion.style.display = 'block';
+                } else {
+                    contenedor_otra_ocupacion.style.display = 'nones';
+                }
+            });
+            
+        </script>
     @endpush
 </x-app-layout>

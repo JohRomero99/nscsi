@@ -41,13 +41,13 @@ class datosEstudianteRequest extends FormRequest
             'scan_cedula_front' => ['required', 'file', 'mimes:pdf', 'max:5120'],
             'scan_cedula_back' => ['required', 'file', 'mimes:pdf', 'max:5120'],
             'referencia_familiar.0' => ['required','regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
-            'referencia_familiar.1' => ['required', 'not_in:1'],
+            'referencia_familiar.1' => ['required', 'not_in:--seleccionar--'],
             'referencia_familiar.2' => ['required', 'numeric','digits:10'],
             'referencia_familiar.3' => ['required','regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
-            'referencia_familiar.4' => ['required', 'not_in:1'],
+            'referencia_familiar.4' => ['required', 'not_in:--seleccionar--'],
             'referencia_familiar.5' => ['required', 'numeric','digits:10'],
             'referencia_familiar.6' => ['required','regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
-            'referencia_familiar.7' => ['required', 'not_in:1'],
+            'referencia_familiar.7' => ['required', 'not_in:--seleccionar--'],
             'referencia_familiar.8' => ['required', 'numeric','digits:10'],
         ];
     }

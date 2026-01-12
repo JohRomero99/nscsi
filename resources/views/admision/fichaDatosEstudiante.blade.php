@@ -647,6 +647,8 @@
                                                         name="referencia_familiar[1]"
                                                         class="mt-1 block border-gray-300 w-full rounded-md"
                                                     >
+                                                        <option class="--seleccionar--">--seleccionar--</option>
+
                                                         @foreach ($relacionFamiliar as $relacion)
                                                             <option 
                                                                 value="{{ $relacion->id }}"
@@ -661,7 +663,7 @@
                                                     @error('referencia_familiar.1')
                                                         <p 
                                                             class="mt-2 text-pink-600 text-sm">
-                                                            {{ $message }}
+                                                            No puedes elegir esta opción
                                                         </p>
                                                     @enderror
                                                 </div>
@@ -726,6 +728,8 @@
                                                         class="mt-1 block border-gray-300 w-full rounded-md"
                                                         value="{{ old('referencia_familiar.4') }}" 
                                                     >
+                                                        <option class="--seleccionar--">--seleccionar--</option>
+
                                                         @foreach ($relacionFamiliar as $relacion)
                                                             <option 
                                                                 value="{{ $relacion->id }}"
@@ -804,6 +808,8 @@
                                                         class="mt-1 block border-gray-300 w-full rounded-md"
                                                         value="{{ old('referencia_familiar.7') }}" 
                                                     >
+                                                        <option class="--seleccionar--">--seleccionar--</option>
+
                                                         @foreach ($relacionFamiliar as $relacion)
                                                             <option 
                                                                 value="{{ $relacion->id }}"
