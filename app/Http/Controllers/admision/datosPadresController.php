@@ -173,8 +173,9 @@ class datosPadresController extends Controller
 
         }elseif ($genero == "madre") {
             
-            //return redirect()->route('dashboard')->with('success','Registro guardado correctamente');
-            return redirect()->route('dashboard.ficha.medica.create');
+            return redirect()->route('dashboard.ficha.medica.create', [
+                'estudianteId' => $estudianteId,
+            ]);
 
         } 
 

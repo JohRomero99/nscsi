@@ -11,6 +11,7 @@ use App\Http\Controllers\admision\datosPadresController;
 use App\Http\Controllers\admision\fichaMedicaController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\fichasController;
+use App\Livewire\FichaMedicaEstudiante;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -35,7 +36,6 @@ Route::get('/admision/buscar/cedula/estudiante', [buscarCedulaController::class,
 Route::get('/admision/representante/email/{userId}', [setupTresController::class, 'email'])->name('admision.representante.email');
 Route::post('/admision/representante/reenviar/email/{userId}', [setupTresController::class, 'reenviarEmail'])->name('admision.representante.reenviar.email');
 
-
 Route::get('/dashboard/home/index', [homeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard/agregar/estudiante/create', [agregarEstudianteController::class, 'create'])->middleware(['auth', 'verified'])->name('dashboard.agregar.estudiante.create');
 Route::post('/dashboard/agregar/estudiante/store', [agregarEstudianteController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.agregar.estudiante.store');
@@ -47,7 +47,7 @@ Route::post('/dashboard/ficha/padre/store/{id}/{genero}', [datosPadresController
 Route::get('/dashboard/ficha/madre/create/{estudianteId}/{genero}', [datosPadresController::class, 'create'])->middleware(['auth', 'verified'])->name('dashboard.ficha.madre.create');
 Route::post('/dashboard/ficha/madre/store/{id}/{genero}', [datosPadresController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.ficha.madre.store');
 
-Route::get('/dashboard/ficha/medica/create', [fichaMedicaController::class, 'create'])->middleware(['auth', 'verified'])->name('dashboard.ficha.medica.create');
+Route::get('/dashboard/ficha/medica/create/{estudianteId}',FichaMedicaEstudiante::class )->middleware(['auth', 'verified'])->name('dashboard.ficha.medica.create');
 Route::post('/dashboard/ficha/medica/store', [fichaMedicaController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.ficha.medica.store');
 
 

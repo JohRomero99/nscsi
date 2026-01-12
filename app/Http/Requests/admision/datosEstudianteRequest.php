@@ -51,4 +51,23 @@ class datosEstudianteRequest extends FormRequest
             'referencia_familiar.8' => ['required', 'numeric','digits:10'],
         ];
     }
+
+    public function attributes(): array
+    {
+        return [
+            'lugar_nacimiento_id' => 'nacimiento',
+            'boletin_ultimo_ano' => 'Boletin de calificaciones',
+            'scan_cedula_front' => 'cedula frontal',
+            'scan_cedula_back' => 'cedula trasera',
+            'referencia_familiar.0' => 'nombre',
+            'referencia_familiar.1' => 'relacion',
+            'referencia_familiar.2' => 'telefono',
+            'referencia_familiar.3' => 'nombre',
+            'referencia_familiar.4' => 'relacion',
+            'referencia_familiar.5' => 'telefono',
+            'referencia_familiar.6' => 'nombre',
+            'referencia_familiar.7' => 'relacion',
+            'referencia_familiar.8' => 'telefono',
+        ];
+    }
 }

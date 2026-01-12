@@ -180,7 +180,7 @@
                                         @error('nacionalidad_id')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -234,7 +234,7 @@
                                         @error('sexo_id')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -363,7 +363,7 @@
                                         @error('ocupacion_id')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -419,7 +419,7 @@
                                         @error('trabaja_para')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -657,7 +657,7 @@
                                                     @error('referencia_familiar.1')
                                                         <p 
                                                             class="mt-2 text-pink-600 text-sm">
-                                                            No puedes eligir la opción "--seleccionar--"
+                                                            No puedes eligir la opción --seleccionar--
                                                         </p>
                                                     @enderror
                                                 </div>
@@ -812,7 +812,7 @@
                                                     @error('referencia_familiar.7')
                                                         <p 
                                                             class="mt-2 text-pink-600 text-sm">
-                                                            No puedes eligir la opción "--seleccionar--"
+                                                            No puedes eligir la opción --seleccionar--
                                                         </p>
                                                     @enderror
                                                 </div>
@@ -917,49 +917,56 @@
                     </div>
                 </div>
 
+    @if($errors->any())
+        <script>
+            Swal.fire({
+                title: "Error",
+                text: "Revisa los campos obligatorios",
+                icon: "error"
+            });
+        </script>
+    @endif
+
     <!-- Buscar en tiempo real cédula representantes -->
     @push('scripts')
+        <script>
+            document.addEventListener("DOMContentLoaded",function(){
+                const cedulaInput = document.getElementById("cedula_padre");
+                const primerNombreInput = document.getElementById("primer_nombre_padre");
+                const segundoNombreInput = document.getElementById("segundo_nombre_padre");
+                const apellidoPaternoInput = document.getElementById("apellido_paterno_padre");
+                const apellidoMaternoInput = document.getElementById("apellido_materno_padre");
 
-    <script>
-        document.addEventListener("DOMContentLoaded",function(){
-            const cedulaInput = document.getElementById("cedula_padre");
-            const primerNombreInput = document.getElementById("primer_nombre_padre");
-            const segundoNombreInput = document.getElementById("segundo_nombre_padre");
-            const apellidoPaternoInput = document.getElementById("apellido_paterno_padre");
-            const apellidoMaternoInput = document.getElementById("apellido_materno_padre");
+                cedulaInput.addEventListener("input",function(){
 
-            cedulaInput.addEventListener("input",function(){
+                    if( cedulaInput.value.length === 10){
 
-                if( cedulaInput.value.length === 10){
+                        // Realizamos una petición para buscar la cédula en la base de datos.
+                        fetch(`{{ route('buscar.cedula.representante') }}?cedula=${cedulaInput.value}`) 
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("No se encontró la cédula");
+                            }
+                            return response.json(); // Convertimos la respuesta en JSON
+                        })
+                        .then( data =>{
+                            primerNombreInput.value = data.primer_nombre;
+                            segundoNombreInput.value = data.segundo_nombre;
+                            apellidoPaternoInput.value = data.apellido_paterno;
+                            apellidoMaternoInput.value = data.apellido_materno;
+                                })
+                        .catch(error=>{
+                            primerNombreInput.value = "";
+                            segundoNombreInput.value = "";
+                            apellidoPaternoInput.value = "";
+                            apellidoMaternoInput.value = "";
+                        })
 
-                    // Realizamos una petición para buscar la cédula en la base de datos.
-                    fetch(`{{ route('buscar.cedula.representante') }}?cedula=${cedulaInput.value}`) 
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("No se encontró la cédula");
-                        }
-                        return response.json(); // Convertimos la respuesta en JSON
-                    })
-                    .then( data =>{
-                        primerNombreInput.value = data.primer_nombre;
-                        segundoNombreInput.value = data.segundo_nombre;
-                        apellidoPaternoInput.value = data.apellido_paterno;
-                        apellidoMaternoInput.value = data.apellido_materno;
-                            })
-                    .catch(error=>{
-                        primerNombreInput.value = "";
-                        segundoNombreInput.value = "";
-                        apellidoPaternoInput.value = "";
-                        apellidoMaternoInput.value = "";
-                    })
+                    }
 
-                }
+                });
 
-            });
-
-        })
-    </script>
-
-
+            })
+        </script>   
     @endpush
 </x-app-layout>

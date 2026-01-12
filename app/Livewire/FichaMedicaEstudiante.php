@@ -3,6 +3,7 @@
 namespace App\Livewire;
 use App\Models\tipos_discapacidad;
 use App\Models\porcentaje;
+use App\Models\estudiante;
 use App\Models\condicionMedica;
 use App\Models\tiposEnfermedadesHereditarias;
 use App\Models\relacionFamiliar;
@@ -14,8 +15,11 @@ use App\Models\tiposIntervencionesQuirurgicas;
 use App\Models\escalaCalificacion;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
 
 use Livewire\Component;
+
+#[Layout('layouts.app')]
 
 class FichaMedicaEstudiante extends Component
 {
@@ -109,7 +113,7 @@ class FichaMedicaEstudiante extends Component
         ];
     }
 
-    public function mount()
+    public function mount($estudianteId)
     {
         // Siempre empieza con un bloque
         $this->discapacidades[] = [
@@ -153,17 +157,13 @@ class FichaMedicaEstudiante extends Component
             'estado_actual' => '',
         ];        
 
-        $cedula = auth()->user()->persona->representante->estudianteRepresentante->estudiante->persona->cedula;
-        $primer_nombre = auth()->user()->persona->representante->estudianteRepresentante->estudiante->persona->primer_nombre;
-        $segundo_nombre = auth()->user()->persona->representante->estudianteRepresentante->estudiante->persona->segundo_nombre;
-        $apellido_paterno = auth()->user()->persona->representante->estudianteRepresentante->estudiante->persona->apellido_paterno;
-        $apellido_materno = auth()->user()->persona->representante->estudianteRepresentante->estudiante->persona->apellido_materno;
+        $estudiante = estudiante::find($estudianteId);
 
-        $this->cedula = $cedula;
-        $this->primer_nombre = $primer_nombre;
-        $this->segundo_nombre = $segundo_nombre;
-        $this->apellido_paterno = $apellido_paterno;
-        $this->apellido_materno = $apellido_materno;
+        $this->cedula = $estudiante->persona->cedula;
+        $this->primer_nombre = $estudiante->persona->primer_nombre;
+        $this->segundo_nombre = $estudiante->persona->segundo_nombre;
+        $this->apellido_paterno = $estudiante->persona->apellido_paterno;
+        $this->apellido_materno = $estudiante->persona->apellido_materno;
 
     }
 

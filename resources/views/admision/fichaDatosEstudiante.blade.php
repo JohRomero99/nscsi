@@ -179,7 +179,7 @@
                                         @error('nacionalidad_id')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -233,7 +233,7 @@
                                         @error('sexo_id')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -288,7 +288,7 @@
                                         @error('repite_ano')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                {{ $message }}
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -321,7 +321,7 @@
                                         @error('anio_academico_id')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -377,7 +377,7 @@
                                         @error('tipo_vivienda')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -418,7 +418,7 @@
                                         @error('anos_domicilio')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -450,7 +450,7 @@
                                         @error('conviviente_estudiante_id')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -483,7 +483,7 @@
                                         @error('servicioTransporte')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -515,7 +515,7 @@
                                         @error('ruta')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
-                                                No puedes eligir la opción "--seleccionar--"
+                                                No puedes eligir la opción --seleccionar--
                                             </p>
                                         @enderror
                                     </div>
@@ -817,7 +817,7 @@
                                                     @error('referencia_familiar.7')
                                                         <p 
                                                             class="mt-2 text-pink-600 text-sm">
-                                                            No puedes eligir la opción "--seleccionar--"
+                                                            {{ $message }}
                                                         </p>
                                                     @enderror
                                                 </div>
@@ -864,6 +864,16 @@
                         </div>
                     </div>
                 </div>
+
+    @if($errors->any())
+        <script>
+            Swal.fire({
+                title: "Error",
+                text: "Revisa los campos obligatorios",
+                icon: "error"
+            });
+        </script>
+    @endif
 
     <!-- Me permite realizar la animación de carga de un documento PDF -->
     @push('scripts')
