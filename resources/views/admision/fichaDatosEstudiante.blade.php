@@ -480,7 +480,7 @@
                                             @endforeach
                                         </select>
 
-                                        @error('servicioTransporte')
+                                        @error('servicio_transporte')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
                                                 No puedes eligir la opción --seleccionar--
@@ -489,7 +489,7 @@
                                     </div>
 
                                     <!-- Ruta -->
-                                    <div class="col-span-4" id="ruta" style="display: none">
+                                    <div class="col-span-4" id="ruta_transporte" style="display: none">
                                         <label 
                                             class="block"
                                         >   
@@ -856,11 +856,19 @@
 
                                     <div class="col-span-4">
                                         <div class="text-center">
-                                            <button class="bg-[#89462a] hover:bg-[#a35a39] text-white font-bold py-3 px-4 border-b-4 border-[#5c301d] hover:border-[#5c301d]">
-                                                <i class="fa-regular fa-circle-left"></i> Regresar
-                                            </button>
-                                            <button class="bg-[#89462a] hover:bg-[#a35a39] text-white font-bold py-3 px-4 border-b-4 border-[#5c301d] hover:border-[#5c301d]">
-                                                Continuar <i class="fa-regular fa-circle-right"></i>
+                                            <a 
+                                                href="{{ route('dashboard') }}"
+                                                class="bg-[#89462a] hover:bg-[#a35a39] text-white font-bold py-3 px-4 m-2 
+                                                    border-b-4 border-[#5c301d] hover:border-[#5c301d]
+                                                    inline-flex items-center justify-center w-44">
+                                                <i class="fa-regular fa-circle-left mr-2"></i> Regresar
+                                            </a>
+
+                                            <button 
+                                                class="bg-[#89462a] hover:bg-[#a35a39] text-white font-bold py-3 px-4 m-2 
+                                                    border-b-4 border-[#5c301d] hover:border-[#5c301d]
+                                                    inline-flex items-center justify-center w-44">
+                                                Continuar <i class="fa-regular fa-circle-right ml-2"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -919,17 +927,27 @@
     <!-- Permite ocultar o mostrar el select "Ruta" -->
     @push('scripts')
         <script>
-            var servicio_transporte = document.getElementById('servicio_transporte');
-            var ruta = document.getElementById('ruta');
 
-            servicio_transporte.addEventListener('change', function() {
-                if (this.value === "1" || this.value === "2" || this.value === "3") {
-                    // Si está en "--seleccionar--", ocultamos el select "Ruta".
-                    ruta.style.display = 'none';
-                } else {
-                    // Si selecciona "Ruta" se muestra el select ruta.s
-                    ruta.style.display = 'block';
+            document.addEventListener('DOMContentLoaded', function(){
+                var servicio_transporte = document.getElementById('servicio_transporte');
+                var ruta_transporte = document.getElementById('ruta_transporte');
+
+                function transporteServicio(){
+                    if (servicio_transporte.value === "1" || servicio_transporte.value === "2" || servicio_transporte.value === "3") {
+                        // Si está en "--seleccionar--", ocultamos el select "Ruta".
+                        ruta_transporte.style.display = 'none';
+                    } else {
+                        // Si selecciona "Ruta" se muestra el select ruta.
+                        ruta_transporte.style.display = 'block';
+                    }
                 }
+
+                //
+                transporteServicio();
+
+                //
+                servicio_transporte.addEventListener('change', transporteServicio);
+
             });
         </script>
     @endpush

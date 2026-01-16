@@ -376,14 +376,12 @@
                                             Otra Ocupación
                                         </label>
 
-                                        <input 
-                                            type="text" 
+                                        <textarea 
                                             name="otra_ocupacion" 
-                                            id="otra_ocupacion" 
+                                            id="otra_ocupacion"
                                             value="{{ old('otra_ocupacion') }}"
-                                            placeholder="Especifíque otra ocupación..." 
                                             class="mt-1 block border-gray-300 w-full rounded-md"
-                                        >
+                                        >{{ old('otra_ocupacion') }}</textarea>
 
                                         @error('otra_ocupacion')
                                             <p 
@@ -424,85 +422,88 @@
                                         @enderror
                                     </div>
 
-                                    <!-- Nombre Empresa -->
-                                    <div class="col-span-4 md:col-span-2 lg:col-span-4">
-                                        <label 
-                                            class="block"
-                                        >   
-                                            Nombre de la Empresa
-                                        </label>
+                                     <!-- Información del trabajo -->
+                                    <div class="col-span-4 md:col-span-2 lg:col-span-4" id="contenedor_trabajo" style="display:none;">
+                                        <div class="grid grid-cols-4 gap-4">
+                                            <!-- Nombre Empresa -->
+                                            <div class="col-span-4 md:col-span-2 lg:col-span-4">
+                                                <label 
+                                                    class="block"
+                                                >   
+                                                    Nombre de la Empresa
+                                                </label>
 
-                                        <input 
-                                            type="text" 
-                                            name="nombre_empresa" 
-                                            id="nombre_empresa" 
-                                            value="{{ old('nombre_empresa') }}"
-                                            placeholder="Nombre de la empresa..." 
-                                            class="mt-1 block border-gray-300 w-full rounded-md"
-                                        >
+                                                <input 
+                                                    type="text" 
+                                                    name="nombre_empresa" 
+                                                    id="nombre_empresa" 
+                                                    value="{{ old('nombre_empresa') }}"
+                                                    placeholder="Nombre de la empresa..." 
+                                                    class="mt-1 block border-gray-300 w-full rounded-md"
+                                                >
 
-                                        @error('nombre_empresa')
-                                            <p 
-                                                class="mt-2 text-pink-600 text-sm">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
-                                    </div>
+                                                @error('nombre_empresa')
+                                                    <p 
+                                                        class="mt-2 text-pink-600 text-sm">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                            </div>
 
-                                    <!-- Direccion Empresa -->
-                                    <div class="col-span-4 md:col-span-2 lg:col-span-2">
-                                        <label 
-                                            class="block"
-                                        >   
-                                            Direccion Empresa
-                                        </label>
+                                            <!-- Direccion Empresa -->
+                                            <div class="col-span-4 md:col-span-2 lg:col-span-4">
+                                                <label 
+                                                    class="block"
+                                                >   
+                                                    Direccion Empresa
+                                                </label>
 
-                                        <input 
-                                            type="text" 
-                                            name="direccion_trabajo" 
-                                            id="direccion_trabajo" 
-                                            value="{{ old('direccion_trabajo') }}" 
-                                            placeholder="Dirección de la empresa..." 
-                                            class="mt-1 block border-gray-300 w-full rounded-md"
-                                        >
+                                                <input 
+                                                    type="text" 
+                                                    name="direccion_trabajo" 
+                                                    id="direccion_trabajo" 
+                                                    value="{{ old('direccion_trabajo') }}" 
+                                                    placeholder="Dirección de la empresa..." 
+                                                    class="mt-1 block border-gray-300 w-full rounded-md"
+                                                >
 
-                                        @error('direccion_trabajo')
-                                            <p 
-                                                class="mt-2 text-pink-600 text-sm">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
-                                    </div>
+                                                @error('direccion_trabajo')
+                                                    <p 
+                                                        class="mt-2 text-pink-600 text-sm">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                            </div>
 
-                                    <!-- Teléfono Trabajo -->
-                                    <div class="col-span-4 md:col-span-2 lg:col-span-2">
-                                        <label 
-                                            class="block"
-                                        >   
-                                            Teléfono del Trabajo
-                                        </label>
+                                             <!-- Teléfono Trabajo -->
+                                            <div class="col-span-4 md:col-span-2 lg:col-span-4">
+                                                <label 
+                                                    class="block"
+                                                >   
+                                                    Teléfono del Trabajo
+                                                </label>
 
-                                        <input 
-                                            type="text" 
-                                            name="telefono_trabajo" 
-                                            id="telefono_trabajo" 
-                                            value="{{ old('telefono_trabajo') }}" 
-                                            placeholder="Teléfono del trabajo..." 
-                                            class="mt-1 block border-gray-300 w-full rounded-md"
-                                        >
+                                                <input 
+                                                    type="text" 
+                                                    name="telefono_trabajo" 
+                                                    id="telefono_trabajo" 
+                                                    value="{{ old('telefono_trabajo') }}" 
+                                                    placeholder="Teléfono del trabajo..." 
+                                                    class="mt-1 block border-gray-300 w-full rounded-md"
+                                                >
 
-                                        @error('telefono_trabajo')
-                                            <p 
-                                                class="mt-2 text-pink-600 text-sm">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
+                                                @error('telefono_trabajo')
+                                                    <p 
+                                                        class="mt-2 text-pink-600 text-sm">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="col-span-4 md:col-span-4 lg:col-span-4">
-
                                         <div><p>Situación Financiera</p></div>
-
                                         <div class="grid grid-cols-4 gap-4">
                                             <div class="col-span-2 md:col-span-2 lg:col-span-2 p-5 bg-white mt-4">
                                                 <div class="text-center"><p><strong>Ingresos</strong></p></div>
@@ -643,6 +644,8 @@
                                                         name="referencia_familiar[1]"
                                                         class="mt-1 block border-gray-300 w-full rounded-md"
                                                     >
+                                                        <option value="--seleccionar--">--seleccionar--</option>
+
                                                         @foreach ($relacionFamiliar as $relacion)
                                                             <option 
                                                                 value="{{ $relacion->id }}"
@@ -721,6 +724,8 @@
                                                         name="referencia_familiar[4]"
                                                         class="mt-1 block border-gray-300 w-full rounded-md" 
                                                     >
+                                                        <option value="--seleccionar--">--seleccionar--</option>
+
                                                         @foreach ($relacionFamiliar as $relacion)
                                                             <option 
                                                                 value="{{ $relacion->id }}"
@@ -798,6 +803,8 @@
                                                         name="referencia_familiar[7]"
                                                         class="mt-1 block border-gray-300 w-full rounded-md"
                                                     >
+                                                       <option value="--seleccionar--">--seleccionar--</option>
+
                                                         @foreach ($relacionFamiliar as $relacion)
                                                             <option 
                                                                 value="{{ $relacion->id }}"
@@ -893,7 +900,7 @@
                                             <div class="bg-blue-600 h-2.5 rounded-full barra" style="width: 0%"></div>
                                         </div>
 
-                                        @error('copia_cedula_estudiante')
+                                        @error('scan_cedula_back')
                                             <p 
                                                 class="mt-2 text-pink-600 text-sm">
                                                 {{ $message }}
@@ -926,6 +933,42 @@
             });
         </script>
     @endif
+
+    <!-- Me permite realizar la animación de carga de un documento PDF -->
+    @push('scripts')
+        <script>
+            var archivoInput = document.querySelectorAll(".archivo");
+            var barraDiv = document.querySelectorAll(".barra");
+
+            for( let i = 0; i < archivoInput.length; i++ ){
+
+                archivoInput[i].addEventListener('change', function () {
+
+                    const archivo = this.files[0];
+                    if (!archivo) return;
+
+                    const formData = new FormData();
+                    formData.append('archivo', archivo);
+
+                    const xhr = new XMLHttpRequest();
+
+                    xhr.upload.addEventListener('progress', function (event) {
+                        if (event.lengthComputable) {
+                            const porcentaje = (event.loaded / event.total) * 100;
+                            barraDiv[i].style.width = porcentaje + "%";
+                            console.log("Subido: " + porcentaje.toFixed(2) + "%");
+                        }
+                    });
+
+                    xhr.open('POST', '/subir.php'); // Cambia esto por tu endpoint real
+                    xhr.send(formData);
+
+                });
+
+            }
+        </script>
+    @endpush
+
 
     <!-- Buscar en tiempo real cédula representantes -->
     @push('scripts')
@@ -972,17 +1015,49 @@
 
     @push('scripts')
         <script>
-            var contenedor_otra_ocupacion = document.getElementById('contenedor_otra_ocupacion');
-            var ocupacion_id = document.getElementById('ocupacion_id');22
+            document.addEventListener('DOMContentLoaded', function(){
+                // Se crea las variables con los ID
+                var contenedor_otra_ocupacion = document.getElementById('contenedor_otra_ocupacion');
+                var ocupacion_id = document.getElementById('ocupacion_id');
 
-            contenedor_otra_ocupacion.addEventListener('change', function(){
-                if (this.value === '1') {
-                    contenedor_otra_ocupacion.style.display = 'block';
-                } else {
-                    contenedor_otra_ocupacion.style.display = 'nones';
+                // Funión básica que me permite ocultar o mostrar un select.
+                function validarOcupacion(){
+                    if (ocupacion_id.value === '74') {
+                        contenedor_otra_ocupacion.style.display = 'block';
+                    } else {
+                        contenedor_otra_ocupacion.style.display = 'none';
+                    }
                 }
+
+                // Se valida la función
+                validarOcupacion();
+
+                // Se ejecuta la función
+                ocupacion_id.addEventListener('change', validarOcupacion);
             });
-            
         </script>
     @endpush
+
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                var contenedor_trabajo = document.getElementById('contenedor_trabajo');
+                var trabaja_para = document.getElementById('trabaja_para');
+
+                function trabajoContenedor(){
+                    if (trabaja_para.value === '3' || trabaja_para.value === '1') {
+                        contenedor_trabajo.style.display = 'none';
+                    } else {
+                        contenedor_trabajo.style.display = 'block';
+                    }
+                }
+
+                trabajoContenedor();
+
+                trabaja_para.addEventListener('change', trabajoContenedor);
+            });
+        </script>
+    @endpush
+
+
 </x-app-layout>
