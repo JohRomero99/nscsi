@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class adminController extends Controller
 {
@@ -15,7 +16,15 @@ class adminController extends Controller
 
     public function create(){
 
-        return view('admin.create');
+        $user = User::all();
+        return view('admin.create', compact('user'));
+
+    }
+
+    public function edit($userId){
+
+        $user = User::find($userId);
+        return view('admin.edit', compact('user'));
 
     }
 
