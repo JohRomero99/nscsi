@@ -125,6 +125,14 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Perfil</span>
                 </x-responsive-nav-link>    
             </li>
+
+            <!-- Admin Home -->
+            <li>
+                <x-responsive-nav-link :href="route('admin.home')" :active="request()->routeIs('admin.home')">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Usuarios</span>
+                </x-responsive-nav-link>    
+            </li>
             <li>
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
