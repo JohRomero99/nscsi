@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
             escalaCalificacionSeeder::class,
             RoleSeeder::class,
             userSeeder::class,
+            pensionesSeeders::class,
         ]);
     }
 }

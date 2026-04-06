@@ -147,9 +147,10 @@
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
                         <option value="">--Seleccionar--</option>
-                        <option value="Beca">Normal</option>
+                        <option value="Normal">Normal</option>
                         <option value="Beca">Beca</option>
-                        <option value="Amigo">Amigo</option>
+                        <option value="Media beca">Media beca</option>
+                        <option value="Descuentos">Descuentos</option>
                         <option value="Otro">Otro</option>
                     </select>
 
@@ -199,8 +200,8 @@
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
                         <option value="">--Seleccionar--</option>
-                        <option value="100.00">100.00</option>
-                        <option value="70.00">70.00</option>
+                        <option value="100.00">$100.00</option>
+                        <option value="70.00">$70.00</option>
                         <option value="Otro">Otro</option>
                         
                     </select>
@@ -251,8 +252,8 @@
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
                         <option value="">--Seleccionar--</option>
-                        <option value="100.00">100.00</option>
-                        <option value="70.00">70.00</option>
+                        <option value="129.00">$129.00 ( Incial a 10mo )</option>
+                        <option value="139.00">$139.00 ( Pensión Bachillerato )</option>
                         <option value="Otro">Otro</option>
                         
                     </select>
@@ -302,14 +303,40 @@
                         id="seguro"
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
-                        <option value="">--Seleccionar--</option>
-                        <option value="--seleccionar--">--seleccionar--</option>
+                        <option value="--Seleccionar--">--Seleccionar--</option>
                         <option value="Si">Si ($25.00)</option>
                         <option value="No">No</option>
                         
                     </select>
 
                     @error('seguro')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            No puedes eligir la opción --seleccionar--
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Ambiente Digital -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                    <label 
+                        class="block"
+                    >   
+                        Ambiente digital
+                    </label>
+
+                    <select 
+                        name="ambiente_digital" 
+                        id="ambiente_digital"
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                        <option value="--Seleccionar--">--Seleccionar--</option>
+                        <option value="Si">Si ($35.00)</option>
+                        <option value="No">No</option>
+                        
+                    </select>
+
+                    @error('ambiente_digital')
                         <p 
                             class="mt-2 text-pink-600 text-sm">
                             No puedes eligir la opción --seleccionar--

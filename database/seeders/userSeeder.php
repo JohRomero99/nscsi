@@ -31,5 +31,24 @@ class userSeeder extends Seeder
 
         // Asignar rol
         $user->assignRole('admin');
+
+        // Crear Usuario
+        $colector = User::create([
+            'name' => 'colector',
+            'email' => 'colector@nsc.edu.ec',
+            'password' => bcrypt('Soporte.tecnico.1'),
+        ]);
+
+        // Crear persona asociada
+        $colector->persona()->create([
+            'cedula' => '0955546605',
+            'primer_nombre' => 'colector',
+            'segundo_nombre' => 'colector',
+            'apellido_paterno' => 'colector',
+            'apellido_materno' => 'colector',
+        ]);
+
+        // Asignar rol
+        $colector->assignRole('colector');
     }
 }

@@ -4,12 +4,14 @@ namespace App\Http\Controllers\colector;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\pensiones;
 
 class colectorController extends Controller
 {
     public function index(){
 
-        return view('colector.index');
+        $pensiones = pensiones::all();
+        return view('colector.index', compact('pensiones'));
 
     }
 
@@ -37,6 +39,12 @@ class colectorController extends Controller
 
     public function destroy($userId){
 
+
+    }
+
+    public function pago(Request $request){
+
+        return $request->all();
 
     }
 }
