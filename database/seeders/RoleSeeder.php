@@ -17,6 +17,8 @@ class RoleSeeder extends Seeder
         $role1 = Role::create(['name' => 'admin']);
         $role2 = Role::create(['name' => 'admision']);
         $role3 = Role::create(['name' => 'recursosHumanos']);
+        $role4 = Role::create(['name' => 'representante']);
+        $role5 = Role::create(['name' => 'colector']);
 
         $permission = Permission::create(['name' => 'admin.home'])->syncRoles([$role1]);
 
@@ -26,6 +28,18 @@ class RoleSeeder extends Seeder
         $permission = Permission::create(['name' => 'admin.edit'])->syncRoles([$role1]);
         $permission = Permission::create(['name' => 'admin.destroy'])->syncRoles([$role1]);
 
-
+        $permission = Permission::create(['name' => 'dashboard'])->syncRoles([$role4]);
+        $permission = Permission::create(['name' => 'dashboard.agregar.estudiante.create'])->syncRoles([$role4]);
+        $permission = Permission::create(['name' => 'dashboard.agregar.estudiante.store'])->syncRoles([$role4]);
+        $permission = Permission::create(['name' => 'dashboard.eliminar.estudiante.destroy'])->syncRoles([$role4]);
+        $permission = Permission::create(['name' => 'dashboard.ficha.estudiante.create'])->syncRoles([$role4]);
+        $permission = Permission::create(['name' => 'dashboard.ficha.padre.create'])->syncRoles([$role4]);
+        $permission = Permission::create(['name' => 'dashboard.ficha.estudiante.store'])->syncRoles([$role4]);
+        $permission = Permission::create(['name' => 'dashboard.ficha.padre.store'])->syncRoles([$role4]);
+        $permission = Permission::create(['name' => 'dashboard.ficha.madre.create'])->syncRoles([$role4]);
+        $permission = Permission::create(['name' => 'dashboard.ficha.madre.store'])->syncRoles([$role4]);
+        $permission = Permission::create(['name' => 'dashboard.ficha.medica.create'])->syncRoles([$role4]);
+        $permission = Permission::create(['name' => 'dashboard.ficha.medica.store'])->syncRoles([$role4]);
+     
     }
 }

@@ -1,12 +1,11 @@
 <x-app-layout>
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Lista de Usuarios') }}
+            {{ __('Nuevo Estudiante') }}
         </h2>
     </x-slot>
 
-    <form action="{{ route('admin.store') }}" method="POST">
+    <form action="{{ route('colector.store') }}" method="POST">
         @csrf
         @method('POST')
 
@@ -39,11 +38,11 @@
                 </div>
 
                 <!-- Primer Nombre -->
-                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                <div class="col-span-4 md:col-span-4 lg:col-span-2">
                     <label 
                         class="block"
                     >   
-                        Nombres
+                        Primer Nombre
                     </label>
 
                     <input 
@@ -63,7 +62,7 @@
                 </div>
 
                 <!-- Segundo Nombre -->
-                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                <div class="col-span-4 md:col-span-4 lg:col-span-2">
                     <label 
                         class="block"
                     >   
@@ -87,7 +86,7 @@
                 </div>
 
                 <!-- Apellido Paterno -->
-                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                <div class="col-span-4 md:col-span-4 lg:col-span-2">
                     <label 
                         class="block"
                     >   
@@ -111,7 +110,7 @@
                 </div>
 
                 <!-- Apellido Materno -->
-                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                <div class="col-span-4 md:col-span-4 lg:col-span-2">
                     <label 
                         class="block"
                     >   
@@ -134,96 +133,183 @@
                     @enderror
                 </div>
 
-                <!-- Teléfono -->
+                <!-- Motivo Matriculación -->
                 <div class="col-span-4 md:col-span-4 lg:col-span-4">
                     <label 
                         class="block"
                     >   
-                        Teléfono
-                    </label>
-
-                    <input 
-                        type="text" 
-                        name="telefono" 
-                        placeholder="Teléfono..."
-                        value = "{{ old('telefono') }}" 
-                        class="mt-1 block border-gray-300 w-full rounded-md"
-                    >
-                    @error('apellido_materno')
-                        <p 
-                            class="mt-2 text-pink-600 text-sm">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
-
-                <!-- correo -->
-                <div class="col-span-4 md:col-span-4 lg:col-span-4">
-                    <label 
-                        class="block"
-                    >   
-                        Correo
-                    </label>
-
-                    <input 
-                        type="text" 
-                        name="email" 
-                        id="email"
-                        placeholder="ejemplo@gmail.com..."
-                        value = "{{ old('email') }}" 
-                        class="mt-1 block border-gray-300 w-full rounded-md"
-                    >
-                    @error('email')
-                        <p 
-                            class="mt-2 text-pink-600 text-sm">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
-
-                <!-- Cambiar Contraseña -->
-                <div class="col-span-4 md:col-span-4 lg:col-span-4">
-                    <label 
-                        class="block"
-                    >   
-                        Contraseña
-                    </label>
-
-                    <input 
-                        type="password" 
-                        name="contrasena" 
-                        id="contrasena"
-                        placeholder="contraseña..."
-                        class="mt-1 block border-gray-300 w-full rounded-md"
-                    >
-                    @error('contrasena')
-                        <p 
-                            class="mt-2 text-pink-600 text-sm">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
-
-                <!-- Rol -->
-                <div class="col-span-4 md:col-span-4 lg:col-span-4">
-                    <label 
-                        class="block"
-                    >   
-                        Rol
+                        Motivo
                     </label>
 
                     <select 
-                        name="rol" 
-                        id="rol"
+                        name="motivo_matriculacion" 
+                        id="motivo_matriculacion"
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
                         <option value="">--Seleccionar--</option>
-                        @foreach ($role as $rol)
-                            <option value="{{ $rol->name }}">{{ $rol->name }}</option>
-                        @endforeach
+                        <option value="Beca">Normal</option>
+                        <option value="Beca">Beca</option>
+                        <option value="Amigo">Amigo</option>
+                        <option value="Otro">Otro</option>
                     </select>
 
-                    @error('rol')
+                    @error('motivo_matriculacion')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            No puedes eligir la opción --seleccionar--
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Otro motivo matriculación -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-4" id="otro_motivo_matriculacion" style="display: none;">
+                    <label 
+                        class="block"
+                    >   
+                        Otro Motivo Matriculación
+                    </label>
+
+                    <input 
+                        type="number" 
+                        name="otro_motivo_matriculacion" 
+                        id="otro_motivo_matriculacion"
+                        placeholder="Otro motivo matrícula..."
+                        value = "{{ old('otro_motivo_matriculacion') }}" 
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                    @error('otro_motivo_matriculacion')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Valor Matriculación -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                    <label 
+                        class="block"
+                    >   
+                        Valor Matrículación
+                    </label>
+
+                    <select 
+                        name="valor_matriculacion" 
+                        id="valor_matriculacion"
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                        <option value="">--Seleccionar--</option>
+                        <option value="100.00">100.00</option>
+                        <option value="70.00">70.00</option>
+                        <option value="Otro">Otro</option>
+                        
+                    </select>
+
+                    @error('valor_matriculacion')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            No puedes eligir la opción --seleccionar--
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Otro valor matrícula -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-4" id="otro_matricula" style="display: none;">
+                    <label 
+                        class="block"
+                    >   
+                        Otro valor Matrícula
+                    </label>
+
+                    <input 
+                        type="number" 
+                        name="matricula" 
+                        id="matricula"
+                        placeholder="Otro valor matrícula..."
+                        value = "{{ old('matricula') }}" 
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                    @error('matricula')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Valor pensión -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                    <label 
+                        class="block"
+                    >   
+                        Valor Pensión
+                    </label>
+
+                    <select 
+                        name="valor_pension" 
+                        id="valor_pension"
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                        <option value="">--Seleccionar--</option>
+                        <option value="100.00">100.00</option>
+                        <option value="70.00">70.00</option>
+                        <option value="Otro">Otro</option>
+                        
+                    </select>
+
+                    @error('valor_pension')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            No puedes eligir la opción --seleccionar--
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Otro valor pensión -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-4" id="nueva_pension" style="display: none;">
+                    <label 
+                        class="block"
+                    >   
+                        Otro valor Pensión
+                    </label>
+
+                    <input 
+                        type="number" 
+                        name="otra_pension" 
+                        id="otra_pension"
+                        placeholder="Otro valor pensión..."
+                        value = "{{ old('otra_pension') }}" 
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                    @error('otra_pension')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Seguro -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                    <label 
+                        class="block"
+                    >   
+                        Seguro
+                    </label>
+
+                    <select 
+                        name="seguro" 
+                        id="seguro"
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                        <option value="">--Seleccionar--</option>
+                        <option value="--seleccionar--">--seleccionar--</option>
+                        <option value="Si">Si ($25.00)</option>
+                        <option value="No">No</option>
+                        
+                    </select>
+
+                    @error('seguro')
                         <p 
                             class="mt-2 text-pink-600 text-sm">
                             No puedes eligir la opción --seleccionar--
@@ -255,4 +341,42 @@
         </div>
     </form>
 
+    <script>
+        const select_uno = document.getElementById('valor_matriculacion');
+        const otroDiv_uno = document.getElementById('otro_matricula');
+
+        select_uno.addEventListener('change', function () {
+            if (this.value === 'Otro') {
+                otroDiv_uno.style.display = 'block';
+            } else {
+                otroDiv_uno.style.display = 'none';
+            }
+        });
+    </script>
+
+    <script>
+        const select_dos = document.getElementById('valor_pension');
+        const otroDiv_dos = document.getElementById('nueva_pension');
+
+        select_dos.addEventListener('change', function () {
+            if (this.value === 'Otro') {
+                otroDiv_dos.style.display = 'block';
+            } else {
+                otroDiv_dos.style.display = 'none';
+            }
+        });
+    </script>
+
+    <script>
+        const select_tres = document.getElementById('motivo_matriculacion');
+        const otroDiv_tres = document.getElementById('otro_motivo_matriculacion');
+
+        select_tres.addEventListener('change', function () {
+            if (this.value === 'Otro') {
+                otroDiv_tres.style.display = 'block';
+            } else {
+                otroDiv_tres.style.display = 'none';
+            }
+        });
+    </script>
 </x-app-layout>

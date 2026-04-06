@@ -13,10 +13,23 @@ class userSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::create([
+        // Crear Usuario
+        $user = User::create([
             'name' => 'admin',
             'email' => 'admin@example.com',
             'password' => bcrypt('Soporte.tecnico.1'),
-        ])->assignRole('admin');
+        ]);
+
+        // Crear persona asociada
+        $user->persona()->create([
+            'cedula' => '0000000000',
+            'primer_nombre' => 'admin',
+            'segundo_nombre' => 'admin',
+            'apellido_paterno' => 'admin',
+            'apellido_materno' => 'admin',
+        ]);
+
+        // Asignar rol
+        $user->assignRole('admin');
     }
 }

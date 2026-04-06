@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             frecuenciaMedicamentoSeeder::class,
             escalaCalificacionSeeder::class,
             RoleSeeder::class,
-            //userSeeder::class,
+            userSeeder::class,
         ]);
     }
 }

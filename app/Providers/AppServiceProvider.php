@@ -26,15 +26,19 @@ class AppServiceProvider extends ServiceProvider
 
         Route::middleware('web')
             ->prefix('colecturia') // opcional
-            ->group(base_path('routes/admin.php'));
+            ->group(base_path('routes/colecturia.php'));
 
         Route::middleware('web')
             ->prefix('secretaria') // opcional
-            ->group(base_path('routes/admin.php'));
+            ->group(base_path('routes/secretaria.php'));
 
         Route::middleware('web')
             ->prefix('medico') // opcional
-            ->group(base_path('routes/admin.php'));
+            ->group(base_path('routes/medico.php'));
+    
+        Route::middleware('web')
+            ->prefix('rrhh') // opcional
+            ->group(base_path('routes/rrhh.php'));
 
     }
 }

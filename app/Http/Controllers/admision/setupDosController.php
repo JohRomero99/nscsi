@@ -76,7 +76,7 @@ class setupDosController extends Controller
             'name' => $estudianteRepresentante->representante->persona->primer_nombre,
             'email' => $email,
             'password' => $hashedContrasena,
-        ]);
+        ])->assignRole('representante');
 
         $estudianteRepresentante->representante->persona()->update(['user_id' => $user->id]);
         Mail::to('soporte.tecnico.2@nsc.edu.ec')->send(new crearUsuarioMail($user, $randomContrasena));
