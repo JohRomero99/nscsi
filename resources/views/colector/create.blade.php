@@ -14,6 +14,7 @@
             <div class="grid grid-cols-4 gap-4">
 
                 <!-- Cédula del Estudiante o DNI -->
+                <label for="">Datos Estudiantes</label>
                 <div class="col-span-4 md:col-span-4 lg:col-span-4">
                     <label 
                         class="block"
@@ -101,7 +102,7 @@
                         value = "{{ old('apellido_paterno') }}" 
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
-                    @error('apelledo_paterno')
+                    @error('apellido_paterno')
                         <p 
                             class="mt-2 text-pink-600 text-sm">
                             {{ $message }}
@@ -133,6 +134,183 @@
                     @enderror
                 </div>
 
+                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                    <hr class="w-48 h-1 mx-auto my-4 bg-gray-400 border-0 rounded-sm md:my-4 dark:bg-gray-700">
+                </div> 
+
+                <label for="">Datos Representante</label>
+                <!-- Cédula del Estudiante o DNI -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                    <label 
+                        class="block"
+                    >   
+                        Cédula
+                    </label>
+
+                    <input 
+                        type="text" 
+                        name="cedula_representante" 
+                        id="cedula_representante"
+                        placeholder="0955546601..."
+                        value= "{{ old('cedula_representante') }}" 
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                    @error('cedula_representante')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Primer Nombre -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-2">
+                    <label 
+                        class="block"
+                    >   
+                        Primer Nombre
+                    </label>
+
+                    <input 
+                        type="text" 
+                        name="primer_nombre_representante" 
+                        id="primer_nombre_representante"
+                        placeholder="John..."
+                        value = "{{ old('primer_nombre_representante') }}" 
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                    @error('primer_nombre_representante')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Segundo Nombre -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-2">
+                    <label 
+                        class="block"
+                    >   
+                        Segundo Nombre
+                    </label>
+
+                    <input 
+                        type="text" 
+                        name="segundo_nombre_representante" 
+                        id="segundo_nombre_representante"
+                        placeholder="Jairo..."
+                        value = "{{ old('segundo_nombre_representante') }}" 
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                    @error('segundo_nombre_representante')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Apellido Paterno -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-2">
+                    <label 
+                        class="block"
+                    >   
+                        Apellido Paterno
+                    </label>
+
+                    <input 
+                        type="text" 
+                        name="apellido_paterno_representante" 
+                        id="apellido_paterno_representante"
+                        placeholder="Romero..."
+                        value = "{{ old('apellido_paterno_representante') }}" 
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                    @error('apellido_paterno_representante')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Apellido Materno -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-2">
+                    <label 
+                        class="block"
+                    >   
+                        Apellido Materno
+                    </label>
+
+                    <input 
+                        type="text" 
+                        name="apellido_materno_representante" 
+                        id="apellido_materno_representante"
+                        placeholder="Sanchez..."
+                        value = "{{ old('apellido_materno_representante') }}" 
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                    @error('apellido_materno_representante')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Teléfono -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-2">
+                    <label 
+                        class="block"
+                    >   
+                        Teléfono
+                    </label>
+
+                    <input 
+                        type="text" 
+                        name="telefono" 
+                        id="telefono"
+                        placeholder="0991035787..."
+                        value = "{{ old('telefono') }}" 
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                    @error('telefono')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <!-- Correo -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-2">
+                    <label 
+                        class="block"
+                    >   
+                        Correo
+                    </label>
+
+                    <input 
+                        type="text" 
+                        name="email" 
+                        id="email"
+                        placeholder="0991035787..."
+                        value = "{{ old('email') }}" 
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+                    @error('email')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                    <hr class="w-48 h-1 mx-auto my-4 bg-gray-400 border-0 rounded-sm md:my-4 dark:bg-gray-700">
+                </div> 
+
                 <!-- Motivo Matriculación -->
                 <div class="col-span-4 md:col-span-4 lg:col-span-4">
                     <label 
@@ -146,12 +324,14 @@
                         id="motivo_matriculacion"
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
-                        <option value="">--Seleccionar--</option>
-                        <option value="Normal">Normal</option>
-                        <option value="Beca">Beca</option>
-                        <option value="Media beca">Media beca</option>
-                        <option value="Descuentos">Descuentos</option>
-                        <option value="Otro">Otro</option>
+                        @foreach($motivo as $m)
+                            <option 
+                                value="{{ $m->id }}"
+                                {{ old('motivo_matriculacion') == $m->id ? 'selected' : '' }}
+                            >
+                                {{ $m->motivo_concepto }}
+                            </option>
+                        @endforeach
                     </select>
 
                     @error('motivo_matriculacion')
@@ -163,7 +343,7 @@
                 </div>
 
                 <!-- Otro motivo matriculación -->
-                <div class="col-span-4 md:col-span-4 lg:col-span-4" id="otro_motivo_matriculacion" style="display: none;">
+                <div class="col-span-4 md:col-span-4 lg:col-span-4" id="otro_motivo_matriculacion" style="{{ old('motivo_matriculacion') == '5' || $errors->has('otro_motivo_matriculacion') ? 'display: block;' : 'display: none;' }}">
                     <label 
                         class="block"
                     >   
@@ -199,11 +379,16 @@
                         id="valor_matriculacion"
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
-                        <option value="">--Seleccionar--</option>
-                        <option value="100.00">$100.00</option>
-                        <option value="70.00">$70.00</option>
-                        <option value="Otro">Otro</option>
-                        
+
+                        @foreach($valorMatriculacion as $valor)
+                            <option 
+                                value="{{ $valor->id }}"
+                                {{ old('valor_matriculacion') == $valor->id ? 'selected' : '' }}
+                            >
+                                {{ $valor->matriculacion_valor }} 
+                            </option>
+                        @endforeach
+
                     </select>
 
                     @error('valor_matriculacion')
@@ -215,7 +400,8 @@
                 </div>
 
                 <!-- Otro valor matrícula -->
-                <div class="col-span-4 md:col-span-4 lg:col-span-4" id="otro_matricula" style="display: none;">
+                <div class="col-span-4 md:col-span-4 lg:col-span-4" id="otro_matricula" style="{{ old('valor_matriculacion') == '12' || $errors->has('otro_valor_matricula') ? 'display: block;' : 'display: none;' }}"
+>
                     <label 
                         class="block"
                     >   
@@ -224,13 +410,13 @@
 
                     <input 
                         type="number" 
-                        name="matricula" 
-                        id="matricula"
+                        name="otro_valor_matricula" 
+                        id="otro_valor_matricula"
                         placeholder="Otro valor matrícula..."
-                        value = "{{ old('matricula') }}" 
+                        value = "{{ old('otro_valor_matricula') }}" 
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
-                    @error('matricula')
+                    @error('otro_valor_matricula')
                         <p 
                             class="mt-2 text-pink-600 text-sm">
                             {{ $message }}
@@ -251,10 +437,18 @@
                         id="valor_pension"
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
-                        <option value="">--Seleccionar--</option>
-                        <option value="129.00">$129.00 ( Incial a 10mo )</option>
-                        <option value="139.00">$139.00 ( Pensión Bachillerato )</option>
-                        <option value="Otro">Otro</option>
+                        <option value="--seleccionar--" {{ old('valor_pension') == '--seleccionar--' ? 'selected' : '' }}>
+                            --seleccionar--
+                        </option>
+
+                        @foreach($valorPension as $valor)
+                            <option 
+                                value="{{ $valor->id }}"
+                                {{ old('valor_pension') == $valor->id ? 'selected' : '' }}
+                            >
+                                {{ $valor->concepto }} - ${{ $valor->pension_descuento }} 
+                            </option>
+                        @endforeach
                         
                     </select>
 
@@ -262,30 +456,6 @@
                         <p 
                             class="mt-2 text-pink-600 text-sm">
                             No puedes eligir la opción --seleccionar--
-                        </p>
-                    @enderror
-                </div>
-
-                <!-- Otro valor pensión -->
-                <div class="col-span-4 md:col-span-4 lg:col-span-4" id="nueva_pension" style="display: none;">
-                    <label 
-                        class="block"
-                    >   
-                        Otro valor Pensión
-                    </label>
-
-                    <input 
-                        type="number" 
-                        name="otra_pension" 
-                        id="otra_pension"
-                        placeholder="Otro valor pensión..."
-                        value = "{{ old('otra_pension') }}" 
-                        class="mt-1 block border-gray-300 w-full rounded-md"
-                    >
-                    @error('otra_pension')
-                        <p 
-                            class="mt-2 text-pink-600 text-sm">
-                            {{ $message }}
                         </p>
                     @enderror
                 </div>
@@ -303,10 +473,15 @@
                         id="seguro"
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
-                        <option value="--Seleccionar--">--Seleccionar--</option>
-                        <option value="Si">Si ($25.00)</option>
-                        <option value="No">No</option>
-                        
+
+                        @foreach ($valorSeguro as $seguro)
+                            <option 
+                                value="{{ $seguro->id }}"
+                                {{ old('seguro') == $seguro->id ? 'selected' : '' }}
+                            >
+                                {{ $seguro->valor_seguro }}
+                            </option>
+                        @endforeach
                     </select>
 
                     @error('seguro')
@@ -330,9 +505,15 @@
                         id="ambiente_digital"
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
-                        <option value="--Seleccionar--">--Seleccionar--</option>
-                        <option value="Si">Si ($35.00)</option>
-                        <option value="No">No</option>
+
+                        @foreach ($valorAmbienteDigital as $valor)
+                            <option 
+                                value="{{ $valor->id }}"
+                                {{ old('ambiente_digital') == $valor->id ? 'selected' : '' }}
+                            >
+                                {{ $valor->valor_ambiente_digital }}
+                            </option>
+                        @endforeach
                         
                     </select>
 
@@ -368,20 +549,36 @@
         </div>
     </form>
 
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                title: "!Error!",
+                text: "Revisa nuevamente los campos.",
+                icon: "error"
+            });
+        </script>
+    @endif
+
     <script>
         const select_uno = document.getElementById('valor_matriculacion');
         const otroDiv_uno = document.getElementById('otro_matricula');
 
-        select_uno.addEventListener('change', function () {
-            if (this.value === 'Otro') {
+        function toggleOtro() {
+            if (select_uno.value === '12') {
                 otroDiv_uno.style.display = 'block';
             } else {
                 otroDiv_uno.style.display = 'none';
             }
-        });
+        }
+
+        // Cuando cambia
+        select_uno.addEventListener('change', toggleOtro);
+
+        // 👇 Cuando carga la página
+        document.addEventListener('DOMContentLoaded', toggleOtro);
     </script>
 
-    <script>
+    <!-- <script>
         const select_dos = document.getElementById('valor_pension');
         const otroDiv_dos = document.getElementById('nueva_pension');
 
@@ -392,18 +589,24 @@
                 otroDiv_dos.style.display = 'none';
             }
         });
-    </script>
+    </script> -->
 
     <script>
         const select_tres = document.getElementById('motivo_matriculacion');
         const otroDiv_tres = document.getElementById('otro_motivo_matriculacion');
 
-        select_tres.addEventListener('change', function () {
-            if (this.value === 'Otro') {
+        function toggleMotivo() {
+            if (select_tres.value === '5') {
                 otroDiv_tres.style.display = 'block';
             } else {
                 otroDiv_tres.style.display = 'none';
             }
-        });
+        }
+
+        // Cuando cambia
+        select_tres.addEventListener('change', toggleMotivo);
+
+        // 👇 Cuando carga la página
+        document.addEventListener('DOMContentLoaded', toggleMotivo);
     </script>
 </x-app-layout>

@@ -13,22 +13,22 @@ class periodoLectivoSeeders extends Seeder
      */
     public function run(): void
     {
-        $pensiones = pensiones::create([
+        $periodoLectivo = periodoLectivo::create([
             'ano_lectivo' => '2026 - 2027',
             'estado' => '',
         ]);
 
-        $pensiones = pensiones::create([
+        $periodoLectivo = periodoLectivo::create([
             'ano_lectivo' => '2027 - 2028',
             'estado' => '',
         ]);
 
-        $pensiones = pensiones::create([
+        $periodoLectivo = periodoLectivo::create([
             'ano_lectivo' => '2029 - 2030',
             'estado' => '',
         ]);
 
-        $pensiones = pensiones::create([
+        $periodoLectivo = periodoLectivo::create([
             'ano_lectivo' => '2030 - 2031',
             'estado' => '',
         ]);

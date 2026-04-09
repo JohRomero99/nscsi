@@ -5,6 +5,16 @@ namespace App\Http\Controllers\colector;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\pensiones;
+use App\Models\periodoLectivo;
+use App\Models\valorSeguro;
+use App\Models\valorPensioninicialDecimo;
+use App\Models\valorPensionBachillerato;
+use App\Models\motivo;
+use App\Models\valorMatriculacion;
+use App\Models\valorAmbienteDigital;
+use App\Models\valorPension;
+use App\Http\Requests\colector\nuevoEstudianteRequest;
+
 
 class colectorController extends Controller
 {
@@ -17,7 +27,17 @@ class colectorController extends Controller
 
     public function create(){
 
-        return view('colector.create');
+        $periodoLectivo = periodoLectivo::all();
+        $valorSeguro = valorSeguro::all();
+        $valorPensioninicialDecimo = valorPensioninicialDecimo::all();
+        $valorPensionBachillerato = valorPensionBachillerato::all();
+        $motivo = motivo::all();
+        $valorMatriculacion = valorMatriculacion::all();
+        $valorAmbienteDigital = valorAmbienteDigital::all();
+        $valorPension = valorPension::all();
+
+        return view('colector.create', compact('periodoLectivo','valorSeguro','valorPensioninicialDecimo','valorPensionBachillerato','motivo','valorAmbienteDigital','valorMatriculacion','valorPension'));
+        
 
     }
 
@@ -26,7 +46,7 @@ class colectorController extends Controller
 
     }
 
-    public function store(Request $request){
+    public function store(nuevoEstudianteRequest $request){
 
         return $request->all();
 

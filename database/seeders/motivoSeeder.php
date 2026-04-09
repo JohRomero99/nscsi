@@ -19,17 +19,22 @@ class motivoSeeder extends Seeder
         ]);
 
         $motivo = motivo::create([
-            'motivo_concepto' => 'beca',
+            'motivo_concepto' => 'Beca',
             'estado' => '',
         ]);
 
         $motivo = motivo::create([
-            'motivo_concepto' => 'media beca',
+            'motivo_concepto' => 'Media beca',
             'estado' => '',
         ]);
 
         $motivo = motivo::create([
-            'motivo_concepto' => 'descuento',
+            'motivo_concepto' => 'Descuento',
+            'estado' => '',
+        ]);
+
+        $motivo = motivo::create([
+            'motivo_concepto' => 'Otro',
             'estado' => '',
         ]);
     }

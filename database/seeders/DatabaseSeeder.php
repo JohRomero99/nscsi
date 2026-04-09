@@ -44,6 +44,14 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             userSeeder::class,
             //pensionesSeeders::class,
+            valorAmbienteDigitalSeeder::class,
+            valorPensionBachilleratoSeeders::class,
+            valorPensionInicialDecimoSedeers::class,
+            periodoLectivoSeeders::class,
+            motivoSeeder::class,
+            valorSeguroSeeders::class,
+            valorMatriculaSeeder::class,
+            valorPensionSeeder::class,
         ]);
     }
 }

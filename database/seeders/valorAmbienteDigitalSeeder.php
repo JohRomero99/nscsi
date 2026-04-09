@@ -13,6 +13,15 @@ class valorAmbienteDigitalSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $valorAmbienteDigital = valorAmbienteDigital::create([
+            'valor_ambiente_digital' => '--seleccionar--',
+            'estado' => '',
+        ]);
+
+        $valorAmbienteDigital = valorAmbienteDigital::create([
+            'valor_ambiente_digital' => '35',
+            'estado' => '',
+        ]);
+
     }
 }

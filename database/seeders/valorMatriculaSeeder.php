@@ -6,13 +6,18 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\valorMatriculacion;
 
-class matriuculacionSeeder extends Seeder
+class valorMatriculaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
+        $matriculacion = valorMatriculacion::create([
+            'matriculacion_valor' => '--seleccionar--',
+            'estado' => '',
+        ]);
+
         $matriculacion = valorMatriculacion::create([
             'matriculacion_valor' => '100.00',
             'estado' => '',
@@ -60,6 +65,11 @@ class matriuculacionSeeder extends Seeder
 
         $matriculacion = valorMatriculacion::create([
             'matriculacion_valor' => '10.00',
+            'estado' => '',
+        ]);
+
+        $matriculacion = valorMatriculacion::create([
+            'matriculacion_valor' => 'Otro',
             'estado' => '',
         ]);
     }
