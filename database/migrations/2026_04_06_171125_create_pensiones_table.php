@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('pensiones', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion')->nullable();
-            $table->string('pension')->nullable();
-            $table->string('descuento')->nullable();
-            $table->string('total_a_pagar')->nullable();
-            //$table->date('fecha_de_pago')->nullable();
+            //$table->string('estudiante_id')->nullable();
+            //$table->string('valor_matriculacion')->nullable();
+            //$table->string('valor_seguro')->nullable();
+            //$table->string('valor_ambiente_digital')->nullable();
+            //
+            //$table->string('pension_base')->nullable();
+            $table->string('descuento_basica')->nullable();
+            $table->string('descuento_bachillerato')->nullable();
+            $table->string('periodo_lectivo_id')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
         });

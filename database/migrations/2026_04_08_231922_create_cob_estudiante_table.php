@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pagos', function (Blueprint $table) {
+        Schema::create('cob_estudiante', function (Blueprint $table) {
             $table->id();
             $table->string('estudiante_id')->nullable();
             $table->string('pensiones_id')->nullable();
-            $table->string('total_a_pagar')->nullable();
-            $table->string('fecha_de_pago')->nullable();
-            $table->string('hora_pago')->nullable();
+            $table->string('cob_concepto_id')->nullable();
+            $table->string('cob_motivo_id')->nullable();
+            $table->string('cob_valor_matriculacion_id')->nullable();
+            $table->string('cob_valor_pension_id')->nullable();
+            $table->string('cob_seguro_id')->nullable();
+            $table->string('cob_ambiente_digital_id')->nullable();
             $table->string('periodo_lectivo_id')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('cob_estudiante');
     }
 };
