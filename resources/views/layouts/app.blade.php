@@ -34,9 +34,31 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+                <header class="shadow bg-white">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+                        <!-- Título -->
+                        <div>
+                            {{ $header }}
+                        </div>
+
+                        <!-- Año lectivo -->
+                        <div class="flex items-center space-x-1">
+                            <label 
+                                class="block text-sm"
+                            >   
+                                Periodo Lectivo
+                            </label>
+
+                            <select 
+                                name = "periodo_lectivo"
+                                class="mt-1 block border-gray-300 w-full rounded-md text-sm"
+                            >
+
+                                <option value="">2026 - 2027</option>
+                                <option value="">2027 - 2028</option>
+                                <option value="">2029 - 2030</option>
+                            </select>
+                        </div>
                     </div>
                 </header>
             @endisset

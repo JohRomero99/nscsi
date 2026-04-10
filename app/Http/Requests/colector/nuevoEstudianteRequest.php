@@ -22,11 +22,20 @@ class nuevoEstudianteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cedula' => ['required','numeric'],
+            'cedula' => ['required','numeric','digits:10'],
             'primer_nombre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'segundo_nombre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'apellido_paterno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'apellido_materno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+
+            'cedula_representante' => ['required','numeric','digits:10'],
+            'primer_nombre_representante' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+            'segundo_nombre_representante' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+            'apellido_paterno_representante' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+            'apellido_materno_representante' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
+            'telefono' => ['required','regex:/^(0[2-7][0-9]{7}|09[0-9]{8})$/'],
+            'email' => ['required','email'],
+            
             'motivo_matriculacion' => ['required','not_in:1'],
             'otro_motivo_matriculacion' => ['nullable','required_if:motivo_matriculacion,5'],
             'valor_matriculacion' => ['required','not_in:1'],

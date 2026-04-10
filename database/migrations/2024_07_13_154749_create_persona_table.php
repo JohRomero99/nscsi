@@ -26,6 +26,7 @@ return new class extends Migration
             $table->unsignedBigInteger('nacionalidad_id')->nullable();
             $table->string('telefono_celular')->nullable();
             $table->string('telefono_domicilio')->nullable();
+            $table->string('email')->nullable();
             $table->string('direccion_domiciliaria')->nullable();
             $table->string('scan_cedula_front')->nullable();
             $table->string('scan_cedula_back')->nullable();

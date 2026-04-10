@@ -3,13 +3,14 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Nuevo Estudiante') }}
         </h2>
+
     </x-slot>
 
     <form action="{{ route('colector.store') }}" method="POST">
         @csrf
         @method('POST')
 
-        <div class="p-8 bg-white space-y-2 text-gray-700">
+        <div class="p-8 space-y-2 text-gray-700">
 
             <div class="grid grid-cols-4 gap-4">
 
@@ -295,7 +296,7 @@
                         type="text" 
                         name="email" 
                         id="email"
-                        placeholder="0991035787..."
+                        placeholder="ejemplo@gmail.com..."
                         value = "{{ old('email') }}" 
                         class="mt-1 block border-gray-300 w-full rounded-md"
                     >
@@ -310,6 +311,39 @@
                 <div class="col-span-4 md:col-span-4 lg:col-span-4">
                     <hr class="w-48 h-1 mx-auto my-4 bg-gray-400 border-0 rounded-sm md:my-4 dark:bg-gray-700">
                 </div> 
+
+                <!-- Curso -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                    <label 
+                        class="block"
+                    >   
+                        Curso
+                    </label>
+
+                    <select 
+                        name="curso" 
+                        id="curso"
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+
+                        @foreach($anioAcademico as $c)
+                            <option 
+                                value="{{ $c->id }}"
+                                {{ old('curso') == $c->id ? 'selected' : '' }}
+                            >
+                                {{ $c->anio_basica }}
+                            </option>
+                        @endforeach
+                        
+                    </select>
+
+                    @error('curso')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            No puedes eligir la opción --seleccionar--
+                        </p>
+                    @enderror
+                </div>
 
                 <!-- Motivo Matriculación -->
                 <div class="col-span-4 md:col-span-4 lg:col-span-4">
