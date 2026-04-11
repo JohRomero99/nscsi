@@ -10,6 +10,7 @@ use App\Http\Controllers\admision\agregarEstudianteController;
 use App\Http\Controllers\admision\datosPadresController;
 use App\Http\Controllers\admision\fichaMedicaController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\periodoLectivoController;
 use App\Http\Controllers\fichasController;
 use App\Livewire\FichaMedicaEstudiante;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/cambiar-periodo/{id}', [periodoLectivoController::class, 'cambiar'])->name('cambiar.periodo');
 
 Route::get('/admision/representante', [setupUnoController::class, 'create'])->name('admision.representante.create');
 Route::post('/admision/representante', [setupUnoController::class, 'store'])->name('admision.representante.store');

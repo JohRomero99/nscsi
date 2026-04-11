@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('cob_estudiante', function (Blueprint $table) {
             $table->id();
             $table->string('estudiante_id')->nullable();
-            $table->string('pensiones_id')->nullable();
-            $table->string('cob_concepto_id')->nullable();
+            $table->string('curso_id')->nullable();
+            $table->string('paralelo_id')->nullable();
             $table->string('cob_motivo_id')->nullable();
             $table->string('cob_valor_matriculacion_id')->nullable();
             $table->string('cob_valor_pension_id')->nullable();

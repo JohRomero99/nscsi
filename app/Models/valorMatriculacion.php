@@ -10,4 +10,10 @@ class valorMatriculacion extends Model
 {
     use HasFactory;
     protected $table = 'cob_valor_matriculacion';
+
+    public function estudiantePension(){
+
+        return $this->hasMany(estudiantePension::class);
+
+    }
 }

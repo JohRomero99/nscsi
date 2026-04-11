@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cob_valor_seguro', function (Blueprint $table) {
             $table->id();
             $table->string('valor_seguro')->nullable();
+            $table->string('periodo_lectivo_id')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
         });

@@ -5,13 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class seguro extends Model
+class paralelo extends Model
 {
     use HasFactory;
-
-    public function estudiantePension(){
-
-        return $this->hasMany(estudiantePension::class);
-
-    }
+    protected $table = 'paralelo';
 }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('periodo_lectivo_id')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
+
+
         });
     }
 

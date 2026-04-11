@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pensiones', function (Blueprint $table) {
+        Schema::create('paralelo', function (Blueprint $table) {
             $table->id();
-            $table->string('descuento_basica')->nullable();
-            $table->string('descuento_bachillerato')->nullable();
-            $table->string('periodo_lectivo_id')->nullable();
+            $table->string('paralelo')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
         });
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pensiones');
+        Schema::dropIfExists('paralelo');
     }
 };

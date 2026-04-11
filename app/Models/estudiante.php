@@ -24,6 +24,12 @@ class estudiante extends Model
 
     }
 
+    public function estudiantePension(){
+
+        return $this->hasOne(estudiantePension::class);
+
+    }
+
     public function anioAcademico(){
 
         return $this->belongsTo(anioAcademico::class);

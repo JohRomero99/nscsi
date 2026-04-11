@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cob_valor_ambiente_digital', function (Blueprint $table) {
             $table->id();
             $table->string('valor_ambiente_digital')->nullable();
+            $table->string('periodo_lectivo_id')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
         });

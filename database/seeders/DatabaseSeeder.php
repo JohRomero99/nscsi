@@ -52,6 +52,8 @@ class DatabaseSeeder extends Seeder
             valorSeguroSeeders::class,
             valorMatriculaSeeder::class,
             valorPensionSeeder::class,
+            conceptoSeeders::class,
+            paraleloSeeders::class,
         ]);
     }
 }

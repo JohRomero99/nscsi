@@ -85,6 +85,15 @@
                 </li>
             @endhasanyrole
 
+            @hasanyrole('colector')
+                <li>
+                    <x-responsive-nav-link :href="route('colector.create')" :active="request()->routeIs('colector.create')">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Paramteros</span>
+                    </x-responsive-nav-link>    
+                </li>
+            @endhasanyrole
+
             <li>
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

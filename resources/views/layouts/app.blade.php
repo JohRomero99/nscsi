@@ -49,14 +49,16 @@
                                 Periodo Lectivo
                             </label>
 
-                            <select 
-                                name = "periodo_lectivo"
-                                class="mt-1 block border-gray-300 w-full rounded-md text-sm"
-                            >
-
-                                <option value="">2026 - 2027</option>
-                                <option value="">2027 - 2028</option>
-                                <option value="">2029 - 2030</option>
+                            <select onchange="window.location.href=this.value" 
+                                class="mt-1 block border-gray-300 w-full rounded-md text-sm">
+                                @foreach($periodos as $periodo)
+                                    <option 
+                                        value="{{ route('cambiar.periodo', $periodo->id) }}"
+                                        {{ session('periodo_lectivo_id') == $periodo->id ? 'selected' : '' }}
+                                    >
+                                        {{ $periodo->ano_lectivo }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

@@ -9,4 +9,10 @@ class valorAmbienteDigital extends Model
 {
     use HasFactory;
     protected $table = 'cob_valor_ambiente_digital';
+
+    public function estudiantePension(){
+
+        return $this->hasMany(estudiantePension::class);
+
+    }
 }

@@ -22,13 +22,13 @@ class nuevoEstudianteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cedula' => ['required','numeric','digits:10'],
+            'cedula' => ['required','numeric','digits:10','unique:persona,cedula','different:cedula_representante'],
             'primer_nombre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'segundo_nombre' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'apellido_paterno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'apellido_materno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
 
-            'cedula_representante' => ['required','numeric','digits:10'],
+            'cedula_representante' => ['required','numeric','digits:10','unique:persona,cedula','different:cedula'],
             'primer_nombre_representante' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'segundo_nombre_representante' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'apellido_paterno_representante' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
@@ -36,6 +36,8 @@ class nuevoEstudianteRequest extends FormRequest
             'telefono' => ['required','regex:/^(0[2-7][0-9]{7}|09[0-9]{8})$/'],
             'email' => ['required','email'],
             
+            'curso' => ['required','not_in:1'],
+            'paralelo' => ['required','not_in:1'],
             'motivo_matriculacion' => ['required','not_in:1'],
             'otro_motivo_matriculacion' => ['nullable','required_if:motivo_matriculacion,5'],
             'valor_matriculacion' => ['required','not_in:1'],

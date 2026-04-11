@@ -4,6 +4,8 @@ namespace App\Http\Controllers\colector;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use App\Models\pensiones;
 use App\Models\periodoLectivo;
 use App\Models\valorSeguro;
@@ -17,6 +19,10 @@ use App\Models\persona;
 use App\Models\estudiante;
 use App\Models\representante;
 use App\Models\anioAcademico;
+use App\Models\estudianteRepresentante;
+use App\Models\User;
+use App\Models\estudiantePension;
+use App\Models\paralelo;
 use App\Http\Requests\colector\nuevoEstudianteRequest;
 
 
@@ -32,27 +38,28 @@ class colectorController extends Controller
     public function create(){
 
         $periodoLectivo = periodoLectivo::all();
-        $valorSeguro = valorSeguro::all();
-        $valorPensioninicialDecimo = valorPensioninicialDecimo::all();
-        $valorPensionBachillerato = valorPensionBachillerato::all();
+        $valorSeguro = valorSeguro::where('periodo_lectivo_id',session('periodo_lectivo_id'))->get();
         $motivo = motivo::all();
-        $valorMatriculacion = valorMatriculacion::all();
-        $valorAmbienteDigital = valorAmbienteDigital::all();
-        $valorPension = valorPension::all();
+        $valorMatriculacion = valorMatriculacion::where('periodo_lectivo_id',session('periodo_lectivo_id'))->get();
+        $valorAmbienteDigital = valorAmbienteDigital::where('periodo_lectivo_id',session('periodo_lectivo_id'))->get();
+        $valorPension = valorPension::where('periodo_lectivo_id',session('periodo_lectivo_id'))->get();
         $anioAcademico = anioAcademico::all();
+        $paralelo = paralelo::all();
 
-        return view('colector.create', compact('periodoLectivo','valorSeguro','valorPensioninicialDecimo','valorPensionBachillerato','motivo','valorAmbienteDigital','valorMatriculacion','valorPension','anioAcademico'));
+        return view('colector.create', compact('periodoLectivo','valorSeguro','motivo','valorAmbienteDigital','valorMatriculacion','valorPension','anioAcademico','paralelo'));
         
 
     }
 
     public function edit($userId){
 
+        //
 
     }
 
     public function store(nuevoEstudianteRequest $request){
 
+        //
         $persona_estudiante = persona::create([
             'cedula' => $request->cedula,
             'primer_nombre' => $request->segundo_nombre,
@@ -61,8 +68,9 @@ class colectorController extends Controller
             'apellido_materno' => $request->apellido_materno,
         ]);
 
-        $persona_reprsentante = persona::create([
-            'cedula' => $request->cedula,
+        //
+        $persona_representante = persona::create([
+            'cedula' => $request->cedula_representante,
             'primer_nombre' => $request->primer_nombre_representante,
             'segundo_nombre' => $request->segundo_nombre_representante,
             'apellido_paterno' => $request->apellido_paterno_representante,
@@ -71,25 +79,56 @@ class colectorController extends Controller
             'email' => $request->email,
         ]);
 
+        //
         $estudiante = estudiante::create([
             'persona_id' => $persona_estudiante->id,
             //'numero_matricula' => '',
-            'anio_academico_id' => '',
+            //'anio_academico_id' => '',
             'curso' => $request->curso,
             //'usr_moodle_id' => '',
             //'estado' => '',
         ]);
 
+        //
         $representante = representante::create([
             'persona_id' => $persona_representante->id,
         ]);
 
+        //
         $estudianteRepresentante = estudianteRepresentante::create([
             'estudiante_id' => $estudiante->id,
             'representante_id' => $representante->id,
         ]);
 
-        return "Listo";
+        // Generar una contraseña y despues se cifra la contraseña.
+        $randomContrasena = Str::random(10);
+        $hashedContrasena = Hash::make($randomContrasena);
+
+        // Crear Usuario y contraseña de la plataforma.
+        $user = User::create([
+            'name' => $estudianteRepresentante->representante->persona->primer_nombre,
+            'email' => $request->email,
+            'password' => $hashedContrasena,
+        ])->assignRole('representante');
+
+        //
+        $estudianteRepresentante->representante->persona()->update(['user_id' => $user->id]);
+
+        //Asiganar pension
+        $estudiantePension = estudiantePension::create([
+            'estudiante_id' => $estudiante->id,
+            'curso_id' => $request->curso,
+            'paralelo_id' => $request->paralelo,
+            'cob_motivo_id' => $request->motivo_matriculacion,
+            'cob_valor_matriculacion_id' => $request->valor_matriculacion,
+            'cob_valor_pension_id' => $request->valor_pension,
+            'cob_seguro_id' => $request->seguro,
+            'cob_ambiente_digital_id' => $request->ambiente_digital,
+            'periodo_lectivo_id' => '',
+        ]);
+
+        //
+        return redirect()->route('colector.index')->with('create', 'Estudiante registrado correctamente.');
 
     }
 

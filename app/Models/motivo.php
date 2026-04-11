@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class motivo extends Model
 {
-use HasFactory;
-
+    use HasFactory;
     protected $table = 'cob_motivo';
+
+    public function estudiantePension(){
+
+        return $this->hasMany(estudiantePension::class);
+
+    }
 
 }

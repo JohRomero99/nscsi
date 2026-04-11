@@ -24,6 +24,9 @@
                         </button>
                     </div>
                 </div>
+                <div class="col-span-2 md:col-span-2 lg:col-span-2">
+                    <livewire:buscar-estudiante-colecturia />
+                </div>
             </div>
 
             <div class="container mx-auto p-4 shadow bg-white mt-3 rounded-base">
@@ -61,8 +64,7 @@
                         <!-- HEADER -->
                         <thead class="bg-gray-100 text-gray-700 text-center">
                             <tr>
-                                <th class="px-6 py-3">Descripción</th>
-                                <!-- <th class="px-6 py-3">Mes</th> -->
+                                <th class="px-6 py-3">Concepto</th>
                                 <th class="px-6 py-3">Pensión</th>
                                 <th class="px-6 py-3">Descuento</th>
                                 <th class="px-6 py-3">Total a Pagar</th>
@@ -253,4 +255,14 @@
             </div>
         </div>
     </div>
+    <script>
+        // Mostrar mensaje de datos enviados.
+        @if (session('create'))
+            Swal.fire({
+                title: "¡Exito!",
+                text: "Usuario creado exitosamente.",
+                icon: "success"
+            });
+        @endif
+    </script>
 </x-app-layout>

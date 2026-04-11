@@ -345,6 +345,39 @@
                     @enderror
                 </div>
 
+                <!-- Paralelo -->
+                <div class="col-span-4 md:col-span-4 lg:col-span-4">
+                    <label 
+                        class="block"
+                    >   
+                        Paralelo
+                    </label>
+
+                    <select 
+                        name="paralelo" 
+                        id="paralelo"
+                        class="mt-1 block border-gray-300 w-full rounded-md"
+                    >
+
+                        @foreach($paralelo as $p)
+                            <option 
+                                value="{{ $p->id }}"
+                                {{ old('paralelo') == $p->id ? 'selected' : '' }}
+                            >
+                                {{ $p->paralelo }}
+                            </option>
+                        @endforeach
+                        
+                    </select>
+
+                    @error('paralelo')
+                        <p 
+                            class="mt-2 text-pink-600 text-sm">
+                            No puedes eligir la opción --seleccionar--
+                        </p>
+                    @enderror
+                </div>
+
                 <!-- Motivo Matriculación -->
                 <div class="col-span-4 md:col-span-4 lg:col-span-4">
                     <label 

@@ -15,11 +15,13 @@ class valorSeguroSeeders extends Seeder
     {
         $valorSeguro = valorSeguro::create([
             'valor_seguro' => '--seleccionar--',
+            'periodo_lectivo_id' => '1',
             'estado' => '',
         ]);
 
         $valorSeguro = valorSeguro::create([
             'valor_seguro' => '25',
+            'periodo_lectivo_id' => '1',
             'estado' => '',
         ]);
 
