@@ -23,6 +23,7 @@ use App\Models\estudianteRepresentante;
 use App\Models\User;
 use App\Models\estudiantePension;
 use App\Models\paralelo;
+use App\Models\cobroDetalle;
 use App\Http\Requests\colector\nuevoEstudianteRequest;
 
 
@@ -31,7 +32,7 @@ class colectorController extends Controller
     public function index(){
 
         $pensiones = pensiones::all();
-        return view('colector.index', compact('pensiones'));
+        return view('colector.index');
 
     }
 
@@ -117,14 +118,18 @@ class colectorController extends Controller
         //Asiganar pension
         $estudiantePension = estudiantePension::create([
             'estudiante_id' => $estudiante->id,
-            'curso_id' => $request->curso,
+            'anio_academico_id' => $request->curso,
             'paralelo_id' => $request->paralelo,
             'cob_motivo_id' => $request->motivo_matriculacion,
             'cob_valor_matriculacion_id' => $request->valor_matriculacion,
             'cob_valor_pension_id' => $request->valor_pension,
-            'cob_seguro_id' => $request->seguro,
-            'cob_ambiente_digital_id' => $request->ambiente_digital,
-            'periodo_lectivo_id' => '',
+            'cob_valor_seguro_id' => $request->seguro,
+            'cob_valor_ambiente_digital_id' => $request->ambiente_digital,
+            'periodo_lectivo_id' => session('periodo_lectivo_id'),
+        ]);
+
+        $cobroDetalle = cobroDetalle::create([
+            
         ]);
 
         //
@@ -145,6 +150,28 @@ class colectorController extends Controller
     public function pago(Request $request){
 
         return $request->all();
+
+    }
+
+    
+    public function buscarEstudiante(Request $request){
+
+        $buscar = $request->buscarEstudiante;
+
+        $estudiantes = estudiantePension::with('persona')
+            //->where('periodo_lectivo_id', session('periodo_lectivo_id'))
+            ->when($buscar, function ($query) use ($buscar) {
+                $query->whereHas('persona', function($q) use ($buscar) {
+                    $q->where('cedula', 'like', "%$buscar%")
+                    ->orWhere('primer_nombre', 'like', "%$buscar%")
+                    ->orWhere('segundo_nombre', 'like', "%$buscar%")
+                    ->orWhere('apellido_paterno', 'like', "%$buscar%")
+                    ->orWhere('apellido_materno', 'like', "%$buscar%");
+                });
+            })->get();
+
+        return $estudiantes;
+        return view('colector.index', compact('estudiantes'));
 
     }
 }

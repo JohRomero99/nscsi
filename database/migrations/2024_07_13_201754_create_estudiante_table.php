@@ -18,11 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger('anio_academico_id')->nullable();
             $table->string('curso')->nullable();
             $table->string('usr_moodle_id')->nullable();
+            $table->unsignedBigInteger('periodo_lectivo_id')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
 
             $table->foreign('persona_id')->references('id')->on('persona')->onDelete('cascade');
             $table->foreign('anio_academico_id')->references('id')->on('anio_academico')->onDelete('cascade');
+            $table->foreign('periodo_lectivo_id')->references('id')->on('periodo_lectivo')->onDelete('cascade');
         });
     }
 

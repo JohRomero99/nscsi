@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cob_valor_pension', function (Blueprint $table) {
+        Schema::create('cob_valor_seguro', function (Blueprint $table) {
             $table->id();
-            $table->string('concepto')->nullable();
-            $table->string('pension_base')->nullable();
-            $table->string('descuento')->nullable();
-            $table->string('pension_descuento')->nullable();
-            $table->string('periodo_lectivo_id')->nullable();
+            $table->string('valor_seguro')->nullable();
+            $table->unsignedBigInteger('periodo_lectivo_id')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
+
+            $table->foreign('periodo_lectivo_id')->references('id')->on('periodo_lectivo')->onDelete('cascade');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cob_valor_pension');
+        Schema::dropIfExists('cob_valor_seguro');
     }
 };

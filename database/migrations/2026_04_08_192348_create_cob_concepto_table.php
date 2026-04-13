@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('cob_concepto', function (Blueprint $table) {
             $table->id();
             $table->string('concepto')->nullable();
-            $table->string('periodo_lectivo_id')->nullable();
+            $table->unsignedBigInteger('periodo_lectivo_id')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
 
-
+            $table->foreign('periodo_lectivo_id')->references('id')->on('periodo_lectivo')->onDelete('cascade');
         });
     }
 

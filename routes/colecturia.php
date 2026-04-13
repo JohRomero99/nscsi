@@ -18,3 +18,5 @@ Route::get('destroy/{userId}', [colectorController::class, 'destroy'])->name('co
 Route::get('show', [colectorController::class, 'show'])->name('colector.show');
 
 Route::post('pago', [colectorController::class, 'pago'])->name('colector.pago');
+
+Route::get('buscar/estudiante', [colectorController::class, 'buscarEstudiante'])->name('colector.buscarEstudiante');

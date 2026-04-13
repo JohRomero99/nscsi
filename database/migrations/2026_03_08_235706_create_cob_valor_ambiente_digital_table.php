@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pagos', function (Blueprint $table) {
+        Schema::create('cob_valor_ambiente_digital', function (Blueprint $table) {
             $table->id();
-            $table->string('estudiante_id')->nullable();
-            $table->string('pensiones_id')->nullable();
-            $table->string('total_a_pagar')->nullable();
-            $table->string('fecha_de_pago')->nullable();
-            $table->string('hora_pago')->nullable();
-            $table->string('periodo_lectivo_id')->nullable();
+            $table->string('valor_ambiente_digital')->nullable();
+            $table->unsignedBigInteger('periodo_lectivo_id')->nullable();
             $table->string('estado')->nullable();
             $table->timestamps();
+
+            $table->foreign('periodo_lectivo_id')->references('id')->on('periodo_lectivo')->onDelete('cascade');
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('cob_valor_ambiente_digital');
     }
 };

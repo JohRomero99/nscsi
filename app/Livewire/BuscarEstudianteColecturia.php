@@ -19,7 +19,7 @@ class BuscarEstudianteColecturia extends Component
 
         $this->resultados = persona::where('cedula', 'like', "%{$this->buscar}%")
             ->orWhere('cedula', 'like', "%{$this->buscar}%")
-            ->orWhere('primer_mombre', 'like', "%{$this->buscar}%")
+            ->orWhere('primer_nombre', 'like', "%{$this->buscar}%")
             ->orWhere('segundo_nombre', 'like', "%{$this->buscar}%")
             ->orWhere('apellido_paterno', 'like', "%{$this->buscar}%")
             ->orWhere('apellido_materno', 'like', "%{$this->buscar}%")

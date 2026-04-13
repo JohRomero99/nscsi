@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class valorPensionBachillerato extends Model
+class cobroDetalle extends Model
 {
     use HasFactory;
-    protected $table = 'cob_valor_pension_bachillerato';
+    protected $table = 'cob_detalle';
 }
