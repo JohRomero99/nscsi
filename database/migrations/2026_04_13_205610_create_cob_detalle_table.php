@@ -18,8 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('cob_valor_pension_id')->nullable();
             $table->date('fecha_vencimiento')->nullable();
             $table->string('total_pagado')->nullable();
-            $table->string('saldo')->nullable();
-            $table->string('estado')->nullable();
             $table->unsignedBigInteger('periodo_lectivo_id')->nullable();
             $table->timestamps();
 

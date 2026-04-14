@@ -24,6 +24,8 @@ use App\Models\User;
 use App\Models\estudiantePension;
 use App\Models\paralelo;
 use App\Models\cobroDetalle;
+use App\Models\concepto;
+use Carbon\Carbon;
 use App\Http\Requests\colector\nuevoEstudianteRequest;
 
 
@@ -63,7 +65,7 @@ class colectorController extends Controller
         //
         $persona_estudiante = persona::create([
             'cedula' => $request->cedula,
-            'primer_nombre' => $request->segundo_nombre,
+            'primer_nombre' => $request->primer_nombre,
             'segundo_nombre' => $request->segundo_nombre,
             'apellido_paterno' => $request->apellido_paterno,
             'apellido_materno' => $request->apellido_materno,
@@ -128,11 +130,28 @@ class colectorController extends Controller
             'periodo_lectivo_id' => session('periodo_lectivo_id'),
         ]);
 
-        $cobroDetalle = cobroDetalle::create([
-            
-        ]);
+        $anioInicio = 2026;
+        $meses = [4,5,6,7,8,9,10,11,12,1];
 
-        //
+        $conceptos = concepto::all();
+
+        foreach ($conceptos as $index => $concepto) {
+
+            $mes = $meses[$index];
+            $anio = $mes < 4 ? $anioInicio + 1 : $anioInicio;
+            $fecha = Carbon::create($anio, $mes, 1)->endOfMonth();
+
+            cobroDetalle::create([
+                'cob_concepto_id' => $concepto->id,
+                'cob_estudiante_id' => $estudiantePension->id,
+                'cob_valor_pension_id' => $estudiantePension->cob_valor_pension_id,
+                'fecha_vencimiento' => $fecha->format('Y-m-d'),
+                'total_pagado' => 0,
+                'periodo_lectivo_id' => session('periodo_lectivo_id'),
+            ]);
+        }
+
+        // Redirigir hacia la misma vista.
         return redirect()->route('colector.index')->with('create', 'Estudiante registrado correctamente.');
 
     }
@@ -158,19 +177,25 @@ class colectorController extends Controller
 
         $buscar = $request->buscarEstudiante;
 
-        $estudiantes = estudiantePension::with('persona')
-            //->where('periodo_lectivo_id', session('periodo_lectivo_id'))
-            ->when($buscar, function ($query) use ($buscar) {
-                $query->whereHas('persona', function($q) use ($buscar) {
-                    $q->where('cedula', 'like', "%$buscar%")
-                    ->orWhere('primer_nombre', 'like', "%$buscar%")
-                    ->orWhere('segundo_nombre', 'like', "%$buscar%")
-                    ->orWhere('apellido_paterno', 'like', "%$buscar%")
-                    ->orWhere('apellido_materno', 'like', "%$buscar%");
-                });
-            })->get();
+        // $estudiantes = estudiantePension::with('persona')
+        //     ->where('periodo_lectivo_id', session('periodo_lectivo_id'))
+        //     ->when($buscar, function ($query) use ($buscar) {
+        //         $query->whereHas('persona', function($q) use ($buscar) {
+        //             $q->where('cedula', 'like', "%$buscar%")
+        //             ->orWhere('primer_nombre', 'like', "%$buscar%")
+        //             ->orWhere('segundo_nombre', 'like', "%$buscar%")
+        //             ->orWhere('apellido_paterno', 'like', "%$buscar%")
+        //             ->orWhere('apellido_materno', 'like', "%$buscar%");
+        //         });
+        //     })->get();
 
-        return $estudiantes;
+        $cobroDetalle = cobroDetalle::all();
+
+        return $cobroDetalle[0]->cob_concepto;
+
+        //return $estudiantePension[0]->estudiante->persona->primer_nombre;
+
+
         return view('colector.index', compact('estudiantes'));
 
     }

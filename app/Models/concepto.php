@@ -9,5 +9,6 @@ class concepto extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $table = 'cob_concepto';
 }
