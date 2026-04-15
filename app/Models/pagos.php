@@ -11,7 +11,7 @@ class pagos extends Model
 
     public function cobroDetalle(){
 
-        return $this->hasMany(cobroDetalle::class, 'cob_detalle_id');
+        return $this->belongsTo(cobroDetalle::class,'cob_detalle_id');
 
     }
 }

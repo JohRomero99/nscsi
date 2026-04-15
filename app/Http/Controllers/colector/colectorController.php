@@ -146,6 +146,10 @@ class colectorController extends Controller
                 'cob_estudiante_id' => $estudiantePension->id,
                 'cob_valor_pension_id' => $estudiantePension->cob_valor_pension_id,
                 'fecha_vencimiento' => $fecha->format('Y-m-d'),
+
+                'valor' => $estudiantePension->valorPension->pension_base,
+                'total_a_pagar' => $estudiantePension->valorPension->pension_descuento,
+
                 'total_pagado' => 0,
                 'periodo_lectivo_id' => session('periodo_lectivo_id'),
             ]);

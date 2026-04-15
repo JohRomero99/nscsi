@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('cob_concepto_id')->nullable();
             $table->unsignedBigInteger('cob_estudiante_id')->nullable();
             $table->unsignedBigInteger('cob_valor_pension_id')->nullable();
+            $table->string('valor')->nullable();
+            $table->string('total_a_pagar')->nullable();
             $table->date('fecha_vencimiento')->nullable();
             $table->string('total_pagado')->nullable();
             $table->unsignedBigInteger('periodo_lectivo_id')->nullable();

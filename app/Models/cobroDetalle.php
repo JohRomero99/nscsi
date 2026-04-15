@@ -26,19 +26,16 @@ class cobroDetalle extends Model
 
     // Relación Pagos
     public function pagos(){
-
-        return $this->hasMany(pagos::class);
+        return $this->hasMany(pagos::class, 'cob_detalle_id');
     }
 
-    // Total Pagado.
+    // Total Pagado
     public function getTotalPagado(){
-
-        return $this->pagos->sum('monto');
+        return $this->pagos()->sum('monto');
     }
 
-    // Monto Actual.
+    // Monto Actual
     public function getMontoActual(){
-
         $hoy = now();
 
         if ($hoy->lte($this->fecha_vencimiento)) {
@@ -48,26 +45,22 @@ class cobroDetalle extends Model
         return $this->valor; // sin descuento
     }
 
-    // Saldo Final.
+    // Saldo
     public function getSaldo(){
+        $total = $this->getMontoActual();
+        $pagado = $this->pagos()->sum('monto');
 
-        return $this->getMontoActual() - $this->getTotalPagado();
-
+        return $total - $pagado;
     }
 
-    // Estado automático.
+    // Estado
     public function getEstado(){
-
         $pagado = $this->getTotalPagado();
         $total = $this->getMontoActual();
 
-        if ($pagado >= $total) {
-            return 'Pagado';
-        }
-
-        if ($pagado > 0) {
-            return 'Parcial';
-        }
+        if ($pagado == 0) return 'Pendiente';
+        if ($pagado < $total) return 'Parcial';
+        if ($pagado >= $total) return 'Pagado';
 
         return 'Pendiente';
     }

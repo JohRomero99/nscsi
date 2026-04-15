@@ -103,10 +103,10 @@
                                         <!-- <td class="px-6 py-4"></td> -->
                                         <td class="px-6 py-4">${{ $est->estudiantePension->valorPension->pension_descuento }}</td>
                                         <td class="px-6 py-4">{{ $est->fecha_vencimiento }}</td>
-                                        <td class="px-6 py-4">{{ $est->estudiantePension->valorPension->descuento }}%</td>
+                                        <td class="px-6 py-4">${{ $est->getSaldo() }}</td>
                                         <td class="px-6 py-4">
                                             <span class="bg-yellow-300 text-yellow-800 px-3 py-1 rounded-full font-semibold">
-                                                
+                                                {{ $est->getEstado() }}
                                             </span>
                                         </td>
                                         <td class="px-6 py-4">
