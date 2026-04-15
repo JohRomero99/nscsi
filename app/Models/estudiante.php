@@ -36,4 +36,10 @@ class estudiante extends Model
 
     }
 
+    public function cobroDetalle(){
+
+        return $this->hasMany(cobroDetalle::class);
+        
+    }
+
 }

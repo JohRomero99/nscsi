@@ -35,14 +35,14 @@
                 </div>
             </form>
 
-            @if(isset($estudiantes))
-                @foreach($estudiantes as $est)
+            @if(isset($cobroDetalle))
+                
                     <!-- <div class="p-3 border-b hover:bg-gray-100 flex justify-between">
                         <div>
-                            {{ $est->persona->primer_nombre }} 
-                            {{ $est->persona->apellido_paterno }} <br>
+                            
+                             <br>
                             <span class="text-sm text-gray-500">
-                                {{ $est->persona->cedula }}
+                                
                             </span>
                         </div>
                     </div> -->
@@ -50,11 +50,11 @@
                         <div class="grid grid-cols-6 gap-4 mt-2">
                             <div class="col-span-2 md:col-span-2 lg:col-span-1 rounded-base p-4 shadow-lg">
                                 <h3 class="text-gray-900">Estudiante:</h3>
-                                <p class="mt-1 text-gray-600">{{ $est->persona->primer_nombre }} {{ $est->persona->segundo_nombre }} {{ $est->persona->apellido_paterno }} {{ $est->persona->apellido_materno }}</p>
+                                <p class="mt-1 text-gray-600"></p>
                             </div>
                             <div class="col-span-2 md:col-span-2 lg:col-span-1 shadow-lg rounded-base p-4">
                                 <h3 class="text-gray-900">Número de cédula:</h3>
-                                <p class="mt-1 text-gray-600">{{ $est->persona->cedula }}</p>
+                                <p class="mt-1 text-gray-600"></p>
                             </div>
                             <div class="col-span-2 md:col-span-2 lg:col-span-1 shadow-lg rounded-base p-4">
                                 <h3 class="text-gray-900">Monto Adeudado:</h3>
@@ -74,8 +74,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
-
+                
                 <div class="grid grid-cols-2 gap-4 mt-5">
                     <div class="col-span-2 md:col-span-2 lg:col-span-2">
                         <table class="w-full text-left text-gray-600">
@@ -84,26 +83,27 @@
                                 <tr>
                                     <th class="px-6 py-3">Concepto</th>
                                     <th class="px-6 py-3">Pensión</th>
-                                    <th class="px-6 py-3">Descuento</th>
+                                    <th class="px-6 py-3">Fecha de vencimiento</th>
                                     <th class="px-6 py-3">Total a Pagar</th>
                                     <th class="px-6 py-3">Estado</th>
                                     <th class="px-6 py-3">Registrar Pago</th>
                                 </tr>
                             </thead>
+                        @foreach($cobroDetalle as $est)
                             <!-- BODY -->
                             <tbody>
                                 
                                     <!-- fila -->
                                     <tr class="border-t odd:bg-white even:bg-gray-50 hover:bg-blue-50 transition text-center">
                                         <td class="px-6 py-4 text-left">
-                                             <br>
+                                            {{ $est->concepto->concepto }}
+                                            <br>
                                             Vto: 31 de Abril 2026
-
                                         </td>
-                                        <!-- <td class="px-6 py-4">Mayo</td> -->
-                                        <td class="px-6 py-4"></td>
-                                        <td class="px-6 py-4"></td>
-                                        <td class="px-6 py-4"></td>
+                                        <!-- <td class="px-6 py-4"></td> -->
+                                        <td class="px-6 py-4">${{ $est->estudiantePension->valorPension->pension_descuento }}</td>
+                                        <td class="px-6 py-4">{{ $est->fecha_vencimiento }}</td>
+                                        <td class="px-6 py-4">{{ $est->estudiantePension->valorPension->descuento }}%</td>
                                         <td class="px-6 py-4">
                                             <span class="bg-yellow-300 text-yellow-800 px-3 py-1 rounded-full font-semibold">
                                                 
@@ -112,8 +112,13 @@
                                         <td class="px-6 py-4">
                                             <div class="flex justify-center">
                                                 <!-- Modal toggle -->
-                                                <button data-modal-target="modal-1" data-modal-toggle="modal-1" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                                                    Registrar Pago <i class="fa-solid fa-coins"></i>
+                                                <button 
+                                                    data-modal-target="modal-1" 
+                                                    data-modal-toggle="modal-1" 
+                                                    class="" 
+                                                    type="button">
+                                                    Registrar Pago 
+                                                    <i class="fa-solid fa-coins"></i>
                                                 </button>
 
                                                 <!-- Main modal -->
@@ -266,11 +271,12 @@
                                             </div>
                                         </td>
                                     </tr>
-                                
+                        @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>  
+                
             @else
                 <p class="text-gray-500">Seleccione un estudiante para ver la información</p>
             @endif

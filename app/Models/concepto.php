@@ -11,4 +11,9 @@ class concepto extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $table = 'cob_concepto';
+
+    public function cobroDetalle(){
+
+        return $this->hasMany(cobroDetalle::class);
+    }
 }

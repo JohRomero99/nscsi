@@ -190,13 +190,12 @@ class colectorController extends Controller
         //     })->get();
 
         $cobroDetalle = cobroDetalle::all();
-
-        return $cobroDetalle[0]->cob_concepto;
+        //return $cobroDetalle[0]->estudiantePension->valorPension;
 
         //return $estudiantePension[0]->estudiante->persona->primer_nombre;
 
 
-        return view('colector.index', compact('estudiantes'));
+        return view('colector.index', compact('cobroDetalle'));
 
     }
 }

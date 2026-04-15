@@ -32,7 +32,7 @@ class estudiantePension extends Model
 
     public function valorPension(){
 
-        return $this->belongsTo(valorPension::class);
+        return $this->belongsTo(valorPension::class, 'cob_valor_pension_id');
 
     }
 

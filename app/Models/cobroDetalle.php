@@ -12,7 +12,17 @@ class cobroDetalle extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $table = 'cob_detalle';
 
-    
+    public function concepto(){
+
+        return $this->belongsTo(concepto::class, 'cob_concepto_id');
+
+    }
+
+    public function estudiantePension(){
+
+        return $this->belongsTo(estudiantePension::class, 'cob_estudiante_id');
+
+    }
 
     // Relación Pagos
     public function pagos(){
