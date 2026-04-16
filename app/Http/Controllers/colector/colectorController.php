@@ -25,6 +25,7 @@ use App\Models\estudiantePension;
 use App\Models\paralelo;
 use App\Models\cobroDetalle;
 use App\Models\concepto;
+use App\Models\pagos;
 use Carbon\Carbon;
 use App\Http\Requests\colector\nuevoEstudianteRequest;
 
@@ -146,10 +147,8 @@ class colectorController extends Controller
                 'cob_estudiante_id' => $estudiantePension->id,
                 'cob_valor_pension_id' => $estudiantePension->cob_valor_pension_id,
                 'fecha_vencimiento' => $fecha->format('Y-m-d'),
-
                 'valor' => $estudiantePension->valorPension->pension_base,
                 'total_a_pagar' => $estudiantePension->valorPension->pension_descuento,
-
                 'total_pagado' => 0,
                 'periodo_lectivo_id' => session('periodo_lectivo_id'),
             ]);
@@ -170,16 +169,52 @@ class colectorController extends Controller
 
     }
 
+    public function show($id){
+
+        $estudiante = estudiante::find($id);
+        $cobroDetalle = $estudiante->estudiantePension->cobroDetalle;
+        //$cobroDetalle = cobroDetalle::all();
+
+        $totalAdeudado = $cobroDetalle->sum(function ($item) {
+            return $item->getSaldo();
+        });
+
+        return view('colector.show', compact('estudiante','totalAdeudado'));
+
+    }
+
     public function pago(Request $request){
 
         return $request->all();
+
+        // Guardar pago
+        pagos::create([
+            'cob_detalle_id' => $request->cob_detalle_id,
+            'monto' => $request->pago_en_caja,
+            'fecha_pago' => now(),
+        ]);
+
+        return back()->with('success', 'Pago registrado correctamente');
 
     }
 
     
     public function buscarEstudiante(Request $request){
 
-        $buscar = $request->buscarEstudiante;
+        $estudiantes = estudiante::whereHas('persona', function($q) use ($request) {
+            $q->where('cedula', 'like', "%{$request->buscarEstudiante}%")
+            ->orWhere('primer_nombre', 'like', "%{$request->buscarEstudiante}%")
+            ->orWhere('segundo_nombre', 'like', "%{$request->buscarEstudiante}%")
+            ->orWhere('apellido_paterno', 'like', "%{$request->buscarEstudiante}%")
+            ->orWhere('apellido_materno', 'like', "%{$request->buscarEstudiante}%");
+        })->get();
+
+
+        // $totalAdeudado = $cobroDetalle->sum(function ($item) {
+        //     return $item->getSaldo();
+        // });
+
+        // $buscar = $request->buscarEstudiante;
 
         // $estudiantes = estudiantePension::with('persona')
         //     ->where('periodo_lectivo_id', session('periodo_lectivo_id'))
@@ -193,13 +228,11 @@ class colectorController extends Controller
         //         });
         //     })->get();
 
-        $cobroDetalle = cobroDetalle::all();
-        //return $cobroDetalle[0]->estudiantePension->valorPension;
+        // $totalAdeudado = $cobroDetalle->sum(function ($item) {
+        //     return $item->getSaldo();
+        // });
 
-        //return $estudiantePension[0]->estudiante->persona->primer_nombre;
-
-
-        return view('colector.index', compact('cobroDetalle'));
+        return view('colector.index', compact('estudiantes'));
 
     }
 }

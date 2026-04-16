@@ -15,7 +15,7 @@ Route::get('editar/{userId}', [colectorController::class, 'edit'])->name('colect
 
 Route::get('destroy/{userId}', [colectorController::class, 'destroy'])->name('colector.destroy');
 
-Route::get('show', [colectorController::class, 'show'])->name('colector.show');
+Route::get('show/{id}', [colectorController::class, 'show'])->name('colector.show');
 
 Route::post('pago', [colectorController::class, 'pago'])->name('colector.pago');
 

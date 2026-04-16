@@ -60,7 +60,7 @@
 
             @hasanyrole('colector')
                 <li>
-                    <x-responsive-nav-link :href="route('colector.show')" :active="request()->routeIs('colector.show')">
+                    <x-responsive-nav-link :href="route('colector.create')" :active="request()->routeIs('colector.show')">
                         <i class="fa-solid fa-chart-pie"></i>
                         <span class="flex-1 ms-3 whitespace-nowrap">Estado de Cuenta</span>
                     </x-responsive-nav-link>    
@@ -69,7 +69,7 @@
 
             @hasanyrole('colector')
                 <li>
-                    <x-responsive-nav-link :href="route('colector.show')" :active="request()->routeIs('colector.show')">
+                    <x-responsive-nav-link :href="route('colector.create')" :active="request()->routeIs('colector.show')">
                         <i class="fa-solid fa-circle-dollar-to-slot"></i>
                         <span class="flex-1 ms-3 whitespace-nowrap">Deudores</span>
                     </x-responsive-nav-link>    

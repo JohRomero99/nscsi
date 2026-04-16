@@ -48,5 +48,11 @@ class estudiantePension extends Model
 
     }
 
+    public function cobroDetalle(){
+
+        return $this->HasMany(cobroDetalle::class,'cob_estudiante_id');
+
+    }
+
 
 }

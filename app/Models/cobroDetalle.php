@@ -24,7 +24,6 @@ class cobroDetalle extends Model
 
     }
 
-    // Relación Pagos
     public function pagos(){
         return $this->hasMany(pagos::class, 'cob_detalle_id');
     }
@@ -36,6 +35,8 @@ class cobroDetalle extends Model
 
     // Monto Actual
     public function getMontoActual(){
+        
+        //$hoy = now()->addMonth();
         $hoy = now();
 
         if ($hoy->lte($this->fecha_vencimiento)) {
