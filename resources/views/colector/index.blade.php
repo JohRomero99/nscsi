@@ -51,7 +51,7 @@
                                     <a href="{{ route('colector.show', $es->id ) }}" 
                                         class="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium">
                                         Seleccionar
-                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <i class="fa-solid fa-circle-arrow-right"></i>
                                     </a>
                                 </div>
                             @endforeach

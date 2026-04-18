@@ -35,8 +35,7 @@ class cobroDetalle extends Model
 
     public function getMesesMora(){
 
-        //$hoy = now();
-        $hoy = now()->addMonths(11);
+        $hoy = now();
 
         if ($hoy->lte($this->fecha_vencimiento)) {
             return 0;

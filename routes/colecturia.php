@@ -22,3 +22,5 @@ Route::get('deudas', [colectorController::class, 'deudas'])->name('colector.deud
 Route::post('pago', [colectorController::class, 'pago'])->name('colector.pago');
 
 Route::get('buscar/estudiante', [colectorController::class, 'buscarEstudiante'])->name('colector.buscarEstudiante');
+
+Route::get('/deudores/{meses}', [ColectorController::class, 'detalleDeudores'])->name('colector.deudores.detalle');

@@ -28,6 +28,7 @@ use App\Models\concepto;
 use App\Models\pagos;
 use Carbon\Carbon;
 use App\Http\Requests\colector\nuevoEstudianteRequest;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class colectorController extends Controller
@@ -164,8 +165,48 @@ class colectorController extends Controller
 
     }
 
-    public function destroy($userId){
+    public function detalleDeudores($meses){
 
+        $estudiantes = estudiante::with('estudiantePension.cobroDetalle')->get();
+
+        $resultado = [];
+
+        foreach ($estudiantes as $est) {
+
+            $mesesMora = $est->getMesesMoraReal();
+
+            $total = $est->estudiantePension->cobroDetalle->sum(function ($cobro) {
+                return $cobro->getSaldo();
+            });
+
+            if ($mesesMora == $meses && $total > 0) {
+                $resultado[] = [
+                    'estudiante' => $est,
+                    'meses' => $mesesMora,
+                    'total' => $total
+                ];
+            }
+        }
+
+        $page = request()->get('page', 1);
+        $perPage = 10;
+
+        $collection = collect($resultado);
+
+        $paginated = new LengthAwarePaginator(
+            $collection->forPage($page, $perPage),
+            $collection->count(),
+            $perPage,
+            $page,
+            ['path' => request()->url()]
+        );
+
+        //return view('colector.detalleDeudores', compact('resultado', 'meses'));
+
+        return view('colector.detalleDeudores', [
+            'resultado' => $paginated,
+            'meses' => $meses
+        ]);
 
     }
 
@@ -173,7 +214,6 @@ class colectorController extends Controller
 
         $estudiante = estudiante::find($id);
         $cobroDetalle = $estudiante->estudiantePension->cobroDetalle;
-        //$cobroDetalle = cobroDetalle::all();
 
         $totalAdeudado = $cobroDetalle->sum(function ($item) {
             return $item->getSaldo();
@@ -184,12 +224,6 @@ class colectorController extends Controller
     }
 
     public function pago(Request $request){
-
-        // pagos::create([
-        //     'cob_detalle_id' => $request->cob_detalle_id,
-        //     'monto' => $request->pago_en_caja,
-        //     'fecha_pago' => now(),
-        // ]);
 
         $pago_en_caja = $request->pago_en_caja;
 
@@ -244,43 +278,96 @@ class colectorController extends Controller
 
     public function deudas(){
 
-        $cobros = cobroDetalle::with('estudiantePension.estudiante.persona')->get();
+        $estudiantes = estudiante::with('estudiantePension.cobroDetalle')->get();
 
-        $niveles = [];
+        $cards = [
+            1 => ['total' => 0, 'estudiantes' => []],
+            2 => ['total' => 0, 'estudiantes' => []],
+            3 => ['total' => 0, 'estudiantes' => []],
+            4 => ['total' => 0, 'estudiantes' => []],
+        ];
 
-        foreach ($cobros as $cobro) {
+        foreach ($estudiantes as $est) {
 
-            $meses = $cobro->getMesesMora();
-            $saldo = $cobro->getSaldo();
+            // meses reales de mora
+            $meses = $est->getMesesMoraReal();
 
-            // ignorar los que no deben nada
-            if ($saldo <= 0 || $meses == 0) continue;
+            // deuda total del estudiante
+            $total = $est->estudiantePension->cobroDetalle->sum(function ($cobro) {
+                return $cobro->getSaldo();
+            });
 
-            // limitar a máximo 10 meses
+            // 🚫 ignorar si no debe nada
+            if ($meses == 0 || $total <= 0) continue;
+
+            // 🎯 clasificar en cards
+            if ($meses == 1) {
+                $cards[1]['total'] += $total;
+                $cards[1]['estudiantes'][] = $est->id;
+            }
+
+            elseif ($meses == 2) {
+                $cards[2]['total'] += $total;
+                $cards[2]['estudiantes'][] = $est->id;
+            }
+
+            elseif ($meses == 3) {
+                $cards[3]['total'] += $total;
+                $cards[3]['estudiantes'][] = $est->id;
+            }
+
+            else {
+                $cards[4]['total'] += $total;
+                $cards[4]['estudiantes'][] = $est->id;
+            }
+        }
+
+        //wgewgewgewg
+        $totalEstudiantes = [];
+        $deudaTotal = 0;
+
+        foreach ($cards as $card) {
+
+            $totalEstudiantes = array_unique(
+                array_merge($totalEstudiantes, $card['estudiantes'])
+            );
+
+            $deudaTotal += $card['total'];
+        }
+
+        // wefoiewfioej
+        $nivelesTabla = [];
+
+        foreach ($estudiantes as $est) {
+
+            $meses = $est->getMesesMoraReal();
+
+            $total = $est->estudiantePension->cobroDetalle->sum(function ($cobro) {
+                return $cobro->getSaldo();
+            });
+
+            if ($meses == 0 || $total <= 0) continue;
+
+            // limitar a 10 meses
             $meses = min($meses, 10);
 
-            if (!isset($niveles[$meses])) {
-                $niveles[$meses] = [
+            if (!isset($nivelesTabla[$meses])) {
+                $nivelesTabla[$meses] = [
                     'meses' => $meses,
                     'estudiantes' => [],
                     'total' => 0,
                 ];
             }
 
-            // Guardar estudiante (evitar duplicados)
-            $estudianteId = $cobro->estudiantePension->estudiante->id;
-
-            if (!in_array($estudianteId, $niveles[$meses]['estudiantes'])) {
-                $niveles[$meses]['estudiantes'][] = $estudianteId;
+            // evitar duplicados
+            if (!in_array($est->id, $nivelesTabla[$meses]['estudiantes'])) {
+                $nivelesTabla[$meses]['estudiantes'][] = $est->id;
             }
 
-            $niveles[$meses]['total'] += $saldo;
+            $nivelesTabla[$meses]['total'] += $total;
         }
 
-        // Ordenar por meses
-        ksort($niveles);
-
-        return view('colector.deudores', compact('niveles'));
+        return view('colector.deudores', compact('cards','deudaTotal','totalEstudiantes','nivelesTabla'));
 
     }
 }

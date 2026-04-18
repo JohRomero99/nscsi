@@ -42,4 +42,17 @@ class estudiante extends Model
         
     }
 
+    public function getMesesMoraReal(){
+
+        //$hoy = now();
+        $hoy = now()->addMonths(10);
+
+        $cobros = $this->estudiantePension->cobroDetalle;
+
+        return $cobros->filter(function ($cobro) use ($hoy) {
+            return $cobro->fecha_vencimiento < $hoy 
+                && $cobro->getSaldo() > 0;
+        })->count();
+    }
+
 }

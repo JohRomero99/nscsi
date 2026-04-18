@@ -645,19 +645,6 @@
         document.addEventListener('DOMContentLoaded', toggleOtro);
     </script>
 
-    <!-- <script>
-        const select_dos = document.getElementById('valor_pension');
-        const otroDiv_dos = document.getElementById('nueva_pension');
-
-        select_dos.addEventListener('change', function () {
-            if (this.value === 'Otro') {
-                otroDiv_dos.style.display = 'block';
-            } else {
-                otroDiv_dos.style.display = 'none';
-            }
-        });
-    </script> -->
-
     <script>
         const select_tres = document.getElementById('motivo_matriculacion');
         const otroDiv_tres = document.getElementById('otro_motivo_matriculacion');
