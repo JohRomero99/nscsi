@@ -10,6 +10,11 @@ class cobroDetalle extends Model
     use HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    protected $casts = [
+    'fecha_vencimiento' => 'date',
+    ];
+
     protected $table = 'cob_detalle';
 
     public function concepto(){
@@ -26,6 +31,28 @@ class cobroDetalle extends Model
 
     public function pagos(){
         return $this->hasMany(pagos::class, 'cob_detalle_id');
+    }
+
+    public function getMesesMora(){
+
+        //$hoy = now();
+        $hoy = now()->addMonths(11);
+
+        if ($hoy->lte($this->fecha_vencimiento)) {
+            return 0;
+        }
+
+        // Diferencia en meses
+        //$meses = $this->fecha_vencimiento->diffInMonths($hoy);
+
+        return (int) $this->fecha_vencimiento->diffInMonths($hoy);
+
+        // Si ya pasó al siguiente mes, contar mínimo 1
+        if ($meses == 0) {
+            return 1;
+        }
+
+        return $meses;
     }
 
     // Total Pagado

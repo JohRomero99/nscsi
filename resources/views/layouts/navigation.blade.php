@@ -69,7 +69,7 @@
 
             @hasanyrole('colector')
                 <li>
-                    <x-responsive-nav-link :href="route('colector.create')" :active="request()->routeIs('colector.show')">
+                    <x-responsive-nav-link :href="route('colector.deudas')" :active="request()->routeIs('colector.deudas')">
                         <i class="fa-solid fa-circle-dollar-to-slot"></i>
                         <span class="flex-1 ms-3 whitespace-nowrap">Deudores</span>
                     </x-responsive-nav-link>    

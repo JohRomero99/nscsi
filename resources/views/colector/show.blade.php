@@ -72,11 +72,11 @@
                                             <div class="flex justify-center">
                                                 <!-- Modal toggle -->
                                                 <button 
-                                                    data-modal-target="modal-1" 
-                                                    data-modal-toggle="modal-1" 
-                                                    class="" 
+                                                    data-modal-target="modal-{{ $est->id }}" 
+                                                    data-modal-toggle="modal-{{ $est->id }}" 
+                                                    class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 whitespace-nowrap" 
                                                     type="button">
-                                                    Registrar Pago 
+                                                        Registrar Pago 
                                                     <i class="fa-solid fa-coins"></i>
                                                 </button>
 
@@ -105,6 +105,7 @@
                                                                     <div class="p-8 bg-white space-y-1 text-gray-700">
                                                                         <div class="grid grid-cols-4 gap-4">
 
+                                                                            <input type="hidden" name="estudiante_id" value="{{ $est->estudiantePension->estudiante->id }}">
                                                                             <input type="hidden" name="cob_detalle_id" value="{{ $est->id }}">
 
                                                                             <!-- Valor a pagar -->
@@ -143,7 +144,7 @@
 
                                                                                     <button 
                                                                                         type="submit" 
-                                                                                        class="bg-green-500 text-white font-bold p-3 px-4 rounded" 
+                                                                                        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 whitespace-nowrap" 
                                                                                         data-modal-target="modal-{{ $est->id }}"
                                                                                     >
                                                                                         Registar Pago
@@ -171,4 +172,15 @@
             @else
                 
             @endif
+
+    <script>
+        // Mostrar mensaje de datos enviados.
+        @if (session('success'))
+            Swal.fire({
+                title: "¡Exito!",
+                text: "Pago registrado correctamente.",
+                icon: "success"
+            });
+        @endif
+    </script>
 </x-app-layout>

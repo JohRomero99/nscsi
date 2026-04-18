@@ -185,14 +185,43 @@ class colectorController extends Controller
 
     public function pago(Request $request){
 
-        return $request->all();
+        // pagos::create([
+        //     'cob_detalle_id' => $request->cob_detalle_id,
+        //     'monto' => $request->pago_en_caja,
+        //     'fecha_pago' => now(),
+        // ]);
 
-        // Guardar pago
-        pagos::create([
-            'cob_detalle_id' => $request->cob_detalle_id,
-            'monto' => $request->pago_en_caja,
-            'fecha_pago' => now(),
-        ]);
+        $pago_en_caja = $request->pago_en_caja;
+
+        // Obtener todos los cobros pendientes ordenados
+        $detalles = cobroDetalle::where('cob_estudiante_id', $request->estudiante_id)
+            ->orderBy('fecha_vencimiento')
+            ->get();
+
+        foreach ($detalles as $detalle) {
+
+            $saldo = $detalle->getSaldo();
+
+            if ($saldo <= 0) {
+                continue; // ya está pagado
+            }
+
+            if ($pago_en_caja <= 0) {
+                break; // ya no hay dinero
+            }
+
+            // cuánto se va a pagar en este mes
+            $pago = min($saldo, $pago_en_caja);
+
+            pagos::create([
+                'cob_detalle_id' => $detalle->id,
+                'monto' => $pago,
+                'fecha_pago' => now(),
+            ]);
+
+            // restar lo aplicado
+            $pago_en_caja -= $pago;
+        }
 
         return back()->with('success', 'Pago registrado correctamente');
 
@@ -209,30 +238,49 @@ class colectorController extends Controller
             ->orWhere('apellido_materno', 'like', "%{$request->buscarEstudiante}%");
         })->get();
 
-
-        // $totalAdeudado = $cobroDetalle->sum(function ($item) {
-        //     return $item->getSaldo();
-        // });
-
-        // $buscar = $request->buscarEstudiante;
-
-        // $estudiantes = estudiantePension::with('persona')
-        //     ->where('periodo_lectivo_id', session('periodo_lectivo_id'))
-        //     ->when($buscar, function ($query) use ($buscar) {
-        //         $query->whereHas('persona', function($q) use ($buscar) {
-        //             $q->where('cedula', 'like', "%$buscar%")
-        //             ->orWhere('primer_nombre', 'like', "%$buscar%")
-        //             ->orWhere('segundo_nombre', 'like', "%$buscar%")
-        //             ->orWhere('apellido_paterno', 'like', "%$buscar%")
-        //             ->orWhere('apellido_materno', 'like', "%$buscar%");
-        //         });
-        //     })->get();
-
-        // $totalAdeudado = $cobroDetalle->sum(function ($item) {
-        //     return $item->getSaldo();
-        // });
-
         return view('colector.index', compact('estudiantes'));
+
+    }
+
+    public function deudas(){
+
+        $cobros = cobroDetalle::with('estudiantePension.estudiante.persona')->get();
+
+        $niveles = [];
+
+        foreach ($cobros as $cobro) {
+
+            $meses = $cobro->getMesesMora();
+            $saldo = $cobro->getSaldo();
+
+            // ignorar los que no deben nada
+            if ($saldo <= 0 || $meses == 0) continue;
+
+            // limitar a máximo 10 meses
+            $meses = min($meses, 10);
+
+            if (!isset($niveles[$meses])) {
+                $niveles[$meses] = [
+                    'meses' => $meses,
+                    'estudiantes' => [],
+                    'total' => 0,
+                ];
+            }
+
+            // Guardar estudiante (evitar duplicados)
+            $estudianteId = $cobro->estudiantePension->estudiante->id;
+
+            if (!in_array($estudianteId, $niveles[$meses]['estudiantes'])) {
+                $niveles[$meses]['estudiantes'][] = $estudianteId;
+            }
+
+            $niveles[$meses]['total'] += $saldo;
+        }
+
+        // Ordenar por meses
+        ksort($niveles);
+
+        return view('colector.deudores', compact('niveles'));
 
     }
 }
