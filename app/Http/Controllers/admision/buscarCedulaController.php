@@ -13,7 +13,7 @@ class buscarCedulaController extends Controller
     {
         
         $cedula = $request->query('cedula'); // Obtener la cédula desde la solicitud
-        $persona = Persona::where('cedula', $cedula)->first(); // Buscar en la base de 
+        $persona = persona::where('cedula', $cedula)->first(); // Buscar en la base de 
 
         if ($persona) {
             // Retornar los datos de la persona como JSON si existe
@@ -25,7 +25,7 @@ class buscarCedulaController extends Controller
     {
         
         $cedula = $request->query('cedula');
-        $persona = Persona::where('cedula', $cedula)->first(); // Buscar en la base de datos
+        $persona = persona::where('cedula', $cedula)->first(); // Buscar en la base de datos
         return $persona;
 
         if ($persona) {

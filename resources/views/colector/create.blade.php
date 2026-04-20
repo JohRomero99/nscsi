@@ -8,7 +8,6 @@
 
     <form action="{{ route('colector.store') }}" method="POST">
         @csrf
-        @method('POST')
 
         <div class="p-8 space-y-2 text-gray-700">
 
@@ -641,7 +640,7 @@
         // Cuando cambia
         select_uno.addEventListener('change', toggleOtro);
 
-        // 👇 Cuando carga la página
+        // Cuando carga la página
         document.addEventListener('DOMContentLoaded', toggleOtro);
     </script>
 
@@ -660,7 +659,37 @@
         // Cuando cambia
         select_tres.addEventListener('change', toggleMotivo);
 
-        // 👇 Cuando carga la página
+        // Cuando carga la página
         document.addEventListener('DOMContentLoaded', toggleMotivo);
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#cedula_representante').on('input', function() {
+                let cedula = $(this).val();
+
+                if (cedula.length === 10) { // Verifica si la cédula tiene 10 dígitos.
+                    $.ajax({
+                        url: "{{ route('colector.cedula.representante') }}", // Ruta para la búsqueda
+                        method: 'GET',
+                        data: { cedula: cedula },
+                        success: function(response) {
+                            // Llenar los campos del formulario con los datos recibidos
+                            $('#primer_nombre_representante').val(response.primer_nombre);
+                            $('#segundo_nombre_representante').val(response.segundo_nombre);
+                            $('#apellido_paterno_representante').val(response.apellido_paterno);
+                            $('#apellido_materno_representante').val(response.apellido_materno);
+                            $('#email').val(response.email);
+                            $('#telefono').val(response.telefono_celular);
+
+                        },
+                        error: function() {
+                            // Limpiar los campos si no se encuentra la cédula
+                            $('#primer_nombre_representante, #segundo_nombre_representante, #apellido_paterno_representante, #apellido_materno_representante, #email_representante, #telefono_celular_representante').val('');
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </x-app-layout>

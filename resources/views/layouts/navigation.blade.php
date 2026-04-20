@@ -60,24 +60,6 @@
 
             @hasanyrole('colector')
                 <li>
-                    <x-responsive-nav-link :href="route('colector.create')" :active="request()->routeIs('colector.show')">
-                        <i class="fa-solid fa-chart-pie"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Estado de Cuenta</span>
-                    </x-responsive-nav-link>    
-                </li>
-            @endhasanyrole
-
-            @hasanyrole('colector')
-                <li>
-                    <x-responsive-nav-link :href="route('colector.deudas')" :active="request()->routeIs('colector.deudas')">
-                        <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Deudores</span>
-                    </x-responsive-nav-link>    
-                </li>
-            @endhasanyrole
-
-            @hasanyrole('colector')
-                <li>
                     <x-responsive-nav-link :href="route('colector.create')" :active="request()->routeIs('colector.create')">
                         <i class="fa-solid fa-user-gear"></i>
                         <span class="flex-1 ms-3 whitespace-nowrap">Nuevo Estudiante</span>
@@ -87,9 +69,9 @@
 
             @hasanyrole('colector')
                 <li>
-                    <x-responsive-nav-link :href="route('colector.create')" :active="request()->routeIs('colector.create')">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Paramteros</span>
+                    <x-responsive-nav-link :href="route('colector.deudas')" :active="request()->routeIs('colector.deudas')">
+                        <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Deudores</span>
                     </x-responsive-nav-link>    
                 </li>
             @endhasanyrole

@@ -64,7 +64,7 @@ class colectorController extends Controller
 
     public function store(nuevoEstudianteRequest $request){
 
-        //
+        // Creo una nueva persona para el estudiante.
         $persona_estudiante = persona::create([
             'cedula' => $request->cedula,
             'primer_nombre' => $request->primer_nombre,
@@ -73,18 +73,7 @@ class colectorController extends Controller
             'apellido_materno' => $request->apellido_materno,
         ]);
 
-        //
-        $persona_representante = persona::create([
-            'cedula' => $request->cedula_representante,
-            'primer_nombre' => $request->primer_nombre_representante,
-            'segundo_nombre' => $request->segundo_nombre_representante,
-            'apellido_paterno' => $request->apellido_paterno_representante,
-            'apellido_materno' => $request->apellido_materno_representante,
-            'telefono_celular' => $request->telefono,
-            'email' => $request->email,
-        ]);
-
-        //
+        // Creo el estudiante.
         $estudiante = estudiante::create([
             'persona_id' => $persona_estudiante->id,
             //'numero_matricula' => '',
@@ -94,30 +83,63 @@ class colectorController extends Controller
             //'estado' => '',
         ]);
 
-        //
-        $representante = representante::create([
-            'persona_id' => $persona_representante->id,
-        ]);
+        // Verificar si el representante ya existe en la base de datos.
+        $persona_representante = persona::where('cedula', $request->cedula_representante)->first();
 
-        //
-        $estudianteRepresentante = estudianteRepresentante::create([
-            'estudiante_id' => $estudiante->id,
-            'representante_id' => $representante->id,
-        ]);
+        if(!$persona_representante) {
 
-        // Generar una contraseña y despues se cifra la contraseña.
-        $randomContrasena = Str::random(10);
-        $hashedContrasena = Hash::make($randomContrasena);
+            // Si no existe el representante, se crea uno nuevo.
+            $persona_representante = persona::create([
+                'cedula' => $request->cedula_representante,
+                'primer_nombre' => $request->primer_nombre_representante,
+                'segundo_nombre' => $request->segundo_nombre_representante,
+                'apellido_paterno' => $request->apellido_paterno_representante,
+                'apellido_materno' => $request->apellido_materno_representante,
+                'telefono_celular' => $request->telefono,
+                'email' => $request->email,
+            ]);
 
-        // Crear Usuario y contraseña de la plataforma.
-        $user = User::create([
-            'name' => $estudianteRepresentante->representante->persona->primer_nombre,
-            'email' => $request->email,
-            'password' => $hashedContrasena,
-        ])->assignRole('representante');
+            // Creo el representante.
+            $representante = representante::create([
+                'persona_id' => $persona_representante->id,
+            ]);
 
-        //
-        $estudianteRepresentante->representante->persona()->update(['user_id' => $user->id]);
+            // Relaciono el estudiante con su representante.
+            $estudianteRepresentante = estudianteRepresentante::create([
+                'estudiante_id' => $estudiante->id,
+                'representante_id' => $representante->id,
+            ]);
+
+        }else{
+
+            // Relaciono el estudiante con su representante.
+            $estudianteRepresentante = estudianteRepresentante::create([
+                'estudiante_id' => $estudiante->id,
+                'representante_id' => $persona_representante->representante->id,
+            ]);
+
+        }
+
+        // Verificar si el representante ya tiene un usuario en la plataforma.
+        $user = user::where('email', $request->email)->first();
+
+        if(!$user) {
+
+            // Generar una contraseña y despues se cifra la contraseña.
+            $randomContrasena = Str::random(10);
+            $hashedContrasena = Hash::make($randomContrasena);
+
+            // Crear Usuario y contraseña de la plataforma.
+            $user = User::create([
+                'name' => $estudianteRepresentante->representante->persona->primer_nombre,
+                'email' => $request->email,
+                'password' => $hashedContrasena,
+            ])->assignRole('representante');
+
+            // Actualizar el user_id en la tabla persona del representante.
+            $estudianteRepresentante->representante->persona()->update(['user_id' => $user->id]);
+
+        }
 
         //Asiganar pension
         $estudiantePension = estudiantePension::create([
@@ -201,7 +223,6 @@ class colectorController extends Controller
             ['path' => request()->url()]
         );
 
-        //return view('colector.detalleDeudores', compact('resultado', 'meses'));
 
         return view('colector.detalleDeudores', [
             'resultado' => $paginated,
@@ -297,10 +318,10 @@ class colectorController extends Controller
                 return $cobro->getSaldo();
             });
 
-            // 🚫 ignorar si no debe nada
+            // ignorar si no debe nada
             if ($meses == 0 || $total <= 0) continue;
 
-            // 🎯 clasificar en cards
+            // clasificar en cards
             if ($meses == 1) {
                 $cards[1]['total'] += $total;
                 $cards[1]['estudiantes'][] = $est->id;
@@ -369,5 +390,17 @@ class colectorController extends Controller
 
         return view('colector.deudores', compact('cards','deudaTotal','totalEstudiantes','nivelesTabla'));
 
+    }
+
+    public function colectorCedulaRepresentante(Request $request)
+    {
+        
+        $cedula = $request->query('cedula'); // Obtener la cédula desde la solicitud
+        $persona = persona::where('cedula', $cedula)->first(); // Buscar en la base de 
+
+        if ($persona) {
+            // Retornar los datos de la persona como JSON si existe
+            return response()->json($persona);
+        }
     }
 }

@@ -23,4 +23,6 @@ Route::post('pago', [colectorController::class, 'pago'])->name('colector.pago');
 
 Route::get('buscar/estudiante', [colectorController::class, 'buscarEstudiante'])->name('colector.buscarEstudiante');
 
-Route::get('/deudores/{meses}', [ColectorController::class, 'detalleDeudores'])->name('colector.deudores.detalle');
+Route::get('/deudores/{meses}', [colectorController::class, 'detalleDeudores'])->name('colector.deudores.detalle');
+
+Route::get('cedula/representante', [colectorController::class, 'colectorCedulaRepresentante'])->name('colector.cedula.representante');

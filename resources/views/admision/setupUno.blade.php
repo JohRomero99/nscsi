@@ -16,9 +16,6 @@
         <div id="setup-1">
             <div class="grid grid-cols-4 gap-4 pl-5 pt-1 pr-5">
                 <input type="hidden" name="setup" value="1"> <!-- Setup 1 -->
-                <!-- <div class="col-span-4">
-                    <p class="text-gray-500 text-center mt-5 text-green-900">Paso 1 de 3 - Datos del Representante</p>
-                </div> -->
 
                 <!-- Cédula del Representante -->
                 <div class="col-span-4">
@@ -273,7 +270,7 @@
 
                     if (cedula.length === 10) { // Verifica si la cédula tiene 10 dígitos
                         $.ajax({
-                            url: "{{ route('buscar.cedula.representante') }}", // Ruta para la búsqueda
+                            url: "{{ route('colector.cedula.representante') }}", // Ruta para la búsqueda
                             method: 'GET',
                             data: { cedula: cedula },
                             success: function(response) {

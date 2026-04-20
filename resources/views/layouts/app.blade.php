@@ -22,6 +22,9 @@
         <!-- Flowbite -->
         <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
 
+        {{-- jQuery --}}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 

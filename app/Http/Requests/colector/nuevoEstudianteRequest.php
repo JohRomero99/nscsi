@@ -28,7 +28,7 @@ class nuevoEstudianteRequest extends FormRequest
             'apellido_paterno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'apellido_materno' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
 
-            'cedula_representante' => ['required','numeric','digits:10','unique:persona,cedula','different:cedula'],
+            'cedula_representante' => ['required','numeric','digits:10','different:cedula'],
             'primer_nombre_representante' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'segundo_nombre_representante' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
             'apellido_paterno_representante' => ['required', 'regex:/^[\p{L}ñÑáéíóúÁÉÍÓÚ\s]+$/u'],
